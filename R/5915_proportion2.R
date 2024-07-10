@@ -1,11 +1,13 @@
+#' @export
 two_proportion_test <- function(object, ...) { UseMethod("two_proportion_test") }
 
-two_proportion_test.formula <- function(formula, data, success, method=c("default", "chisq", "exact"), 
+#' @export
+two_proportion_test.formula <- function(formula, data, success, method=c("default", "chisq", "exact"),
                                         alternative = c("two.sided", "less", "greater"), ...) {
 
   a <- do_subformulas()
   if(!is.null(a)) return(a)
-  
+
   method <- match.arg(method)
   alternative <- match.arg(alternative)
   f <- parse_formula(formula=formula, data=data)
@@ -37,12 +39,13 @@ two_proportion_test.formula <- function(formula, data, success, method=c("defaul
   as_atest(result)
 }
 
+#' @export
 two_proportion_test.default <- function(x, n,
                                         method=c("default", "chisq", "exact"),
                                         alternative = c("two.sided", "less", "greater"),
                                         conf.level = 0.95, conf.adjust=1, correct = TRUE) {
   use.conf.level <- 1 - (1-conf.level)/conf.adjust
-  method <- match.arg(method)  
+  method <- match.arg(method)
   alternative <- match.arg(alternative)
   if(!missing(n)) { m <- cbind(x, n-x) } else { m <- x }
   E <- outer(rowSums(m), colSums(m))/sum(m)
@@ -58,13 +61,13 @@ two_proportion_test.default <- function(x, n,
     result$about <- list(about)
   } else {
     capture <- capture_warnings(
-      prop.test(x=x, n=n, alternative=alternative, 
+      prop.test(x=x, n=n, alternative=alternative,
                 conf.level=use.conf.level, correct=correct),
       "Chi-squared approximation may be incorrect",
       "At least one expected count < 5; chi-squared approximation may be incorrect.")
     result <- capture$result |> broom::tidy()
     adjust_txt <- if(conf.adjust!=1) sprintf(", adjusted for %d comparisons using the Bonferroni method", conf.adjust) else ""
-    about <- sprintf("%s (%s), with %0.0f%% confidence intervals%s.", 
+    about <- sprintf("%s (%s), with %0.0f%% confidence intervals%s.",
                      result$method, result$alternative, conf.level*100, adjust_txt)
     about <- c(about, capture$warnings)
     result <- result |>
@@ -78,6 +81,7 @@ two_proportion_test.default <- function(x, n,
   as_atest(result)
 }
 
+#' @export
 paired_proportion_test <- function(formula, data, success,
                                    alternative = c("two.sided", "less", "greater"),
                                    correct = FALSE,
@@ -85,7 +89,7 @@ paired_proportion_test <- function(formula, data, success,
                                    method = c("default", "wilson", "exact")) {
   a <- do_subformulas(by_right=TRUE)
   if(!is.null(a)) return(a)
-  
+
   f <- parse_formula(formula=formula, data=data, split_chars=c("+", "-"))
   if(f$about$ops[2] != "-" || nrow(f$about)!=2) stop("expected y2 - y1 in formula")
   y2 <- checkif2(f$data$left.1)
@@ -108,13 +112,15 @@ paired_proportion_test <- function(formula, data, success,
   as_atest(result)
 }
 
+#' @export
 independence_test <- function(object, ...) { UseMethod("independence_test") }
 
+#' @export
 independence_test.formula <- function(formula, data, ...) {
-  
+
   a <- do_subformulas()
   if(!is.null(a)) return(a)
-  
+
   f <- parse_formula(formula=formula, data=data)
   if(!formula_has(f,1,1,0)) stop("improper formula; expecting y~x")
   y <- f$data$left
@@ -132,6 +138,7 @@ independence_test.formula <- function(formula, data, ...) {
     mutate(response=y.name, variable = x.name, .before=1)
 }
 
+#' @export
 independence_test.default <- function(x, method=c("default", "chisq", "exact"), correct=FALSE) {
   method <- match.arg(method)
   E <- outer(rowSums(x), colSums(x))/sum(x)

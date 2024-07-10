@@ -11,7 +11,7 @@
 #' @return An atest
 #' @export
 #'
-#' @examples
+#' @examples To use, ...
 one_proportion_test <- function(object, ...) { UseMethod("one_proportion_test") }
 
 #' @rdname one_proportion_test
@@ -78,6 +78,8 @@ one_proportion_test.default <- function(x, n, null,
   }
 }
 
+#' @rdname one_proportion_test
+#' @export
 wilson_test <- function(x, n, null,
                             alternative = c("two.sided", "less", "greater"),
                             conf.level = 0.95, correct = FALSE) {
@@ -111,6 +113,8 @@ wilson_test <- function(x, n, null,
   as_atest(result)
 }
 
+#' @rdname one_proportion_test
+#' @export
 binomial_test <- function(x, n, null,
                           alternative = c("two.sided", "less", "greater"),
                           conf.level = 0.95) {

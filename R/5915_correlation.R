@@ -1,16 +1,17 @@
-correlation_test <- function(formula, data, 
+#' @export
+correlation_test <- function(formula, data,
                              alternative = c("two.sided", "less", "greater"),
                              method = c("pearson", "kendall", "spearman"),
                              conf.level = 0.95, ...) {
-  
+
   a <- do_subformulas()
   if(!is.null(a)) return(a)
-  
+
   alternative <- match.arg(alternative)
   method <- match.arg(method)
-  
+
   f <- parse_formula(formula=formula, data=data)
-  
+
   y <- f$data$left
   x <- f$data$right
   y.name <- f$about$var.names[f$about$side=="left"]

@@ -3,16 +3,20 @@ rm_class <- function(x, class) { class(x) <- setdiff(class(x), class); x }
 as_atest <- function(x) {
   varlist <- c("by", "by.value", "response", "response.value", "variable", "value")
   x <- x |> select(any_of(varlist), everything())
-  class(x) <- c("atest", class(x))
+  if(!inherits(x, "atest")) class(x) <- c("atest", class(x))
   x
 }
 
+#' @export
 tidy.atest <- function(x) {
   x |> mutate(about=sapply(about, paste, collapse=" ")) |>
     rm_class("atest")
 }
 
+#' @export
 gt <- function(data, ...) { UseMethod("gt") }
+
+#' @export
 gt.default <- function(data, ...) { gt::gt(data, ...)}
 
 tab_footnotes <- function(data, notes, columns=NA, rows=NA) {
@@ -40,6 +44,8 @@ tab_footnotes <- function(data, notes, columns=NA, rows=NA) {
   }
   data
 }
+
+#' @export
 gt.atest <- function(x,
                      footnote_col="group",
                      rowname_col="group",
@@ -92,7 +98,7 @@ gt.atest <- function(x,
     opt_vertical_padding(scale = 0.5)
 }
 
-#' export
+#' @export
 print.atest <- function(x) {
   if(! "about" %in% names(x)) {
     print(x |> rm_class("atest"))
@@ -128,6 +134,7 @@ checkif2 <- function(x, require_two=TRUE) {
   x
 }
 
+#' @importFrom broom tidy
 detach_about <- function(x) {
   nn <- tidy(x) |> pull(about) |> unique()
   all.same <- length(nn)==1

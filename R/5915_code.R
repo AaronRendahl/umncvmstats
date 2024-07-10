@@ -12,12 +12,14 @@ format_pvalue <- function(p, digits=2, max.digits=4, justify=TRUE, addp=FALSE, n
   return(p_fmt)
 }
 
+#' @export
 fmt_pvalue <- function(data, columns=matches("p.value"), ...) {
   data |>
     fmt(columns={{columns}}, fns=\(p) format_pvalue(p, ...)) |>
     cols_align(align="left", columns={{columns}})
 }
 
+#' @export
 hide_y_axis <- function() {
   theme(axis.title.y = element_blank(),
         axis.text.y = element_blank(),
@@ -44,6 +46,7 @@ predictdf.glm1 <- function (model, xseq, se, level) {
   out
 }
 
+#' @export
 geom_smooth_binomial <- function(...) {
   geom_smooth(aes(group=1),
               method=glm1,

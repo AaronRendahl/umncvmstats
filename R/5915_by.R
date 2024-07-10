@@ -10,8 +10,9 @@ do_subformulas <- function(by_right=FALSE) {
   eval(m, parent.frame(2L))
 }
 
+#' @export
 test_by <- function(formula, FUN, ..., by_right=FALSE) {
-  fs <- split_formula(formula) 
+  fs <- split_formula(formula)
   if(length(fs) > 1) {
     return(map(fs, function(x) FUN(x, ...)) |> bind_rows())
   }
@@ -31,7 +32,7 @@ test_by_right <- function(formula, data, FUN, ...) {
   f <- parse_formula(formula=formula, data=data)
   right.name <- f$about$var.names[f$about$side=="right"]
   formula.l <- remove_right(formula)
-  result <- data |> 
+  result <- data |>
     mutate(.groups=f$data$right) |>
     nest(.by=.groups) |>
     arrange(.groups) |>
@@ -48,7 +49,7 @@ test_by_group <- function(formula, data, FUN, ...) {
   f <- parse_formula(formula=formula, data=data)
   group.name <- f$about$var.names[f$about$side=="group"]
   formula.lr <- remove_group(formula)
-  result <- data |> 
+  result <- data |>
     mutate(.groups=f$data$group) |>
     nest(.by=.groups) |>
     arrange(.groups) |>
@@ -74,7 +75,7 @@ pairwise <- function(formula, data, FUN, conf.level=0.95, ..., adjust=c("bonferr
   colnames(todo) <- paste0("X", 1:2)
   get_subset <- function(idx) { droplevels(data[data[[x.name]] %in% todo[idx,],]) }
   conf.adjust <- if(adjust=="none") 1 else nrow(todo)
-  result <- map_dfr(seq_len(nrow(todo)), \(idx) FUN(formula, data=get_subset(idx), conf.adjust=conf.adjust, ...)) 
+  result <- map_dfr(seq_len(nrow(todo)), \(idx) FUN(formula, data=get_subset(idx), conf.adjust=conf.adjust, ...))
   if(nrow(todo) > 1 && adjust!="none") {
     result <- result |> mutate(p.adjust=p.adjust(p.value, method=adjust))
     method_txt <- case_when(adjust=="holm" ~ "Bonferroni-Holm",
@@ -85,10 +86,12 @@ pairwise <- function(formula, data, FUN, conf.level=0.95, ..., adjust=c("bonferr
   as_atest(result)
 }
 
+#' @export
 pairwise_t_test <- function(formula, data, ...) {
   pairwise(formula, data, two_t_test, ...)
 }
 
+#' @export
 pairwise_proportion_test <- function(formula, data, ...) {
   pairwise(formula, data, two_proportion_test, ...)
 }
