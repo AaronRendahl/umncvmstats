@@ -1,6 +1,17 @@
+#' Two sample proportion test
+#'
 #' @export
-two_proportion_test <- function(object, ...) { UseMethod("two_proportion_test") }
+two_proportion_test <- function(x, ...) { UseMethod("two_proportion_test") }
 
+
+#' @param formula XX
+#' @param data XX
+#' @param success XX
+#' @param method XX
+#' @param alternative XX
+#' @param ... XX
+#'
+#' @rdname two_proportion_test
 #' @export
 two_proportion_test.formula <- function(formula, data, success, method=c("default", "chisq", "exact"),
                                         alternative = c("two.sided", "less", "greater"), ...) {
@@ -39,11 +50,24 @@ two_proportion_test.formula <- function(formula, data, success, method=c("defaul
   as_atest(result)
 }
 
+#' @param x XX
+#' @param n XX
+#' @param method XX
+#' @param alternative XX
+#' @param conf.level XX
+#' @param conf.adjust XX
+#' @param correct XX
+#' @param ... XX
+#'
+#' @importFrom stats fisher.test
+#' @importFrom stats prop.test
+#' @rdname two_proportion_test
 #' @export
 two_proportion_test.default <- function(x, n,
                                         method=c("default", "chisq", "exact"),
                                         alternative = c("two.sided", "less", "greater"),
-                                        conf.level = 0.95, conf.adjust=1, correct = TRUE) {
+                                        conf.level = 0.95, conf.adjust=1, correct = TRUE,
+                                        ...) {
   use.conf.level <- 1 - (1-conf.level)/conf.adjust
   method <- match.arg(method)
   alternative <- match.arg(alternative)
@@ -56,7 +80,7 @@ two_proportion_test.default <- function(x, n,
     if(method!="exact") {
       about <- c(about, "Method chosen due to expected counts < 5.")
     }
-    result <- ft |> select(p.value) |> mutate(proportion=computed.diff, .before=p.value) |>
+    result <- ft |> select("p.value") |> mutate(proportion=computed.diff, .before="p.value") |>
       mutate(value="difference", .before=1)
     result$about <- list(about)
   } else {
@@ -71,21 +95,31 @@ two_proportion_test.default <- function(x, n,
                      result$method, result$alternative, conf.level*100, adjust_txt)
     about <- c(about, capture$warnings)
     result <- result |>
-      mutate(value="difference", .after=estimate2) |>
-      mutate(proportion=estimate2-estimate1, .after=value) |>
-      select(-method, -alternative, -parameter, -estimate1, -estimate2) |>
-      rename(chisq.value=statistic) |>
-      relocate(c(chisq.value, p.value), .after=conf.high)
+      mutate(value="difference", .after="estimate2") |>
+      mutate(proportion=.data$estimate2 - .data$estimate1, .after="value") |>
+      select(-c("method", "alternative", "parameter", "estimate1", "estimate2")) |>
+      rename(chisq.value="statistic") |>
+      relocate(c("chisq.value", "p.value"), .after="conf.high")
   }
   result$about <- list(about)
   as_atest(result)
 }
 
+
+#' Paired proportion test (McNemar's)
+#' @param formula XX
+#' @param data XX
+#' @param success XX
+#' @param alternative XX
+#' @param correct XX
+#' @param conf.level XX
+#' @param method XX
+#'
 #' @export
 paired_proportion_test <- function(formula, data, success,
                                    alternative = c("two.sided", "less", "greater"),
                                    correct = FALSE,
-                                   conf.level = NA, conf.adjust = 1,
+                                   conf.level = NA,
                                    method = c("default", "wilson", "exact")) {
   a <- do_subformulas(by_right=TRUE)
   if(!is.null(a)) return(a)
@@ -112,9 +146,19 @@ paired_proportion_test <- function(formula, data, success,
   as_atest(result)
 }
 
+#' Independence Tests for Count Data
+#'
+#' @param x XX
+#' @param ... XX
+#'
 #' @export
-independence_test <- function(object, ...) { UseMethod("independence_test") }
+independence_test <- function(x, ...) { UseMethod("independence_test") }
 
+#' @param formula XX
+#' @param data XX
+#' @param ... XX
+#'
+#' @rdname independence_test
 #' @export
 independence_test.formula <- function(formula, data, ...) {
 
@@ -138,8 +182,16 @@ independence_test.formula <- function(formula, data, ...) {
     mutate(response=y.name, variable = x.name, .before=1)
 }
 
+#' @param x XX
+#'
+#' @param method XX
+#' @param correct XX
+#' @param ... XX
+#'
+#' @importFrom stats chisq.test
+#' @rdname independence_test
 #' @export
-independence_test.default <- function(x, method=c("default", "chisq", "exact"), correct=FALSE) {
+independence_test.default <- function(x, method=c("default", "chisq", "exact"), correct=FALSE, ...) {
   method <- match.arg(method)
   E <- outer(rowSums(x), colSums(x))/sum(x)
   if((method=="default" && any(E < 5)) || method=="exact") {
@@ -148,7 +200,7 @@ independence_test.default <- function(x, method=c("default", "chisq", "exact"), 
     if(method!="exact") {
       about <- c(about, "Method chosen due to expected counts < 5.")
     }
-    result <- ft |> select(p.value)
+    result <- ft |> select("p.value")
     result$about <- list(about)
   } else {
     capture <- capture_warnings(
@@ -159,7 +211,7 @@ independence_test.default <- function(x, method=c("default", "chisq", "exact"), 
     if(!is.null(result$statistic) && is.nan(result$statistic)) result$statistic <- NA
     if(!is.null(result$p.value) && is.nan(result$p.value)) result$p.value <- 1
     result$about <- list(c(result$method, capture$warnings))
-    result <- result |> select(chisq.value=statistic, df=parameter, p.value, about)
+    result <- result |> select(chisq.value="statistic", df="parameter", "p.value", "about")
   }
   as_atest(result)
 }

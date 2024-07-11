@@ -1,3 +1,14 @@
+#' Format p-values
+#'
+#' @param p XX
+#' @param digits XX
+#' @param max.digits XX
+#' @param justify XX
+#' @param addp XX
+#' @param na XX
+#'
+#' @return XX
+#' @export
 format_pvalue <- function(p, digits=2, max.digits=4, justify=TRUE, addp=FALSE, na="") {
   if(digits > max.digits) max.digits <- digits
   pr <- round(p, max.digits)
@@ -12,13 +23,20 @@ format_pvalue <- function(p, digits=2, max.digits=4, justify=TRUE, addp=FALSE, n
   return(p_fmt)
 }
 
+#' @param data XX
+#' @param columns XX
+#' @param ... Additional parameters, sent to [format_pvalue]
+#'
+#' @rdname format_pvalue
 #' @export
-fmt_pvalue <- function(data, columns=matches("p.value"), ...) {
+fmt_pvalue <- function(data, columns=matches("p.value", "p.adjust"), ...) {
   data |>
     fmt(columns={{columns}}, fns=\(p) format_pvalue(p, ...)) |>
     cols_align(align="left", columns={{columns}})
 }
 
+#' Hide the y-axis of a ggplot
+#'
 #' @export
 hide_y_axis <- function() {
   theme(axis.title.y = element_blank(),
@@ -37,7 +55,18 @@ glm1 <- function(formula, data,...) {
 }
 
 predictdf.glm1 <- function (model, xseq, se, level) {
-  out <- ggplot2:::predictdf.glm(model, xseq, se, level)
+  ## from ggplot:::predictdf.glm
+  pred <- stats::predict(model, newdata = data_frame(x = xseq, .name_repair="minimal"),
+                         se.fit = se, type = "link")
+  out <- if (se) {
+    std <- stats::qnorm(level/2 + 0.5)
+    base::data.frame(x = xseq, y = model$family$linkinv(as.vector(pred$fit)),
+                     ymin = model$family$linkinv(as.vector(pred$fit - std * pred$se.fit)),
+                     ymax = model$family$linkinv(as.vector(pred$fit + std * pred$se.fit)),
+                     se = as.vector(pred$se.fit))
+  } else {
+    base::data.frame(x = xseq, y = model$family$linkinv(as.vector(pred)))
+  }
   out$y <- out$y + 1
   if(se) {
     out$ymax <- out$ymax + 1
@@ -46,6 +75,11 @@ predictdf.glm1 <- function (model, xseq, se, level) {
   out
 }
 
+#' Add a smooth from a logistic regression
+#'
+#' @param ... XXX
+#'
+#' @importFrom stats binomial
 #' @export
 geom_smooth_binomial <- function(...) {
   geom_smooth(aes(group=1),

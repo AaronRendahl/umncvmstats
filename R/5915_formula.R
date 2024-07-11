@@ -10,7 +10,7 @@ remove_group <- function(model) {
   modelRHS <- model[[length(model)]]
   if (length(modelRHS) == 3 && modelRHS[[1]] == as.name("|")) {
     model[[length(model)]] <- modelRHS[[2]]
-  } 
+  }
   model
 }
 
@@ -34,16 +34,16 @@ parse_formula <- function (formula, data, split_chars="+") {
     ops <- c(NA_character_, ops)
     vars <- c(model.vars, model)
     as_tibble(list(ops=ops, var.names=sapply(rev(vars), expr2char), vars=rev(vars))) |>
-      filter(var.names!="1")
+      filter(.data$var.names!="1")
   }
-  
+
   ans <- list(left = NULL, right = NULL, condition = NULL)
   varsL <- varsR <- varsG <- NULL
   modelRHS <- model[[length(model)]]
   if (length(modelRHS) == 3 && modelRHS[[1]] == as.name("|")) {
     varsG <- parseSide(modelRHS[[3]]) |> mutate(side="group", .before=1)
     modelRHS <- modelRHS[[2]]
-  } 
+  }
   if (length(model) == 3) {
     varsL <- parseSide(model[[2]]) |> mutate(side="left", .before=1)
     varsR <- parseSide(modelRHS) |> mutate(side="right", .before=1)
@@ -59,7 +59,7 @@ parse_formula <- function (formula, data, split_chars="+") {
   if(missing(data)) {
     about
   } else {
-    about <- about |> mutate(data.names=add_names(side, n()), .by=side)
+    about <- about |> mutate(data.names=add_names(.data$side, n()), .by="side")
     dat <- lapply(about$vars, function(v) { eval(v, data) })
     names(dat) <- about$data.names
     dat <- as_tibble(dat)
@@ -69,16 +69,16 @@ parse_formula <- function (formula, data, split_chars="+") {
 
 split_formula <- function(formula) {
   f <- parse_formula(formula)
-  fs <- f |> filter(side=="left") |> select(left=vars)
+  fs <- f |> filter(.data$side=="left") |> select(left="vars")
   out <- y ~ 1
   has_right <- has_group <- FALSE
   if(any(f$side=="right")) {
-    fr <- f |> filter(side=="right") |> select(right=vars)
+    fr <- f |> filter(.data$side=="right") |> select(right="vars")
     fs <- cross_join(fs, fr)
     has_right <- TRUE
   }
   if(any(f$side=="group")) {
-    fg <- f |> filter(side=="group") |> select(group=vars)
+    fg <- f |> filter(.data$side=="group") |> select(group="vars")
     fs <- cross_join(fs, fg)
     out <- y ~ 1 | g
     has_group <- TRUE

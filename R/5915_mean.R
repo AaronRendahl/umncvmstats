@@ -1,8 +1,20 @@
+#' One-sample t-test
+#'
+#' @param formula XX
+#' @param data XX
+#' @param alternative XX
+#' @param null XX
+#' @param conf.level XX
+#' @param backtransform XX
+#' @param var.equal XX
+#'
+#' @importFrom stats t.test
 #' @export
 one_t_test <- function(formula, data,
                        alternative = c("two.sided", "less", "greater"),
                        null, conf.level = 0.95,
-                       backtransform=TRUE) {
+                       backtransform=TRUE,
+                       var.equal = TRUE) {
 
   a <- do_subformulas(by_right=TRUE)
   if(!is.null(a)) return(a)
@@ -16,18 +28,18 @@ one_t_test <- function(formula, data,
   name <- f$about$var.names
   result <- t.test(x, alternative=alternative, mu=null,
                    var.equal=var.equal, conf.level=conf.level) |>
-    broom::tidy()
+    tidy()
   about <- sprintf("%s (%s), with %0.0f%% confidence intervals.",
                    result$method, result$alternative, conf.level*100)
-  result <- result |> select(-method, -alternative) |>
-    rename(mean=estimate) |>
+  result <- result |> select(-c("method", "alternative")) |>
+    rename(mean="estimate") |>
     mutate(response=name, .before=1)
   if(!do.test) {
-    result <- result |> select(-statistic, -parameter, -p.value)
+    result <- result |> select(-c("statistic", "parameter", "p.value"))
   } else {
     result <- result |> mutate(null=null) |>
-      rename(t.value=statistic, df=parameter) |>
-      relocate(null, t.value, df, p.value, .after=conf.high)
+      rename(t.value="statistic", df="parameter") |>
+      relocate("null", "t.value", "df", "p.value", .after="conf.high")
   }
   result$about <- list(about)
   if(str_detect(result$response, "^log\\(.*\\)$") && isTRUE(backtransform)) {
@@ -38,13 +50,25 @@ one_t_test <- function(formula, data,
   as_atest(result)
 }
 
+#' Two Sample t-test
+
+#' @param formula XX
+#'
+#' @param data XX
+#' @param alternative XX
+#' @param null XX
+#' @param var.equal XX
+#' @param conf.level XX
+#' @param conf.adjust XX
+#' @param backtransform XX
+#'
 #' @export
 two_t_test <- function(formula, data,
-                    alternative = c("two.sided", "less", "greater"),
-                    null = 0,
-                    var.equal = FALSE,
-                    conf.level = 0.95, conf.adjust = 1,
-                    backtransform = TRUE) {
+                       alternative = c("two.sided", "less", "greater"),
+                       null = 0,
+                       var.equal = FALSE,
+                       conf.level = 0.95, conf.adjust = 1,
+                       backtransform = TRUE) {
 
   a <- do_subformulas()
   if(!is.null(a)) return(a)
@@ -67,11 +91,11 @@ two_t_test <- function(formula, data,
   about <- sprintf("%s (%s), with %0.0f%% confidence intervals%s.",
                    result$method, result$alternative, conf.level*100, adjust_txt)
   result <- result |>
-    mutate(value=paste(levels(x), collapse=if(backtransform) " / " else " - "), .after=estimate2) |>
-    rename(mean="estimate", df=parameter, t.value=statistic) |>
-    select(-estimate1, -estimate2, -method, -alternative) |>
+    mutate(value=paste(levels(x), collapse=if(backtransform) " / " else " - "), .after="estimate2") |>
+    rename(mean="estimate", df="parameter", t.value="statistic") |>
+    select(-c("estimate1", "estimate2", "method", "alternative")) |>
     mutate(null=null) |>
-    relocate(null, t.value, df, p.value, .after="conf.high") |>
+    relocate("null", "t.value", "df", "p.value", .after="conf.high") |>
     mutate(response = y.name, variable = x.name, .before=1)
   result$about <- list(about)
   if(backtransform) {
@@ -82,6 +106,15 @@ two_t_test <- function(formula, data,
   as_atest(result)
 }
 
+#' Paired t-test
+#'
+#' @param formula XX
+#' @param data XX
+#' @param alternative XX
+#' @param null XX
+#' @param conf.level XX
+#' @param backtransform XX
+#'
 #' @export
 paired_t_test <- function(formula, data,
                           alternative = c("two.sided", "less", "greater"),
@@ -104,7 +137,7 @@ paired_t_test <- function(formula, data,
   if(backtransform) y.names <- str_replace(y.names, "^log\\((.*)\\)$", "\\1")
   response <- paste(y.names, collapse=if(backtransform) " / " else " - ")
   result <- result |> mutate(response=response, null=null) |>
-    select(response, mean=estimate, conf.low, conf.high, null, t.value=statistic, df=parameter, p.value)
+    select("response", mean="estimate", "conf.low", "conf.high", "null", t.value="statistic", df="parameter", "p.value")
   result$about <- list(about)
   if(backtransform) {
     result <- result |> mutate(across(any_of(c("mean","conf.low", "conf.high", "null")), exp))

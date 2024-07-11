@@ -1,3 +1,13 @@
+#' Correlation Tests and Confidence Intervals
+#'
+#' @param formula A formula of the form `y~x`
+#' @param data A data frame containing the values in the formula
+#' @param alternative options
+#' @param method options
+#' @param conf.level The desired confidence level for the confidence intervals.
+#' @param ... Additional parameters
+#'
+#' @importFrom stats cor.test
 #' @export
 correlation_test <- function(formula, data,
                              alternative = c("two.sided", "less", "greater"),
@@ -26,7 +36,7 @@ correlation_test <- function(formula, data,
     ci.txt <- ""
   }
   about <- sprintf("%s (%s)%s", result$method, result$alternative, ci.txt)
-  result <- result |> select(correlation=estimate, any_of(c("conf.low", "conf.high")), "p.value") |>
+  result <- result |> select(correlation="estimate", any_of(c("conf.low", "conf.high")), "p.value") |>
     mutate(response=y.name, variable=x.name, .before=1)
   result$about <- list(c(about, capture_result$warnings))
   as_atest(result)

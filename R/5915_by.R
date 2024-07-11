@@ -10,6 +10,12 @@ do_subformulas <- function(by_right=FALSE) {
   eval(m, parent.frame(2L))
 }
 
+#' Do multiple tests by splitting a formula
+#' @param formula XX
+#' @param FUN XX
+#' @param ... XX
+#' @param by_right XX
+#'
 #' @export
 test_by <- function(formula, FUN, ..., by_right=FALSE) {
   fs <- split_formula(formula)
@@ -34,14 +40,14 @@ test_by_right <- function(formula, data, FUN, ...) {
   formula.l <- remove_right(formula)
   result <- data |>
     mutate(.groups=f$data$right) |>
-    nest(.by=.groups) |>
-    arrange(.groups) |>
+    nest(.by=".groups") |>
+    arrange(.data$.groups) |>
     mutate(.x=map(data, \(.x) {
       FUN(formula.l, data=.x, ...)
-    })) |> select(-data) |>
-    unnest(.x) |>
-    rename(value=.groups) |>
-    mutate(variable=right.name, .before=value)
+    })) |> select(-"data") |>
+    unnest(".x") |>
+    rename(value=".groups") |>
+    mutate(variable=right.name, .before="value")
   as_atest(result)
 }
 
@@ -51,17 +57,20 @@ test_by_group <- function(formula, data, FUN, ...) {
   formula.lr <- remove_group(formula)
   result <- data |>
     mutate(.groups=f$data$group) |>
-    nest(.by=.groups) |>
-    arrange(.groups) |>
+    nest(.by=".groups") |>
+    arrange(.data$.groups) |>
     mutate(.x=map(data, \(.x) {
       FUN(formula.lr, data=.x, ...)
     })) |> select(-data) |>
-    unnest(.x) |>
-    rename(group.value=.groups) |>
-    mutate(group=group.name, .before=group.value)
+    unnest(".x") |>
+    rename(group.value=".groups") |>
+    mutate(group=group.name, .before="group.value")
   as_atest(result)
 }
 
+#' @importFrom stats p.adjust
+#' @importFrom utils combn
+#' @importFrom forcats fct_rev
 pairwise <- function(formula, data, FUN, conf.level=0.95, ..., adjust=c("bonferroni", "holm", "none"), reverse=FALSE) {
   adjust <- match.arg(adjust)
   f <- parse_formula(formula=formula, data=data)
@@ -77,7 +86,7 @@ pairwise <- function(formula, data, FUN, conf.level=0.95, ..., adjust=c("bonferr
   conf.adjust <- if(adjust=="none") 1 else nrow(todo)
   result <- map_dfr(seq_len(nrow(todo)), \(idx) FUN(formula, data=get_subset(idx), conf.adjust=conf.adjust, ...))
   if(nrow(todo) > 1 && adjust!="none") {
-    result <- result |> mutate(p.adjust=p.adjust(p.value, method=adjust))
+    result <- result |> mutate(p.adjust=p.adjust(.data$p.value, method=adjust))
     method_txt <- case_when(adjust=="holm" ~ "Bonferroni-Holm",
                             adjust=="bonferroni" ~ "Bonferroni")
     adjust_txt <- sprintf("p-values adjusted for %d multiple comparisons using the %s method.", nrow(todo), method_txt)
@@ -86,11 +95,16 @@ pairwise <- function(formula, data, FUN, conf.level=0.95, ..., adjust=c("bonferr
   as_atest(result)
 }
 
+
+#' @param ... XX
+#' @rdname two_t_test
 #' @export
 pairwise_t_test <- function(formula, data, ...) {
   pairwise(formula, data, two_t_test, ...)
 }
 
+#' @param ... XX
+#' @rdname two_proportion_test
 #' @export
 pairwise_proportion_test <- function(formula, data, ...) {
   pairwise(formula, data, two_proportion_test, ...)

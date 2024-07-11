@@ -5,15 +5,20 @@
 #'
 #' More details
 #'
-#' @param object the thing
+#' @param x the thing
 #' @param ... more things
 #'
 #' @return An atest
 #' @export
-#'
-#' @examples To use, ...
-one_proportion_test <- function(object, ...) { UseMethod("one_proportion_test") }
+one_proportion_test <- function(x, ...) { UseMethod("one_proportion_test") }
 
+#' @param formula a formula of the form `~ x` or `x ~ 1`, where `x` is a factor variable.
+#'     If not a factor, it will be automatically converted.
+#' @param data a data frame containing the values in the formula
+#' @param success optional: the level(s) for which proportions should be reported
+#' @param all_success if TRUE, then proportions for all levels are reported
+#' @param ... more things
+#'
 #' @rdname one_proportion_test
 #' @export
 one_proportion_test.formula <- function(formula, data, success, all_success=FALSE, ...) {
@@ -47,12 +52,22 @@ one_proportion_test.formula <- function(formula, data, success, all_success=FALS
   as_atest(out)
 }
 
+#' @param x number of successes
+#' @param n number of trials
+#' @param null null proportion (optional)
+#' @param alternative  character string specifying the alternative hypothesis, must be one of "two.sided" (default), "greater" or "less".
+#' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
+#' @param correct a logical indicating whether Yates' continuity correction should be applied where possible.
+#' @param method character string specifying which method to use. One of "default", "wilson", or "exact".
+#' @param ... further arguments
+#'
 #' @rdname one_proportion_test
 #' @export
 one_proportion_test.default <- function(x, n, null,
                             alternative = c("two.sided", "less", "greater"),
                             conf.level = 0.95, correct = FALSE,
-                            method = c("default", "wilson", "exact")) {
+                            method = c("default", "wilson", "exact"),
+                            ...) {
   method <- match.arg(method)
   if(length(x)!=1) stop("x must be a single integer.")
   if(length(n)!=1) stop("x must be a single integer.")
@@ -79,6 +94,7 @@ one_proportion_test.default <- function(x, n, null,
 }
 
 #' @rdname one_proportion_test
+#' @importFrom stats prop.test
 #' @export
 wilson_test <- function(x, n, null,
                             alternative = c("two.sided", "less", "greater"),
@@ -96,24 +112,25 @@ wilson_test <- function(x, n, null,
   ci_txt <- if(do.ci) sprintf(", with %0.0f%% confidence intervals", conf.level*100) else ""
   about <- sprintf("Wilson's proportion test (%s%s)%s.",
                    result$alternative, correct_txt, ci_txt)
-  result <- result |> select(-method, -alternative, -parameter) |>
-    mutate(x=x, n=n, .before=estimate) |>
-    rename(proportion=estimate)
+  result <- result |> select(-c("method", "alternative", "parameter")) |>
+    mutate(x=x, n=n, .before="estimate") |>
+    rename(proportion="estimate")
   if(do.test) {
-    result <- result |> mutate(null=null, .before=p.value) |>
-      rename(chisq.value=statistic) |>
-      relocate(any_of(c("null", "chisq.value", "p.value")), .after=conf.high)
+    result <- result |> mutate(null=null, .before="p.value") |>
+      rename(chisq.value="statistic") |>
+      relocate(any_of(c("null", "chisq.value", "p.value")), .after="conf.high")
   } else {
-    result <- result |> select(-statistic, -p.value)
+    result <- result |> select(-c("statistic", "p.value"))
   }
   if(!do.ci) {
-    result <- result |> select(-conf.low, -conf.high)
+    result <- result |> select(-c("conf.low", "conf.high"))
   }
   result$about <- list(about)
   as_atest(result)
 }
 
 #' @rdname one_proportion_test
+#' @importFrom stats binom.test
 #' @export
 binomial_test <- function(x, n, null,
                           alternative = c("two.sided", "less", "greater"),
@@ -130,17 +147,17 @@ binomial_test <- function(x, n, null,
   ci_txt <- if(do.ci) sprintf(", with %0.0f%% confidence intervals", conf.level*100) else ""
   about <- sprintf("%s (%s)%s.",
                    result$method, result$alternative, ci_txt)
-  result <- result |> select(-method, -alternative, -parameter, -statistic) |>
-    mutate(x=x, n=n, .before=estimate) |>
-    rename(proportion=estimate)
+  result <- result |> select(-c("method", "alternative", "parameter", "statistic")) |>
+    mutate(x=x, n=n, .before="estimate") |>
+    rename(proportion="estimate")
   if(do.test) {
-    result <- result |> mutate(null=null, .before=p.value) |>
-      relocate(any_of(c("null", "p.value")), .after=conf.high)
+    result <- result |> mutate(null=null, .before="p.value") |>
+      relocate(any_of(c("null", "p.value")), .after="conf.high")
   } else {
-    result <- result |> select(-p.value)
+    result <- result |> select(-"p.value")
   }
   if(!do.ci) {
-    result <- result |> select(-conf.low, -conf.high)
+    result <- result |> select(-c("conf.low", "conf.high"))
   }
   result <- result |> mutate(about=list(about))
   as_atest(result)

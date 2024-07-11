@@ -8,23 +8,28 @@ as_atest <- function(x) {
 }
 
 #' @export
-tidy.atest <- function(x) {
-  x |> mutate(about=sapply(about, paste, collapse=" ")) |>
+tidy.atest <- function(x, ...) {
+  x |> mutate(about=sapply(.data$about, paste, collapse=" ")) |>
     rm_class("atest")
 }
 
+#' Create a gt table object
+#' @param data XX
+#' @param ... XX
+#'
 #' @export
 gt <- function(data, ...) { UseMethod("gt") }
 
+#' @rdname gt
 #' @export
 gt.default <- function(data, ...) { gt::gt(data, ...)}
 
 tab_footnotes <- function(data, notes, columns=NA, rows=NA) {
   aa <- tibble(note=notes, columns=columns, rows=rows) |>
-    left_join(data$`_boxhead` |> select(columns=var, type), .by="columns")
+    left_join(data$`_boxhead` |> select(columns="var", "type"), .by="columns")
   if(any(aa$type=="hidden")) {
-    hidden_cols <- aa |> filter(type=="hidden") |>
-      pull(columns) |>
+    hidden_cols <- aa |> filter(.data$type=="hidden") |>
+      pull("columns") |>
       (\(x) sprintf("'%s'", x))() |>
       (\(x) paste(x, collapse=", "))()
     warning(sprintf("footnote column %s is hidden"), hidden_cols)
@@ -46,12 +51,13 @@ tab_footnotes <- function(data, notes, columns=NA, rows=NA) {
 }
 
 #' @export
-gt.atest <- function(x,
+gt.atest <- function(data,
                      footnote_col="group",
                      rowname_col="group",
                      row_group.sep=" - ", ...) {
+  x <- data
   aa <- detach_about(x)
-  notes <- aa$about |> summarize(rows=list(row), .by=about)
+  notes <- aa$about |> summarize(rows=list(.data$row), .by="about")
   result <- aa$result
   nresponse <- nvariable <- 0
   if("response" %in% names(result)) {
@@ -99,21 +105,21 @@ gt.atest <- function(x,
 }
 
 #' @export
-print.atest <- function(x) {
+print.atest <- function(x, ...) {
   if(! "about" %in% names(x)) {
     print(x |> rm_class("atest"))
   } else {
     aa <- detach_about(x)
-    notes <- aa$about |> summarize(footnote=paste(footnote, collapse=","), .by=row)
+    notes <- aa$about |> summarize(footnote=paste(.data$footnote, collapse=","), .by="row")
     if(!is.na(all(notes$row))) {
-      result <- aa$result |> left_join(notes, by="row") |> select(-row)
+      result <- aa$result |> left_join(notes, by="row") |> select(-"row")
     } else {
-      result <- aa$result |> select(-row)
+      result <- aa$result |> select(-"row")
     }
-    about <- aa$about |> select(order, footnote, about) |> unique() |>
-      arrange(order) |>
-      mutate(about=if_else(is.na(footnote), about, paste(footnote, about))) |>
-      pull(about)
+    about <- aa$about |> select("order", "footnote", "about") |> unique() |>
+      arrange(.data$order) |>
+      mutate(about=if_else(is.na(.data$footnote), .data$about, paste(.data$footnote, .data$about))) |>
+      pull("about")
     print(result)
     cat(about, sep="\n")
   }
@@ -135,25 +141,27 @@ checkif2 <- function(x, require_two=TRUE) {
 }
 
 #' @importFrom broom tidy
+#' @importFrom tibble enframe
+#' @importFrom forcats as_factor
 detach_about <- function(x) {
-  nn <- tidy(x) |> pull(about) |> unique()
+  nn <- tidy(x) |> pull("about") |> unique()
   all.same <- length(nn)==1
   x <- x |>
     rm_class("atest") |>
     mutate(row=1:n(), .before=1) |>
-    mutate(about=map(about, enframe, name="order", value="about"))
+    mutate(about=map(.data$about, enframe, name="order", value="about"))
   notes <- x |>
-    select(row, about) |>
-    unnest(about) |>
-    mutate(order=(order-1)/(max(n(),2)-1), .before=row) |>
-    mutate(order=mean(order), .by=about) |>
-    arrange(order) |> mutate(order=as.integer(as_factor(about))) |>
-    mutate(footnote=order, .after=order)
+    select("row", "about") |>
+    unnest("about") |>
+    mutate(order=(.data$order-1)/(max(n(),2)-1), .before="row") |>
+    mutate(order=mean(.data$order), .by="about") |>
+    arrange(.data$order) |> mutate(order=as.integer(as_factor(.data$about))) |>
+    mutate(footnote=.data$order, .after="order")
   if(all.same) {
     notes$row <- NA
     notes$footnote <- NA
   }
-  x <- x |> select(-about)
+  x <- x |> select(-"about")
   list(result=x, about=notes)
 }
 

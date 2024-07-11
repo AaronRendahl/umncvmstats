@@ -4,7 +4,13 @@
 #'
 #' @name umncvmstats
 #' @author Aaron Rendahl, \email{rend0020@umn.edu}
-#' @seealso [one_proportion_test(), two_proportion_test()]
 #' @keywords internal
+#' @import dplyr
+#' @import stringr
+#' @import gt
+#' @importFrom broom tidy
+#' @importFrom purrr map_dfr map
+#' @importFrom tidyr nest unnest
+#' @importFrom rlang .data
 "_PACKAGE"
 NULL
