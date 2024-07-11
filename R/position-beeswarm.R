@@ -54,6 +54,7 @@
 #'
 #' @keywords internal
 #' @importFrom beeswarm swarmx
+#' @importFrom cli cli_warn
 #' @seealso [geom_beeswarm()], [ggbeeswarm::position_quasirandom()],
 #' [beeswarm::swarmx()]
 offset_beeswarm <- function(
@@ -242,7 +243,6 @@ position_beeswarm <- function(
   priority = "random",
   fast = TRUE,
   orientation = NULL,
-  groupOnX = NULL,
   dodge.width = 0,
   corral = "none",
   corral.width = 0.2
