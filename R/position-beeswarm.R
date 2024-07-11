@@ -177,7 +177,7 @@ offset_beeswarm <- function(
   return(data)
 }
 
-#' Arrange points using the `\link[beeswarm]` package.
+#' Arrange points using the beeswarm package.
 #'
 #' @family position adjustments
 #' @param method Method for arranging points (see Details below)
