@@ -1,10 +1,13 @@
 Package: umncvmstats
-Title: What the Package Does (One Line, Title Case)
+Title: Standardized Functions for One and Two Sample Statistical Tests
 Version: 0.0.0.9000
 Authors@R: 
     person("Aaron", "Rendahl", , "rend0020@umn.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5434-3592"))
-Description: What the package does (one paragraph).
+Description: This package standardizes functions for one and two sample 
+    statistical tests and provides cleaner output using the gt package.
+    It also includes several ggplot2 customizations to standardize and
+    simplify use of common plotting needs.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
