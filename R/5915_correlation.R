@@ -14,7 +14,7 @@ correlation_test <- function(formula, data,
                              method = c("pearson", "kendall", "spearman"),
                              conf.level = 0.95, ...) {
 
-  a <- do_subformulas()
+  a <- test_by()
   if(!is.null(a)) return(a)
 
   alternative <- match.arg(alternative)

@@ -23,7 +23,8 @@ one_proportion_test <- function(x, ...) { UseMethod("one_proportion_test") }
 #' @export
 one_proportion_test.formula <- function(formula, data, success, all_success=FALSE, ...) {
 
-  a <- do_subformulas(by_right=TRUE)
+
+  a <- test_by(by_right=TRUE)
   if(!is.null(a)) return(a)
 
   f <- parse_formula(formula=formula, data=data)

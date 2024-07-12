@@ -16,7 +16,7 @@ two_proportion_test <- function(x, ...) { UseMethod("two_proportion_test") }
 two_proportion_test.formula <- function(formula, data, success, method=c("default", "chisq", "exact"),
                                         alternative = c("two.sided", "less", "greater"), ...) {
 
-  a <- do_subformulas()
+  a <- test_by()
   if(!is.null(a)) return(a)
 
   method <- match.arg(method)
@@ -121,7 +121,7 @@ paired_proportion_test <- function(formula, data, success,
                                    correct = FALSE,
                                    conf.level = NA,
                                    method = c("default", "wilson", "exact")) {
-  a <- do_subformulas(by_right=TRUE)
+  a <- test_by(by_right=TRUE)
   if(!is.null(a)) return(a)
 
   f <- parse_formula(formula=formula, data=data, split_chars=c("+", "-"))
@@ -162,7 +162,7 @@ independence_test <- function(x, ...) { UseMethod("independence_test") }
 #' @export
 independence_test.formula <- function(formula, data, ...) {
 
-  a <- do_subformulas()
+  a <- test_by()
   if(!is.null(a)) return(a)
 
   f <- parse_formula(formula=formula, data=data)

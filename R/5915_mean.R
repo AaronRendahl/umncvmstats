@@ -16,7 +16,7 @@ one_t_test <- function(formula, data,
                        backtransform=TRUE,
                        var.equal = TRUE) {
 
-  a <- do_subformulas(by_right=TRUE)
+  a <- test_by(by_right=TRUE)
   if(!is.null(a)) return(a)
 
   alternative <- match.arg(alternative)
@@ -70,7 +70,7 @@ two_t_test <- function(formula, data,
                        conf.level = 0.95, conf.adjust = 1,
                        backtransform = TRUE) {
 
-  a <- do_subformulas()
+  a <- test_by()
   if(!is.null(a)) return(a)
 
   alternative <- match.arg(alternative)
@@ -121,7 +121,7 @@ paired_t_test <- function(formula, data,
                           null = 0,
                           conf.level = 0.95,
                           backtransform = TRUE) {
-  a <- do_subformulas(by_right=TRUE)
+  a <- test_by(by_right=TRUE)
   if(!is.null(a)) return(a)
 
   alternative <- match.arg(alternative)
