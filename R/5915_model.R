@@ -4,8 +4,8 @@
 #'
 #' @return XX
 #' @export
-model_coefs <- function(model) {
-  model |> tidy()
+model_coefs <- function(model, ...) {
+  model |> tidy(...)
 }
 
 #' Get model anova table
@@ -14,11 +14,11 @@ model_coefs <- function(model) {
 #' @return XX
 #' @export
 #' @importFrom car Anova
-model_anova <- function(model) {
-  Anova(model) |> tidy()
+model_anova <- function(model, ...) {
+  Anova(model, ...) |> tidy()
 }
 
-#' Get model means
+#' Get model means and slopes (trends)
 #'
 #' @param model XX
 #' @param formula XX
@@ -39,28 +39,37 @@ model_means <- function(model, formula, ..., cld=TRUE) {
   out
 }
 
-#' Get model means
-#'
-#' @param model XX
-#' @param formula XX
-#' @param ... XX
 #' @export
 #' @importFrom emmeans emmeans
+#' @rdname model_means
 pairwise_model_means <- function(model, formula, ...) {
   em <- emmeans(model, formula, ...)
   pairs(em, infer=TRUE) |> summary()
 }
 
-#' Get model slopes
-#'
-#' @param model XX
-#' @param formula XX
-#' @param ... XX
 #' @export
 #' @importFrom emmeans emtrends
-model_slopes <- function(model, formula, ...) {
+#' @rdname model_means
+model_slopes <- function(model, formula, ..., cld=TRUE) {
   var <- format(formula[[2]])
   formula[[2]] <- formula[[3]]
   formula[[3]] <- NULL
-  emtrends(model, specs=formula, var=var, ...)
+  em <- emtrends(model, specs=formula, var=var, ...)
+  if(isTRUE(cld)) {
+    out <- cld(em, Letters=letters)
+  } else {
+    out <- summary(em)
+  }
+  out
+}
+
+#' @export
+#' @importFrom emmeans emtrends
+#' @rdname model_means
+pairwise_model_slopes <- function(model, formula, ...) {
+  var <- format(formula[[2]])
+  formula[[2]] <- formula[[3]]
+  formula[[3]] <- NULL
+  em <- emtrends(model, specs=formula, var=var, ...)
+  pairs(em, infer=TRUE) |> summary()
 }
