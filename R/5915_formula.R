@@ -6,17 +6,17 @@ formula_has <- function(f, left, right, group=0) {
   !(nleft!=left || nright!=right || ngroup!=group)
 }
 
-remove_group <- function(model) {
-  modelRHS <- model[[length(model)]]
-  if (length(modelRHS) == 3 && modelRHS[[1]] == as.name("|")) {
-    model[[length(model)]] <- modelRHS[[2]]
+clean_formula <- function(formula, how=c("group", "right")) {
+  how <- match.arg(how)
+  if(how=="group") {
+    RHS <- formula[[length(formula)]]
+    if (length(RHS) == 3 && RHS[[1]] == as.name("|")) {
+      formula[[length(formula)]] <- RHS[[2]]
+    }
+  } else {
+    formula[[3]] <- NULL
   }
-  model
-}
-
-remove_right <- function(model) {
-  model[[3]] <- NULL
-  model
+  formula
 }
 
 parse_formula <- function (formula, data, split_chars="+") {

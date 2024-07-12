@@ -1,72 +1,58 @@
-do_subformulas <- function(by_right=FALSE) {
+#' @importFrom stats as.formula
+test_by <- function(by_right=FALSE) {
   m <- match.call(
     definition=sys.function(sys.parent()),
     call=sys.call(sys.parent()),
     expand.dots=TRUE,
     envir=parent.frame(2L))
-  m[["FUN"]] <- m[[1]]
-  m[["by_right"]] <- by_right
-  m[[1L]] <- quote(test_by)
-  eval(m, parent.frame(2L))
-}
+  FUN <- format(m[[1]]) |> str_remove("\\.formula$")
+  formula <- as.formula(m[["formula"]])
+  params <- as.list(m)[-1]
+  params <- params[names(params)!="formula"]
 
-#' Do multiple tests by splitting a formula
-#' @param formula XX
-#' @param FUN XX
-#' @param ... XX
-#' @param by_right XX
-#'
-#' @export
-test_by <- function(formula, FUN, ..., by_right=FALSE) {
+  ## first split the formula, if more than one found, rerun each separately
   fs <- split_formula(formula)
   if(length(fs) > 1) {
-    return(map(fs, function(x) FUN(x, ...)) |> bind_rows())
+    # cat("+ ", format(m), "\n")
+    return(map(fs, function(x) do.call(FUN, c(list(x), params))) |> bind_rows())
   }
+
+  ## otherwise see if there are groups, if so, make subsets and rerun
+  ## if not, just return NULL and let the function run as is.
   a <- parse_formula(formula=formula)
-  has_group <- any(a$side=="group")
-  has_right <- any(a$side=="right")
-  if(has_group) {
-    test_by_group(formula, FUN, ...)
-  } else if(isTRUE(by_right) && has_right) {
-    test_by_right(formula, FUN, ...)
+  if(any(a$side=="group")) {
+    by_name <- "group"
+  } else if(isTRUE(by_right) && any(a$side=="right")) {
+    by_name <- "right"
   } else {
+    # cat("> ", format(m), "\n")
     return(NULL)
   }
-}
 
-test_by_right <- function(formula, data, FUN, ...) {
+  # cat("| ", format(m), "\n")
+  data <- eval(m$data)
   f <- parse_formula(formula=formula, data=data)
-  right.name <- f$about$var.names[f$about$side=="right"]
-  formula.l <- remove_right(formula)
+  new.name <- f$about$var.names[f$about$side==by_name]
+  subformula <- clean_formula(formula, by_name)
   result <- data |>
-    mutate(.groups=f$data$right) |>
+    mutate(.groups=f$data[[by_name]]) |>
     nest(.by=".groups") |>
     arrange(.data$.groups) |>
     mutate(.x=map(data, \(.x) {
-      FUN(formula.l, data=.x, ...)
+      paramsi <- params
+      paramsi$data <- .x
+      paramsi <- c(list(subformula), paramsi)
+      do.call(FUN, paramsi)
     })) |> select(-"data") |>
-    unnest(".x") |>
-    rename(value=".groups") |>
-    mutate(variable=right.name, .before="value")
+    unnest(".x")
+  if(by_name=="right") {
+    result <- result |> rename(value=".groups") |> mutate(variable=new.name)
+  } else {
+    result <- result |> rename(group.value=".groups") |> mutate(group=new.name)
+  }
   as_atest(result)
 }
 
-test_by_group <- function(formula, data, FUN, ...) {
-  f <- parse_formula(formula=formula, data=data)
-  group.name <- f$about$var.names[f$about$side=="group"]
-  formula.lr <- remove_group(formula)
-  result <- data |>
-    mutate(.groups=f$data$group) |>
-    nest(.by=".groups") |>
-    arrange(.data$.groups) |>
-    mutate(.x=map(data, \(.x) {
-      FUN(formula.lr, data=.x, ...)
-    })) |> select(-data) |>
-    unnest(".x") |>
-    rename(group.value=".groups") |>
-    mutate(group=group.name, .before="group.value")
-  as_atest(result)
-}
 
 #' @importFrom stats p.adjust
 #' @importFrom utils combn
@@ -84,7 +70,9 @@ pairwise <- function(formula, data, FUN, conf.level=0.95, ..., adjust=c("bonferr
   colnames(todo) <- paste0("X", 1:2)
   get_subset <- function(idx) { droplevels(data[data[[x.name]] %in% todo[idx,],]) }
   conf.adjust <- if(adjust=="none") 1 else nrow(todo)
-  result <- map_dfr(seq_len(nrow(todo)), \(idx) FUN(formula, data=get_subset(idx), conf.adjust=conf.adjust, ...))
+  result <- map_dfr(seq_len(nrow(todo)), \(idx) {
+    do.call(FUN, c(list(formula, data=get_subset(idx), conf.adjust=conf.adjust), list(...)))
+  })
   if(nrow(todo) > 1 && adjust!="none") {
     result <- result |> mutate(p.adjust=p.adjust(.data$p.value, method=adjust))
     method_txt <- case_when(adjust=="holm" ~ "Bonferroni-Holm",
@@ -100,13 +88,13 @@ pairwise <- function(formula, data, FUN, conf.level=0.95, ..., adjust=c("bonferr
 #' @rdname two_t_test
 #' @export
 pairwise_t_test <- function(formula, data, ...) {
-  pairwise(formula, data, two_t_test, ...)
+  pairwise(formula, data, "two_t_test", ...)
 }
 
 #' @param ... XX
 #' @rdname two_proportion_test
 #' @export
 pairwise_proportion_test <- function(formula, data, ...) {
-  pairwise(formula, data, two_proportion_test, ...)
+  pairwise(formula, data, "two_proportion_test", ...)
 }
 
