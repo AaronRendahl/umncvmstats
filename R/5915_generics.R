@@ -107,7 +107,9 @@ gt.atest <- function(data,
 #' @export
 print.atest <- function(x, ...) {
   if(! "about" %in% names(x)) {
-    print(x |> rm_class("atest"))
+    x <- x |> rm_class("atest")
+    print(x)
+    invisible(list(result=x, about=NULL))
   } else {
     aa <- detach_about(x)
     notes <- aa$about |> summarize(footnote=paste(.data$footnote, collapse=","), .by="row")
@@ -122,8 +124,8 @@ print.atest <- function(x, ...) {
       pull("about")
     print(result)
     cat(about, sep="\n")
+    invisible(list(result=result, about=about))
   }
-  invisible(list(result=result, about=about))
 }
 
 checkif2 <- function(x, require_two=TRUE) {
