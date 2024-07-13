@@ -1,21 +1,43 @@
+model_form <- function(model) {
+  f <- model$terms
+  tibble(model.response=format(f[[2]]), model.terms=format(f[[3]]))
+}
+
+#' Get model summary information
+#'
+#' @param model XX
+#' @param ... XX
+#'
+#' @return XX
+#' @importFrom broom glance
+#' @export
+model_glance <- function(model, ...) {
+  out <- glance(model, ...)
+  bind_cols(model_form(model), out) |> as_atest()
+}
+
 #' Get model coefficients
 #'
-#' @param model
+#' @param model XX
+#' @param ... XX
 #'
 #' @return XX
 #' @export
 model_coefs <- function(model, ...) {
-  model |> tidy(...)
+  out <- tidy(model, ...)
+  bind_cols(model_form(model), out) |> as_atest()
 }
 
 #' Get model anova table
 #'
 #' @param model XX
+#' @param ... XX
 #' @return XX
 #' @export
 #' @importFrom car Anova
 model_anova <- function(model, ...) {
-  Anova(model, ...) |> tidy()
+  out <- Anova(model, ...) |> tidy()
+  bind_cols(model_form(model), out) |> as_atest()
 }
 
 #' Get model means and slopes (trends)
@@ -36,15 +58,17 @@ model_means <- function(model, formula, ..., cld=TRUE) {
   } else {
     out <- summary(em)
   }
-  out
+  as_atest(out, model)
 }
 
 #' @export
 #' @importFrom emmeans emmeans
+#' @importFrom graphics pairs
 #' @rdname model_means
 pairwise_model_means <- function(model, formula, ...) {
   em <- emmeans(model, formula, ...)
-  pairs(em, infer=TRUE) |> summary()
+  out <- pairs(em, infer=TRUE) |> summary()
+  as_atest(out, model)
 }
 
 #' @export
@@ -60,16 +84,18 @@ model_slopes <- function(model, formula, ..., cld=TRUE) {
   } else {
     out <- summary(em)
   }
-  out
+  as_atest(out, model)
 }
 
 #' @export
 #' @importFrom emmeans emtrends
+#' @importFrom graphics pairs
 #' @rdname model_means
 pairwise_model_slopes <- function(model, formula, ...) {
   var <- format(formula[[2]])
   formula[[2]] <- formula[[3]]
   formula[[3]] <- NULL
   em <- emtrends(model, specs=formula, var=var, ...)
-  pairs(em, infer=TRUE) |> summary()
+  out <- pairs(em, infer=TRUE) |> summary()
+  as_atest(out, model)
 }
