@@ -1,17 +1,9 @@
 rm_class <- function(x, class) { class(x) <- setdiff(class(x), class); x }
 
-#' atest
-#'
-#' @param x XX
-#' @param ... XX
-#'
-#' @return XX
-#' @export
 as_atest <- function(x, ...) {
   UseMethod("as_atest")
 }
 
-#' @export
 as_atest.summary_emm <- function(x, model, ...) {
   about <- attr(x, "mesg")
   clNames <- attr(x, "clNames")
@@ -35,7 +27,6 @@ as_atest.summary_emm <- function(x, model, ...) {
   as_atest(x)
 }
 
-#' @export
 as_atest.data.frame <- function(x, ...) {
   x <- as_tibble(x)
   varlist <- c("by", "by.value", "response", "response.value", "variable", "value")
