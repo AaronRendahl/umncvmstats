@@ -1,6 +1,44 @@
 rm_class <- function(x, class) { class(x) <- setdiff(class(x), class); x }
 
-as_atest <- function(x) {
+
+#' atest
+#'
+#' @param x XX
+#' @param ... XX
+#'
+#' @return XX
+#' @export
+as_atest <- function(x, ...) {
+  UseMethod("as_atest")
+}
+
+#' @export
+as_atest.summary_emm <- function(x, model, ...) {
+  about <- attr(x, "mesg")
+  clNames <- attr(x, "clNames")
+  attr.orig <- attributes(x)
+
+  ## this loses attributes and class information
+  x <- bind_cols(model_form(model), x)
+
+  skip <- "NOTE: If two or more means share the same grouping symbol,\n      then we cannot show them to be different.\n      But we also did not show them to be the same."
+  about <- unique(about[about!=skip])
+  x$about <- rep(list(about), nrow(x))
+
+  if(length(clNames)==2) {
+    names(x)[match(clNames, names(x))] <- c("conf.low", "conf.high")
+  }
+
+  attr.keep <- c("estName", "pri.vars", "by.vars")
+  attr.keep <- attr.keep[attr.keep %in% names(attr.orig)]
+  for(a in attr.keep) attr(x, a) <- attr.orig[[a]]
+
+  as_atest(x)
+}
+
+#' @export
+as_atest.data.frame <- function(x, ...) {
+  x <- as_tibble(x)
   varlist <- c("by", "by.value", "response", "response.value", "variable", "value")
   x <- x |> select(any_of(varlist), everything())
   if(!inherits(x, "atest")) class(x) <- c("atest", class(x))
