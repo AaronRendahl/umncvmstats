@@ -1,6 +1,6 @@
 model_form <- function(model) {
   f <- model$terms
-  tibble(model.response=format(f[[2]]), model.terms=format(f[[3]]))
+  tibble(response=format(f[[2]]), model.terms=format(f[[3]]))
 }
 
 #' Get model summary information
