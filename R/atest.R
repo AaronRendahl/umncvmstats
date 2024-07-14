@@ -63,7 +63,7 @@ as_tibble.atest <- function(x, footnotes=c("byrow", "below"), ...) {
       n2 <- names(a$footnotes)
       out <- bind_rows(a) |> select(all_of(c(n2, n1)))
     }
-    out |> umncvmstats:::rm_class("atest")
+    out |> rm_class("atest")
   } else {
     out <- x |> mutate(about=sapply(.data$about, paste, collapse=" "))
   }
