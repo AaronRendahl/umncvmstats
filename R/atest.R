@@ -1,3 +1,12 @@
+#' Combine multiple tests together
+#'
+#' @param ...
+#'
+#' @export
+combine_tests <- function(...) {
+  bind_rows(...) |> as_atest()
+}
+
 rm_class <- function(x, class) { class(x) <- setdiff(class(x), class); x }
 
 as_atest <- function(x, ...) {
@@ -40,18 +49,35 @@ as_atest.data.frame <- function(x, ...) {
 }
 
 #' @export
-as.data.frame.atest <- function(x, ...)
-  tidy.atest(x) |> as.data.frame()
-
-#' @export
-as_tibble.atest <- function(x, ...) {
-  x |> mutate(about=sapply(.data$about, paste, collapse=" ")) |>
-    rm_class("atest")
+as_tibble.atest <- function(x, footnotes=c("byrow", "below"), ...) {
+  footnotes <- match.arg(footnotes)
+  if(footnotes=="below") {
+    a <- x |> separate_atest()
+    if(is.null(a$footnotes)) {
+      out <- a$results
+    } else {
+      if(all(is.na(a$footnotes$footnote.num))) {
+        a$footnotes$footnote.num <- NULL
+      }
+      n1 <- names(a$results)
+      n2 <- names(a$footnotes)
+      out <- bind_rows(a) |> select(all_of(c(n2, n1)))
+    }
+    out |> umncvmstats:::rm_class("atest")
+  } else {
+    out <- x |> mutate(about=sapply(.data$about, paste, collapse=" "))
+  }
+  out |> rm_class("atest")
 }
 
 #' @export
 tidy.atest <- function(x, ...) {
   as_tibble.atest(x, ...)
+}
+
+#' @export
+as.data.frame.atest <- function(x, ...) {
+  as_tibble.atest(x, ...) |> as.data.frame()
 }
 
 #' Create a gt table object
@@ -144,12 +170,10 @@ gt.atest <- function(data,
     opt_vertical_padding(scale = 0.5)
 }
 
-#' @export
-print.atest <- function(x, ...) {
+separate_atest <- function(x) {
   if(! "about" %in% names(x)) {
     x <- x |> rm_class("atest")
-    print(x)
-    invisible(list(result=x, about=NULL))
+    list(results=x, footnotes=NULL)
   } else {
     aa <- detach_about(x)
     notes <- aa$about |> summarize(footnote=paste(.data$footnote, collapse=","), .by="row")
@@ -158,13 +182,27 @@ print.atest <- function(x, ...) {
     } else {
       result <- aa$result |> select(-"row")
     }
-    about <- aa$about |> select("footnote", "about") |> unique() |>
-      mutate(about=if_else(is.na(.data$footnote), .data$about, paste(.data$footnote, .data$about))) |>
-      pull("about")
-    print(result)
-    cat(about, sep="\n")
-    invisible(list(result=result, about=about))
+    # about <- aa$about |> select("footnote", "about") |> unique() |>
+    #   mutate(about=if_else(is.na(.data$footnote), .data$about, paste(.data$footnote, .data$about))) |>
+    #   pull("about")
+    footnotes <- aa$about |> select(footnote.num="footnote", footnote.text="about") |> unique()
+    list(results=result, footnotes=footnotes)
   }
+}
+
+#' @export
+print.atest <- function(x, ...) {
+  a <- separate_atest(x, ...)
+  print(a$results)
+  if(!is.null(a$footnotes)) {
+     about <- a$footnotes |>
+       mutate(about=if_else(is.na(.data$footnote.num),
+                            .data$footnote.text,
+                            paste(.data$footnote.num, .data$footnote.text))) |>
+       pull("about")
+     cat(about, sep="\n")
+  }
+  invisible(a)
 }
 
 #' @importFrom broom tidy
