@@ -1,8 +1,5 @@
 #' Two sample proportion test
 #'
-#' @export
-two_proportion_test <- function(x, ...) { UseMethod("two_proportion_test") }
-
 #' @param formula XX
 #' @param data XX
 #' @param success XX
@@ -10,6 +7,9 @@ two_proportion_test <- function(x, ...) { UseMethod("two_proportion_test") }
 #' @param alternative XX
 #' @param ... XX
 #'
+#' @export
+two_proportion_test <- function(x, ...) { UseMethod("two_proportion_test") }
+
 #' @rdname two_proportion_test
 #' @export
 two_proportion_test.formula <- function(formula, data, success, method=c("default", "chisq", "exact"),
