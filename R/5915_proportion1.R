@@ -1,28 +1,31 @@
 
 #' One proportion test
 #'
-#' A short description...
+#' A short description XX more ...
 #'
 #' More details
 #'
-#' @param x the thing
+#' @param formula a formula of the form `~ x` or `x ~ 1`, where `x` is a factor variable.
+#'     If not a factor, it will be automatically converted.
+#' @param data a data frame containing the values in the formula
+#' @param x number of successes
+#' @param n number of trials
+#' @param success optional: the level(s) for which proportions should be reported
+#' @param all_success if TRUE, then proportions for all levels are reported
+#' @param null null proportion (optional)
+#' @param alternative  character string specifying the alternative hypothesis, must be one of "two.sided" (default), "greater" or "less".
+#' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
+#' @param correct a logical indicating whether Yates' continuity correction should be applied where possible.
+#' @param method character string specifying which method to use. One of "default", "wilson", or "exact".
 #' @param ... more things
 #'
 #' @return An atest
 #' @export
 one_proportion_test <- function(x, ...) { UseMethod("one_proportion_test") }
 
-#' @param formula a formula of the form `~ x` or `x ~ 1`, where `x` is a factor variable.
-#'     If not a factor, it will be automatically converted.
-#' @param data a data frame containing the values in the formula
-#' @param success optional: the level(s) for which proportions should be reported
-#' @param all_success if TRUE, then proportions for all levels are reported
-#' @param ... more things
-#'
 #' @rdname one_proportion_test
 #' @export
 one_proportion_test.formula <- function(formula, data, success, all_success=FALSE, ...) {
-
 
   a <- test_by(by_right=TRUE)
   if(!is.null(a)) return(a)
@@ -53,15 +56,6 @@ one_proportion_test.formula <- function(formula, data, success, all_success=FALS
   as_atest(out)
 }
 
-#' @param x number of successes
-#' @param n number of trials
-#' @param null null proportion (optional)
-#' @param alternative  character string specifying the alternative hypothesis, must be one of "two.sided" (default), "greater" or "less".
-#' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
-#' @param correct a logical indicating whether Yates' continuity correction should be applied where possible.
-#' @param method character string specifying which method to use. One of "default", "wilson", or "exact".
-#' @param ... further arguments
-#'
 #' @rdname one_proportion_test
 #' @export
 one_proportion_test.default <- function(x, n, null,
