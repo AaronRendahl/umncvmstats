@@ -1,0 +1,35 @@
+---
+title: "Assignment Template"
+author: "Student Name"
+date: "`r lubridate::today()`"
+engine: knitr
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+format:
+  html:
+    html-table-processing: none
+    embed-resources: true
+---
+
+```{r}
+#| message: FALSE
+library(conflicted)
+library(tidyverse)
+library(gt)
+library(umncvmstats)
+conflicts_prefer(dplyr::filter, dplyr::lag, dplyr::select, umncvmstats::gt)
+```
+
+## Part 1
+
+```{r}
+
+```
+
+## About
+
+All computations done using `r R.version.string`. Cite as follows:
+
+-   `r format(citation(), style="text")`
