@@ -31,16 +31,27 @@ as_atest.summary_emm <- function(x, model, ...) {
 #' @export
 as_atest.data.frame <- function(x, ...) {
   x <- as_tibble(x)
-  varlist <- c("by", "by.value", "response", "response.value", "variable", "value")
-  x <- x |> select(any_of(varlist), everything())
+  vars1 <- c("group", "group.value", "response", "response.value", "variable", "value")
+  vars3 <- c("p.value", "p.adjust", "about")
+  vars2 <- setdiff(names(x), c(vars1, vars3))
+  x <- x |> select(any_of(c(vars1, vars2, vars3)), everything())
   if(!inherits(x, "atest")) class(x) <- c("atest", class(x))
   x
 }
 
 #' @export
-tidy.atest <- function(x, ...) {
+as.data.frame.atest <- function(x, ...)
+  tidy.atest(x) |> as.data.frame()
+
+#' @export
+as_tibble.atest <- function(x, ...) {
   x |> mutate(about=sapply(.data$about, paste, collapse=" ")) |>
     rm_class("atest")
+}
+
+#' @export
+tidy.atest <- function(x, ...) {
+  as_tibble.atest(x, ...)
 }
 
 #' Create a gt table object
@@ -56,18 +67,18 @@ gt.default <- function(data, ...) { gt::gt(data, ...)}
 
 tab_footnotes <- function(data, notes, columns=NA, rows=NA) {
   aa <- tibble(note=notes, columns=columns, rows=rows) |>
-    left_join(data$`_boxhead` |> select(columns="var", "type"), .by="columns")
-  if(any(aa$type=="hidden")) {
-    hidden_cols <- aa |> filter(.data$type=="hidden") |>
+    left_join(data$`_boxhead` |> select(columns="var", "type"), by="columns")
+  hidden_cols <- aa |> filter(!is.na(.data$rows) & (is.na(.data$type) | .data$type=="hidden"))
+  if(nrow(hidden_cols)>0) {
+    hidden_txt <- hidden_cols |>
       pull("columns") |>
       (\(x) sprintf("'%s'", x))() |>
       (\(x) paste(x, collapse=", "))()
-    warning(sprintf("footnote column %s is hidden"), hidden_cols)
+    warning(sprintf("footnote column %s is missing or hidden", hidden_txt))
   }
   for(idx in seq_len(nrow(aa))) {
-    r <- aa$rows[[idx]]
-    r <- r[!is.na(r)]
-    if(length(r)==0) {
+    r <- aa$rows[idx]
+    if(is.na(r)) {
       data <- data |> tab_footnote(aa$note[idx])
     } else {
       if(aa$type[idx]=="stub") {
@@ -86,12 +97,12 @@ tab_footnotes <- function(data, notes, columns=NA, rows=NA) {
 #' @export
 #' @rdname gt
 gt.atest <- function(data,
-                     footnote_col="group",
+                     footnote_col="footnote",
                      rowname_col="group",
                      row_group.sep=" - ", ...) {
   x <- data
   aa <- detach_about(x)
-  notes <- aa$about |> summarize(rows=list(.data$row), .by="about")
+  notes <- aa$about
   result <- aa$result
   nresponse <- nvariable <- 0
   if("response" %in% names(result)) {
@@ -118,18 +129,13 @@ gt.atest <- function(data,
   } else if(nvariable > 0) {
     groupname_col <- "variable"
   }
-
-  r <- unlist(notes$rows)
-  r <- r[!is.na(r)]
-  anyr <- length(r) > 0
-  if(anyr && (!footnote_col %in% names(result))) {
-    result <- result |> mutate(footnote="")
-    footnote_col <- "footnote"
+  if(!footnote_col %in% names(result)) {
+    result[[footnote_col]] <- ""
   }
   result |> select(-row) |>
     gt(groupname_col=groupname_col, rowname_col=rowname_col,
        row_group.sep=row_group.sep, ...) |>
-    tab_footnotes(notes$about, footnote_col, notes$rows) |>
+    tab_footnotes(notes$about, footnote_col, notes$row) |>
     tab_header(title=title) |>
     fmt_number(where(is.double), n_sigfig = 2) |>
     fmt_pvalue() |>
@@ -152,8 +158,7 @@ print.atest <- function(x, ...) {
     } else {
       result <- aa$result |> select(-"row")
     }
-    about <- aa$about |> select("order", "footnote", "about") |> unique() |>
-      arrange(.data$order) |>
+    about <- aa$about |> select("footnote", "about") |> unique() |>
       mutate(about=if_else(is.na(.data$footnote), .data$about, paste(.data$footnote, .data$about))) |>
       pull("about")
     print(result)
@@ -178,11 +183,12 @@ detach_about <- function(x) {
     mutate(order=(.data$order-1)/(max(n(),2)-1), .before="row") |>
     mutate(order=mean(.data$order), .by="about") |>
     arrange(.data$order) |> mutate(order=as.integer(as_factor(.data$about))) |>
-    mutate(footnote=.data$order, .after="order")
+    mutate(footnote=.data$order, .after="order") |> select(-"order")
   if(all.same) {
     notes$row <- NA
     notes$footnote <- NA
   }
+  notes <- unique(notes)
   x <- x |> select(-"about")
   list(result=x, about=notes)
 }
