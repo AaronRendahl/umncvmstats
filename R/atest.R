@@ -4,6 +4,7 @@ as_atest <- function(x, ...) {
   UseMethod("as_atest")
 }
 
+#' @export
 as_atest.summary_emm <- function(x, model, ...) {
   about <- attr(x, "mesg")
   clNames <- attr(x, "clNames")
@@ -27,6 +28,7 @@ as_atest.summary_emm <- function(x, model, ...) {
   as_atest(x)
 }
 
+#' @export
 as_atest.data.frame <- function(x, ...) {
   x <- as_tibble(x)
   varlist <- c("by", "by.value", "response", "response.value", "variable", "value")
@@ -48,8 +50,8 @@ tidy.atest <- function(x, ...) {
 #' @export
 gt <- function(data, ...) { UseMethod("gt") }
 
-#' @rdname gt
 #' @export
+#' @rdname gt
 gt.default <- function(data, ...) { gt::gt(data, ...)}
 
 tab_footnotes <- function(data, notes, columns=NA, rows=NA) {
@@ -78,7 +80,11 @@ tab_footnotes <- function(data, notes, columns=NA, rows=NA) {
   data
 }
 
+#' @param footnote_col XX
+#' @param rowname_col XX
+#' @param row_group.sep XX
 #' @export
+#' @rdname gt
 gt.atest <- function(data,
                      footnote_col="group",
                      rowname_col="group",
