@@ -3,7 +3,7 @@ pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
   StatisticalTests: StatisticalTests.html
-last_built: 2024-07-15T18:41Z
+last_built: 2024-07-15T19:42Z
 urls:
   reference: https://aaronrendahl.github.io/umncvmstats/reference
   article: https://aaronrendahl.github.io/umncvmstats/articles

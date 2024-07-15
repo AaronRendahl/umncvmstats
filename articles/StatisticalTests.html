@@ -76,7 +76,7 @@
 <h3 id="one-proportion-test">One Proportion Test<a class="anchor" aria-label="anchor" href="#one-proportion-test"></a>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">vs</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">vs</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#mwlefoodfi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -559,7 +559,7 @@
 <h4 id="separately-by-another-categorical-variable">Separately by another categorical variable<a class="anchor" aria-label="anchor" href="#separately-by-another-categorical-variable"></a>
 </h4>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">am</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">am</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="eexombwkke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#eexombwkke table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1061,7 +1061,7 @@
 <h3 id="two-proportion-test">Two Proportion Test<a class="anchor" aria-label="anchor" href="#two-proportion-test"></a>
 </h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/two_proportion_test.html">two_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">am</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/two_proportion_test.html">two_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">am</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="ulbfdpbcyv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ulbfdpbcyv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1553,7 +1553,7 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">am</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="../reference/two_proportion_test.html">two_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">am</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/two_proportion_test.html">two_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">am</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="kgufivjubq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#kgufivjubq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -2085,7 +2085,7 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">cyl</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="../reference/two_proportion_test.html">pairwise_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">cyl</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/two_proportion_test.html">pairwise_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">cyl</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="txvafbsnay" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#txvafbsnay table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -2687,7 +2687,7 @@
 <span></span>
 <span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">before</span><span class="op">+</span><span class="va">after</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">testing</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="../reference/paired_proportion_test.html">paired_proportion_test</a></span><span class="op">(</span><span class="va">after</span> <span class="op">-</span> <span class="va">before</span> <span class="op">~</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">testing</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/paired_proportion_test.html">paired_proportion_test</a></span><span class="op">(</span><span class="va">after</span> <span class="op">-</span> <span class="va">before</span> <span class="op">~</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">testing</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="eojbyfqeoy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#eojbyfqeoy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -3219,7 +3219,7 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">~</span> <span class="va">vs</span>, data<span class="op">=</span><span class="va">mtcars</span>, all_success <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="../reference/independence_test.html">independence_test</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">~</span> <span class="va">vs</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/independence_test.html">independence_test</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">~</span> <span class="va">vs</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="lktfaluewb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#lktfaluewb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -3809,7 +3809,7 @@
 <h3 id="one-sample-t-test">One Sample t-test<a class="anchor" aria-label="anchor" href="#one-sample-t-test"></a>
 </h3>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">wt</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">wt</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="yjzuucbtbz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#yjzuucbtbz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -4286,7 +4286,7 @@
 <h4 id="separately-by-another-categorical-variable-1">Separately by another categorical variable<a class="anchor" aria-label="anchor" href="#separately-by-another-categorical-variable-1"></a>
 </h4>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">am</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">am</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="shkueolvbn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#shkueolvbn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -4779,7 +4779,7 @@
 <h3 id="two-sample-t-test">Two Sample t-test<a class="anchor" aria-label="anchor" href="#two-sample-t-test"></a>
 </h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/two_t_test.html">two_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">am</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/two_t_test.html">two_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">am</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="zjimqagqfb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#zjimqagqfb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -5274,7 +5274,7 @@
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">am</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="../reference/two_t_test.html">two_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">am</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/two_t_test.html">two_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">am</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="wcqkqxatgx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#wcqkqxatgx table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -5803,7 +5803,7 @@
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">cyl</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="../reference/two_t_test.html">pairwise_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">cyl</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/two_t_test.html">pairwise_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">cyl</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="bqqsitliux" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#bqqsitliux table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -6383,7 +6383,7 @@
 <span></span>
 <span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">before</span><span class="op">+</span><span class="va">after</span><span class="op">~</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">testing</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="../reference/paired_t_test.html">paired_t_test</a></span><span class="op">(</span><span class="va">after</span> <span class="op">-</span> <span class="va">before</span> <span class="op">~</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">testing</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/paired_t_test.html">paired_t_test</a></span><span class="op">(</span><span class="va">after</span> <span class="op">-</span> <span class="va">before</span> <span class="op">~</span> <span class="fl">1</span>, data<span class="op">=</span><span class="va">testing</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="jmykoxbxsq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#jmykoxbxsq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -6906,7 +6906,7 @@
 <h2 id="correlation-tests">Correlation tests<a class="anchor" aria-label="anchor" href="#correlation-tests"></a>
 </h2>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/correlation_test.html">correlation_test</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">hp</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/correlation_test.html">correlation_test</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">hp</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="srwshmculj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#srwshmculj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -7410,7 +7410,7 @@
 <code class="sourceCode R"><span><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">cyl</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
 <p>ANOVA table:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_anova.html">model_anova</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_anova.html">model_anova</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="acjhwlytwg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#acjhwlytwg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -7900,7 +7900,7 @@
 </div>
 <p>model summary values:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_glance.html">model_glance</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_glance.html">model_glance</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="spvlazzefd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#spvlazzefd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -8393,7 +8393,7 @@
 </div>
 <p>model coefficients:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_coefs.html">model_coefs</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_coefs.html">model_coefs</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="chlnopucxs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#chlnopucxs table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -8893,7 +8893,7 @@
 </div>
 <p>model means:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="ktsgswkspa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ktsgswkspa table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -9410,7 +9410,7 @@
 </div>
 <p>Comparing model means:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="mjigpitmic" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#mjigpitmic table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -9939,7 +9939,7 @@
 <code class="sourceCode R"><span><span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
 <p>ANOVA table:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_anova.html">model_anova</a></span><span class="op">(</span><span class="va">m2</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_anova.html">model_anova</a></span><span class="op">(</span><span class="va">m2</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="skvpxanktn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#skvpxanktn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -10429,7 +10429,7 @@
 </div>
 <p>model summary values:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_glance.html">model_glance</a></span><span class="op">(</span><span class="va">m2</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_glance.html">model_glance</a></span><span class="op">(</span><span class="va">m2</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="vnudsyvgcy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#vnudsyvgcy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -10922,7 +10922,7 @@
 </div>
 <p>model coefficients:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_coefs.html">model_coefs</a></span><span class="op">(</span><span class="va">m2</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/fmt_numbers.html">fmt_numbers</a></span><span class="op">(</span>n_sigfig <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_coefs.html">model_coefs</a></span><span class="op">(</span><span class="va">m2</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/fmt_numbers.html">fmt_numbers</a></span><span class="op">(</span>n_sigfig <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <div id="bqtsjlpbsg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#bqtsjlpbsg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -11413,7 +11413,7 @@
 </div>
 <p>model slope:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m2</span>, <span class="va">wt</span><span class="op">~</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m2</span>, <span class="va">wt</span><span class="op">~</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="lktalfsznn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#lktalfsznn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -11910,7 +11910,7 @@
 <code class="sourceCode R"><span><span class="va">m3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">vs</span><span class="op">*</span><span class="va">am</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
 <p>ANOVA table:</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_anova.html">model_anova</a></span><span class="op">(</span><span class="va">m3</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_anova.html">model_anova</a></span><span class="op">(</span><span class="va">m3</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="mabkvkpvhh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#mabkvkpvhh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -12418,7 +12418,7 @@
 </div>
 <p>model summary values:</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_glance.html">model_glance</a></span><span class="op">(</span><span class="va">m3</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_glance.html">model_glance</a></span><span class="op">(</span><span class="va">m3</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="kjqsyyjywj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#kjqsyyjywj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -12911,7 +12911,7 @@
 </div>
 <p>model coefficients:</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_coefs.html">model_coefs</a></span><span class="op">(</span><span class="va">m3</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/fmt_numbers.html">fmt_numbers</a></span><span class="op">(</span>decimals<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_coefs.html">model_coefs</a></span><span class="op">(</span><span class="va">m3</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/fmt_numbers.html">fmt_numbers</a></span><span class="op">(</span>decimals<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <div id="kjbhexihel" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#kjbhexihel table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -13419,7 +13419,7 @@
 </div>
 <p>model means, both averaging over other variables, and separately:</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m3</span>, <span class="op">~</span><span class="va">vs</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m3</span>, <span class="op">~</span><span class="va">vs</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; NOTE: Results may be misleading due to involvement in interactions</span></span></code></pre></div>
 <div id="ocekpqtaux" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ocekpqtaux table {
@@ -13925,7 +13925,7 @@
 </table>
 </div>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m3</span>, <span class="op">~</span><span class="va">vs</span><span class="op">|</span><span class="va">am</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m3</span>, <span class="op">~</span><span class="va">vs</span><span class="op">|</span><span class="va">am</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="iztkubiwwg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#iztkubiwwg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -14456,7 +14456,7 @@
 <p>Comparing model means, both averaging over other variables, and
 separately:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m3</span>, <span class="op">~</span><span class="va">vs</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m3</span>, <span class="op">~</span><span class="va">vs</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; NOTE: Results may be misleading due to involvement in interactions</span></span></code></pre></div>
 <div id="frzqebxzoi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#frzqebxzoi table {
@@ -14948,7 +14948,7 @@ separately:</p>
 </table>
 </div>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m3</span>, <span class="op">~</span><span class="va">vs</span><span class="op">|</span><span class="va">am</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m3</span>, <span class="op">~</span><span class="va">vs</span><span class="op">|</span><span class="va">am</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="bijbpbenqw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#bijbpbenqw table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -15459,7 +15459,17 @@ separately:</p>
 <code class="sourceCode R"><span><span class="va">m4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span><span class="op">*</span><span class="va">wt</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
 <p>ANOVA table:</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_anova.html">model_anova</a></span><span class="op">(</span><span class="va">m4</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_anova.html">model_anova</a></span><span class="op">(</span><span class="va">m4</span><span class="op">)</span> </span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 7</span></span></span>
+<span><span class="co">#&gt;   response model.terms term          sumsq    df statistic  p.value</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> mpg      am * wt     am          0.002<span style="text-decoration: underline;">24</span>     1  0.000<span style="text-decoration: underline;">334</span>  9.86<span style="color: #949494;">e</span><span style="color: #BB0000;">-1</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> mpg      am * wt     wt        443.          1 65.9       7.72<span style="color: #949494;">e</span><span style="color: #BB0000;">-9</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> mpg      am * wt     am:wt      90.3         1 13.5       1.02<span style="color: #949494;">e</span><span style="color: #BB0000;">-3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> mpg      am * wt     Residuals 188.         28 <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>   <span style="color: #949494;"> </span></span></span></code></pre></div>
+<p>model summary values:</p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_glance.html">model_glance</a></span><span class="op">(</span><span class="va">m4</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="xgwdnlrytn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#xgwdnlrytn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -15912,62 +15922,47 @@ separately:</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg</td>
+<td colspan="14" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg</td>
     </tr>
 <tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="model.terms">model.terms</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sumsq">sumsq</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="r.squared">r.squared</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="adj.r.squared">adj.r.squared</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sigma">sigma</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="logLik">logLik</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="AIC">AIC</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="BIC">BIC</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="deviance">deviance</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df.residual">df.residual</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="nobs">nobs</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="footnote">footnote</th>
     </tr>
 </thead>
-<tbody class="gt_table_body">
-<tr>
+<tbody class="gt_table_body"><tr>
 <td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="term" class="gt_row gt_left">am</td>
-<td headers="sumsq" class="gt_row gt_right">0.0022</td>
-<td headers="df" class="gt_row gt_right">1</td>
-<td headers="statistic" class="gt_row gt_right">0.00033</td>
-<td headers="p.value" class="gt_row gt_left">  0.99</td>
-<td headers="footnote" class="gt_row gt_right"></td>
-</tr>
-<tr>
-<td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="term" class="gt_row gt_left">wt</td>
-<td headers="sumsq" class="gt_row gt_right">440</td>
-<td headers="df" class="gt_row gt_right">1</td>
-<td headers="statistic" class="gt_row gt_right">66</td>
+<td headers="r.squared" class="gt_row gt_right">0.83</td>
+<td headers="adj.r.squared" class="gt_row gt_right">0.82</td>
+<td headers="sigma" class="gt_row gt_right">2.6</td>
+<td headers="statistic" class="gt_row gt_right">47</td>
+<td headers="df" class="gt_row gt_right">3</td>
+<td headers="logLik" class="gt_row gt_right">−74</td>
+<td headers="AIC" class="gt_row gt_right">160</td>
+<td headers="BIC" class="gt_row gt_right">160</td>
+<td headers="deviance" class="gt_row gt_right">190</td>
+<td headers="df.residual" class="gt_row gt_right">28</td>
+<td headers="nobs" class="gt_row gt_right">32</td>
 <td headers="p.value" class="gt_row gt_left">
 </td>
 <td headers="footnote" class="gt_row gt_right"></td>
-</tr>
-<tr>
-<td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="term" class="gt_row gt_left">am:wt</td>
-<td headers="sumsq" class="gt_row gt_right">90</td>
-<td headers="df" class="gt_row gt_right">1</td>
-<td headers="statistic" class="gt_row gt_right">13</td>
-<td headers="p.value" class="gt_row gt_left">  0.0010</td>
-<td headers="footnote" class="gt_row gt_right"></td>
-</tr>
-<tr>
-<td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="term" class="gt_row gt_left">Residuals</td>
-<td headers="sumsq" class="gt_row gt_right">190</td>
-<td headers="df" class="gt_row gt_right">28</td>
-<td headers="statistic" class="gt_row gt_right"><br></td>
-<td headers="p.value" class="gt_row gt_left"><br></td>
-<td headers="footnote" class="gt_row gt_right"></td>
-</tr>
-</tbody>
+</tr></tbody>
 </table>
 </div>
-<p>model summary values:</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_glance.html">model_glance</a></span><span class="op">(</span><span class="va">m4</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>model coefficients:</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_coefs.html">model_coefs</a></span><span class="op">(</span><span class="va">m4</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/fmt_numbers.html">fmt_numbers</a></span><span class="op">(</span>decimals<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <div id="icmolvgaft" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#icmolvgaft table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -16420,47 +16415,64 @@ separately:</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="14" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg</td>
+<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg</td>
     </tr>
 <tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="model.terms">model.terms</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="r.squared">r.squared</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="adj.r.squared">adj.r.squared</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sigma">sigma</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="logLik">logLik</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="AIC">AIC</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="BIC">BIC</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="deviance">deviance</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df.residual">df.residual</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="nobs">nobs</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="footnote">footnote</th>
     </tr>
 </thead>
-<tbody class="gt_table_body"><tr>
+<tbody class="gt_table_body">
+<tr>
 <td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="r.squared" class="gt_row gt_right">0.83</td>
-<td headers="adj.r.squared" class="gt_row gt_right">0.82</td>
-<td headers="sigma" class="gt_row gt_right">2.6</td>
-<td headers="statistic" class="gt_row gt_right">47</td>
-<td headers="df" class="gt_row gt_right">3</td>
-<td headers="logLik" class="gt_row gt_right">−74</td>
-<td headers="AIC" class="gt_row gt_right">160</td>
-<td headers="BIC" class="gt_row gt_right">160</td>
-<td headers="deviance" class="gt_row gt_right">190</td>
-<td headers="df.residual" class="gt_row gt_right">28</td>
-<td headers="nobs" class="gt_row gt_right">32</td>
+<td headers="term" class="gt_row gt_left">(Intercept)</td>
+<td headers="estimate" class="gt_row gt_right">31.42</td>
+<td headers="SE" class="gt_row gt_right">3.02</td>
+<td headers="statistic" class="gt_row gt_right">10.40</td>
 <td headers="p.value" class="gt_row gt_left">
 </td>
 <td headers="footnote" class="gt_row gt_right"></td>
-</tr></tbody>
+</tr>
+<tr>
+<td headers="model.terms" class="gt_row gt_left">am * wt</td>
+<td headers="term" class="gt_row gt_left">ammanual</td>
+<td headers="estimate" class="gt_row gt_right">14.88</td>
+<td headers="SE" class="gt_row gt_right">4.26</td>
+<td headers="statistic" class="gt_row gt_right">3.49</td>
+<td headers="p.value" class="gt_row gt_left">  0.0016</td>
+<td headers="footnote" class="gt_row gt_right"></td>
+</tr>
+<tr>
+<td headers="model.terms" class="gt_row gt_left">am * wt</td>
+<td headers="term" class="gt_row gt_left">wt</td>
+<td headers="estimate" class="gt_row gt_right">−3.79</td>
+<td headers="SE" class="gt_row gt_right">0.79</td>
+<td headers="statistic" class="gt_row gt_right">−4.82</td>
+<td headers="p.value" class="gt_row gt_left">
+</td>
+<td headers="footnote" class="gt_row gt_right"></td>
+</tr>
+<tr>
+<td headers="model.terms" class="gt_row gt_left">am * wt</td>
+<td headers="term" class="gt_row gt_left">ammanual:wt</td>
+<td headers="estimate" class="gt_row gt_right">−5.30</td>
+<td headers="SE" class="gt_row gt_right">1.44</td>
+<td headers="statistic" class="gt_row gt_right">−3.67</td>
+<td headers="p.value" class="gt_row gt_left">  0.0010</td>
+<td headers="footnote" class="gt_row gt_right"></td>
+</tr>
+</tbody>
 </table>
 </div>
-<p>model coefficients:</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_coefs.html">model_coefs</a></span><span class="op">(</span><span class="va">m4</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/fmt_numbers.html">fmt_numbers</a></span><span class="op">(</span>decimals<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<p>model means, both averaging over other variables, and separately:</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m4</span>, <span class="op">~</span><span class="va">am</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; NOTE: Results may be misleading due to involvement in interactions</span></span></code></pre></div>
 <div id="eodgmajdii" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#eodgmajdii table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -16913,64 +16925,56 @@ separately:</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg</td>
+<td colspan="9" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg</td>
     </tr>
 <tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="model.terms">model.terms</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="am">am</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="emmean">emmean</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=".group">.group</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="footnote">footnote</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr>
 <td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="term" class="gt_row gt_left">(Intercept)</td>
-<td headers="estimate" class="gt_row gt_right">31.42</td>
-<td headers="SE" class="gt_row gt_right">3.02</td>
-<td headers="statistic" class="gt_row gt_right">10.40</td>
-<td headers="p.value" class="gt_row gt_left">
-</td>
+<td headers="am" class="gt_row gt_center">manual</td>
+<td headers="emmean" class="gt_row gt_right">17</td>
+<td headers="SE" class="gt_row gt_right">1.2</td>
+<td headers="df" class="gt_row gt_right">28</td>
+<td headers="conf.low" class="gt_row gt_right">15</td>
+<td headers="conf.high" class="gt_row gt_right">20</td>
+<td headers=".group" class="gt_row gt_left"> a</td>
 <td headers="footnote" class="gt_row gt_right"></td>
 </tr>
 <tr>
 <td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="term" class="gt_row gt_left">ammanual</td>
-<td headers="estimate" class="gt_row gt_right">14.88</td>
-<td headers="SE" class="gt_row gt_right">4.26</td>
-<td headers="statistic" class="gt_row gt_right">3.49</td>
-<td headers="p.value" class="gt_row gt_left">  0.0016</td>
-<td headers="footnote" class="gt_row gt_right"></td>
-</tr>
-<tr>
-<td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="term" class="gt_row gt_left">wt</td>
-<td headers="estimate" class="gt_row gt_right">−3.79</td>
-<td headers="SE" class="gt_row gt_right">0.79</td>
-<td headers="statistic" class="gt_row gt_right">−4.82</td>
-<td headers="p.value" class="gt_row gt_left">
-</td>
-<td headers="footnote" class="gt_row gt_right"></td>
-</tr>
-<tr>
-<td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="term" class="gt_row gt_left">ammanual:wt</td>
-<td headers="estimate" class="gt_row gt_right">−5.30</td>
-<td headers="SE" class="gt_row gt_right">1.44</td>
-<td headers="statistic" class="gt_row gt_right">−3.67</td>
-<td headers="p.value" class="gt_row gt_left">  0.0010</td>
+<td headers="am" class="gt_row gt_center">automatic</td>
+<td headers="emmean" class="gt_row gt_right">19</td>
+<td headers="SE" class="gt_row gt_right">0.74</td>
+<td headers="df" class="gt_row gt_right">28</td>
+<td headers="conf.low" class="gt_row gt_right">18</td>
+<td headers="conf.high" class="gt_row gt_right">21</td>
+<td headers=".group" class="gt_row gt_left"> a</td>
 <td headers="footnote" class="gt_row gt_right"></td>
 </tr>
 </tbody>
+<tfoot class="gt_footnotes">
+<tr>
+<td class="gt_footnote" colspan="9"> Confidence level used: 0.95</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="9"> significance level used: alpha = 0.05</td>
+    </tr>
+</tfoot>
 </table>
 </div>
-<p>model means, both averaging over other variables, and separately:</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m4</span>, <span class="op">~</span><span class="va">am</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; NOTE: Results may be misleading due to involvement in interactions</span></span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m4</span>, <span class="op">~</span><span class="va">am</span> <span class="op">|</span> <span class="va">wt</span>, at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>wt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="eusdlqwyve" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#eusdlqwyve table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -17423,11 +17427,12 @@ separately:</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="9" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg</td>
+<td colspan="10" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg</td>
     </tr>
 <tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="model.terms">model.terms</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="am">am</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wt">wt</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="emmean">emmean</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
@@ -17440,39 +17445,68 @@ separately:</p>
 <tbody class="gt_table_body">
 <tr>
 <td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="am" class="gt_row gt_center">manual</td>
-<td headers="emmean" class="gt_row gt_right">17</td>
-<td headers="SE" class="gt_row gt_right">1.2</td>
+<td headers="am" class="gt_row gt_center">automatic</td>
+<td headers="wt" class="gt_row gt_right">2.0</td>
+<td headers="emmean" class="gt_row gt_right">24</td>
+<td headers="SE" class="gt_row gt_right">1.5</td>
 <td headers="df" class="gt_row gt_right">28</td>
-<td headers="conf.low" class="gt_row gt_right">15</td>
-<td headers="conf.high" class="gt_row gt_right">20</td>
-<td headers=".group" class="gt_row gt_left"> a</td>
+<td headers="conf.low" class="gt_row gt_right">21</td>
+<td headers="conf.high" class="gt_row gt_right">27</td>
+<td headers=".group" class="gt_row gt_left"> a </td>
+<td headers="footnote" class="gt_row gt_right"></td>
+</tr>
+<tr>
+<td headers="model.terms" class="gt_row gt_left">am * wt</td>
+<td headers="am" class="gt_row gt_center">manual</td>
+<td headers="wt" class="gt_row gt_right">2.0</td>
+<td headers="emmean" class="gt_row gt_right">28</td>
+<td headers="SE" class="gt_row gt_right">0.87</td>
+<td headers="df" class="gt_row gt_right">28</td>
+<td headers="conf.low" class="gt_row gt_right">26</td>
+<td headers="conf.high" class="gt_row gt_right">30</td>
+<td headers=".group" class="gt_row gt_left">  b</td>
+<td headers="footnote" class="gt_row gt_right"></td>
+</tr>
+<tr>
+<td headers="model.terms" class="gt_row gt_left">am * wt</td>
+<td headers="am" class="gt_row gt_center">manual</td>
+<td headers="wt" class="gt_row gt_right">5.0</td>
+<td headers="emmean" class="gt_row gt_right">0.87</td>
+<td headers="SE" class="gt_row gt_right">3.2</td>
+<td headers="df" class="gt_row gt_right">28</td>
+<td headers="conf.low" class="gt_row gt_right">−5.7</td>
+<td headers="conf.high" class="gt_row gt_right">7.5</td>
+<td headers=".group" class="gt_row gt_left"> a </td>
 <td headers="footnote" class="gt_row gt_right"></td>
 </tr>
 <tr>
 <td headers="model.terms" class="gt_row gt_left">am * wt</td>
 <td headers="am" class="gt_row gt_center">automatic</td>
-<td headers="emmean" class="gt_row gt_right">19</td>
-<td headers="SE" class="gt_row gt_right">0.74</td>
+<td headers="wt" class="gt_row gt_right">5.0</td>
+<td headers="emmean" class="gt_row gt_right">12</td>
+<td headers="SE" class="gt_row gt_right">1.1</td>
 <td headers="df" class="gt_row gt_right">28</td>
-<td headers="conf.low" class="gt_row gt_right">18</td>
-<td headers="conf.high" class="gt_row gt_right">21</td>
-<td headers=".group" class="gt_row gt_left"> a</td>
+<td headers="conf.low" class="gt_row gt_right">10</td>
+<td headers="conf.high" class="gt_row gt_right">15</td>
+<td headers=".group" class="gt_row gt_left">  b</td>
 <td headers="footnote" class="gt_row gt_right"></td>
 </tr>
 </tbody>
 <tfoot class="gt_footnotes">
 <tr>
-<td class="gt_footnote" colspan="9"> Confidence level used: 0.95</td>
+<td class="gt_footnote" colspan="10"> Confidence level used: 0.95</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="9"> significance level used: alpha = 0.05</td>
+<td class="gt_footnote" colspan="10"> significance level used: alpha = 0.05</td>
     </tr>
 </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m4</span>, <span class="op">~</span><span class="va">am</span> <span class="op">|</span> <span class="va">wt</span>, at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>wt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Comparing model means, both averaging over other variables, and
+separately:</p>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m4</span>, <span class="op">~</span><span class="va">am</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; NOTE: Results may be misleading due to involvement in interactions</span></span></code></pre></div>
 <div id="luwzovepsm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#luwzovepsm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -17929,82 +17963,36 @@ separately:</p>
     </tr>
 <tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="model.terms">model.terms</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="am">am</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wt">wt</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="emmean">emmean</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=".group">.group</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="footnote">footnote</th>
     </tr>
 </thead>
-<tbody class="gt_table_body">
-<tr>
+<tbody class="gt_table_body"><tr>
 <td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="am" class="gt_row gt_center">automatic</td>
-<td headers="wt" class="gt_row gt_right">2.0</td>
-<td headers="emmean" class="gt_row gt_right">24</td>
-<td headers="SE" class="gt_row gt_right">1.5</td>
+<td headers="contrast" class="gt_row gt_left">automatic - manual</td>
+<td headers="estimate" class="gt_row gt_right">2.2</td>
+<td headers="SE" class="gt_row gt_right">1.4</td>
 <td headers="df" class="gt_row gt_right">28</td>
-<td headers="conf.low" class="gt_row gt_right">21</td>
-<td headers="conf.high" class="gt_row gt_right">27</td>
-<td headers=".group" class="gt_row gt_left"> a </td>
+<td headers="conf.low" class="gt_row gt_right">−0.74</td>
+<td headers="conf.high" class="gt_row gt_right">5.1</td>
+<td headers="t.ratio" class="gt_row gt_right">1.5</td>
+<td headers="p.value" class="gt_row gt_left">  0.14</td>
 <td headers="footnote" class="gt_row gt_right"></td>
-</tr>
-<tr>
-<td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="am" class="gt_row gt_center">manual</td>
-<td headers="wt" class="gt_row gt_right">2.0</td>
-<td headers="emmean" class="gt_row gt_right">28</td>
-<td headers="SE" class="gt_row gt_right">0.87</td>
-<td headers="df" class="gt_row gt_right">28</td>
-<td headers="conf.low" class="gt_row gt_right">26</td>
-<td headers="conf.high" class="gt_row gt_right">30</td>
-<td headers=".group" class="gt_row gt_left">  b</td>
-<td headers="footnote" class="gt_row gt_right"></td>
-</tr>
-<tr>
-<td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="am" class="gt_row gt_center">manual</td>
-<td headers="wt" class="gt_row gt_right">5.0</td>
-<td headers="emmean" class="gt_row gt_right">0.87</td>
-<td headers="SE" class="gt_row gt_right">3.2</td>
-<td headers="df" class="gt_row gt_right">28</td>
-<td headers="conf.low" class="gt_row gt_right">−5.7</td>
-<td headers="conf.high" class="gt_row gt_right">7.5</td>
-<td headers=".group" class="gt_row gt_left"> a </td>
-<td headers="footnote" class="gt_row gt_right"></td>
-</tr>
-<tr>
-<td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="am" class="gt_row gt_center">automatic</td>
-<td headers="wt" class="gt_row gt_right">5.0</td>
-<td headers="emmean" class="gt_row gt_right">12</td>
-<td headers="SE" class="gt_row gt_right">1.1</td>
-<td headers="df" class="gt_row gt_right">28</td>
-<td headers="conf.low" class="gt_row gt_right">10</td>
-<td headers="conf.high" class="gt_row gt_right">15</td>
-<td headers=".group" class="gt_row gt_left">  b</td>
-<td headers="footnote" class="gt_row gt_right"></td>
-</tr>
-</tbody>
-<tfoot class="gt_footnotes">
-<tr>
+</tr></tbody>
+<tfoot class="gt_footnotes"><tr>
 <td class="gt_footnote" colspan="10"> Confidence level used: 0.95</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="10"> significance level used: alpha = 0.05</td>
-    </tr>
-</tfoot>
+    </tr></tfoot>
 </table>
 </div>
-<p>Comparing model means, both averaging over other variables, and
-separately:</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m4</span>, <span class="op">~</span><span class="va">am</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; NOTE: Results may be misleading due to involvement in interactions</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m4</span>, <span class="op">~</span><span class="va">am</span> <span class="op">|</span> <span class="va">wt</span>, at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>wt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="etckoxnxvg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#etckoxnxvg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -18457,11 +18445,12 @@ separately:</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="10" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg</td>
+<td colspan="11" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg</td>
     </tr>
 <tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="model.terms">model.terms</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wt">wt</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
@@ -18472,25 +18461,43 @@ separately:</p>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="footnote">footnote</th>
     </tr>
 </thead>
-<tbody class="gt_table_body"><tr>
+<tbody class="gt_table_body">
+<tr>
 <td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="contrast" class="gt_row gt_left">automatic - manual</td>
-<td headers="estimate" class="gt_row gt_right">2.2</td>
-<td headers="SE" class="gt_row gt_right">1.4</td>
+<td headers="contrast" class="gt_row gt_center">automatic - manual</td>
+<td headers="wt" class="gt_row gt_right">2.0</td>
+<td headers="estimate" class="gt_row gt_right">−4.3</td>
+<td headers="SE" class="gt_row gt_right">1.7</td>
 <td headers="df" class="gt_row gt_right">28</td>
-<td headers="conf.low" class="gt_row gt_right">−0.74</td>
-<td headers="conf.high" class="gt_row gt_right">5.1</td>
-<td headers="t.ratio" class="gt_row gt_right">1.5</td>
-<td headers="p.value" class="gt_row gt_left">  0.14</td>
+<td headers="conf.low" class="gt_row gt_right">−7.9</td>
+<td headers="conf.high" class="gt_row gt_right">−0.70</td>
+<td headers="t.ratio" class="gt_row gt_right">−2.5</td>
+<td headers="p.value" class="gt_row gt_left">  0.021</td>
 <td headers="footnote" class="gt_row gt_right"></td>
-</tr></tbody>
+</tr>
+<tr>
+<td headers="model.terms" class="gt_row gt_left">am * wt</td>
+<td headers="contrast" class="gt_row gt_center">automatic - manual</td>
+<td headers="wt" class="gt_row gt_right">5.0</td>
+<td headers="estimate" class="gt_row gt_right">12</td>
+<td headers="SE" class="gt_row gt_right">3.4</td>
+<td headers="df" class="gt_row gt_right">28</td>
+<td headers="conf.low" class="gt_row gt_right">4.6</td>
+<td headers="conf.high" class="gt_row gt_right">19</td>
+<td headers="t.ratio" class="gt_row gt_right">3.4</td>
+<td headers="p.value" class="gt_row gt_left">  0.0020</td>
+<td headers="footnote" class="gt_row gt_right"></td>
+</tr>
+</tbody>
 <tfoot class="gt_footnotes"><tr>
-<td class="gt_footnote" colspan="10"> Confidence level used: 0.95</td>
+<td class="gt_footnote" colspan="11"> Confidence level used: 0.95</td>
     </tr></tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m4</span>, <span class="op">~</span><span class="va">am</span> <span class="op">|</span> <span class="va">wt</span>, at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>wt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Model slopes, both averaging over other variables, and
+separately:</p>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m4</span>, <span class="va">wt</span><span class="op">~</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="peuylaozbv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#peuylaozbv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -18943,59 +18950,46 @@ separately:</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="11" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg</td>
+<td colspan="9" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg</td>
     </tr>
 <tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="model.terms">model.terms</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wt">wt</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="1">1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wt.trend">wt.trend</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=".group">.group</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="footnote">footnote</th>
     </tr>
 </thead>
-<tbody class="gt_table_body">
-<tr>
+<tbody class="gt_table_body"><tr>
 <td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="contrast" class="gt_row gt_center">automatic - manual</td>
-<td headers="wt" class="gt_row gt_right">2.0</td>
-<td headers="estimate" class="gt_row gt_right">−4.3</td>
-<td headers="SE" class="gt_row gt_right">1.7</td>
+<td headers="1" class="gt_row gt_center">overall</td>
+<td headers="wt.trend" class="gt_row gt_right">−6.4</td>
+<td headers="SE" class="gt_row gt_right">0.72</td>
 <td headers="df" class="gt_row gt_right">28</td>
 <td headers="conf.low" class="gt_row gt_right">−7.9</td>
-<td headers="conf.high" class="gt_row gt_right">−0.70</td>
-<td headers="t.ratio" class="gt_row gt_right">−2.5</td>
-<td headers="p.value" class="gt_row gt_left">  0.021</td>
+<td headers="conf.high" class="gt_row gt_right">−5.0</td>
+<td headers=".group" class="gt_row gt_left"> a</td>
 <td headers="footnote" class="gt_row gt_right"></td>
-</tr>
+</tr></tbody>
+<tfoot class="gt_footnotes">
 <tr>
-<td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="contrast" class="gt_row gt_center">automatic - manual</td>
-<td headers="wt" class="gt_row gt_right">5.0</td>
-<td headers="estimate" class="gt_row gt_right">12</td>
-<td headers="SE" class="gt_row gt_right">3.4</td>
-<td headers="df" class="gt_row gt_right">28</td>
-<td headers="conf.low" class="gt_row gt_right">4.6</td>
-<td headers="conf.high" class="gt_row gt_right">19</td>
-<td headers="t.ratio" class="gt_row gt_right">3.4</td>
-<td headers="p.value" class="gt_row gt_left">  0.0020</td>
-<td headers="footnote" class="gt_row gt_right"></td>
-</tr>
-</tbody>
-<tfoot class="gt_footnotes"><tr>
-<td class="gt_footnote" colspan="11"> Confidence level used: 0.95</td>
-    </tr></tfoot>
+<td class="gt_footnote" colspan="9"> Results are averaged over the levels of: am</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="9"> Confidence level used: 0.95</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="9"> significance level used: alpha = 0.05</td>
+    </tr>
+</tfoot>
 </table>
 </div>
-<p>Model slopes, both averaging over other variables, and
-separately:</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m4</span>, <span class="va">wt</span><span class="op">~</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m4</span>, <span class="va">wt</span><span class="op">~</span><span class="va">am</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="bsfbpfnume" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#bsfbpfnume table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -19452,7 +19446,7 @@ separately:</p>
     </tr>
 <tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="model.terms">model.terms</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="1">1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="am">am</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wt.trend">wt.trend</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
@@ -19462,21 +19456,31 @@ separately:</p>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="footnote">footnote</th>
     </tr>
 </thead>
-<tbody class="gt_table_body"><tr>
-<td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="1" class="gt_row gt_center">overall</td>
-<td headers="wt.trend" class="gt_row gt_right">−6.4</td>
-<td headers="SE" class="gt_row gt_right">0.72</td>
-<td headers="df" class="gt_row gt_right">28</td>
-<td headers="conf.low" class="gt_row gt_right">−7.9</td>
-<td headers="conf.high" class="gt_row gt_right">−5.0</td>
-<td headers=".group" class="gt_row gt_left"> a</td>
-<td headers="footnote" class="gt_row gt_right"></td>
-</tr></tbody>
-<tfoot class="gt_footnotes">
+<tbody class="gt_table_body">
 <tr>
-<td class="gt_footnote" colspan="9"> Results are averaged over the levels of: am</td>
-    </tr>
+<td headers="model.terms" class="gt_row gt_left">am * wt</td>
+<td headers="am" class="gt_row gt_center">manual</td>
+<td headers="wt.trend" class="gt_row gt_right">−9.1</td>
+<td headers="SE" class="gt_row gt_right">1.2</td>
+<td headers="df" class="gt_row gt_right">28</td>
+<td headers="conf.low" class="gt_row gt_right">−12</td>
+<td headers="conf.high" class="gt_row gt_right">−6.6</td>
+<td headers=".group" class="gt_row gt_left"> a </td>
+<td headers="footnote" class="gt_row gt_right"></td>
+</tr>
+<tr>
+<td headers="model.terms" class="gt_row gt_left">am * wt</td>
+<td headers="am" class="gt_row gt_center">automatic</td>
+<td headers="wt.trend" class="gt_row gt_right">−3.8</td>
+<td headers="SE" class="gt_row gt_right">0.79</td>
+<td headers="df" class="gt_row gt_right">28</td>
+<td headers="conf.low" class="gt_row gt_right">−5.4</td>
+<td headers="conf.high" class="gt_row gt_right">−2.2</td>
+<td headers=".group" class="gt_row gt_left">  b</td>
+<td headers="footnote" class="gt_row gt_right"></td>
+</tr>
+</tbody>
+<tfoot class="gt_footnotes">
 <tr>
 <td class="gt_footnote" colspan="9"> Confidence level used: 0.95</td>
     </tr>
@@ -19486,8 +19490,9 @@ separately:</p>
 </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m4</span>, <span class="va">wt</span><span class="op">~</span><span class="va">am</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Comparing model slopes</p>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_slopes</a></span><span class="op">(</span><span class="va">m4</span>, <span class="va">wt</span><span class="op">~</span><span class="va">am</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="xxlkbaoaah" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#xxlkbaoaah table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -19934,509 +19939,6 @@ separately:</p>
 }
 
 #xxlkbaoaah div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead>
-<tr class="gt_heading">
-<td colspan="9" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg</td>
-    </tr>
-<tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="model.terms">model.terms</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="am">am</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wt.trend">wt.trend</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=".group">.group</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="footnote">footnote</th>
-    </tr>
-</thead>
-<tbody class="gt_table_body">
-<tr>
-<td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="am" class="gt_row gt_center">manual</td>
-<td headers="wt.trend" class="gt_row gt_right">−9.1</td>
-<td headers="SE" class="gt_row gt_right">1.2</td>
-<td headers="df" class="gt_row gt_right">28</td>
-<td headers="conf.low" class="gt_row gt_right">−12</td>
-<td headers="conf.high" class="gt_row gt_right">−6.6</td>
-<td headers=".group" class="gt_row gt_left"> a </td>
-<td headers="footnote" class="gt_row gt_right"></td>
-</tr>
-<tr>
-<td headers="model.terms" class="gt_row gt_left">am * wt</td>
-<td headers="am" class="gt_row gt_center">automatic</td>
-<td headers="wt.trend" class="gt_row gt_right">−3.8</td>
-<td headers="SE" class="gt_row gt_right">0.79</td>
-<td headers="df" class="gt_row gt_right">28</td>
-<td headers="conf.low" class="gt_row gt_right">−5.4</td>
-<td headers="conf.high" class="gt_row gt_right">−2.2</td>
-<td headers=".group" class="gt_row gt_left">  b</td>
-<td headers="footnote" class="gt_row gt_right"></td>
-</tr>
-</tbody>
-<tfoot class="gt_footnotes">
-<tr>
-<td class="gt_footnote" colspan="9"> Confidence level used: 0.95</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="9"> significance level used: alpha = 0.05</td>
-    </tr>
-</tfoot>
-</table>
-</div>
-<p>Comparing model slopes</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_slopes</a></span><span class="op">(</span><span class="va">m4</span>, <span class="va">wt</span><span class="op">~</span><span class="va">am</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div id="mcwzlekglt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mcwzlekglt table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#mcwzlekglt thead, #mcwzlekglt tbody, #mcwzlekglt tfoot, #mcwzlekglt tr, #mcwzlekglt td, #mcwzlekglt th {
-  border-style: none;
-}
-
-#mcwzlekglt p {
-  margin: 0;
-  padding: 0;
-}
-
-#mcwzlekglt .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: 0;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#mcwzlekglt .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#mcwzlekglt .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#mcwzlekglt .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 1px;
-  padding-bottom: 3px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#mcwzlekglt .gt_heading {
-  background-color: #FFFFFF;
-  text-align: left;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#mcwzlekglt .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#mcwzlekglt .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#mcwzlekglt .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 2.5px;
-  padding-bottom: 3.5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#mcwzlekglt .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#mcwzlekglt .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#mcwzlekglt .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#mcwzlekglt .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 2.5px;
-  padding-bottom: 2.5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#mcwzlekglt .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#mcwzlekglt .gt_group_heading {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#mcwzlekglt .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#mcwzlekglt .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#mcwzlekglt .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#mcwzlekglt .gt_row {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#mcwzlekglt .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#mcwzlekglt .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#mcwzlekglt .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#mcwzlekglt .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#mcwzlekglt .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#mcwzlekglt .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#mcwzlekglt .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#mcwzlekglt .gt_last_summary_row {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#mcwzlekglt .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#mcwzlekglt .gt_first_grand_summary_row {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#mcwzlekglt .gt_last_grand_summary_row_top {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#mcwzlekglt .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#mcwzlekglt .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#mcwzlekglt .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#mcwzlekglt .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#mcwzlekglt .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#mcwzlekglt .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#mcwzlekglt .gt_left {
-  text-align: left;
-}
-
-#mcwzlekglt .gt_center {
-  text-align: center;
-}
-
-#mcwzlekglt .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#mcwzlekglt .gt_font_normal {
-  font-weight: normal;
-}
-
-#mcwzlekglt .gt_font_bold {
-  font-weight: bold;
-}
-
-#mcwzlekglt .gt_font_italic {
-  font-style: italic;
-}
-
-#mcwzlekglt .gt_super {
-  font-size: 65%;
-}
-
-#mcwzlekglt .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#mcwzlekglt .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#mcwzlekglt .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#mcwzlekglt .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#mcwzlekglt .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#mcwzlekglt .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#mcwzlekglt .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#mcwzlekglt .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#mcwzlekglt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
