@@ -34,3 +34,18 @@ fmt_pvalue <- function(data, columns=any_of(c("p.value", "p.adjust")), ...) {
     fmt(columns={{columns}}, fns=\(p) format_pvalue(p, ...)) |>
     cols_align(align="left", columns={{columns}})
 }
+
+#' Format numbers
+#'
+#' @param data XX
+#' @param columns XX
+#' @param ... XX
+#'
+#' @export
+fmt_numbers <- function(data,
+                        columns =
+                          where(is.double) &
+                          !any_of(c("p.value", "p.adjust")),
+                        ...) {
+  data |> fmt_number(columns={{columns}}, ...)
+}
