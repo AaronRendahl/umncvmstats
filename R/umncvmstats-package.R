@@ -12,5 +12,6 @@
 #' @importFrom purrr map_dfr map
 #' @importFrom tidyr nest unnest
 #' @importFrom rlang .data
+#' @importFrom lubridate today
 "_PACKAGE"
 NULL
