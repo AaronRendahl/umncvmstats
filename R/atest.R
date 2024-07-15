@@ -91,11 +91,17 @@ as.data.frame.atest <- function(x, ...) {
 #' @param ... XX
 #'
 #' @export
-gt <- function(data, ...) { UseMethod("gt") }
+as_gt <- function(data, ...) { UseMethod("as_gt") }
 
 #' @export
-#' @rdname gt
-gt.default <- function(data, ...) { gt::gt(data, ...)}
+#' @rdname as_gt
+as_gt.default <- function(data, ...) {
+  if(inherits(data, "gt_tbl")) {
+    data
+  } else {
+    gt::gt(data, ...)
+  }
+}
 
 tab_footnotes <- function(data, notes, columns=NA, rows=NA) {
   if(missing(notes) || is.null(notes)) return(data)
@@ -128,8 +134,8 @@ tab_footnotes <- function(data, notes, columns=NA, rows=NA) {
 #' @param rowname_col XX
 #' @param row_group.sep XX
 #' @export
-#' @rdname gt
-gt.atest <- function(data,
+#' @rdname as_gt
+as_gt.atest <- function(data,
                      footnote_col="footnote",
                      rowname_col="group",
                      row_group.sep=" - ", ...) {
