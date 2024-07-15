@@ -29,7 +29,7 @@ format_pvalue <- function(p, digits=2, max.digits=4, justify=TRUE, addp=FALSE, n
 #'
 #' @rdname format_pvalue
 #' @export
-fmt_pvalue <- function(data, columns=matches("p.value", "p.adjust"), ...) {
+fmt_pvalue <- function(data, columns=any_of(c("p.value", "p.adjust")), ...) {
   data |>
     fmt(columns={{columns}}, fns=\(p) format_pvalue(p, ...)) |>
     cols_align(align="left", columns={{columns}})
