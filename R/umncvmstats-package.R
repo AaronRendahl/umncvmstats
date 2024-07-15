@@ -13,5 +13,6 @@
 #' @importFrom tidyr nest unnest
 #' @importFrom rlang .data
 #' @importFrom lubridate today
+#' @importFrom multcompView multcompLetters
 "_PACKAGE"
 NULL
