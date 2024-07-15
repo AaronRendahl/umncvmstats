@@ -6,9 +6,12 @@
 #' @param open XX
 #' @param template XX
 #'
-#' @return
+#' @return XX
+#' @importFrom rlang is_interactive
+#' @importFrom rstudioapi isAvailable
+#' @importFrom rstudioapi navigateToFile
 #' @export
-new_assignment <- function(filename, title, author, open=TRUE, template="template.qmd") {
+new_assignment <- function(filename, title, author, open=is_interactive() & isAvailable(), template="template.qmd") {
   if(!str_detect(filename, "\\.qmd$")) {
     filename <- paste0(filename, ".qmd")
   }
@@ -25,6 +28,6 @@ new_assignment <- function(filename, title, author, open=TRUE, template="templat
     str_replace("^title:.*", sprintf('title: "%s"', title)) |>
     str_replace("^author:.*", sprintf('author: "%s"', author))
   cat(a, file=filename, sep="\n")
-  if(open) file.edit(filename)
+  if(open) navigateToFile(filename)
   invisible(filename)
 }
