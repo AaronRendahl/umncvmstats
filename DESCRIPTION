@@ -9,7 +9,7 @@ Description: This package standardizes functions for one and two sample
     It also includes several ggplot2 customizations to standardize and
     simplify use of common plotting needs.
 License: GPL (>= 3)
-Imports: ggplot2, gt, broom, lubridate, beeswarm, car, emmeans, multcomp, stringr, tidyr, dplyr, forcats, tibble, rlang, purrr, cli
+Imports: ggplot2, gt, gtsummary, broom, lubridate, beeswarm, car, emmeans, multcomp, stringr, tidyr, dplyr, forcats, tibble, rlang, purrr, cli, rstudioapi
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
