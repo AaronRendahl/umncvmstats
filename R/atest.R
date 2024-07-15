@@ -1,6 +1,6 @@
 #' Combine multiple tests together
 #'
-#' @param ...
+#' @param ... XX
 #'
 #' @export
 combine_tests <- function(...) {
