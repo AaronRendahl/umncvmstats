@@ -16,5 +16,256 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(umncvmstats)
+mtcars <- datasets::mtcars |> 
+  dplyr::mutate(dplyr::across(c(cyl, vs, am, gear, carb), forcats::as_factor)) |>
+  dplyr::mutate(vs=forcats::fct_recode(vs, "V-shaped"="0", "straight"="1"),
+                am=forcats::fct_recode(am, "automatic"="0", manual="1"))
 ```
 
+## Tests for Proportions
+
+### One Proportion Test
+```{r}
+one_proportion_test(vs~1, data=mtcars) |> gt()
+```
+
+#### Separately by another categorical variable
+```{r}
+one_proportion_test(vs ~ am, data=mtcars) |> gt()
+```
+
+### Two Proportion Test
+```{r}
+two_proportion_test(vs ~ am, data=mtcars) |> gt()
+```
+
+#### together in one table
+```{r}
+combine_tests(
+  one_proportion_test(vs ~ am, data=mtcars),
+  two_proportion_test(vs ~ am, data=mtcars)) |> gt()
+```
+
+### Pairwise Proportion Tests
+```{r}
+combine_tests(
+  one_proportion_test(vs ~ cyl, data=mtcars),
+  pairwise_proportion_test(vs ~ cyl, data=mtcars)) |> gt()
+```
+
+### Paired Proportion Test (McNemar's)
+```{r}
+set.seed(15)
+testing <- tidyr::tibble(before=rep(c("fail","pass"),c(20,30)),
+                   after=rep(c("fail", "pass", "fail", "pass"), c(5,15,5,25)))
+xtabs(~before+after, data=testing) |> addmargins()
+
+combine_tests(
+  one_proportion_test(before+after~1, data=testing),
+  paired_proportion_test(after - before ~ 1, data=testing)) |> gt()
+```
+
+### Independence Test
+```{r}
+combine_tests(
+  one_proportion_test(cyl ~ vs, data=mtcars, all_success = TRUE),
+  independence_test(cyl ~ vs, data=mtcars)) |> gt()
+```
+
+## Tests for Means
+
+### One Sample t-test
+```{r}
+one_t_test(wt~1, data=mtcars) |> gt()
+```
+
+#### Separately by another categorical variable
+```{r}
+one_t_test(wt ~ am, data=mtcars) |> gt()
+```
+
+### Two Sample t-test
+```{r}
+two_t_test(wt ~ am, data=mtcars) |> gt()
+```
+
+#### together in one table
+```{r}
+combine_tests(
+  one_t_test(wt ~ am, data=mtcars),
+  two_t_test(wt ~ am, data=mtcars)) |> gt()
+```
+
+### Pairwise t-tests
+```{r}
+combine_tests(
+  one_t_test(wt ~ cyl, data=mtcars),
+  pairwise_t_test(wt ~ cyl, data=mtcars)) |> gt()
+```
+
+### Paired t-test
+```{r}
+set.seed(15)
+testing <- tidyr::tibble(before=rnorm(50, mean=80, sd=7),
+                         after=rnorm(50, mean=85, sd=7))
+
+combine_tests(
+  one_t_test(before+after~1, data=testing),
+  paired_t_test(after - before ~ 1, data=testing)) |> gt()
+```
+
+## Correlation tests
+```{r}
+correlation_test(mpg ~ wt + hp, data=mtcars) |> gt()
+```
+
+## Linear models
+
+### ANOVA
+
+First make the model
+```{r}
+m1 <- lm(wt ~ cyl, data=mtcars)
+```
+
+ANOVA table:
+```{r}
+model_anova(m1) |> gt()
+```
+
+model summary values:
+```{r}
+model_glance(m1) |> gt()
+```
+
+model coefficients:
+```{r}
+model_coefs(m1) |> gt()
+```
+
+model means:
+```{r}
+model_means(m1, ~cyl) |> gt()
+```
+
+Comparing model means:
+```{r}
+pairwise_model_means(m1, ~cyl) |> gt()
+```
+
+### Regression
+
+First make the model
+```{r}
+m2 <- lm(mpg ~ wt, data=mtcars)
+```
+
+ANOVA table:
+```{r}
+model_anova(m2) |> gt()
+```
+
+model summary values:
+```{r}
+model_glance(m2) |> gt()
+```
+
+model coefficients:
+```{r}
+model_coefs(m2) |> gt() |> fmt_numbers(n_sigfig = 3)
+```
+
+model slope:
+```{r}
+model_slopes(m2, wt~1) |> gt()
+```
+
+### Two-way ANOVA
+First make the model
+```{r}
+m3 <- lm(wt ~ vs*am, data=mtcars)
+```
+
+ANOVA table:
+```{r}
+model_anova(m3) |> gt()
+```
+
+model summary values:
+```{r}
+model_glance(m3) |> gt()
+```
+
+model coefficients:
+```{r}
+model_coefs(m3) |> gt() |> fmt_numbers(decimals=2)
+```
+
+model means, both averaging over other variables, and separately:
+```{r}
+model_means(m3, ~vs) |> gt()
+```
+
+```{r}
+model_means(m3, ~vs|am) |> gt()
+```
+
+Comparing model means, both averaging over other variables, and separately:
+```{r}
+pairwise_model_means(m3, ~vs) |> gt()
+```
+
+```{r}
+pairwise_model_means(m3, ~vs|am) |> gt()
+```
+
+### Multiple regression
+First make the model
+```{r}
+m4 <- lm(mpg ~ am*wt, data=mtcars)
+```
+
+ANOVA table:
+```{r}
+model_anova(m4) |> gt()
+```
+
+model summary values:
+```{r}
+model_glance(m4) |> gt()
+```
+
+model coefficients:
+```{r}
+model_coefs(m4) |> gt() |> fmt_numbers(decimals=2)
+```
+
+model means, both averaging over other variables, and separately:
+```{r}
+model_means(m4, ~am) |> gt()
+```
+
+```{r}
+model_means(m4, ~am | wt, at=list(wt=c(2,5))) |> gt()
+```
+
+Comparing model means, both averaging over other variables, and separately:
+```{r}
+pairwise_model_means(m4, ~am) |> gt()
+```
+
+```{r}
+pairwise_model_means(m4, ~am | wt, at=list(wt=c(2,5))) |> gt()
+```
+
+Model slopes, both averaging over other variables, and separately:
+```{r}
+model_slopes(m4, wt~1) |> gt()
+model_slopes(m4, wt~am) |> gt()
+```
+
+Comparing model slopes
+
+```{r}
+pairwise_model_slopes(m4, wt~am) |> gt()
+```
