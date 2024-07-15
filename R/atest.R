@@ -41,6 +41,11 @@ as_atest.summary_emm <- function(x, model, ...) {
 #' @export
 as_atest.data.frame <- function(x, ...) {
   if(!inherits(x, "tbl")) { x <- as_tibble(x) }
+  if("df" %in% names(x)) {
+    xdf <- x[["df"]][!is.na(x[["df"]])]
+    if(length(xdf) > 0 && all(abs(round(xdf) - xdf) < 1e-6)) x[["df"]] <- as.integer(round(x[["df"]]))
+  }
+  x <- x |> rename(any_of(c(SE="std.error")))
   vars1 <- c("group", "group.value", "response", "response.value", "variable", "value")
   vars3 <- c("p.value", "p.adjust", "about")
   vars2 <- setdiff(names(x), c(vars1, vars3))
@@ -165,11 +170,12 @@ gt.atest <- function(data,
        row_group.sep=row_group.sep, ...) |>
     tab_footnotes(notes$about, footnote_col, notes$row) |>
     tab_header(title=title) |>
-    fmt_number(where(is.double), n_sigfig = 2) |>
+    fmt_numbers(n_sigfig = 2) |>
     fmt_pvalue() |>
     sub_missing(missing_text="") |>
     opt_align_table_header(align = "left") |>
-    opt_vertical_padding(scale = 0.5)
+    opt_vertical_padding(scale = 0.5) |>
+    tab_options(table.align='left')
 }
 
 separate_atest <- function(x) {
