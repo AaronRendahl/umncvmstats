@@ -37,9 +37,10 @@ as_atest.summary_emm <- function(x, model, ...) {
   as_atest(x)
 }
 
+#' @importFrom purrr is_list
 #' @export
 as_atest.data.frame <- function(x, ...) {
-  x <- as_tibble(x)
+  if(!inherits(x, "tbl")) { x <- as_tibble(x) }
   vars1 <- c("group", "group.value", "response", "response.value", "variable", "value")
   vars3 <- c("p.value", "p.adjust", "about")
   vars2 <- setdiff(names(x), c(vars1, vars3))
@@ -49,25 +50,25 @@ as_atest.data.frame <- function(x, ...) {
 }
 
 #' @export
-as_tibble.atest <- function(x, footnotes=c("byrow", "below"), ...) {
+as_tibble.atest <- function(x, footnotes=c("byrow", "below", "asis"), ...) {
   footnotes <- match.arg(footnotes)
-  if(footnotes=="below") {
+  footnotes.exist <- "about" %in% names(x)
+  if(footnotes.exist && footnotes=="byrow") {
+    x <- x |> mutate(about=sapply(.data$about, paste, collapse=" "))
+  } else if(footnotes.exist && footnotes=="below") {
     a <- x |> separate_atest()
     if(is.null(a$footnotes)) {
-      out <- a$results
+      x <- a$results
     } else {
       if(all(is.na(a$footnotes$footnote.num))) {
         a$footnotes$footnote.num <- NULL
       }
       n1 <- names(a$results)
       n2 <- names(a$footnotes)
-      out <- bind_rows(a) |> select(all_of(c(n2, n1)))
+      x <- bind_rows(a) |> select(all_of(c(n2, n1)))
     }
-    out |> rm_class("atest")
-  } else {
-    out <- x |> mutate(about=sapply(.data$about, paste, collapse=" "))
   }
-  out |> rm_class("atest")
+  x |> rm_class("atest")
 }
 
 #' @export
@@ -92,6 +93,7 @@ gt <- function(data, ...) { UseMethod("gt") }
 gt.default <- function(data, ...) { gt::gt(data, ...)}
 
 tab_footnotes <- function(data, notes, columns=NA, rows=NA) {
+  if(missing(notes) || is.null(notes)) return(data)
   aa <- tibble(note=notes, columns=columns, rows=rows) |>
     left_join(data$`_boxhead` |> select(columns="var", "type"), by="columns")
   hidden_cols <- aa |> filter(!is.na(.data$rows) & (is.na(.data$type) | .data$type=="hidden"))
@@ -158,7 +160,7 @@ gt.atest <- function(data,
   if(!footnote_col %in% names(result)) {
     result[[footnote_col]] <- ""
   }
-  result |> select(-row) |>
+  result |> select(-any_of("row")) |>
     gt(groupname_col=groupname_col, rowname_col=rowname_col,
        row_group.sep=row_group.sep, ...) |>
     tab_footnotes(notes$about, footnote_col, notes$row) |>
@@ -209,10 +211,13 @@ print.atest <- function(x, ...) {
 #' @importFrom tibble enframe
 #' @importFrom forcats as_factor
 detach_about <- function(x) {
-  nn <- tidy(x) |> pull("about") |> unique()
+  x <- x |> rm_class("atest")
+  if(!"about" %in% names(x)) {
+    return(list(result=x, about=NULL))
+  }
+  nn <- x |> pull("about") |> unique()
   all.same <- length(nn)==1
   x <- x |>
-    rm_class("atest") |>
     mutate(row=1:n(), .before=1) |>
     mutate(about=map(.data$about, enframe, name="order", value="about"))
   notes <- x |>
