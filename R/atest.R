@@ -204,21 +204,37 @@ separate_atest <- function(x) {
   }
 }
 
+#' @importFrom knitr knit_print
+#' @importFrom knitr normal_print
 #' @export
-print.atest <- function(x, ...) {
-  a <- separate_atest(x, ...)
-  print(a$results)
-  if(!is.null(a$footnotes)) {
-     about <- a$footnotes |>
-       mutate(about=if_else(is.na(.data$footnote.num),
-                            .data$footnote.text,
-                            paste(.data$footnote.num, .data$footnote.text))) |>
-       pull("about")
-     cat(about, sep="\n")
+knit_print.atest <- function(x, options, inline=FALSE, ...) {
+  if(isFALSE(options$as_gt)) {
+    print(x, as_gt=FALSE)
+  } else {
+    knit_print(as_gt(x), options=options, inline=inline, ...)
   }
-  invisible(a)
 }
 
+#' @export
+print.atest <- function(x, as_gt=TRUE, ...) {
+  if(isTRUE(as_gt)) {
+    a <- as_gt(x)
+    print(a)
+    invisible(a)
+  } else {
+    a <- separate_atest(x)
+    print(a$results)
+    if(!is.null(a$footnotes)) {
+      about <- a$footnotes |>
+        mutate(about=if_else(is.na(.data$footnote.num),
+                             .data$footnote.text,
+                             paste(.data$footnote.num, .data$footnote.text))) |>
+        pull("about")
+      cat(about, sep="\n")
+    }
+    invisible(a)
+  }
+}
 #' @importFrom broom tidy
 #' @importFrom tibble enframe
 #' @importFrom forcats as_factor
