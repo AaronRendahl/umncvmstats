@@ -205,7 +205,6 @@ separate_atest <- function(x) {
 }
 
 #' @importFrom knitr knit_print
-#' @importFrom knitr normal_print
 #' @export
 knit_print.atest <- function(x, options, inline=FALSE, ...) {
   if(isFALSE(options$as_gt)) {
