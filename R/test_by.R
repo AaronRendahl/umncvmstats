@@ -14,7 +14,7 @@ test_by <- function(by_right=FALSE) {
   fs <- split_formula(formula)
   if(length(fs) > 1) {
     # cat("+ ", format(m), "\n")
-    return(map(fs, function(x) do.call(FUN, c(list(x), params))) |> bind_rows())
+    return(map(fs, function(x) do.call(FUN, c(list(x), params))) |> combine_tests())
   }
 
   ## otherwise see if there are groups, if so, make subsets and rerun
