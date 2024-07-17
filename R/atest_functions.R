@@ -26,7 +26,7 @@ as_gt.atest <- function(data,
   a <- xx$about
   if(isTRUE(simplify)) d <- simplify_atest(d)
 
-  title <- attr(data, "title")
+  title <- attr(d, "title")
   em.groups <- attr(d, "by.vars")
   if(".group" %in% names(d)) {
     groupname_col <- ".group"
