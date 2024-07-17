@@ -4,7 +4,10 @@
 #'
 #' @export
 combine_tests <- function(...) {
-  bind_rows(...) |> as_atest()
+  x <- list(...)
+  estimate.vars <- lapply(x, \(xi) attr(xi, "estimate.vars")) |> unlist() |> unique()
+  inference.vars <- lapply(x, \(xi) attr(xi, "inference.vars")) |> unlist() |> unique()
+  bind_rows(x) |> as_atest(estimate.vars=estimate.vars, inference.vars=inference.vars)
 }
 
 rm_class <- function(x, class) { class(x) <- setdiff(class(x), class); x }
@@ -29,6 +32,7 @@ as_atest.summary_emm <- function(x, model, ...) {
   if(length(clNames)==2) {
     names(x)[match(clNames, names(x))] <- c("conf.low", "conf.high")
   }
+  x <- x |> rename(any_of(c(SE="std.error")))
 
   attr.keep <- c("estName", "pri.vars", "by.vars")
   attr.keep <- attr.keep[attr.keep %in% names(attr.orig)]
@@ -39,18 +43,29 @@ as_atest.summary_emm <- function(x, model, ...) {
 
 #' @importFrom purrr is_list
 #' @export
-as_atest.data.frame <- function(x, ...) {
+as_atest.data.frame <- function(x, estimate.vars=c(), inference.vars=c(), ...) {
+  if("about" %in% names(x) && !is_list(x[["about"]])) {
+    warning("Internal warning: converting messages to a list.")
+    x[["about"]] <- list(x[["about"]])
+  }
   if(!inherits(x, "tbl")) { x <- as_tibble(x) }
   if("df" %in% names(x)) {
     xdf <- x[["df"]][!is.na(x[["df"]])]
     if(length(xdf) > 0 && all(abs(round(xdf) - xdf) < 1e-6)) x[["df"]] <- as.integer(round(x[["df"]]))
   }
-  x <- x |> rename(any_of(c(SE="std.error")))
-  vars1 <- c("group", "group.value", "response", "response.value", "variable", "value")
-  vars3 <- c("p.value", "p.adjust", "about")
-  vars2 <- setdiff(names(x), c(vars1, vars3))
-  x <- x |> select(any_of(c(vars1, vars2, vars3)), everything())
+  vars1 <- c(".y", ".y_contrast", ".y_value", ".x", ".x_contrast", ".x_value", ".g", ".g_value")
+  vars2 <- estimate.vars
+  vars3 <- c("conf.low", "conf.high")
+  vars4 <- inference.vars
+  vars5 <- c("p.value", "p.adjust", "about")
+  varsX <- setdiff(names(x), c(vars1, vars2, vars3, vars4, vars5))
+  if(length(varsX)>0) {
+    message("Internal warning: variable type unclear for: ", paste(varsX, collapse=", "))
+  }
+  x <- x |> select(any_of(c(vars1, vars2, varsX, vars3, vars4, vars5)), everything())
   if(!inherits(x, "atest")) class(x) <- c("atest", class(x))
+  attr(x, "estimate.vars") <- estimate.vars
+  attr(x, "inference.vars") <- inference.vars
   x
 }
 
