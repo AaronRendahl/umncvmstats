@@ -28,7 +28,9 @@ as_gt(data, ...)
 
 \item{rowname_col}{XX}
 
-\item{row_group.sep}{XX}
+\item{simplify}{XX}
+
+\item{row_group_as_column}{XX}
 }
 \description{
 Create a gt table object
