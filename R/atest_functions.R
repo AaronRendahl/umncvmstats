@@ -18,8 +18,7 @@ as_tibble.atest <- function(x, footnotes=c("byrow", "below", "asis"), ...) {
 #' @export
 as_gt.atest <- function(data,
                         footnote_col="footnote",
-                        rowname_col="group",
-                        row_group.sep=" - ",
+                        rowname_col=".rowname",
                         simplify = TRUE, ...) {
   xx <- separate_about(data)
   d <- xx$result
@@ -32,18 +31,21 @@ as_gt.atest <- function(data,
     groupname_col <- ".group"
   } else if(!is.null(em.groups)) {
     groupname_col <- em.groups
+    for(g in groupname_col) { d[[g]] <- paste(g, d[[g]], sep=" = ") }
   } else {
     groupname_col <- dplyr::group_vars(d)
+    for(g in groupname_col) { d[[g]] <- paste(g, d[[g]], sep=" = ") }
   }
+  d <- ungroup(d)
 
   if(!is.null(a)) {
-    if(any(!is.na(a$.row)) && !footnote_col %in% names(result))
-      result[[footnote_col]] <- ""
+    if(any(!is.na(a$.row)) && !footnote_col %in% names(d))
+      d[[footnote_col]] <- ""
   }
 
   out <- d |> select(-any_of(".row")) |>
-    gt(groupname_col=groupname_col, rowname_col=".rowname",
-       row_group.sep=row_group.sep, ...) |>
+    gt(groupname_col=groupname_col, rowname_col=rowname_col,
+       row_group.sep=", ", ...) |>
     fmt_numbers(n_sigfig = 2) |>
     fmt_pvalue() |>
     sub_missing(missing_text="") |>
