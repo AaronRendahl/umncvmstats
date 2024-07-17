@@ -1,11 +1,11 @@
 #' @importFrom tibble enframe
 #' @importFrom forcats as_factor
-# returns a list with two parts:
-# - result: the atest without the "about" column, but with ".row" added
-# -  about: the notes, with columns ".row", "footnote.num", "footnote.text"
-# if text, no ".row" column, instead "footnotes", also about is a vector of the notes
-# if below, add them as the first column, named footnotes
 separate_about <- function(x, footnotes=c("default", "text", "below")) {
+  # returns a list with two parts:
+  # - result: the atest without the "about" column, but with ".row" added
+  # -  about: the notes, with columns ".row", "footnote.num", "footnote.text"
+  # if text, no ".row" column, instead "footnotes", also about is a vector of the notes
+  # if below, add them as the first column, named footnotes
   footnotes <- match.arg(footnotes)
   x <- x |> rm_class("atest")
   if(!"about" %in% names(x)) {
@@ -39,8 +39,8 @@ separate_about <- function(x, footnotes=c("default", "text", "below")) {
   out
 }
 
-#' @export
 #' @importFrom tibble as_tibble
+#' @export
 as_tibble.atest <- function(x, footnotes=c("byrow", "below", "asis"), ...) {
   footnotes <- match.arg(footnotes)
   footnotes.exist <- "about" %in% names(x)
@@ -55,55 +55,50 @@ as_tibble.atest <- function(x, footnotes=c("byrow", "below", "asis"), ...) {
 #' @param footnote_col XX
 #' @param rowname_col XX
 #' @param row_group.sep XX
-#' @export
 #' @rdname as_gt
+#' @export
 as_gt.atest <- function(data,
                         footnote_col="footnote",
                         rowname_col="group",
-                        row_group.sep=" - ", ...) {
-  x <- data
-  aa <- separate_about(x)
-  notes <- aa$about
-  result <- aa$result
-  nresponse <- nvariable <- 0
-  if("response" %in% names(result)) {
-    nresponse <- length(unique(result$response))
+                        row_group.sep=" - ",
+                        simplify = TRUE, ...) {
+  xx <- separate_about(data)
+  d <- xx$result
+  a <- xx$about
+  if(isTRUE(simplify)) d <- simplify_atest(d)
+
+  title <- attr(data, "title")
+  em.groups <- attr(d, "by.vars")
+  if(".group" %in% names(d)) {
+    groupname_col <- ".group"
+  } else if(!is.null(em.groups)) {
+    groupname_col <- em.groups
+  } else {
+    groupname_col <- dplyr::group_vars(d)
   }
-  if("variable" %in% names(result)) {
-    nvariable <- length(unique(result$variable))
+
+  if(!is.null(a)) {
+    if(any(!is.na(a$.row)) && !footnote_col %in% names(result))
+      result[[footnote_col]] <- ""
   }
-  groupname_col <- c()
-  title <- NULL
-  if(nresponse==1) {
-    title <- result$response[1]
-    result$response <- NULL
-    groupname_col <- "variable"
-  } else if(nresponse>1 && nvariable==1) {
-    title <- sprintf("by '%s'", result$variable[1])
-    result$variable <- NULL
-    groupname_col <- "response"
-  } else if(nresponse > 1 & nvariable > 1) {
-    groupname_col = c("response", "variable")
-    row_group.sep = ", by "
-  } else if(nresponse > 1) {
-    groupname_col <- "response"
-  } else if(nvariable > 0) {
-    groupname_col <- "variable"
-  }
-  if(!footnote_col %in% names(result)) {
-    result[[footnote_col]] <- ""
-  }
-  result |> select(-any_of("row")) |>
-    gt(groupname_col=groupname_col, rowname_col=rowname_col,
+
+  out <- d |> select(-any_of(".row")) |>
+    gt(groupname_col=groupname_col, rowname_col=".rowname",
        row_group.sep=row_group.sep, ...) |>
-    tab_footnotes(notes$about, footnote_col, notes$row) |>
-    tab_header(title=title) |>
     fmt_numbers(n_sigfig = 2) |>
     fmt_pvalue() |>
     sub_missing(missing_text="") |>
     opt_align_table_header(align = "left") |>
     opt_vertical_padding(scale = 0.5) |>
     tab_options(table.align='left')
+
+  if(!is.null(title)) {
+    out <- out |> tab_header(title=title)
+  }
+  if(!is.null(a)) {
+    out <- out |> tab_footnotes(a$footnote.text, footnote_col, a$.row)
+  }
+  out
 }
 
 #' @export
