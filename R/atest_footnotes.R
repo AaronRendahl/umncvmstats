@@ -113,7 +113,7 @@ print.atest <- function(x, as_gt=TRUE, ...) {
     print(a)
     invisible(a)
   } else {
-    a <- separate_about(x, method="text")
+    a <- separate_about(x, footnotes="text")
     print(a$result)
     cat(a$about, sep="\n")
     invisible(x)
