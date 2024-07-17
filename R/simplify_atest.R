@@ -43,8 +43,10 @@ simplify_atest <- function(x) {
   # only one response / variable pair
   if(n_response[1]==1 && n_variable[1]==1) {
     .title <- paste(d$response[1], " ~ ", d$variable[1])
-    if(length(n_response)==2) d <- d |> rename({{d$response[1]}}:=response.value)
-    if(length(n_variable)==2) d <- d |> rename({{d$variable[1]}}:=value)
+    tmp <- d$response[1]
+    if(length(n_response)==2) d <- d |> rename({{tmp}}:=response.value)
+    tmp <- d$variable[1]
+    if(length(n_variable)==2) d <- d |> rename({{tmp}}:=value)
     d <- d |> select(-any_of(c("response", "variable")))
   }
 
