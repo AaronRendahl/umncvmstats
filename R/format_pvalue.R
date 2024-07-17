@@ -31,7 +31,7 @@ format_pvalue <- function(p, digits=2, max.digits=4, justify=TRUE, addp=FALSE, n
 #' @export
 fmt_pvalue <- function(data, columns=any_of(c("p.value", "p.adjust")), ...) {
   data |>
-    fmt(columns={{columns}}, fns=\(p) format_pvalue(p, ...)) |>
+    fmt(columns={{columns}}, fns=\(p) format_pvalue(p, ...) |> str_replace_all("<", "&lt;")) |>
     cols_align(align="left", columns={{columns}})
 }
 
