@@ -3,22 +3,40 @@
 # returns a list with two parts:
 # - result: the atest without the "about" column, but with ".row" added
 # -  about: the notes, with columns ".row", "footnote.num", "footnote.text"
-separate_about <- function(x) {
+# if text, no ".row" column, instead "footnotes", also about is a vector of the notes
+# if below, add them as the first column, named footnotes
+separate_about <- function(x, footnotes=c("default", "text", "below")) {
+  footnotes <- match.arg(footnotes)
   x <- x |> rm_class("atest")
   if(!"about" %in% names(x)) {
     return(list(result=x, about=NULL))
   }
   x.row <- x |> mutate(.row=1:n(), .before=1)
   result <- x.row |> select(-"about")
-  all.same <- length(unique(x.row[["about"]]))==1
-  notes <- x.row |> select(".row", "about") |>
+  about <- x.row |> select(".row", "about") |>
     mutate(about=map(.data$about, enframe, name = NULL, value = "footnote.text")) |>
     unnest("about") |>
     mutate(footnote.num=as.integer(as_factor(.data$footnote.text)), .after=".row")
-  if(all.same) {
-    notes <- notes |> mutate(.row=NA_integer_, footnote.num=NA_integer_) |> unique()
+  if(length(unique(x.row[["about"]]))==1) {
+    about <- about |> mutate(.row=NA_integer_, footnote.num=NA_integer_) |> unique()
   }
-  list(result=result, about=notes)
+  ## now process if needed
+  if(footnotes %in% c("below", "text")) {
+    nn <- about |> summarize(footnotes=paste(.data$footnote.num, collapse=","), .by=.row)
+    rr <- result |> left_join(nn, by=".row")
+    about <- about |> select(footnote.num, footnote.text) |> unique() |>
+      arrange(footnote.num) |>
+      mutate(about=if_else(is.na(.data$footnote.num),
+                           .data$footnote.text,
+                           paste(.data$footnote.num, .data$footnote.text))) |>
+      pull("about")
+    result <- result |> select(-".row")
+  }
+  out <- list(result=result, about=about)
+  if(footnotes=="below") {
+    out <- bind_rows(result, tibble(footnotes=about)) |> select("footnotes", everything())
+  }
+  out
 }
 
 #' @export
@@ -29,18 +47,7 @@ as_tibble.atest <- function(x, footnotes=c("byrow", "below", "asis"), ...) {
   if(footnotes.exist && footnotes=="byrow") {
     x <- x |> mutate(about=sapply(.data$about, paste, collapse=" "))
   } else if(footnotes.exist && footnotes=="below") {
-    a <- separate_about(x)
-    if(is.null(a$about)) {
-      x <- a$results
-    } else {
-      if(all(is.na(a$about$footnote.num))) {
-        a$about$footnote.num <- NULL
-        a$about$.row <- NULL
-      }
-      n1 <- names(a$results)
-      n2 <- names(a$about)
-      x <- bind_rows(a) |> select(all_of(c(n2, n1)))
-    }
+    x <- separate_about(x, footnotes="below")
   }
   x |> rm_class("atest")
 }
@@ -106,16 +113,9 @@ print.atest <- function(x, as_gt=TRUE, ...) {
     print(a)
     invisible(a)
   } else {
-    a <- separate_atest(x)
-    print(a$results)
-    if(!is.null(a$footnotes)) {
-      about <- a$footnotes |>
-        mutate(about=if_else(is.na(.data$footnote.num),
-                             .data$footnote.text,
-                             paste(.data$footnote.num, .data$footnote.text))) |>
-        pull("about")
-      cat(about, sep="\n")
-    }
-    invisible(a)
+    a <- separate_about(x, method="text")
+    print(a$result)
+    cat(a$about, sep="\n")
+    invisible(x)
   }
 }
