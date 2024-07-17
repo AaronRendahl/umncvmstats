@@ -1,5 +1,8 @@
 #' @importFrom tibble enframe
 #' @importFrom forcats as_factor
+# returns a list with two parts:
+# - result: the atest without the "about" column, but with ".row" added
+# -  about: the notes, with columns ".row", "footnote.num", "footnote.text"
 separate_about <- function(x) {
   x <- x |> rm_class("atest")
   if(!"about" %in% names(x)) {
