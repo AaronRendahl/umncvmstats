@@ -13,7 +13,8 @@ as_tibble.atest <- function(x, footnotes=c("byrow", "below", "asis"), ...) {
 
 #' @param footnote_col XX
 #' @param rowname_col XX
-#' @param row_group.sep XX
+#' @param simplify XX
+#' @param row_group_as_column XX
 #' @rdname as_gt
 #' @export
 as_gt.atest <- function(data,
