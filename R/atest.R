@@ -55,28 +55,7 @@ as_atest.data.frame <- function(x, ...) {
 }
 
 #' @export
-as_tibble.atest <- function(x, footnotes=c("byrow", "below", "asis"), ...) {
-  footnotes <- match.arg(footnotes)
-  footnotes.exist <- "about" %in% names(x)
-  if(footnotes.exist && footnotes=="byrow") {
-    x <- x |> mutate(about=sapply(.data$about, paste, collapse=" "))
-  } else if(footnotes.exist && footnotes=="below") {
-    a <- x |> separate_atest()
-    if(is.null(a$footnotes)) {
-      x <- a$results
-    } else {
-      if(all(is.na(a$footnotes$footnote.num))) {
-        a$footnotes$footnote.num <- NULL
-      }
-      n1 <- names(a$results)
-      n2 <- names(a$footnotes)
-      x <- bind_rows(a) |> select(all_of(c(n2, n1)))
-    }
-  }
-  x |> rm_class("atest")
-}
-
-#' @export
+#' @importFrom broom tidy
 tidy.atest <- function(x, ...) {
   as_tibble.atest(x, ...)
 }
@@ -130,62 +109,6 @@ tab_footnotes <- function(data, notes, columns=NA, rows=NA) {
   data
 }
 
-#' @param footnote_col XX
-#' @param rowname_col XX
-#' @param row_group.sep XX
-#' @export
-#' @rdname as_gt
-as_gt.atest <- function(data,
-                     footnote_col="footnote",
-                     rowname_col="group",
-                     row_group.sep=" - ", ...) {
-  x <- data
-  aa <- detach_about(x)
-  notes <- aa$about
-  result <- aa$result
-  nresponse <- nvariable <- 0
-  if("response" %in% names(result)) {
-    nresponse <- length(unique(result$response))
-  }
-  if("variable" %in% names(result)) {
-    nvariable <- length(unique(result$variable))
-  }
-  groupname_col <- c()
-  title <- NULL
-  if(nresponse==1) {
-    title <- result$response[1]
-    result$response <- NULL
-    groupname_col <- "variable"
-  } else if(nresponse>1 && nvariable==1) {
-    title <- sprintf("by '%s'", result$variable[1])
-    result$variable <- NULL
-    groupname_col <- "response"
-  } else if(nresponse > 1 & nvariable > 1) {
-    groupname_col = c("response", "variable")
-    row_group.sep = ", by "
-  } else if(nresponse > 1) {
-    groupname_col <- "response"
-  } else if(nvariable > 0) {
-    groupname_col <- "variable"
-  }
-  if(!footnote_col %in% names(result)) {
-    result[[footnote_col]] <- ""
-  }
-  result |> select(-any_of("row")) |>
-    gt(groupname_col=groupname_col, rowname_col=rowname_col,
-       row_group.sep=row_group.sep, ...) |>
-    tab_footnotes(notes$about, footnote_col, notes$row) |>
-    tab_header(title=title) |>
-    fmt_numbers(n_sigfig = 2) |>
-    fmt_pvalue() |>
-    sub_missing(missing_text="") |>
-    opt_align_table_header(align = "left") |>
-    opt_vertical_padding(scale = 0.5) |>
-    tab_options(table.align='left')
-}
-
-
-
 #' @importFrom knitr knit_print
 #' @export
 knit_print.atest <- function(x, options, inline=FALSE, ...) {
@@ -193,27 +116,6 @@ knit_print.atest <- function(x, options, inline=FALSE, ...) {
     print(x, as_gt=FALSE)
   } else {
     knit_print(as_gt(x), options=options, inline=inline, ...)
-  }
-}
-
-#' @export
-print.atest <- function(x, as_gt=TRUE, ...) {
-  if(isTRUE(as_gt)) {
-    a <- as_gt(x)
-    print(a)
-    invisible(a)
-  } else {
-    a <- separate_atest(x)
-    print(a$results)
-    if(!is.null(a$footnotes)) {
-      about <- a$footnotes |>
-        mutate(about=if_else(is.na(.data$footnote.num),
-                             .data$footnote.text,
-                             paste(.data$footnote.num, .data$footnote.text))) |>
-        pull("about")
-      cat(about, sep="\n")
-    }
-    invisible(a)
   }
 }
 
