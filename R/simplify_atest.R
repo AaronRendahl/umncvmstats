@@ -1,4 +1,5 @@
 
+#' @importFrom rlang :=
 simplify_atest <- function(x) {
   xx <- separate_about(x)
   d <- xx$result
@@ -26,7 +27,7 @@ simplify_atest <- function(x) {
 
   # we have a model, use that as either title or grouping factor
   if(length(n_terms) > 1) {
-    d <- d |> mutate(.group=pasteif(response, model.terms, sep=" ~ "), .before=1)
+    d <- d |> mutate(.group=pasteif(.data$response, .data$model.terms, sep=" ~ "), .before=1)
     # if just one model, use as title
     if(length(unique(d$.group))==1) {
       .title <- d$.group[1]
@@ -37,16 +38,16 @@ simplify_atest <- function(x) {
 
   # we have values for the groups, combine them
   if(n_group[1] > 0) {
-    d <- d |> mutate(.group=pasteif(response, terms, sep=" ~ "), .before=1)
+    d <- d |> mutate(.group=pasteif(.data$response, .data$model.terms, sep=" ~ "), .before=1)
   }
 
   # only one response / variable pair
   if(n_response[1]==1 && n_variable[1]==1) {
     .title <- paste(d$response[1], " ~ ", d$variable[1])
     tmp <- d$response[1]
-    if(length(n_response)==2) d <- d |> rename({{tmp}}:=response.value)
+    if(length(n_response)==2) d <- d |> rename({{tmp}}:="response.value")
     tmp <- d$variable[1]
-    if(length(n_variable)==2) d <- d |> rename({{tmp}}:=value)
+    if(length(n_variable)==2) d <- d |> rename({{tmp}}:="value")
     d <- d |> select(-any_of(c("response", "variable")))
   }
 
