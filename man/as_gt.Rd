@@ -13,8 +13,7 @@ as_gt(data, ...)
 \method{as_gt}{atest}(
   data,
   footnote_col = "footnote",
-  rowname_col = "group",
-  row_group.sep = " - ",
+  rowname_col = ".rowname",
   simplify = TRUE,
   ...
 )
