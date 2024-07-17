@@ -51,6 +51,7 @@ as_gt.atest <- function(data,
        row_group_as_column=row_group_as_column,
        row_group.sep=", ", ...) |>
     fmt_numbers(n_sigfig = 2) |>
+    cols_align_decimal(!any_of(c("p.value", "p.adjust"))) |>
     fmt_pvalue() |>
     sub_missing(missing_text="") |>
     opt_align_table_header(align = "left") |>
