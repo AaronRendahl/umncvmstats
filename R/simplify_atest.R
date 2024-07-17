@@ -16,7 +16,7 @@ simplify_atest <- function(x) {
   n_group <- nof("group", "group.value")
   n_response <- nof("response", "response.value")
   n_variable <- nof("variable", "value")
-  n_terms <- nof("response", "terms")
+  n_terms <- nof("response", "model.terms")
 
   pasteif <- function(a, b, sep) {
     if_else(is.na(b), a, paste(a, b, sep=sep))
@@ -26,13 +26,13 @@ simplify_atest <- function(x) {
 
   # we have a model, use that as either title or grouping factor
   if(length(n_terms) > 1) {
-    d <- d |> mutate(.group=pasteif(response, terms, sep=" ~ "), .before=1)
+    d <- d |> mutate(.group=pasteif(response, model.terms, sep=" ~ "), .before=1)
     # if just one model, use as title
     if(length(unique(d$.group))==1) {
       .title <- d$.group[1]
       d$.group <- NULL
     }
-    d <- d |> select(-c("response", "terms"))
+    d <- d |> select(-c("response", "model.terms"))
   }
 
   # we have values for the groups, combine them
