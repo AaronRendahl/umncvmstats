@@ -24,8 +24,8 @@ separate_about <- function(x, footnotes=c("default", "text", "below")) {
   if(footnotes %in% c("below", "text")) {
     nn <- about |> summarize(footnotes=paste(.data$footnote.num, collapse=","), .by=.row)
     rr <- result |> left_join(nn, by=".row")
-    about <- about |> select(footnote.num, footnote.text) |> unique() |>
-      arrange(footnote.num) |>
+    about <- about |> select("footnote.num", "footnote.text") |> unique() |>
+      arrange(.data$footnote.num) |>
       mutate(about=if_else(is.na(.data$footnote.num),
                            .data$footnote.text,
                            paste(.data$footnote.num, .data$footnote.text))) |>
