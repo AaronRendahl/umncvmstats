@@ -19,7 +19,9 @@ as_tibble.atest <- function(x, footnotes=c("byrow", "below", "asis"), ...) {
 as_gt.atest <- function(data,
                         footnote_col="footnote",
                         rowname_col=".rowname",
-                        simplify = TRUE, ...) {
+                        simplify = TRUE,
+                        row_group_as_column = TRUE,
+                        ...) {
   xx <- separate_about(data)
   d <- xx$result
   a <- xx$about
@@ -45,6 +47,7 @@ as_gt.atest <- function(data,
 
   out <- d |> select(-any_of(".row")) |>
     gt(groupname_col=groupname_col, rowname_col=rowname_col,
+       row_group_as_column=row_group_as_column,
        row_group.sep=", ", ...) |>
     fmt_numbers(n_sigfig = 2) |>
     fmt_pvalue() |>
