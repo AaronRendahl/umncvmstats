@@ -15,7 +15,9 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
+#| message: false
 library(tibble)
+library(gt)
 library(umncvmstats)
 ```
 
@@ -38,7 +40,9 @@ a
 
 It does this by converting it into a `gt` object from the [gt](https://gt.rstudio.com/) package.
 
-You can use any `gt` function by first doing this conversion yourself using `as_gt`. The following table looks the same because I haven't added any other functions yet.
+You can use any `gt` function by first doing this conversion yourself using `as_gt`. If you use any `gt` functions you'll need to load the `gt` library before `umncvmstats`.
+
+The following table looks the same because I haven't added any other functions yet.
 
 ```{r}
 a |> as_gt()
