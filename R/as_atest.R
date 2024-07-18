@@ -26,7 +26,7 @@ as_atest.data.frame <- function(x,
   vars5 <- c("p.value", "p.adjust", "cld.group", "about")
   varsX <- setdiff(names(x), c(vars1, vars2, vars3, vars4, vars5))
   if(length(varsX)>0) {
-    message("Internal warning: variable type unclear for: ", paste(varsX, collapse=", "))
+    warning("Internal warning: variable type unclear for: ", paste(varsX, collapse=", "))
   }
   x <- x |> select(any_of(c(vars1, vars2, varsX, vars3, vars4, vars5)), everything())
   if(!inherits(x, "atest")) class(x) <- c("atest", class(x))
@@ -44,8 +44,7 @@ as_atest.summary_emm <- function(x, model, ...) {
   ## this loses attributes and class information
   x <- bind_cols(model_form(model), x)
 
-  skip <- "NOTE: If two or more means share the same grouping symbol,\n      then we cannot show them to be different.\n      But we also did not show them to be the same."
-  about <- unique(about[about!=skip])
+  about <- unique(about)
   x$about <- rep(list(about), nrow(x))
 
   if(length(clNames)==2) {
