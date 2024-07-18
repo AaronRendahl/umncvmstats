@@ -2,16 +2,16 @@
 % Please edit documentation in R/as_gt.R
 \name{as_gt}
 \alias{as_gt}
-\alias{as_gt.default}
+\alias{as_gt.data.frame}
 \alias{as_gt.atest}
 \title{Create a gt table object}
 \usage{
-as_gt(data, ...)
+as_gt(x, ...)
 
-\method{as_gt}{default}(data, ...)
+\method{as_gt}{data.frame}(x, ...)
 
 \method{as_gt}{atest}(
-  data,
+  x,
   footnote_col = "footnote",
   rowname_col = c(),
   groupname_col = c(),
@@ -21,8 +21,6 @@ as_gt(data, ...)
 )
 }
 \arguments{
-\item{data}{XX}
-
 \item{...}{XX}
 
 \item{footnote_col}{XX}
@@ -34,6 +32,8 @@ as_gt(data, ...)
 \item{simplify}{XX}
 
 \item{row_group_as_column}{XX}
+
+\item{data}{XX}
 }
 \description{
 Create a gt table object
