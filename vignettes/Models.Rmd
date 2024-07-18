@@ -1,0 +1,116 @@
+---
+title: "Inference about Models"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Inference about Models}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(umncvmstats)
+```
+
+This code works with most linear or logistic models; it also has special handling for models with a log-transformed response
+
+Start by building the models in the usual way; here are three models. All have both a categorical and a continuous explanatory variable, and their interaction.
+
++ A linear model
++ A linear model with a log-transformed response
++ A logistic model
+
+```{r}
+m1 <- lm(mpg ~ wt * cyl, data = mtcars2)
+m1_log <- lm(log(mpg) ~ wt * cyl, data = mtcars2)
+m2 <- glm(am ~ mpg * cyl, data = mtcars2, family=binomial)
+```
+
+## ANOVA / Analysis of Deviance
+```{r}
+model_anova(m1)
+model_anova(m1_log)
+model_anova(m2)
+```
+
+## Model summary values
+```{r}
+model_glance(m1)
+model_glance(m2)
+```
+
+## Model coefficients
+```{r}
+combine_tests(
+  model_coefs(m1),
+  model_coefs(m1_log),
+  model_coefs(m2))
+```
+
+## Model means
+
+For log response and logistic models, model means and confidence intervals are automatically backtransformed. That is, to the original scale from the log scale for log responses, and to the probability scale from the log-odds scale for logistic models. To see results on the log or logistic scale, use `backtransform = FALSE`.
+
+### Linear Model
+
+```{r}
+model_means(m1, ~1)
+```
+
+```{r}
+model_means(m1, ~cyl)
+pairwise_model_means(m1, ~cyl)
+```
+
+```{r}
+model_means(m1, ~cyl | wt, at=list(wt=c(2,3,4)))
+pairwise_model_means(m1, ~cyl | wt, at=list(wt=c(2,3,4)))
+```
+
+### Linear Model, with log response
+
+```{r}
+model_means(m1_log, ~cyl)
+pairwise_model_means(m1_log, ~cyl)
+```
+
+```{r}
+pairwise_model_means(m1_log, ~cyl, backtransform = FALSE)
+model_means(m1_log, ~cyl, backtransform = FALSE)
+```
+
+### Logistic Model
+```{r}
+model_means(m2, ~cyl)
+pairwise_model_means(m2, ~cyl)
+```
+
+```{r}
+model_means(m2, ~cyl, backtransform=FALSE)
+pairwise_model_means(m2, ~cyl, backtransform=FALSE)
+```
+
+## Model slopes
+For continuous explanatory variables, the slopes can be obtained and compared in a similar way.
+
+```{r}
+model_slopes(m1, wt~1)
+```
+
+```{r}
+model_slopes(m1, wt~cyl)
+pairwise_model_slopes(m1, wt~cyl)
+```
+
+For log-response or logistic models, no back-transformation is done.
+
+```{r}
+model_slopes(m1_log, wt~cyl)
+model_slopes(m2, mpg~cyl)
+```
