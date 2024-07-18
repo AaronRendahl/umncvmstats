@@ -1,0 +1,57 @@
+---
+title: "Tests for Means"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tests for Means}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(umncvmstats)
+```
+
+## Tests for Means
+
+### One Sample t-test
+```{r}
+one_t_test(wt~1, data=mtcars2)
+```
+
+#### Separately by another categorical variable
+```{r}
+one_t_test(wt ~ am, data=mtcars2)
+```
+
+### Two Sample t-test
+```{r}
+two_t_test(wt ~ am, data=mtcars2)
+```
+
+#### together in one table
+```{r}
+combine_tests(
+  one_t_test(wt ~ am, data=mtcars2),
+  two_t_test(wt ~ am, data=mtcars2))
+```
+
+### Pairwise t-tests
+```{r}
+combine_tests(
+  one_t_test(wt ~ cyl, data=mtcars2),
+  pairwise_t_test(wt ~ cyl, data=mtcars2))
+```
+
+### Paired t-test
+```{r}
+combine_tests(
+  one_t_test(score1 + score2 ~ 1, data=passfail),
+  paired_t_test(score2 - score1 ~ 1, data=passfail))
+```
