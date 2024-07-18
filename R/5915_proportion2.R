@@ -101,6 +101,13 @@ two_proportion_test.default <- function(x, n,
   as_atest(result, estimate.vars="difference", inference.vars="chisq.value")
 }
 
+#' @param ... XX
+#' @rdname two_proportion_test
+#' @export
+pairwise_proportion_test <- function(formula, data, ...) {
+  pairwise(formula, data, "two_proportion_test", ...)
+}
+
 #' Paired proportion test (McNemar's)
 #' @param formula XX
 #' @param data XX

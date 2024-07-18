@@ -27,17 +27,3 @@ pairwise <- function(formula, data, FUN, conf.level=0.95, ..., adjust=c("bonferr
   }
   as_atest(result)
 }
-
-#' @param ... XX
-#' @rdname two_t_test
-#' @export
-pairwise_t_test <- function(formula, data, ...) {
-  pairwise(formula, data, "two_t_test", ...)
-}
-
-#' @param ... XX
-#' @rdname two_proportion_test
-#' @export
-pairwise_proportion_test <- function(formula, data, ...) {
-  pairwise(formula, data, "two_proportion_test", ...)
-}

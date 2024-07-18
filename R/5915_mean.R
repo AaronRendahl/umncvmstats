@@ -107,6 +107,13 @@ two_t_test <- function(formula, data,
   as_atest(result, estimate.vars=c("difference", "ratio"), inference.vars=c("null", "t.value", "df"))
 }
 
+#' @param ... XX
+#' @rdname two_t_test
+#' @export
+pairwise_t_test <- function(formula, data, ...) {
+  pairwise(formula, data, "two_t_test", ...)
+}
+
 #' Paired t-test
 #'
 #' @param formula XX
