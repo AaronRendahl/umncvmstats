@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(umncvmstats)
-mtcars <- datasets::mtcars |> 
+mtcars2 <- datasets::mtcars |> 
   dplyr::mutate(dplyr::across(c(cyl, vs, am, gear, carb), forcats::as_factor)) |>
   dplyr::mutate(vs=forcats::fct_recode(vs, "V-shaped"="0", "straight"="1"),
                 am=forcats::fct_recode(am, "automatic"="0", "manual"="1")) |>
@@ -33,31 +33,31 @@ passfail <- tidyr::tibble(score1=rnorm(50, mean=80, sd=7),
 
 ### One Proportion Test
 ```{r}
-one_proportion_test(vs~1, data=mtcars)
+one_proportion_test(vs~1, data=mtcars2)
 ```
 
 #### Separately by another categorical variable
 ```{r}
-one_proportion_test(vs ~ am, data=mtcars)
+one_proportion_test(vs ~ am, data=mtcars2)
 ```
 
 ### Two Proportion Test
 ```{r}
-two_proportion_test(vs ~ am, data=mtcars)
+two_proportion_test(vs ~ am, data=mtcars2)
 ```
 
 #### together in one table
 ```{r}
 combine_tests(
-  one_proportion_test(vs ~ am, data=mtcars),
-  two_proportion_test(vs ~ am, data=mtcars))
+  one_proportion_test(vs ~ am, data=mtcars2),
+  two_proportion_test(vs ~ am, data=mtcars2))
 ```
 
 ### Pairwise Proportion Tests
 ```{r}
 combine_tests(
-  one_proportion_test(vs ~ cyl, data=mtcars),
-  pairwise_proportion_test(vs ~ cyl, data=mtcars))
+  one_proportion_test(vs ~ cyl, data=mtcars2),
+  pairwise_proportion_test(vs ~ cyl, data=mtcars2))
 ```
 
 ### Paired Proportion Test (McNemar's)
@@ -71,39 +71,39 @@ combine_tests(
 ### Independence Test
 ```{r}
 combine_tests(
-  one_proportion_test(cyl ~ vs, data=mtcars, all_success = TRUE),
-  independence_test(cyl ~ vs, data=mtcars))
+  one_proportion_test(cyl ~ vs, data=mtcars2, all_success = TRUE),
+  independence_test(cyl ~ vs, data=mtcars2))
 ```
 
 ## Tests for Means
 
 ### One Sample t-test
 ```{r}
-one_t_test(wt~1, data=mtcars)
+one_t_test(wt~1, data=mtcars2)
 ```
 
 #### Separately by another categorical variable
 ```{r}
-one_t_test(wt ~ am, data=mtcars)
+one_t_test(wt ~ am, data=mtcars2)
 ```
 
 ### Two Sample t-test
 ```{r}
-two_t_test(wt ~ am, data=mtcars)
+two_t_test(wt ~ am, data=mtcars2)
 ```
 
 #### together in one table
 ```{r}
 combine_tests(
-  one_t_test(wt ~ am, data=mtcars),
-  two_t_test(wt ~ am, data=mtcars))
+  one_t_test(wt ~ am, data=mtcars2),
+  two_t_test(wt ~ am, data=mtcars2))
 ```
 
 ### Pairwise t-tests
 ```{r}
 combine_tests(
-  one_t_test(wt ~ cyl, data=mtcars),
-  pairwise_t_test(wt ~ cyl, data=mtcars))
+  one_t_test(wt ~ cyl, data=mtcars2),
+  pairwise_t_test(wt ~ cyl, data=mtcars2))
 ```
 
 ### Paired t-test
@@ -115,7 +115,7 @@ combine_tests(
 
 ## Correlation tests
 ```{r}
-correlation_test(mpg ~ wt + hp, data=mtcars)
+correlation_test(mpg ~ wt + hp, data=mtcars2)
 ```
 
 ## Linear models
@@ -124,7 +124,7 @@ correlation_test(mpg ~ wt + hp, data=mtcars)
 
 First make the model
 ```{r}
-m1 <- lm(wt ~ cyl, data=mtcars)
+m1 <- lm(wt ~ cyl, data=mtcars2)
 ```
 
 ANOVA table:
@@ -156,7 +156,7 @@ pairwise_model_means(m1, ~cyl)
 
 First make the model
 ```{r}
-m2 <- lm(mpg ~ wt, data=mtcars)
+m2 <- lm(mpg ~ wt, data=mtcars2)
 ```
 
 ANOVA table:
@@ -182,7 +182,7 @@ model_slopes(m2, wt~1)
 ### Two-way ANOVA
 First make the model
 ```{r}
-m3 <- lm(wt ~ vs*am, data=mtcars)
+m3 <- lm(wt ~ vs*am, data=mtcars2)
 ```
 
 ANOVA table:
@@ -221,7 +221,7 @@ pairwise_model_means(m3, ~vs|am)
 ### Multiple regression
 First make the model
 ```{r}
-m4 <- lm(mpg ~ am*wt, data=mtcars)
+m4 <- lm(mpg ~ am*wt, data=mtcars2)
 ```
 
 ANOVA table:
