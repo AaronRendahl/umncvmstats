@@ -3,16 +3,27 @@
 #' @param ... XX
 #'
 #' @export
-as_gt <- function(data, ...) { UseMethod("as_gt") }
+as_gt <- function(x, ...) { UseMethod("as_gt") }
+
+#' @export
+as_gt.default <- function(x, ...) {
+  as.data.frame(x) |> as_gt()
+}
 
 #' @export
 #' @rdname as_gt
-as_gt.default <- function(data, ...) {
-  if(inherits(data, "gt_tbl")) {
-    data
-  } else {
-    gt::gt(data, ...)
-  }
+as_gt.data.frame <- function(x, ...) {
+  gt::gt(x, ...)
+}
+
+#' @export
+as_gt.gt_tbl <- function(x, ...) {
+  x
+}
+
+#' @export
+as_gt.gtsummary <- function(x, ...) {
+  gtsummary::as_gt(x, ...)
 }
 
 #' @param footnote_col XX
@@ -22,14 +33,14 @@ as_gt.default <- function(data, ...) {
 #' @param row_group_as_column XX
 #' @rdname as_gt
 #' @export
-as_gt.atest <- function(data,
+as_gt.atest <- function(x,
                         footnote_col="footnote",
                         rowname_col=c(),
                         groupname_col=c(),
                         simplify = TRUE,
                         row_group_as_column = TRUE,
                         ...) {
-  xx <- separate_about(data)
+  xx <- separate_about(x)
   d <- xx$result
   a <- xx$about
   if(isTRUE(simplify)) d <- simplify_atest(d)
@@ -75,29 +86,3 @@ as_gt.atest <- function(data,
   out
 }
 
-tab_footnotes <- function(data, notes, columns=NA, rows=NA) {
-  if(missing(notes) || is.null(notes)) return(data)
-  aa <- tibble(note=notes, columns=columns, rows=rows) |>
-    left_join(data$`_boxhead` |> select(columns="var", "type"), by="columns")
-  hidden_cols <- aa |> filter(!is.na(.data$rows) & (is.na(.data$type) | .data$type=="hidden"))
-  if(nrow(hidden_cols)>0) {
-    hidden_txt <- hidden_cols |>
-      pull("columns") |>
-      (\(x) sprintf("'%s'", x))() |>
-      (\(x) paste(x, collapse=", "))()
-    warning(sprintf("footnote column %s is missing or hidden", hidden_txt))
-  }
-  for(idx in seq_len(nrow(aa))) {
-    r <- aa$rows[idx]
-    if(is.na(r)) {
-      data <- data |> tab_footnote(aa$note[idx])
-    } else {
-      if(aa$type[idx]=="stub") {
-        data <- data |> tab_footnote(aa$note[idx], cells_stub(r))
-      } else {
-        data <- data |> tab_footnote(aa$note[idx], cells_body(aa$columns[idx], r))
-      }
-    }
-  }
-  data
-}
