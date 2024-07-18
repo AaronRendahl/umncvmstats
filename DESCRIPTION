@@ -9,7 +9,7 @@ Description: Standardized functions and output for one and two sample
     customized plotting functions to simplify common plotting needs.
 Language: en-US
 License: GPL (>= 3)
-Imports: ggplot2, gt, gtsummary, broom, lubridate, beeswarm, car, emmeans, multcomp, multcompView, stringr, tidyr, dplyr, forcats, tibble, rlang, purrr, cli, rstudioapi, knitr
+Imports: ggplot2, gt, gtsummary, broom, lubridate, beeswarm, car, emmeans, multcomp, multcompView, stringr, tidyr, dplyr, forcats, tibble, rlang, purrr, cli, rstudioapi, knitr, conflicted
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
