@@ -19,7 +19,7 @@ library(conflicted)
 library(tidyverse)
 library(gt)
 library(umncvmstats)
-conflicts_prefer(dplyr::filter, dplyr::lag, dplyr::select)
+conflicts_prefer(dplyr::filter, dplyr::lag, dplyr::select, umncvmstats::as_gt)
 ```
 
 ## Part 1
