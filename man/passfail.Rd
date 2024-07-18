@@ -6,12 +6,11 @@
 \title{Scores on pre/post test (generated data)}
 \format{
 A tibble with 50 rows and 4 columns.
-
 \describe{
-\item{score1} Pre-test Score
-\item{score2} Post-test Score
-\item{pass1} Pre-test pass/fail status
-\item{pass2} Post-test pass/fail status
+\item{score1}{Pre-test Score}
+\item{score2}{Post-test Score}
+\item{pass1}{Pre-test pass/fail status}
+\item{pass2}{Post-test pass/fail status}
 }
 }
 \usage{

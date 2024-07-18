@@ -4,7 +4,6 @@
 #' but as a tibble with categorical variables stored as factors.
 #'
 #' @format A tibble with 32 rows and 12 variables.
-#'
 #' \describe{
 #' \item{model}{Make and model of the car}
 #' \item{mpg}{Miles/(US) gallon}
@@ -29,11 +28,10 @@
 #' A score of 80 is considered passing.
 #'
 #' @format A tibble with 50 rows and 4 columns.
-#'
 #' \describe{
-#' \item{score1} Pre-test Score
-#' \item{score2} Post-test Score
-#' \item{pass1} Pre-test pass/fail status
-#' \item{pass2} Post-test pass/fail status
+#' \item{score1}{Pre-test Score}
+#' \item{score2}{Post-test Score}
+#' \item{pass1}{Pre-test pass/fail status}
+#' \item{pass2}{Post-test pass/fail status}
 #' }
 "passfail"

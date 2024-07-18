@@ -6,7 +6,6 @@
 \title{Motor Trend Car Road Tests}
 \format{
 A tibble with 32 rows and 12 variables.
-
 \describe{
 \item{model}{Make and model of the car}
 \item{mpg}{Miles/(US) gallon}
