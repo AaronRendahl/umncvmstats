@@ -8,5 +8,5 @@
 ^README\.Rmd$
 ^doc$
 ^Meta$
-notes.R
+_notes.R
 ^data-raw$
