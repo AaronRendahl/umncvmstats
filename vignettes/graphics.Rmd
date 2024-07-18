@@ -1,0 +1,173 @@
+---
+title: "Graphical Output"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Graphical Output}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+#| message: false
+library(conflicted)
+library(tidyverse)
+library(patchwork)
+library(umncvmstats)
+conflicts_prefer(dplyr::filter, dplyr::lag, dplyr::select, umncvmstats::as_gt)
+```
+
+
+Most of the graphical functions we will use come from the `ggplot` package.
+There are a couple additions from this package to make a couple things easier.
+
++ `geom_beeswarm`, originally from the `ggbeeswarm` package, modified for our purpose
+  to handle horizontal plots better and tailor the default settings.
++ `hide_y_axis`, to hide the y-axis of a plot
++ `geom_smooth_binomial`, to add a logistic regression fit to a plot
+
+**NOTE: STILL WORKING ON THESE...**
+
+### Combining plots
+
+The `patchwork` package allows one to combine together several plots from `ggplot` using
+the mathematical operators of `+` (for side by side) and `/` (for above and below). 
+For more control, see the [package documentation](https://patchwork.data-imaginist.com/).
+
+### Resizing plots
+
+To resize a plot, use the `fig-width` and `fig-height` options at the top of the chunk.
+The default size is usually about 6 by 6.
+
+This is also the easiest way to change the size of the text in a plot; 
+when a plot is made larger, the text stays the same size, so is smaller relative to the rest of the plot.
+
+```
+#| fig-width: 5
+#| fig-height: 4
+```
+
+
+### Scatterplots
+
+```{r}
+#| fig-width: 9
+#| fig-height: 4
+plot1 <- ggplot(mtcars2) + aes(x=wt, y=mpg) + geom_point()
+plot2 <- ggplot(mtcars2) + aes(x=wt, y=mpg, color=gear) + geom_point()
+plot1 + plot2
+```
+
+```{r}
+#| fig-width: 8
+#| fig-height: 3
+ggplot(mtcars2) + aes(x=wt, y=mpg) + geom_point() +
+  facet_wrap(~gear, labeller = label_both)
+```
+
+```{r}
+#| fig-width: 5
+#| fig-height: 4
+ggplot(mtcars2) + aes(x=wt, y=mpg) + geom_point() +
+  stat_smooth(method="lm", se=FALSE) +
+  stat_smooth(se=FALSE)
+```
+
+### Bar plots
+
+```{r}
+#| fig.width: 12
+#| fig.height: 4
+plot1 <- ggplot(mtcars2) + aes(gear) + geom_bar()
+plot2 <- ggplot(mtcars2) + aes(gear, fill=cyl) + geom_bar()
+plot3 <- ggplot(mtcars2) + aes(gear, fill=cyl) + 
+  geom_bar(position=position_dodge(preserve="single"))
+
+plot1 + plot2 + plot3
+```
+
+### Histograms and Density Plots
+
+```{r}
+#| fig.width: 15
+#| fig.height: 5
+plot1 <- ggplot(mtcars2) + aes(wt) + geom_histogram(binwidth=0.25, boundary=0)
+plot2 <- ggplot(mtcars2) + aes(wt) + geom_density()
+plot3 <- ggplot(mtcars2) + aes(wt, color=cyl) + geom_density()
+
+plot1 + plot2 + plot3
+```
+
+### Boxplots
+
+method="compactswarm", priority = "random", 
+
+```{r}
+#| fig-width: 5
+#| fig-height: 1
+ggplot(mtcars2) + aes(wt) + geom_boxplot() +
+  hide_y_axis()
+
+ggplot(mtcars2) + aes(x=wt, y=0) + geom_boxplot(outlier.shape = NA) + 
+  geom_beeswarm(cex=4, pch=21, fill="gray", alpha=0.5, orientation="y") +
+  hide_y_axis()
+
+ggplot(mtcars2) + aes(x=wt, y=0) + geom_boxplot(outlier.shape = NA) + 
+  geom_point(position=position_beeswarm(
+                            orientation="y", cex=4),
+                            pch=21, fill="white") +
+  hide_y_axis()
+```
+
+```{r}
+#| fig-width: 8
+#| fig-height: 4
+plot1 <- ggplot(mtcars2) + aes(x=cyl, y=wt) + geom_boxplot()
+plot2 <- ggplot(mtcars2) + aes(x=cyl, y=wt) + geom_boxplot(outlier.shape = NA) +
+  geom_beeswarm(cex=2, pch=21, fill="gray", alpha=0.5)
+plot1 + plot2
+```
+
+### Logistic Regression plots
+
+```{r}
+ggplot(mtcars2) + aes(x=wt, y=vs) +
+  geom_beeswarm(
+    side=0, orientation = "y",
+    cex=2, pch=21, fill="white") +
+  geom_smooth_binomial() +
+  scale_y_discrete(expand=expansion(add=0.1))
+```
+
+```{r}
+name_success <- levels(mtcars2$vs)[2]
+ggplot(mtcars2) + aes(x=wt, y=(vs==levels(vs)[2])*1L) +
+  geom_beeswarm(
+    side = 0, orientation = "y",
+    cex=2, pch=21, fill="white") +
+  scale_y_continuous(name=sprintf('Probability \u201c%s\u201d', name_success), 
+                     breaks=seq(0,1, by=.20)) +
+  geom_smooth(method="glm", method.args=list(family=binomial()))
+```
+
+### Estimates with error bars
+
+```{r}
+wt_mse <- mtcars2 |> summarize(m=mean(wt), se=sd(wt)/sqrt(n()), .by=cyl)
+```
+
+```{r}
+ggplot(wt_mse) + aes(cyl, m, ymin=m-se, ymax=m+se) + 
+  geom_col() + geom_errorbar(width=0.5)
+ggplot(wt_mse) + aes(x=cyl) + 
+  geom_errorbar(aes(ymin=m-se, ymax=m+se), width=0.3) +
+  geom_point(aes(y=m), size=2) +
+  geom_beeswarm(aes(y=wt), data=mtcars2, pch=21, fill="gray", alpha=0.5)
+
+```

@@ -19,6 +19,9 @@ library(umncvmstats)
 ```
 
 ## One Proportion Test
+
+It will automatically choose between Wilson's CI and the "exact" CI. No null hypothesis is tested by default.
+
 ```{r}
 one_proportion_test(vs ~ 1, data = mtcars2)
 ```
@@ -29,6 +32,9 @@ one_proportion_test(vs ~ am, data = mtcars2)
 ```
 
 ## Two Proportion Test
+
+It will automatically choose between the asymptotic test (with or without continuity correction) and Fisher's test.
+
 ```{r}
 two_proportion_test(vs ~ am, data = mtcars2)
 ```
@@ -56,6 +62,9 @@ combine_tests(
 ```
 
 ## Independence Test
+
+It will automatically choose between the chi-squared test and Fisher's test.
+
 ```{r}
 combine_tests(
   one_proportion_test(cyl ~ vs, data = mtcars2, all_success = TRUE),
