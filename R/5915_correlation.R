@@ -37,7 +37,7 @@ correlation_test <- function(formula, data,
   }
   about <- sprintf("%s (%s)%s", result$method, result$alternative, ci.txt)
   result <- result |> select(correlation="estimate", any_of(c("conf.low", "conf.high")), "p.value") |>
-    mutate(response=y.name, variable=x.name, .before=1)
+    mutate(.y=y.name, .x=x.name)
   result$about <- list(c(about, capture_result$warnings))
-  as_atest(result)
+  as_atest(result, estimate.vars=c("correlation"), inference.vars=character())
 }
