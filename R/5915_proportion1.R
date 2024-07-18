@@ -48,12 +48,11 @@ one_proportion_test.formula <- function(formula, data, success, all_success=FALS
   stopifnot(success %in% levels(x))
   x <- x[!is.na(x)]
   n <- length(x)
-  out <- map_dfr(success, function(lev) {
+  map(success, function(lev) {
     k <- sum(x == lev)
-    out <- one_proportion_test.default(k, n, ...) |>
-      mutate(response=name, response.value=lev, .before=1)
-  })
-  as_atest(out)
+    one_proportion_test.default(k, n, ...) |>
+      mutate(.y=name, .y_value=lev)
+  }) |> combine_tests_list()
 }
 
 #' @rdname one_proportion_test
@@ -121,7 +120,9 @@ wilson_test <- function(x, n, null,
     result <- result |> select(-c("conf.low", "conf.high"))
   }
   result$about <- list(about)
-  as_atest(result)
+  as_atest(result,
+           estimate.vars=c("x", "n", "proportion"),
+           inference.vars=c("null", "chisq.value"))
 }
 
 #' @rdname one_proportion_test
@@ -154,6 +155,8 @@ binomial_test <- function(x, n, null,
   if(!do.ci) {
     result <- result |> select(-c("conf.low", "conf.high"))
   }
-  result <- result |> mutate(about=list(about))
-  as_atest(result)
+  result$about <- list(about)
+  as_atest(result,
+           estimate.vars=c("x", "n", "proportion"),
+           inference.vars=c("null", "chisq.value"))
 }
