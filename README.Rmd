@@ -18,28 +18,19 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of umncvmstats is to ...
+The umncvmstats package standardizes the function usage and the output for basic statistical functions to allow new R users to focus on learning the principles of statistics and statistical communication rather than on the details of R.
 
 ## Installation
 
-You can install the development version of umncvmstats from [GitHub](https://github.com/) with:
+You can install the most up-to-date version of umncvmstats from [GitHub](https://github.com/AaronRendahl/umncvmstats) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("AaronRendahl/umncvmstats")
 ```
 
-## Example
+## Documentation
 
-This is a basic example which shows you how to solve a common problem:
+See the [articles](articles/index.html) for more details.
 
-```{r example}
-library(umncvmstats)
-mtcars <- datasets::mtcars |> 
-  dplyr::mutate(am=forcats::fct_recode(factor(am), 
-                    "automatic"="0", "manual"="1"))
 
-combine_tests(
-  one_t_test(wt ~ factor(am), mtcars),
-  two_t_test(wt ~ factor(am), mtcars))
-```
