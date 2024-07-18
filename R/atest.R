@@ -10,6 +10,12 @@ combine_tests <- function(...) {
   bind_rows(x) |> as_atest(estimate.vars=estimate.vars, inference.vars=inference.vars)
 }
 
+combine_tests_list <- function(x) {
+  estimate.vars <- lapply(x, \(xi) attr(xi, "estimate.vars")) |> unlist() |> unique()
+  inference.vars <- lapply(x, \(xi) attr(xi, "inference.vars")) |> unlist() |> unique()
+  bind_rows(x) |> as_atest(estimate.vars=estimate.vars, inference.vars=inference.vars)
+}
+
 rm_class <- function(x, class) { class(x) <- setdiff(class(x), class); x }
 
 as_atest <- function(x, ...) {
@@ -43,7 +49,9 @@ as_atest.summary_emm <- function(x, model, ...) {
 
 #' @importFrom purrr is_list
 #' @export
-as_atest.data.frame <- function(x, estimate.vars=c(), inference.vars=c(), ...) {
+as_atest.data.frame <- function(x,
+                                estimate.vars=attr(x, "estimate.vars"),
+                                inference.vars=attr(x, "inference.vars"), ...) {
   if("about" %in% names(x) && !is_list(x[["about"]])) {
     warning("Internal warning: converting messages to a list.")
     x[["about"]] <- list(x[["about"]])

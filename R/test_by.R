@@ -14,7 +14,7 @@ test_by <- function(by_right=FALSE) {
   fs <- split_formula(formula)
   if(length(fs) > 1) {
     # cat("+ ", format(m), "\n")
-    return(map(fs, function(x) do.call(FUN, c(list(x), params))) |> combine_tests())
+    return(map(fs, function(x) do.call(FUN, c(list(x), params))) |> combine_tests_list())
   }
 
   ## otherwise see if there are groups, if so, make subsets and rerun
@@ -35,20 +35,16 @@ test_by <- function(by_right=FALSE) {
   new.name <- f$about$var.names[f$about$side==by_name]
   subformula <- clean_formula(formula, by_name)
   result <- data |>
-    mutate(.groups=f$data[[by_name]]) |>
-    nest(.by=".groups") |>
-    arrange(.data$.groups) |>
-    mutate(.x=map(data, \(.x) {
+    mutate(.group=f$data[[by_name]]) |>
+    nest(.by=".group") |>
+    mutate(.x=map2(data, .group, \(.x, .g) {
       paramsi <- params
       paramsi$data <- .x
       paramsi <- c(list(subformula), paramsi)
-      do.call(FUN, paramsi)
-    })) |> select(-"data") |>
-    unnest(".x")
+      do.call(FUN, paramsi) |> mutate(.g_value=.g, .g=new.name)
+    })) |> pull(".x") |> combine_tests_list()
   if(by_name=="right") {
-    result <- result |> rename(value=".groups") |> mutate(variable=new.name)
-  } else {
-    result <- result |> rename(group.value=".groups") |> mutate(group=new.name)
+    result <- result |> rename(.x_value=".g_value", .x=".g")
   }
-  as_atest(result)
+  result
 }
