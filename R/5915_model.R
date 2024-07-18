@@ -53,14 +53,23 @@ model_anova <- function(model, ...) {
 #' @importFrom car Anova
 #' @importFrom multcomp cld
 #' @importFrom emmeans emmeans
-model_means <- function(model, formula, ..., cld=TRUE) {
-  em <- emmeans(model, formula, ...)
+model_means <- function(model, formula, ..., cld=TRUE, backtransform=TRUE,
+                        type=if(isTRUE(backtransform)) "response" else "linear") {
+
+  int_warn <- "NOTE: Results may be misleading due to involvement in interactions\n"
+  emX <- capture_warnings(emmeans(model, formula, type=type, ...))
+  em <- emX$result
+
   if(isTRUE(cld)) {
     out <- cld(em, Letters=letters) |> rename(cld.group=".group")
+    skip <- "NOTE: If two or more means share the same grouping symbol,\n      then we cannot show them to be different.\n      But we also did not show them to be the same."
+    attr(out, "mesg") <- setdiff(attr(out, "mesg"), skip)
   } else {
     out <- summary(em)
   }
-  as_atest(out, model, estimate.vars=c("emmean", "estimate", "SE", "df"),
+
+  attr(out, "mesg") <- c(attr(out, "mesg"), emX$warnings)
+  as_atest(out, model, estimate.vars=c("emmean", "response", "estimate", "SE", "df"),
            inference.vars="t.ratio")
 }
 
@@ -69,8 +78,12 @@ model_means <- function(model, formula, ..., cld=TRUE) {
 #' @importFrom graphics pairs
 #' @rdname model_means
 pairwise_model_means <- function(model, formula, ...) {
-  em <- emmeans(model, formula, ...)
-  out <- pairs(em, infer=TRUE) |> summary()
+  emX <- capture_warnings({
+    em <- emmeans(model, formula, ...)
+    pairs(em, infer=TRUE) |> summary()
+  })
+  out <- emX$result
+  attr(out, "mesg") <- c(attr(out, "mesg"), emX$warnings)
   as_atest(out, model,
            pri.vars="contrast",
            estimate.vars=c("estimate", "SE", "df"),
@@ -87,6 +100,8 @@ model_slopes <- function(model, formula, ..., cld=TRUE) {
   em <- emtrends(model, specs=formula, var=var, ...)
   if(isTRUE(cld)) {
     out <- cld(em, Letters=letters) |> rename(cld.group=".group")
+    skip <- "NOTE: If two or more means share the same grouping symbol,\n      then we cannot show them to be different.\n      But we also did not show them to be the same."
+    attr(out, "mesg") <- setdiff(attr(out, "mesg"), skip)
   } else {
     out <- summary(em)
   }
