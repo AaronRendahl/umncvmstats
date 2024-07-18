@@ -136,7 +136,7 @@ paired_proportion_test <- function(formula, data, success,
   k <- m[3]
   n <- sum(m[2:3])
   result <- one_proportion_test(k, n, null=0.5, conf.level=conf.level, alternative=alternative, correct=correct, method=method) |>
-    mutate(response=paste(f$about$var.names, collapse=" - "), response.value=success)
+    mutate(.y_contrast=paste(f$about$var.names, collapse=" - "), .y_value=success)
   result$about[[1]][1] <- paste("McNemar's test, using", result$about[[1]][1])
   as_atest(result)
 }
