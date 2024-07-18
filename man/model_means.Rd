@@ -7,9 +7,22 @@
 \alias{pairwise_model_slopes}
 \title{Get model means and slopes (trends)}
 \usage{
-model_means(model, formula, ..., cld = TRUE)
+model_means(
+  model,
+  formula,
+  cld = TRUE,
+  backtransform = TRUE,
+  type = if (isTRUE(backtransform)) "response" else "linear",
+  ...
+)
 
-pairwise_model_means(model, formula, ...)
+pairwise_model_means(
+  model,
+  formula,
+  backtransform = TRUE,
+  type = if (isTRUE(backtransform)) "response" else "linear",
+  ...
+)
 
 model_slopes(model, formula, ..., cld = TRUE)
 
@@ -20,9 +33,13 @@ pairwise_model_slopes(model, formula, ...)
 
 \item{formula}{XX}
 
-\item{...}{XX}
-
 \item{cld}{XX}
+
+\item{backtransform}{XX}
+
+\item{type}{XX}
+
+\item{...}{XX}
 }
 \value{
 XX

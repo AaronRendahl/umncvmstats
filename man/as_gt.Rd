@@ -21,6 +21,8 @@ as_gt(x, ...)
 )
 }
 \arguments{
+\item{x}{XX}
+
 \item{...}{XX}
 
 \item{footnote_col}{XX}
@@ -32,8 +34,6 @@ as_gt(x, ...)
 \item{simplify}{XX}
 
 \item{row_group_as_column}{XX}
-
-\item{data}{XX}
 }
 \description{
 Create a gt table object
