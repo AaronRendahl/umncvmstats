@@ -44,14 +44,17 @@ as_atest.summary_emm <- function(x, model, ...) {
   attr.keep <- attr.keep[attr.keep %in% names(attr.orig)]
   for(a in attr.keep) attr(x, a) <- attr.orig[[a]]
 
-  as_atest(x)
+  as_atest(x, ...)
 }
 
 #' @importFrom purrr is_list
 #' @export
 as_atest.data.frame <- function(x,
                                 estimate.vars=attr(x, "estimate.vars"),
-                                inference.vars=attr(x, "inference.vars"), ...) {
+                                inference.vars=attr(x, "inference.vars"),
+                                pri.vars=attr(x, "pri.vars"),
+                                by.vars=attr(x, "by.vars"),
+                                ...) {
   if("about" %in% names(x) && !is_list(x[["about"]])) {
     warning("Internal warning: converting messages to a list.")
     x[["about"]] <- list(x[["about"]])
@@ -61,11 +64,11 @@ as_atest.data.frame <- function(x,
     xdf <- x[["df"]][!is.na(x[["df"]])]
     if(length(xdf) > 0 && all(abs(round(xdf) - xdf) < 1e-6)) x[["df"]] <- as.integer(round(x[["df"]]))
   }
-  vars1 <- c(".y", ".y_value", ".y_contrast", ".x", ".x_value", ".x_contrast", ".g", ".g_value")
-  vars2 <- estimate.vars
+  vars1 <- c(".y", ".y_value", ".y_contrast", ".terms", ".x", ".x_value", ".x_contrast", ".g", ".g_value")
+  vars2 <- c(by.vars, pri.vars, estimate.vars)
   vars3 <- c("conf.low", "conf.high")
   vars4 <- inference.vars
-  vars5 <- c("p.value", "p.adjust", "about")
+  vars5 <- c("p.value", "p.adjust", "cld.group", "about")
   varsX <- setdiff(names(x), c(vars1, vars2, vars3, vars4, vars5))
   if(length(varsX)>0) {
     message("Internal warning: variable type unclear for: ", paste(varsX, collapse=", "))
