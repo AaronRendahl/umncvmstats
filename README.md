@@ -23,4 +23,6 @@ devtools::install_github("AaronRendahl/umncvmstats")
 
 ## Documentation
 
-See the [articles](articles/index.html) for more details.
+See the
+[articles](https://aaronrendahl.github.io/umncvmstats/articles/index.html)
+for more details.
