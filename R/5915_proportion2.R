@@ -42,10 +42,9 @@ two_proportion_test.formula <- function(formula, data, success, method=c("defaul
   n <- length(x)
   m <- table(x, y)
   result <- two_proportion_test.default(m, alternative=alternative, method=method, ...)
-  result <- result |> mutate(response = y.name, response.value=success, .before=1) |>
-    mutate(variable = x.name,
-           value=paste(levels(x), collapse=" - "),
-           .before="proportion")
+  result <- result |> mutate(.y = y.name, .y_value=success, .before=1) |>
+    mutate(.x = x.name,
+           .x_contrast=paste(levels(x), collapse=" - "))
   as_atest(result)
 }
 
@@ -79,8 +78,7 @@ two_proportion_test.default <- function(x, n,
     if(method!="exact") {
       about <- c(about, "Method chosen due to expected counts < 5.")
     }
-    result <- ft |> select("p.value") |> mutate(proportion=computed.diff, .before="p.value") |>
-      mutate(value="difference", .before=1)
+    result <- ft |> select("p.value") |> mutate(difference=computed.diff, .before="p.value")
     result$about <- list(about)
   } else {
     capture <- capture_warnings(
@@ -94,14 +92,13 @@ two_proportion_test.default <- function(x, n,
                      result$method, result$alternative, conf.level*100, adjust_txt)
     about <- c(about, capture$warnings)
     result <- result |>
-      mutate(value="difference", .after="estimate2") |>
-      mutate(proportion=.data$estimate2 - .data$estimate1, .after="value") |>
+      mutate(difference=.data$estimate2 - .data$estimate1, .before=1) |>
       select(-c("method", "alternative", "parameter", "estimate1", "estimate2")) |>
       rename(chisq.value="statistic") |>
       relocate(c("chisq.value", "p.value"), .after="conf.high")
   }
   result$about <- list(about)
-  as_atest(result)
+  as_atest(result, estimate.vars="difference", inference.vars="chisq.value")
 }
 
 #' Paired proportion test (McNemar's)
