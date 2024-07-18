@@ -8,6 +8,7 @@
 #' @import dplyr
 #' @import stringr
 #' @import gt
+#' @import conflicted
 #' @importFrom broom tidy
 #' @importFrom purrr map
 #' @importFrom tidyr nest unnest
