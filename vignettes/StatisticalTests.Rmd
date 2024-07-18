@@ -16,17 +16,7 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(umncvmstats)
-mtcars2 <- datasets::mtcars |> 
-  dplyr::mutate(dplyr::across(c(cyl, vs, am, gear, carb), forcats::as_factor)) |>
-  dplyr::mutate(vs=forcats::fct_recode(vs, "V-shaped"="0", "straight"="1"),
-                am=forcats::fct_recode(am, "automatic"="0", "manual"="1")) |>
-  tibble::rownames_to_column("model") |> tibble::as_tibble()
 
-set.seed(15)
-passfail <- tidyr::tibble(score1=rnorm(50, mean=80, sd=7),
-                          score2=rnorm(50, mean=85, sd=7)) |>
-  dplyr::mutate(pass1=score1>80, pass2=score2>80) |>
-  dplyr::mutate(across(starts_with("pass"), \(x) factor(x, levels=c(FALSE, TRUE), labels=c("fail", "pass"))))
 ```
 
 ## Tests for Proportions
