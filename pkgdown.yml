@@ -3,9 +3,10 @@ pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
   LinearModels: LinearModels.html
+  LogisticModels: LogisticModels.html
   Means: Means.html
   Proportions: Proportions.html
-last_built: 2024-07-18T17:43Z
+last_built: 2024-07-18T18:40Z
 urls:
   reference: https://aaronrendahl.github.io/umncvmstats/reference
   article: https://aaronrendahl.github.io/umncvmstats/articles
