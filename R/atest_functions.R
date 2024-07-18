@@ -13,15 +13,16 @@ as_tibble.atest <- function(x, footnotes=c("byrow", "below", "asis"), ...) {
 
 #' @param footnote_col XX
 #' @param rowname_col XX
+#' @param groupname_col XX
 #' @param simplify XX
 #' @param row_group_as_column XX
 #' @rdname as_gt
 #' @export
 as_gt.atest <- function(data,
                         footnote_col="footnote",
-                        rowname_col=".rowname",
-                        simplify = TRUE,
+                        rowname_col=c(),
                         groupname_col=c(),
+                        simplify = TRUE,
                         row_group_as_column = TRUE,
                         ...) {
   xx <- separate_about(data)

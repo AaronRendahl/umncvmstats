@@ -13,9 +13,9 @@ as_gt(data, ...)
 \method{as_gt}{atest}(
   data,
   footnote_col = "footnote",
-  rowname_col = ".rowname",
-  simplify = TRUE,
+  rowname_col = c(),
   groupname_col = c(),
+  simplify = TRUE,
   row_group_as_column = TRUE,
   ...
 )
@@ -28,6 +28,8 @@ as_gt(data, ...)
 \item{footnote_col}{XX}
 
 \item{rowname_col}{XX}
+
+\item{groupname_col}{XX}
 
 \item{simplify}{XX}
 
