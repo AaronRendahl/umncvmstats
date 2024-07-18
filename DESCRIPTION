@@ -17,3 +17,6 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 URL: https://aaronrendahl.github.io/umncvmstats/
+Depends: 
+    R (>= 2.10)
+LazyData: true
