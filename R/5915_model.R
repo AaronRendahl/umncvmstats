@@ -24,7 +24,7 @@ model_glance <- function(model, ...) {
 #' @return XX
 #' @export
 model_coefs <- function(model, ...) {
-  out <- tidy(model, ...) |> rename(SE=std.error)
+  out <- tidy(model, ...) |> rename(any_of(c(SE="std.error")))
   bind_cols(model_form(model), out) |>
     as_atest(estimate.vars=c("term", "estimate", "SE"),
              inference.vars=c("statistic"))
@@ -60,7 +60,8 @@ model_means <- function(model, formula, ..., cld=TRUE) {
   } else {
     out <- summary(em)
   }
-  as_atest(out, model, estimate.vars=c("emmean", "SE", "df"))
+  as_atest(out, model, estimate.vars=c("emmean", "estimate", "SE", "df"),
+           inference.vars="t.ratio")
 }
 
 #' @export
@@ -70,7 +71,10 @@ model_means <- function(model, formula, ..., cld=TRUE) {
 pairwise_model_means <- function(model, formula, ...) {
   em <- emmeans(model, formula, ...)
   out <- pairs(em, infer=TRUE) |> summary()
-  as_atest(out, model, estimate.vars=c("contrast", "estimate", "SE", "df", "t.ratio"))
+  as_atest(out, model,
+           pri.vars="contrast",
+           estimate.vars=c("estimate", "SE", "df"),
+           inference.vars="t.ratio")
 }
 
 #' @export
