@@ -43,9 +43,22 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">model_means</span><span class="op">(</span><span class="va">model</span>, <span class="va">formula</span>, <span class="va">...</span>, cld <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">model_means</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  <span class="va">formula</span>,</span>
+<span>  cld <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  backtransform <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  type <span class="op">=</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE</a></span><span class="op">(</span><span class="va">backtransform</span><span class="op">)</span><span class="op">)</span> <span class="st">"response"</span> <span class="kw">else</span> <span class="st">"linear"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">pairwise_model_means</span><span class="op">(</span><span class="va">model</span>, <span class="va">formula</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">pairwise_model_means</span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  <span class="va">formula</span>,</span>
+<span>  backtransform <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  type <span class="op">=</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isTRUE</a></span><span class="op">(</span><span class="va">backtransform</span><span class="op">)</span><span class="op">)</span> <span class="st">"response"</span> <span class="kw">else</span> <span class="st">"linear"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">model_slopes</span><span class="op">(</span><span class="va">model</span>, <span class="va">formula</span>, <span class="va">...</span>, cld <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
@@ -64,11 +77,19 @@
 <dd><p>XX</p></dd>
 
 
-<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
+<dt id="arg-cld">cld<a class="anchor" aria-label="anchor" href="#arg-cld"></a></dt>
 <dd><p>XX</p></dd>
 
 
-<dt id="arg-cld">cld<a class="anchor" aria-label="anchor" href="#arg-cld"></a></dt>
+<dt id="arg-backtransform">backtransform<a class="anchor" aria-label="anchor" href="#arg-backtransform"></a></dt>
+<dd><p>XX</p></dd>
+
+
+<dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
+<dd><p>XX</p></dd>
+
+
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>XX</p></dd>
 
 </dl></div>

@@ -2964,44 +2964,44 @@
 </style>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
+<td headers="t.ratio" class="gt_row gt_right">−2.7</td>
 <td headers="contrast" class="gt_row gt_left">cyl4 - cyl6</td>
 <td headers="estimate" class="gt_row gt_right">−0.83</td>
 <td headers="SE" class="gt_row gt_right">0.30</td>
 <td headers="df" class="gt_row gt_right">29</td>
 <td headers="conf.low" class="gt_row gt_right">−1.6</td>
 <td headers="conf.high" class="gt_row gt_right">−0.079</td>
-<td headers="t.ratio" class="gt_row gt_right">−2.7</td>
 <td headers="p.value" class="gt_row gt_left">  0.028</td>
 </tr>
 <tr>
+<td headers="t.ratio" class="gt_row gt_right">−6.8</td>
 <td headers="contrast" class="gt_row gt_left">cyl4 - cyl8</td>
 <td headers="estimate" class="gt_row gt_right">−1.7 </td>
 <td headers="SE" class="gt_row gt_right">0.25</td>
 <td headers="df" class="gt_row gt_right">29</td>
 <td headers="conf.low" class="gt_row gt_right">−2.3</td>
 <td headers="conf.high" class="gt_row gt_right">−1.1  </td>
-<td headers="t.ratio" class="gt_row gt_right">−6.8</td>
 <td headers="p.value" class="gt_row gt_left">&lt; 0.0001</td>
 </tr>
 <tr>
+<td headers="t.ratio" class="gt_row gt_right">−3.0</td>
 <td headers="contrast" class="gt_row gt_left">cyl6 - cyl8</td>
 <td headers="estimate" class="gt_row gt_right">−0.88</td>
 <td headers="SE" class="gt_row gt_right">0.29</td>
 <td headers="df" class="gt_row gt_right">29</td>
 <td headers="conf.low" class="gt_row gt_right">−1.6</td>
 <td headers="conf.high" class="gt_row gt_right">−0.16 </td>
-<td headers="t.ratio" class="gt_row gt_right">−3.0</td>
 <td headers="p.value" class="gt_row gt_left">  0.014</td>
 </tr>
 </tbody>
@@ -6421,8 +6421,7 @@
 </div>
 <p>model means, both averaging over other variables, and separately:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m3</span>, <span class="op">~</span><span class="va">vs</span><span class="op">)</span></span>
-<span><span class="co">#&gt; NOTE: Results may be misleading due to involvement in interactions</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m3</span>, <span class="op">~</span><span class="va">vs</span><span class="op">)</span></span></code></pre></div>
 <div id="rslsqjlmpg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#rslsqjlmpg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -6911,6 +6910,10 @@
     </tr>
 <tr>
 <td class="gt_footnote" colspan="7"> significance level used: alpha = 0.05</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="7"> NOTE: Results may be misleading due to involvement in interactions
+</td>
     </tr>
 </tfoot>
 </table>
@@ -7430,8 +7433,7 @@
 <p>Comparing model means, both averaging over other variables, and
 separately:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m3</span>, <span class="op">~</span><span class="va">vs</span><span class="op">)</span></span>
-<span><span class="co">#&gt; NOTE: Results may be misleading due to involvement in interactions</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m3</span>, <span class="op">~</span><span class="va">vs</span><span class="op">)</span></span></code></pre></div>
 <div id="jhvqltorlv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#jhvqltorlv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -7883,23 +7885,23 @@ separately:</p>
 </style>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
     </tr></thead>
 <tbody class="gt_table_body"><tr>
+<td headers="t.ratio" class="gt_row gt_right">4.1</td>
 <td headers="contrast" class="gt_row gt_left">(V-shaped) - straight</td>
 <td headers="estimate" class="gt_row gt_right">0.87</td>
 <td headers="SE" class="gt_row gt_right">0.21</td>
 <td headers="df" class="gt_row gt_right">28</td>
 <td headers="conf.low" class="gt_row gt_right">0.43</td>
 <td headers="conf.high" class="gt_row gt_right">1.3</td>
-<td headers="t.ratio" class="gt_row gt_right">4.1</td>
 <td headers="p.value" class="gt_row gt_left">  0.0004</td>
 </tr></tbody>
 <tfoot class="gt_footnotes">
@@ -7909,11 +7911,17 @@ separately:</p>
 <tr>
 <td class="gt_footnote" colspan="8"> Confidence level used: 0.95</td>
     </tr>
+<tr>
+<td class="gt_footnote" colspan="8"> NOTE: Results may be misleading due to involvement in interactions
+</td>
+    </tr>
 </tfoot>
 </table>
 </div>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m3</span>, <span class="op">~</span><span class="va">vs</span><span class="op">|</span><span class="va">am</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m3</span>, <span class="op">~</span><span class="va">vs</span><span class="op">|</span><span class="va">am</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in as_atest.data.frame(x, ...): Internal warning: variable type unclear</span></span>
+<span><span class="co">#&gt; for: am</span></span></code></pre></div>
 <div id="uzjcdmfnby" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#uzjcdmfnby table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -8366,36 +8374,36 @@ separately:</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead><tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=""></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr class="gt_row_group_first">
 <td headers="am = automatic stub_1_1 stub_1" rowspan="1" class="gt_row gt_left gt_stub_row_group">am = automatic</td>
+<td headers="am = automatic stub_1_1 t.ratio" class="gt_row gt_right">3.3</td>
 <td headers="am = automatic stub_1_1 contrast" class="gt_row gt_center">(V-shaped) - straight</td>
 <td headers="am = automatic stub_1_1 estimate" class="gt_row gt_right">0.91</td>
 <td headers="am = automatic stub_1_1 SE" class="gt_row gt_right">0.28</td>
 <td headers="am = automatic stub_1_1 df" class="gt_row gt_right">28</td>
 <td headers="am = automatic stub_1_1 conf.low" class="gt_row gt_right">0.34</td>
 <td headers="am = automatic stub_1_1 conf.high" class="gt_row gt_right">1.5</td>
-<td headers="am = automatic stub_1_1 t.ratio" class="gt_row gt_right">3.3</td>
 <td headers="am = automatic stub_1_1 p.value" class="gt_row gt_left">  0.0028</td>
 </tr>
 <tr class="gt_row_group_first">
 <td headers="am = manual stub_1_2 stub_1" rowspan="1" class="gt_row gt_left gt_stub_row_group">am = manual</td>
+<td headers="am = manual stub_1_2 t.ratio" class="gt_row gt_right">2.6</td>
 <td headers="am = manual stub_1_2 contrast" class="gt_row gt_center">(V-shaped) - straight</td>
 <td headers="am = manual stub_1_2 estimate" class="gt_row gt_right">0.83</td>
 <td headers="am = manual stub_1_2 SE" class="gt_row gt_right">0.33</td>
 <td headers="am = manual stub_1_2 df" class="gt_row gt_right">28</td>
 <td headers="am = manual stub_1_2 conf.low" class="gt_row gt_right">0.16</td>
 <td headers="am = manual stub_1_2 conf.high" class="gt_row gt_right">1.5</td>
-<td headers="am = manual stub_1_2 t.ratio" class="gt_row gt_right">2.6</td>
 <td headers="am = manual stub_1_2 p.value" class="gt_row gt_left">  0.017</td>
 </tr>
 </tbody>
@@ -8410,7 +8418,7 @@ separately:</p>
 </h2>
 <p>First make the model</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">m4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span><span class="op">*</span><span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">m4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">*</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
 <p>ANOVA table:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_anova.html">model_anova</a></span><span class="op">(</span><span class="va">m4</span><span class="op">)</span> </span></code></pre></div>
@@ -9388,7 +9396,7 @@ separately:</p>
 </div>
 <p>model coefficients:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_coefs.html">model_coefs</a></span><span class="op">(</span><span class="va">m4</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/fmt_numbers.html">fmt_numbers</a></span><span class="op">(</span>decimals<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_coefs.html">model_coefs</a></span><span class="op">(</span><span class="va">m4</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/fmt_numbers.html">fmt_numbers</a></span><span class="op">(</span>decimals <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <div id="jisysoqowe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#jisysoqowe table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -9880,8 +9888,7 @@ separately:</p>
 </div>
 <p>model means, both averaging over other variables, and separately:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m4</span>, <span class="op">~</span><span class="va">am</span><span class="op">)</span></span>
-<span><span class="co">#&gt; NOTE: Results may be misleading due to involvement in interactions</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m4</span>, <span class="op">~</span><span class="va">am</span><span class="op">)</span></span></code></pre></div>
 <div id="ytkovhgshl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ytkovhgshl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -10367,6 +10374,10 @@ separately:</p>
     </tr>
 <tr>
 <td class="gt_footnote" colspan="7"> significance level used: alpha = 0.05</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="7"> NOTE: Results may be misleading due to involvement in interactions
+</td>
     </tr>
 </tfoot>
 </table>
@@ -10886,8 +10897,7 @@ separately:</p>
 <p>Comparing model means, both averaging over other variables, and
 separately:</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m4</span>, <span class="op">~</span><span class="va">am</span><span class="op">)</span></span>
-<span><span class="co">#&gt; NOTE: Results may be misleading due to involvement in interactions</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m4</span>, <span class="op">~</span><span class="va">am</span><span class="op">)</span></span></code></pre></div>
 <div id="uzbiykapwo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#uzbiykapwo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -11339,32 +11349,40 @@ separately:</p>
 </style>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
     </tr></thead>
 <tbody class="gt_table_body"><tr>
+<td headers="t.ratio" class="gt_row gt_right">1.5</td>
 <td headers="contrast" class="gt_row gt_left">automatic - manual</td>
 <td headers="estimate" class="gt_row gt_right">2.2</td>
 <td headers="SE" class="gt_row gt_right">1.4</td>
 <td headers="df" class="gt_row gt_right">28</td>
 <td headers="conf.low" class="gt_row gt_right">−0.74</td>
 <td headers="conf.high" class="gt_row gt_right">5.1</td>
-<td headers="t.ratio" class="gt_row gt_right">1.5</td>
 <td headers="p.value" class="gt_row gt_left">  0.14</td>
 </tr></tbody>
-<tfoot class="gt_footnotes"><tr>
+<tfoot class="gt_footnotes">
+<tr>
 <td class="gt_footnote" colspan="8"> Confidence level used: 0.95</td>
-    </tr></tfoot>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="8"> NOTE: Results may be misleading due to involvement in interactions
+</td>
+    </tr>
+</tfoot>
 </table>
 </div>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m4</span>, <span class="op">~</span><span class="va">am</span> <span class="op">|</span> <span class="va">wt</span>, at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>wt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m4</span>, <span class="op">~</span><span class="va">am</span> <span class="op">|</span> <span class="va">wt</span>, at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>wt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in as_atest.data.frame(x, ...): Internal warning: variable type unclear</span></span>
+<span><span class="co">#&gt; for: wt</span></span></code></pre></div>
 <div id="ktayyjktvo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ktayyjktvo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -11817,36 +11835,36 @@ separately:</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead><tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=""></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr class="gt_row_group_first">
 <td headers="wt = 2 stub_1_1 stub_1" rowspan="1" class="gt_row gt_left gt_stub_row_group">wt = 2</td>
+<td headers="wt = 2 stub_1_1 t.ratio" class="gt_row gt_right">−2.5</td>
 <td headers="wt = 2 stub_1_1 contrast" class="gt_row gt_center">automatic - manual</td>
 <td headers="wt = 2 stub_1_1 estimate" class="gt_row gt_right">−4.3</td>
 <td headers="wt = 2 stub_1_1 SE" class="gt_row gt_right">1.7</td>
 <td headers="wt = 2 stub_1_1 df" class="gt_row gt_right">28</td>
 <td headers="wt = 2 stub_1_1 conf.low" class="gt_row gt_right">−7.9</td>
 <td headers="wt = 2 stub_1_1 conf.high" class="gt_row gt_right">−0.70</td>
-<td headers="wt = 2 stub_1_1 t.ratio" class="gt_row gt_right">−2.5</td>
 <td headers="wt = 2 stub_1_1 p.value" class="gt_row gt_left">  0.021</td>
 </tr>
 <tr class="gt_row_group_first">
 <td headers="wt = 5 stub_1_2 stub_1" rowspan="1" class="gt_row gt_left gt_stub_row_group">wt = 5</td>
+<td headers="wt = 5 stub_1_2 t.ratio" class="gt_row gt_right"> 3.4</td>
 <td headers="wt = 5 stub_1_2 contrast" class="gt_row gt_center">automatic - manual</td>
 <td headers="wt = 5 stub_1_2 estimate" class="gt_row gt_right">12  </td>
 <td headers="wt = 5 stub_1_2 SE" class="gt_row gt_right">3.4</td>
 <td headers="wt = 5 stub_1_2 df" class="gt_row gt_right">28</td>
 <td headers="wt = 5 stub_1_2 conf.low" class="gt_row gt_right"> 4.6</td>
 <td headers="wt = 5 stub_1_2 conf.high" class="gt_row gt_right">19   </td>
-<td headers="wt = 5 stub_1_2 t.ratio" class="gt_row gt_right"> 3.4</td>
 <td headers="wt = 5 stub_1_2 p.value" class="gt_row gt_left">  0.0020</td>
 </tr>
 </tbody>
@@ -13307,6 +13325,1093 @@ separately:</p>
 <tfoot class="gt_footnotes"><tr>
 <td class="gt_footnote" colspan="8"> Confidence level used: 0.95</td>
     </tr></tfoot>
+</table>
+</div>
+</div>
+<div class="section level2">
+<h2 id="log-transformations">Log transformations<a class="anchor" aria-label="anchor" href="#log-transformations"></a>
+</h2>
+<p>Means and pairwise means are backtransformed by default. To report on
+the log scale, use <code>backtransform=FALSE</code>.</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">m5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span> <span class="op">~</span> <span class="va">am</span> <span class="op">*</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m5</span>, <span class="op">~</span><span class="va">am</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m5</span>, <span class="op">~</span><span class="va">am</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div id="hzoepsdaym" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hzoepsdaym table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hzoepsdaym thead, #hzoepsdaym tbody, #hzoepsdaym tfoot, #hzoepsdaym tr, #hzoepsdaym td, #hzoepsdaym th {
+  border-style: none;
+}
+
+#hzoepsdaym p {
+  margin: 0;
+  padding: 0;
+}
+
+#hzoepsdaym .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: 0;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hzoepsdaym .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hzoepsdaym .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hzoepsdaym .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 1px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hzoepsdaym .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hzoepsdaym .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hzoepsdaym .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hzoepsdaym .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 2.5px;
+  padding-bottom: 3.5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hzoepsdaym .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hzoepsdaym .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hzoepsdaym .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hzoepsdaym .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hzoepsdaym .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hzoepsdaym .gt_group_heading {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hzoepsdaym .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hzoepsdaym .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hzoepsdaym .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hzoepsdaym .gt_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hzoepsdaym .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hzoepsdaym .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hzoepsdaym .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hzoepsdaym .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hzoepsdaym .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hzoepsdaym .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hzoepsdaym .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hzoepsdaym .gt_last_summary_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hzoepsdaym .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hzoepsdaym .gt_first_grand_summary_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hzoepsdaym .gt_last_grand_summary_row_top {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hzoepsdaym .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hzoepsdaym .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hzoepsdaym .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hzoepsdaym .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hzoepsdaym .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hzoepsdaym .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hzoepsdaym .gt_left {
+  text-align: left;
+}
+
+#hzoepsdaym .gt_center {
+  text-align: center;
+}
+
+#hzoepsdaym .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hzoepsdaym .gt_font_normal {
+  font-weight: normal;
+}
+
+#hzoepsdaym .gt_font_bold {
+  font-weight: bold;
+}
+
+#hzoepsdaym .gt_font_italic {
+  font-style: italic;
+}
+
+#hzoepsdaym .gt_super {
+  font-size: 65%;
+}
+
+#hzoepsdaym .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hzoepsdaym .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hzoepsdaym .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hzoepsdaym .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hzoepsdaym .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hzoepsdaym .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hzoepsdaym .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#hzoepsdaym .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#hzoepsdaym div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="am">am</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="response">response</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="ratio">ratio</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="null">null</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="cld.group">cld.group</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="footnote">footnote</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="am" class="gt_row gt_center">manual</td>
+<td headers="contrast" class="gt_row gt_center"><br></td>
+<td headers="response" class="gt_row gt_right">17 </td>
+<td headers="ratio" class="gt_row gt_right"><br></td>
+<td headers="SE" class="gt_row gt_right">1.0  </td>
+<td headers="df" class="gt_row gt_right">28</td>
+<td headers="conf.low" class="gt_row gt_right">15   </td>
+<td headers="conf.high" class="gt_row gt_right">19  </td>
+<td headers="null" class="gt_row gt_right"><br></td>
+<td headers="t.ratio" class="gt_row gt_right"><br></td>
+<td headers="p.value" class="gt_row gt_left"><br></td>
+<td headers="cld.group" class="gt_row gt_left"> a</td>
+<td headers="footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1,2,3,4,5</sup></span> </td>
+</tr>
+<tr>
+<td headers="am" class="gt_row gt_center">automatic</td>
+<td headers="contrast" class="gt_row gt_center"><br></td>
+<td headers="response" class="gt_row gt_right">19 </td>
+<td headers="ratio" class="gt_row gt_right"><br></td>
+<td headers="SE" class="gt_row gt_right">0.70 </td>
+<td headers="df" class="gt_row gt_right">28</td>
+<td headers="conf.low" class="gt_row gt_right">18   </td>
+<td headers="conf.high" class="gt_row gt_right">21  </td>
+<td headers="null" class="gt_row gt_right"><br></td>
+<td headers="t.ratio" class="gt_row gt_right"><br></td>
+<td headers="p.value" class="gt_row gt_left"><br></td>
+<td headers="cld.group" class="gt_row gt_left"> a</td>
+<td headers="footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1,2,3,4,5</sup></span> </td>
+</tr>
+<tr>
+<td headers="am" class="gt_row gt_center"><br></td>
+<td headers="contrast" class="gt_row gt_center">automatic / manual</td>
+<td headers="response" class="gt_row gt_right"><br></td>
+<td headers="ratio" class="gt_row gt_right">1.1</td>
+<td headers="SE" class="gt_row gt_right">0.079</td>
+<td headers="df" class="gt_row gt_right">28</td>
+<td headers="conf.low" class="gt_row gt_right"> 0.96</td>
+<td headers="conf.high" class="gt_row gt_right"> 1.3</td>
+<td headers="null" class="gt_row gt_right">1.0</td>
+<td headers="t.ratio" class="gt_row gt_right">1.5</td>
+<td headers="p.value" class="gt_row gt_left">  0.15</td>
+<td headers="cld.group" class="gt_row gt_left"><br></td>
+<td headers="footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1,2,3,5</sup></span> </td>
+</tr>
+</tbody>
+<tfoot class="gt_footnotes">
+<tr>
+<td class="gt_footnote" colspan="13">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> Confidence level used: 0.95</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="13">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> Intervals are back-transformed from the log scale</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="13">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>3</sup></span> Tests are performed on the log scale</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="13">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>4</sup></span> significance level used: alpha = 0.05</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="13">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>5</sup></span> NOTE: Results may be misleading due to involvement in interactions
+</td>
+    </tr>
+</tfoot>
+</table>
+</div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m5</span>, <span class="op">~</span><span class="va">am</span>, backtransform<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m5</span>, <span class="op">~</span><span class="va">am</span>, backtransform<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div id="bwmszxcqai" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bwmszxcqai table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#bwmszxcqai thead, #bwmszxcqai tbody, #bwmszxcqai tfoot, #bwmszxcqai tr, #bwmszxcqai td, #bwmszxcqai th {
+  border-style: none;
+}
+
+#bwmszxcqai p {
+  margin: 0;
+  padding: 0;
+}
+
+#bwmszxcqai .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: 0;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#bwmszxcqai .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#bwmszxcqai .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#bwmszxcqai .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 1px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#bwmszxcqai .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#bwmszxcqai .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#bwmszxcqai .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#bwmszxcqai .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 2.5px;
+  padding-bottom: 3.5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#bwmszxcqai .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#bwmszxcqai .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#bwmszxcqai .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#bwmszxcqai .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#bwmszxcqai .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#bwmszxcqai .gt_group_heading {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#bwmszxcqai .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#bwmszxcqai .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#bwmszxcqai .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#bwmszxcqai .gt_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#bwmszxcqai .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bwmszxcqai .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#bwmszxcqai .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#bwmszxcqai .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#bwmszxcqai .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bwmszxcqai .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#bwmszxcqai .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#bwmszxcqai .gt_last_summary_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#bwmszxcqai .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bwmszxcqai .gt_first_grand_summary_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#bwmszxcqai .gt_last_grand_summary_row_top {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#bwmszxcqai .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#bwmszxcqai .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#bwmszxcqai .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#bwmszxcqai .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bwmszxcqai .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#bwmszxcqai .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bwmszxcqai .gt_left {
+  text-align: left;
+}
+
+#bwmszxcqai .gt_center {
+  text-align: center;
+}
+
+#bwmszxcqai .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#bwmszxcqai .gt_font_normal {
+  font-weight: normal;
+}
+
+#bwmszxcqai .gt_font_bold {
+  font-weight: bold;
+}
+
+#bwmszxcqai .gt_font_italic {
+  font-style: italic;
+}
+
+#bwmszxcqai .gt_super {
+  font-size: 65%;
+}
+
+#bwmszxcqai .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#bwmszxcqai .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#bwmszxcqai .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#bwmszxcqai .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#bwmszxcqai .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#bwmszxcqai .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#bwmszxcqai .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#bwmszxcqai .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#bwmszxcqai div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="am">am</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="emmean">emmean</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="cld.group">cld.group</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="footnote">footnote</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="am" class="gt_row gt_center">manual</td>
+<td headers="contrast" class="gt_row gt_left"><br></td>
+<td headers="emmean" class="gt_row gt_right">2.8</td>
+<td headers="estimate" class="gt_row gt_right"><br></td>
+<td headers="SE" class="gt_row gt_right">0.061</td>
+<td headers="df" class="gt_row gt_right">28</td>
+<td headers="conf.low" class="gt_row gt_right"> 2.7  </td>
+<td headers="conf.high" class="gt_row gt_right">3.0 </td>
+<td headers="t.ratio" class="gt_row gt_right"><br></td>
+<td headers="p.value" class="gt_row gt_left"><br></td>
+<td headers="cld.group" class="gt_row gt_left"> a</td>
+<td headers="footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1,2,3,4</sup></span> </td>
+</tr>
+<tr>
+<td headers="am" class="gt_row gt_center">automatic</td>
+<td headers="contrast" class="gt_row gt_left"><br></td>
+<td headers="emmean" class="gt_row gt_right">2.9</td>
+<td headers="estimate" class="gt_row gt_right"><br></td>
+<td headers="SE" class="gt_row gt_right">0.037</td>
+<td headers="df" class="gt_row gt_right">28</td>
+<td headers="conf.low" class="gt_row gt_right"> 2.9  </td>
+<td headers="conf.high" class="gt_row gt_right">3.0 </td>
+<td headers="t.ratio" class="gt_row gt_right"><br></td>
+<td headers="p.value" class="gt_row gt_left"><br></td>
+<td headers="cld.group" class="gt_row gt_left"> a</td>
+<td headers="footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1,2,3,4</sup></span> </td>
+</tr>
+<tr>
+<td headers="am" class="gt_row gt_center"><br></td>
+<td headers="contrast" class="gt_row gt_left">automatic - manual</td>
+<td headers="emmean" class="gt_row gt_right"><br></td>
+<td headers="estimate" class="gt_row gt_right">0.11</td>
+<td headers="SE" class="gt_row gt_right">0.071</td>
+<td headers="df" class="gt_row gt_right">28</td>
+<td headers="conf.low" class="gt_row gt_right">−0.040</td>
+<td headers="conf.high" class="gt_row gt_right">0.25</td>
+<td headers="t.ratio" class="gt_row gt_right">1.5</td>
+<td headers="p.value" class="gt_row gt_left">  0.15</td>
+<td headers="cld.group" class="gt_row gt_left"><br></td>
+<td headers="footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1,2,4</sup></span> </td>
+</tr>
+</tbody>
+<tfoot class="gt_footnotes">
+<tr>
+<td class="gt_footnote" colspan="12">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> Results are given on the log (not the response) scale.</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="12">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> Confidence level used: 0.95</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="12">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>3</sup></span> significance level used: alpha = 0.05</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="12">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>4</sup></span> NOTE: Results may be misleading due to involvement in interactions
+</td>
+    </tr>
+</tfoot>
 </table>
 </div>
 </div>
