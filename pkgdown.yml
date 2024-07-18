@@ -2,8 +2,10 @@ pandoc: 3.1.11
 pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
-  StatisticalTests: StatisticalTests.html
-last_built: 2024-07-18T14:34Z
+  LinearModels: LinearModels.html
+  Means: Means.html
+  Proportions: Proportions.html
+last_built: 2024-07-18T16:01Z
 urls:
   reference: https://aaronrendahl.github.io/umncvmstats/reference
   article: https://aaronrendahl.github.io/umncvmstats/articles
