@@ -2,7 +2,7 @@
 title: "Logistic Models"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Logistix Models}
+  %\VignetteIndexEntry{Logistic Models}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
