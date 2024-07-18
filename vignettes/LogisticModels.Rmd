@@ -1,0 +1,58 @@
+---
+title: "Logistic Models"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Logistix Models}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(umncvmstats)
+```
+
+First make the model
+```{r}
+m1 <- glm(am ~ mpg * vs, data = mtcars2, family=binomial)
+```
+
+ANOVA table:
+```{r}
+model_anova(m1)
+```
+
+model summary values:
+```{r}
+model_glance(m1)
+```
+
+model coefficients:
+```{r}
+model_coefs(m1)
+```
+
+model means:
+```{r}
+model_means(m1, ~vs)
+model_means(m1, ~vs | mpg, at=list(mpg=c(15, 20, 25)))
+model_means(m1, ~vs, backtransform = FALSE)
+```
+
+Computing model means for given values:
+```{r}
+model_means(m1, ~mpg, at=list(mpg=c(15, 20, 25)))
+model_means(m1, ~mpg, at=list(mpg=c(15, 20, 25)), backtransform=FALSE)
+```
+
+Comparing model means:
+```{r}
+pairwise_model_means(m1, ~vs)
+pairwise_model_means(m1, ~vs, backtransform=FALSE)
+```
