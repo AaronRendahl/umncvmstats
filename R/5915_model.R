@@ -73,6 +73,7 @@ model_means <- function(model, formula, cld=TRUE, backtransform=TRUE,
     out <- cld(em, Letters=letters) |> rename(cld.group=".group")
     skip <- "NOTE: If two or more means share the same grouping symbol,\n      then we cannot show them to be different.\n      But we also did not show them to be the same."
     attr(out, "mesg") <- setdiff(attr(out, "mesg"), skip)
+    out <- out |> mutate(cld.group=str_replace_all(cld.group, " ", "\u2007"))
   } else {
     out <- summary(em)
   }
@@ -114,6 +115,7 @@ model_slopes <- function(model, formula, ..., cld=TRUE) {
     out <- cld(em, Letters=letters) |> rename(cld.group=".group")
     skip <- "NOTE: If two or more means share the same grouping symbol,\n      then we cannot show them to be different.\n      But we also did not show them to be the same."
     attr(out, "mesg") <- setdiff(attr(out, "mesg"), skip)
+    out <- out |> mutate(cld.group=str_replace_all(cld.group, " ", "\u2007"))
   } else {
     out <- summary(em)
   }
