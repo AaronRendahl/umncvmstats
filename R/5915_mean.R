@@ -33,7 +33,7 @@ one_t_test <- function(formula, data,
                    result$method, result$alternative, conf.level*100)
   result <- result |> select(-c("method", "alternative")) |>
     rename(mean="estimate") |>
-    mutate(response=name, .before=1)
+    mutate(.y=name, .before=1)
   if(!do.test) {
     result <- result |> select(-c("statistic", "parameter", "p.value"))
   } else {
@@ -42,12 +42,12 @@ one_t_test <- function(formula, data,
       relocate("null", "t.value", "df", "p.value", .after="conf.high")
   }
   result$about <- list(about)
-  if(str_detect(result$response, "^log\\(.*\\)$") && isTRUE(backtransform)) {
-    result$response <- str_replace(result$response, "^log\\((.*)\\)$", "\\1")
+  if(str_detect(result$.y, "^log\\(.*\\)$") && isTRUE(backtransform)) {
+    result$.y <- str_replace(result$.y, "^log\\((.*)\\)$", "\\1")
     result <- result |> mutate(across(any_of(c("mean","conf.low", "conf.high", "null")), exp))
     result$about[[1]] <- c(result$about[[1]], "Results are backtransformed from the log scale (that is, the geometric mean is reported).")
   }
-  as_atest(result)
+  as_atest(result, estimate.vars="mean", inference.vars=character())
 }
 
 #' Two Sample t-test
@@ -91,19 +91,20 @@ two_t_test <- function(formula, data,
   about <- sprintf("%s (%s), with %0.0f%% confidence intervals%s.",
                    result$method, result$alternative, conf.level*100, adjust_txt)
   result <- result |>
-    mutate(value=paste(levels(x), collapse=if(backtransform) " / " else " - "), .after="estimate2") |>
-    rename(mean="estimate", df="parameter", t.value="statistic") |>
+    mutate(.x_contrast=paste(levels(x), collapse=if(backtransform) " / " else " - "), .after="estimate2") |>
+    rename(difference="estimate", df="parameter", t.value="statistic") |>
     select(-c("estimate1", "estimate2", "method", "alternative")) |>
     mutate(null=null) |>
     relocate("null", "t.value", "df", "p.value", .after="conf.high") |>
-    mutate(response = y.name, variable = x.name, .before=1)
+    mutate(.y = y.name, .x = x.name)
   result$about <- list(about)
   if(backtransform) {
-     result$response <- str_replace(result$response, "^log\\((.*)\\)$", "\\1")
-     result <- result |> mutate(across(any_of(c("mean","conf.low", "conf.high", "null")), exp))
+     result$.y <- str_replace(result$.y, "^log\\((.*)\\)$", "\\1")
+     result <- result |> mutate(across(any_of(c("difference","conf.low", "conf.high", "null")), exp)) |>
+       rename(ratio="difference")
      result$about[[1]] <- c(result$about[[1]], "Results are backtransformed from the log scale (that is, the ratio is reported).")
   }
-  as_atest(result)
+  as_atest(result, estimate.vars=c("difference", "ratio"), inference.vars=c("null", "t.value", "df"))
 }
 
 #' Paired t-test
@@ -136,11 +137,12 @@ paired_t_test <- function(formula, data,
                    result$method, result$alternative, conf.level*100)
   if(backtransform) y.names <- str_replace(y.names, "^log\\((.*)\\)$", "\\1")
   response <- paste(y.names, collapse=if(backtransform) " / " else " - ")
-  result <- result |> mutate(response=response, null=null) |>
-    select("response", mean="estimate", "conf.low", "conf.high", "null", t.value="statistic", df="parameter", "p.value")
+  result <- result |> mutate(.y_contrast=response, null=null) |>
+    select("response", difference="estimate", "conf.low", "conf.high", "null", t.value="statistic", df="parameter", "p.value")
   result$about <- list(about)
   if(backtransform) {
-    result <- result |> mutate(across(any_of(c("mean","conf.low", "conf.high", "null")), exp))
+    result <- result |> mutate(across(any_of(c("difference","conf.low", "conf.high", "null")), exp)) |>
+      rename(ratio="difference")
     result$about[[1]] <- c(result$about[[1]], "Results are backtransformed from the log scale (that is, the ratio is reported).")
   }
   as_atest(result)
