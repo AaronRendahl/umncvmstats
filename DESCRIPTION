@@ -4,10 +4,9 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Aaron", "Rendahl", email = "rend0020@umn.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5434-3592"))
-Description: This package standardizes functions for one and two sample 
-    statistical tests and provides cleaner output using the gt package.
-    It also includes several ggplot2 customizations to standardize and
-    simplify use of common plotting needs.
+Description: Standardized functions and output for one and two sample 
+    statistical tests, linear models, and logistic models, and
+    customized plotting functions to simplify common plotting needs.
 Language: en-US
 License: GPL (>= 3)
 Imports: ggplot2, gt, gtsummary, broom, lubridate, beeswarm, car, emmeans, multcomp, multcompView, stringr, tidyr, dplyr, forcats, tibble, rlang, purrr, cli, rstudioapi, knitr
