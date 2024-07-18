@@ -31,7 +31,8 @@ independence_test.formula <- function(formula, data, ...) {
   n <- length(x)
   m <- table(x, y)
   independence_test.default(m, ...) |>
-    mutate(response=y.name, variable = x.name, .before=1)
+    mutate(.y = y.name, .x = x.name) |>
+    as_atest()
 }
 
 #' @param x XX
@@ -65,5 +66,5 @@ independence_test.default <- function(x, method=c("default", "chisq", "exact"), 
     result$about <- list(c(result$method, capture$warnings))
     result <- result |> select(chisq.value="statistic", df="parameter", "p.value", "about")
   }
-  as_atest(result)
+  as_atest(result, inference.vars=c("chisq.value", "df"))
 }
