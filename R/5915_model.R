@@ -1,6 +1,13 @@
 model_form <- function(model) {
   f <- model$terms
-  tibble(.y=format(f[[2]]), .terms=format(f[[3]]))
+  .y <- format(f[[2]])
+  .y_value <- NULL
+  if((.y %in% names(model$data)) &&
+     is.factor(model$data[[.y]]) &&
+     (nlevels(model$data[[.y]])==2)) {
+    .y_value <- levels(model$data[[.y]])[2]
+  }
+  tibble(.y=.y, .y_value=.y_value, .terms=format(f[[3]]))
 }
 
 #' Get model summary information
@@ -69,11 +76,11 @@ model_means <- function(model, formula, cld=TRUE, backtransform=TRUE,
   } else {
     out <- summary(em)
   }
-
+  if("df" %in% names(out) && all(is.infinite(out[["df"]]))) { out[["df"]] <- NULL }
   attr(out, "mesg") <- c(attr(out, "mesg"), emX$warnings)
   as_atest(out, model,
-           estimate.vars=c("emmean", "response", "estimate", "ratio", "SE", "df"),
-           inference.vars=c("null", "t.ratio"))
+           estimate.vars=c("emmean", "response", "prob", "estimate", "ratio", "SE", "df"),
+           inference.vars=c("null", "t.ratio", "z.ratio"))
 }
 
 #' @export
@@ -88,10 +95,11 @@ pairwise_model_means <- function(model, formula, backtransform=TRUE,
   })
   out <- emX$result
   attr(out, "mesg") <- c(attr(out, "mesg"), emX$warnings)
+  if("df" %in% names(out) && all(is.infinite(out[["df"]]))) { out[["df"]] <- NULL }
   as_atest(out, model,
            pri.vars="contrast",
-           estimate.vars=c("emmean", "response", "estimate", "ratio", "SE", "df"),
-           inference.vars="null", "t.ratio")
+           estimate.vars=c("emmean", "response", "odds.ratio", "estimate", "ratio", "SE", "df"),
+           inference.vars=c("null", "t.ratio", "z.ratio"))
 }
 
 #' @export
