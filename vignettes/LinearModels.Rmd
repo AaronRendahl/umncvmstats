@@ -20,16 +20,15 @@ library(umncvmstats)
 
 ## Correlation tests
 ```{r}
-correlation_test(mpg ~ wt + hp, data=mtcars2)
+correlation_test(mpg ~ wt + hp, data = mtcars2)
 ```
 
-## Linear models
 
-### ANOVA
+## ANOVA
 
 First make the model
 ```{r}
-m1 <- lm(wt ~ cyl, data=mtcars2)
+m1 <- lm(wt ~ cyl, data = mtcars2)
 ```
 
 ANOVA table:
@@ -57,11 +56,11 @@ Comparing model means:
 pairwise_model_means(m1, ~cyl)
 ```
 
-### Regression
+## Regression
 
 First make the model
 ```{r}
-m2 <- lm(mpg ~ wt, data=mtcars2)
+m2 <- lm(mpg ~ wt, data = mtcars2)
 ```
 
 ANOVA table:
@@ -84,10 +83,10 @@ model slope:
 model_slopes(m2, wt~1)
 ```
 
-### Two-way ANOVA
+## Two-way ANOVA
 First make the model
 ```{r}
-m3 <- lm(wt ~ vs*am, data=mtcars2)
+m3 <- lm(wt ~ vs*am, data = mtcars2)
 ```
 
 ANOVA table:
@@ -123,10 +122,10 @@ pairwise_model_means(m3, ~vs)
 pairwise_model_means(m3, ~vs|am)
 ```
 
-### Multiple regression
+## Multiple regression
 First make the model
 ```{r}
-m4 <- lm(mpg ~ am*wt, data=mtcars2)
+m4 <- lm(mpg ~ am*wt, data = mtcars2)
 ```
 
 ANOVA table:

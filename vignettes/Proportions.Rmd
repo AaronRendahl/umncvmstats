@@ -18,48 +18,46 @@ knitr::opts_chunk$set(
 library(umncvmstats)
 ```
 
-## Tests for Proportions
-
-### One Proportion Test
+## One Proportion Test
 ```{r}
-one_proportion_test(vs~1, data=mtcars2)
+one_proportion_test(vs ~ 1, data = mtcars2)
 ```
 
-#### Separately by another categorical variable
+### Separately by another categorical variable
 ```{r}
-one_proportion_test(vs ~ am, data=mtcars2)
+one_proportion_test(vs ~ am, data = mtcars2)
 ```
 
-### Two Proportion Test
+## Two Proportion Test
 ```{r}
-two_proportion_test(vs ~ am, data=mtcars2)
+two_proportion_test(vs ~ am, data = mtcars2)
 ```
 
-#### together in one table
+### together in one table
 ```{r}
 combine_tests(
-  one_proportion_test(vs ~ am, data=mtcars2),
-  two_proportion_test(vs ~ am, data=mtcars2))
+  one_proportion_test(vs ~ am, data = mtcars2),
+  two_proportion_test(vs ~ am, data = mtcars2))
 ```
 
-### Pairwise Proportion Tests
+## Pairwise Proportion Tests
 ```{r}
 combine_tests(
-  one_proportion_test(vs ~ cyl, data=mtcars2),
-  pairwise_proportion_test(vs ~ cyl, data=mtcars2))
+  one_proportion_test(vs ~ cyl, data = mtcars2),
+  pairwise_proportion_test(vs ~ cyl, data = mtcars2))
 ```
 
-### Paired Proportion Test (McNemar's)
+## Paired Proportion Test (McNemar's)
 ```{r}
 combine_tests(
-  one_proportion_test(pass1 + pass2 ~ 1, data=passfail),
-  one_proportion_test(pass2 ~ pass1, data=passfail, all_success = TRUE),
-  paired_proportion_test(pass2 - pass1 ~ 1, data=passfail))
+  one_proportion_test(pass1 + pass2 ~ 1, data = passfail),
+  one_proportion_test(pass2 ~ pass1, data = passfail, all_success = TRUE),
+  paired_proportion_test(pass2 - pass1 ~ 1, data = passfail))
 ```
 
-### Independence Test
+## Independence Test
 ```{r}
 combine_tests(
-  one_proportion_test(cyl ~ vs, data=mtcars2, all_success = TRUE),
-  independence_test(cyl ~ vs, data=mtcars2))
+  one_proportion_test(cyl ~ vs, data = mtcars2, all_success = TRUE),
+  independence_test(cyl ~ vs, data = mtcars2))
 ```
