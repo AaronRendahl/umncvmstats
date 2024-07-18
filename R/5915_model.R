@@ -1,6 +1,6 @@
 model_form <- function(model) {
   f <- model$terms
-  tibble(response=format(f[[2]]), model.terms=format(f[[3]]))
+  tibble(.y=format(f[[2]]), .terms=format(f[[3]]))
 }
 
 #' Get model summary information
@@ -13,7 +13,7 @@ model_form <- function(model) {
 #' @export
 model_glance <- function(model, ...) {
   out <- glance(model, ...)
-  bind_cols(model_form(model), out) |> as_atest()
+  bind_cols(model_form(model), out) |> as_atest(inference.vars=setdiff(names(out), "p.value"))
 }
 
 #' Get model coefficients
@@ -24,8 +24,10 @@ model_glance <- function(model, ...) {
 #' @return XX
 #' @export
 model_coefs <- function(model, ...) {
-  out <- tidy(model, ...)
-  bind_cols(model_form(model), out) |> as_atest()
+  out <- tidy(model, ...) |> rename(SE=std.error)
+  bind_cols(model_form(model), out) |>
+    as_atest(estimate.vars=c("term", "estimate", "SE"),
+             inference.vars=c("statistic"))
 }
 
 #' Get model anova table
@@ -37,7 +39,7 @@ model_coefs <- function(model, ...) {
 #' @importFrom car Anova
 model_anova <- function(model, ...) {
   out <- Anova(model, ...) |> tidy()
-  bind_cols(model_form(model), out) |> as_atest()
+  bind_cols(model_form(model), out) |> as_atest(inference.vars=setdiff(names(out), "p.value"))
 }
 
 #' Get model means and slopes (trends)
@@ -54,11 +56,11 @@ model_anova <- function(model, ...) {
 model_means <- function(model, formula, ..., cld=TRUE) {
   em <- emmeans(model, formula, ...)
   if(isTRUE(cld)) {
-    out <- cld(em, Letters=letters)
+    out <- cld(em, Letters=letters) |> rename(cld.group=".group")
   } else {
     out <- summary(em)
   }
-  as_atest(out, model)
+  as_atest(out, model, estimate.vars=c("emmean", "SE", "df"))
 }
 
 #' @export
@@ -68,7 +70,7 @@ model_means <- function(model, formula, ..., cld=TRUE) {
 pairwise_model_means <- function(model, formula, ...) {
   em <- emmeans(model, formula, ...)
   out <- pairs(em, infer=TRUE) |> summary()
-  as_atest(out, model)
+  as_atest(out, model, estimate.vars=c("contrast", "estimate", "SE", "df", "t.ratio"))
 }
 
 #' @export
@@ -80,11 +82,11 @@ model_slopes <- function(model, formula, ..., cld=TRUE) {
   formula[[3]] <- NULL
   em <- emtrends(model, specs=formula, var=var, ...)
   if(isTRUE(cld)) {
-    out <- cld(em, Letters=letters)
+    out <- cld(em, Letters=letters) |> rename(cld.group=".group")
   } else {
     out <- summary(em)
   }
-  as_atest(out, model)
+  as_atest(out, model, estimate.vars=setdiff(names(out), c("cld.group", "p.value")))
 }
 
 #' @export
@@ -97,5 +99,5 @@ pairwise_model_slopes <- function(model, formula, ...) {
   formula[[3]] <- NULL
   em <- emtrends(model, specs=formula, var=var, ...)
   out <- pairs(em, infer=TRUE) |> summary()
-  as_atest(out, model)
+  as_atest(out, model, estimate.vars=setdiff(names(out), "p.value"))
 }
