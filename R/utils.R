@@ -1,15 +1,19 @@
 capture_warnings <- function(expr, warnings=c(), replacement=warnings) {
-  w <- NULL
+  myw <- NULL
   findwarnings <- function(w) {
     m <- match(w$message, warnings)
     m <- m[!is.na(m)]
     if(length(m) > 0) {
-      w <<- replacement[m]
+      myw <<- c(myw, replacement[m])
       invokeRestart("muffleWarning")
     }
   }
-  result <- withCallingHandlers(expr, warning = findwarnings)
-  list(result=result, warnings=w)
+  findmessages <- function(w) {
+    myw <<- c(myw, w$message)
+    invokeRestart("muffleMessage")
+  }
+  result <- withCallingHandlers(expr, warning = findwarnings, message=findmessages)
+  list(result=result, warnings=myw)
 }
 
 checkif2 <- function(x, require_two=TRUE) {
