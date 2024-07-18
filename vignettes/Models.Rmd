@@ -18,6 +18,12 @@ knitr::opts_chunk$set(
 library(umncvmstats)
 ```
 
+## Correlation tests
+```{r}
+correlation_test(mpg ~ wt + hp, data = mtcars2)
+```
+
+## Model Creation
 This code works with most linear or logistic models; it also has special handling for models with a log-transformed response
 
 Start by building the models in the usual way; here are three models. All have both a categorical and a continuous explanatory variable, and their interaction.
