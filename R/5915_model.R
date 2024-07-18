@@ -119,6 +119,7 @@ model_slopes <- function(model, formula, ..., cld=TRUE) {
   } else {
     out <- summary(em)
   }
+  if("df" %in% names(out) && all(is.infinite(out[["df"]]))) { out[["df"]] <- NULL }
   as_atest(out, model, estimate.vars=setdiff(names(out), c("cld.group", "p.value")))
 }
 
