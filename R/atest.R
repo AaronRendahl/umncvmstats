@@ -2,31 +2,6 @@ as_atest <- function(x, ...) {
   UseMethod("as_atest")
 }
 
-#' @export
-as_atest.summary_emm <- function(x, model, ...) {
-  about <- attr(x, "mesg")
-  clNames <- attr(x, "clNames")
-  attr.orig <- attributes(x)
-
-  ## this loses attributes and class information
-  x <- bind_cols(model_form(model), x)
-
-  skip <- "NOTE: If two or more means share the same grouping symbol,\n      then we cannot show them to be different.\n      But we also did not show them to be the same."
-  about <- unique(about[about!=skip])
-  x$about <- rep(list(about), nrow(x))
-
-  if(length(clNames)==2) {
-    names(x)[match(clNames, names(x))] <- c("conf.low", "conf.high")
-  }
-  x <- x |> rename(any_of(c(SE="std.error")))
-
-  attr.keep <- c("estName", "pri.vars", "by.vars")
-  attr.keep <- attr.keep[attr.keep %in% names(attr.orig)]
-  for(a in attr.keep) attr(x, a) <- attr.orig[[a]]
-
-  as_atest(x, ...)
-}
-
 #' @importFrom purrr is_list
 #' @export
 as_atest.data.frame <- function(x,
@@ -58,6 +33,31 @@ as_atest.data.frame <- function(x,
   attr(x, "estimate.vars") <- estimate.vars
   attr(x, "inference.vars") <- inference.vars
   x
+}
+
+#' @export
+as_atest.summary_emm <- function(x, model, ...) {
+  about <- attr(x, "mesg")
+  clNames <- attr(x, "clNames")
+  attr.orig <- attributes(x)
+
+  ## this loses attributes and class information
+  x <- bind_cols(model_form(model), x)
+
+  skip <- "NOTE: If two or more means share the same grouping symbol,\n      then we cannot show them to be different.\n      But we also did not show them to be the same."
+  about <- unique(about[about!=skip])
+  x$about <- rep(list(about), nrow(x))
+
+  if(length(clNames)==2) {
+    names(x)[match(clNames, names(x))] <- c("conf.low", "conf.high")
+  }
+  x <- x |> rename(any_of(c(SE="std.error")))
+
+  attr.keep <- c("estName", "pri.vars", "by.vars")
+  attr.keep <- attr.keep[attr.keep %in% names(attr.orig)]
+  for(a in attr.keep) attr(x, a) <- attr.orig[[a]]
+
+  as_atest(x, ...)
 }
 
 #' @export
