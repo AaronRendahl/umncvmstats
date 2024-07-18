@@ -16,11 +16,7 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 #| message: false
-library(conflicted)
-library(tidyverse)
-library(patchwork)
 library(umncvmstats)
-conflicts_prefer(dplyr::filter, dplyr::lag, dplyr::select, umncvmstats::as_gt)
 ```
 
 ## Multiple tests
