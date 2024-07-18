@@ -153,5 +153,5 @@ paired_t_test <- function(formula, data,
       rename(ratio="difference")
     result$about[[1]] <- c(result$about[[1]], "Results are backtransformed from the log scale (that is, the ratio is reported).")
   }
-  as_atest(result, estimate.vars=c("difference"), inference.vars=c("null", "t.value", "df"))
+  as_atest(result, estimate.vars=c("difference", "ratio"), inference.vars=c("null", "t.value", "df"))
 }
