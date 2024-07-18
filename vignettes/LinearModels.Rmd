@@ -125,7 +125,7 @@ pairwise_model_means(m3, ~vs|am)
 ## Multiple regression
 First make the model
 ```{r}
-m4 <- lm(mpg ~ am*wt, data = mtcars2)
+m4 <- lm(mpg ~ am * wt, data = mtcars2)
 ```
 
 ANOVA table:
@@ -140,7 +140,7 @@ model_glance(m4)
 
 model coefficients:
 ```{r}
-model_coefs(m4) |> as_gt() |> fmt_numbers(decimals=2)
+model_coefs(m4) |> as_gt() |> fmt_numbers(decimals = 2)
 ```
 
 model means, both averaging over other variables, and separately:
@@ -171,4 +171,21 @@ Comparing model slopes
 
 ```{r}
 pairwise_model_slopes(m4, wt~am)
+```
+
+## Log transformations
+
+Means and pairwise means are backtransformed by default. To report on the log scale, use `backtransform=FALSE`.
+
+```{r}
+m5 <- lm(log(mpg) ~ am * wt, data = mtcars2)
+combine_tests(
+  model_means(m5, ~am),
+  pairwise_model_means(m5, ~am))
+```
+
+```{r}
+combine_tests(
+  model_means(m5, ~am, backtransform=FALSE),
+  pairwise_model_means(m5, ~am, backtransform=FALSE))
 ```
