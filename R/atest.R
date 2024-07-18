@@ -59,25 +59,3 @@ as_atest.summary_emm <- function(x, model, ...) {
 
   as_atest(x, ...)
 }
-
-#' @export
-#' @importFrom broom tidy
-tidy.atest <- function(x, ...) {
-  as_tibble.atest(x, ...)
-}
-
-#' @export
-as.data.frame.atest <- function(x, ...) {
-  as_tibble.atest(x, ...) |> as.data.frame()
-}
-
-#' @importFrom knitr knit_print
-#' @export
-knit_print.atest <- function(x, options, inline=FALSE, ...) {
-  if(isFALSE(options$as_gt)) {
-    print(x, as_gt=FALSE)
-  } else {
-    knit_print(as_gt(x), options=options, inline=inline, ...)
-  }
-}
-
