@@ -1,5 +1,5 @@
 #' Create a gt table object
-#' @param data XX
+#' @param x XX
 #' @param ... XX
 #'
 #' @export

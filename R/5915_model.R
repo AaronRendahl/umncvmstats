@@ -48,6 +48,8 @@ model_anova <- function(model, ...) {
 #' @param formula XX
 #' @param ... XX
 #' @param cld XX
+#' @param backtransform XX
+#' @param type XX
 #' @return XX
 #' @export
 #' @importFrom car Anova
