@@ -25,3 +25,5 @@ checkif2 <- function(x, require_two=TRUE) {
   if(length(x) == 0) stop("No non-missing values found.")
   x
 }
+
+rm_class <- function(x, class) { class(x) <- setdiff(class(x), class); x }

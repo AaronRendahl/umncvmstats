@@ -22,8 +22,6 @@ combine_tests_list <- function(x) {
                            pri.vars=pri.vars, by.vars=by.vars)
 }
 
-rm_class <- function(x, class) { class(x) <- setdiff(class(x), class); x }
-
 as_atest <- function(x, ...) {
   UseMethod("as_atest")
 }
