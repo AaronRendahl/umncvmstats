@@ -1,4 +1,10 @@
 url: https://aaronrendahl.github.io/umncvmstats/
 template:
   bootstrap: 5
-
+articles:
+- title: Articles
+  navbar: ~
+  contents:
+  - proportions
+  - means
+  - models
