@@ -23,12 +23,12 @@ simplify_atest <- function(x) {
   if(any(with(d, !is.na(.terms) & !is.na(.y_contrast)))) {stop("Internal error: can't have both .terms and .y_contrast")}
 
   out <- d |> mutate(.Y = case_when(!is.na(.data$.terms) ~ NA_character_,
-                                   !is.na(.data$.y_value) ~ pasteif(.data$.y, .data$.y_value, " = "),
-                                   !is.na(.data$.y_contrast) ~ pasteif(.data$.y_contrast, .data$.y_value, FUN=\(a, b) paste(b, a, sep=": ")),
-                                   TRUE ~ .data$.y),
+                                    !is.na(.data$.y_contrast) ~ pasteif(.data$.y_contrast, .data$.y_value, FUN=\(a, b) paste(b, a, sep=": ")),
+                                    !is.na(.data$.y_value) ~ pasteif(.data$.y, .data$.y_value, " = "),
+                                    TRUE ~ .data$.y),
                      .X = case_when(!is.na(.data$.x_value) ~ pasteif(.data$.x, .data$.x_value, " = "),
-                                   !is.na(.data$.x_contrast) ~ pasteif(.data$.x_contrast, .data$.x, FUN=\(a, b) paste(b, a, sep=": ")),
-                                   TRUE ~ .data$.x),
+                                    !is.na(.data$.x_contrast) ~ pasteif(.data$.x_contrast, .data$.x, FUN=\(a, b) paste(b, a, sep=": ")),
+                                    TRUE ~ .data$.x),
                      .G = pasteif(.data$.g, .data$.g_value, " = "),
                      .M = if_else(!is.na(.data$.terms), pasteif(pasteif(.data$.y, .data$.y_value, " = "), .data$.terms, " ~ "), NA_character_),
                      .before=1) |>
