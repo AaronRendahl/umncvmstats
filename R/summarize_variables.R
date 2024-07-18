@@ -12,7 +12,7 @@
 #' @importFrom gtsummary as_gt
 #' @importFrom gtsummary all_continuous
 #' @importFrom gtsummary with_gtsummary_theme
-summarize_variables <- function(data, ..., digits=2, compact=TRUE) {
+descriptive_statistics <- function(data, ..., digits=2, compact=TRUE) {
   theme_here <- list(
     "tbl_summary-arg:digits" = all_continuous() ~ digits,
     "tbl_summary-str:categorical_stat" = "{n}/{N} ({p}%)",
