@@ -137,13 +137,14 @@ paired_t_test <- function(formula, data,
                    result$method, result$alternative, conf.level*100)
   if(backtransform) y.names <- str_replace(y.names, "^log\\((.*)\\)$", "\\1")
   response <- paste(y.names, collapse=if(backtransform) " / " else " - ")
-  result <- result |> mutate(.y_contrast=response, null=null) |>
-    select("response", difference="estimate", "conf.low", "conf.high", "null", t.value="statistic", df="parameter", "p.value")
+  result <- result |>
+    select(difference="estimate", "conf.low", "conf.high", t.value="statistic", df="parameter", "p.value") |>
+    mutate(.y_contrast=response, null=null)
   result$about <- list(about)
   if(backtransform) {
     result <- result |> mutate(across(any_of(c("difference","conf.low", "conf.high", "null")), exp)) |>
       rename(ratio="difference")
     result$about[[1]] <- c(result$about[[1]], "Results are backtransformed from the log scale (that is, the ratio is reported).")
   }
-  as_atest(result)
+  as_atest(result, estimate.vars=c("difference"), inference.vars=c("null", "t.value", "df"))
 }
