@@ -9,7 +9,7 @@
 #' @import stringr
 #' @import gt
 #' @importFrom broom tidy
-#' @importFrom purrr map_dfr map
+#' @importFrom purrr map
 #' @importFrom tidyr nest unnest
 #' @importFrom rlang .data
 #' @importFrom lubridate today
