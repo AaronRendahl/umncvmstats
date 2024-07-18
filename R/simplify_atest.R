@@ -1,5 +1,6 @@
 
 #' @importFrom tidyr pivot_longer
+#' @importFrom stats setNames
 #' @importFrom rlang :=
 simplify_atest <- function(x) {
   xx <- separate_about(x)
@@ -21,20 +22,21 @@ simplify_atest <- function(x) {
   if(any(with(d, !is.na(.terms) & (!is.na(.g) | !is.na(.g_value))))) { stop("Internal error: can't have both .terms and a .g value") }
   if(any(with(d, !is.na(.terms) & !is.na(.y_contrast)))) {stop("Internal error: can't have both .terms and .y_contrast")}
 
-  out <- d |> mutate(.Y = case_when(!is.na(.terms) ~ NA_character_,
-                                   !is.na(.y_value) ~ pasteif(.y, .y_value, " = "),
-                                   !is.na(.y_contrast) ~ pasteif(.y_contrast, .y_value, FUN=\(a, b) paste(b, a, sep=": ")),
-                                   TRUE ~ .y),
-                     .X = case_when(!is.na(.x_value) ~ pasteif(.x, .x_value, " = "),
-                                   !is.na(.x_contrast) ~ pasteif(.x_contrast, .x, FUN=\(a, b) paste(b, a, sep=": ")),
-                                   TRUE ~ .x),
-                     .G = pasteif(.g, .g_value, " = "),
-                     .M = if_else(!is.na(.terms), pasteif(pasteif(.y, .y_value, " = "), .terms, " ~ "), NA_character_),
-                     .after=".row") |>
+  out <- d |> mutate(.Y = case_when(!is.na(.data$.terms) ~ NA_character_,
+                                   !is.na(.data$.y_value) ~ pasteif(.data$.y, .data$.y_value, " = "),
+                                   !is.na(.data$.y_contrast) ~ pasteif(.data$.y_contrast, .data$.y_value, FUN=\(a, b) paste(b, a, sep=": ")),
+                                   TRUE ~ .data$.y),
+                     .X = case_when(!is.na(.data$.x_value) ~ pasteif(.data$.x, .data$.x_value, " = "),
+                                   !is.na(.data$.x_contrast) ~ pasteif(.data$.x_contrast, .data$.x, FUN=\(a, b) paste(b, a, sep=": ")),
+                                   TRUE ~ .data$.x),
+                     .G = pasteif(.data$.g, .data$.g_value, " = "),
+                     .M = if_else(!is.na(.data$.terms), pasteif(pasteif(.data$.y, .data$.y_value, " = "), .data$.terms, " ~ "), NA_character_),
+                     .before=1) |>
     select(-any_of(nn))
 
-  Nx <- out |> select(".Y", ".X", ".G", ".M") |> pivot_longer(everything()) |> summarize(n=length(unique(value[!is.na(value)])), .by="name")
-  Z <- Nx |> filter(n==0) |> pull(name)
+  Nx <- out |> select(".Y", ".X", ".G", ".M") |> pivot_longer(everything()) |>
+    summarize(n=length(unique(.data$value[!is.na(.data$value)])), .by="name")
+  Z <- Nx |> filter(n==0) |> pull("name")
   N <- setNames(as.list(Nx$n), str_sub(Nx$name, 2, 2))
 
   out <- out |> select(-any_of(Z))
