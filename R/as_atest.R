@@ -16,7 +16,9 @@ as_atest.data.frame <- function(x,
   }
   if(!inherits(x, "tbl")) { x <- as_tibble(x) }
   if("df" %in% names(x)) {
-    xdf <- x[["df"]][!is.na(x[["df"]])]
+    xdf <- x[["df"]]
+    dfok <- !is.na(xdf) & !is.infinite(xdf)
+    xdf <- x[["df"]][dfok]
     if(length(xdf) > 0 && all(abs(round(xdf) - xdf) < 1e-6)) x[["df"]] <- as.integer(round(x[["df"]]))
   }
   vars1 <- c(".y", ".y_value", ".y_contrast", ".terms", ".x", ".x_value", ".x_contrast", ".g", ".g_value")
