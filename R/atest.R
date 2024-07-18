@@ -61,7 +61,7 @@ as_atest.data.frame <- function(x,
     xdf <- x[["df"]][!is.na(x[["df"]])]
     if(length(xdf) > 0 && all(abs(round(xdf) - xdf) < 1e-6)) x[["df"]] <- as.integer(round(x[["df"]]))
   }
-  vars1 <- c(".y", ".y_contrast", ".y_value", ".x", ".x_contrast", ".x_value", ".g", ".g_value")
+  vars1 <- c(".y", ".y_value", ".y_contrast", ".x", ".x_value", ".x_contrast", ".g", ".g_value")
   vars2 <- estimate.vars
   vars3 <- c("conf.low", "conf.high")
   vars4 <- inference.vars
