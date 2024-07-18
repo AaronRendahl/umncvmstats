@@ -21,6 +21,12 @@ mtcars <- datasets::mtcars |>
   dplyr::mutate(vs=forcats::fct_recode(vs, "V-shaped"="0", "straight"="1"),
                 am=forcats::fct_recode(am, "automatic"="0", "manual"="1")) |>
   tibble::rownames_to_column("model") |> tibble::as_tibble()
+
+set.seed(15)
+passfail <- tidyr::tibble(score1=rnorm(50, mean=80, sd=7),
+                          score2=rnorm(50, mean=85, sd=7)) |>
+  mutate(pass1=score1>80, pass2=score2>80) |>
+  mutate(across(starts_with("pass"), \(x) factor(x, levels=c(FALSE, TRUE), labels=c("fail", "pass"))))
 ```
 
 ## Tests for Proportions
@@ -56,14 +62,10 @@ combine_tests(
 
 ### Paired Proportion Test (McNemar's)
 ```{r}
-set.seed(15)
-testing <- tidyr::tibble(before=rep(c("fail","pass"),c(20,30)),
-                   after=rep(c("fail", "pass", "fail", "pass"), c(5,15,5,25)))
-xtabs(~before+after, data=testing) |> addmargins()
-
 combine_tests(
-  one_proportion_test(before+after~1, data=testing),
-  paired_proportion_test(after - before ~ 1, data=testing))
+  one_proportion_test(pass1 + pass2 ~ 1, data=passfail),
+  one_proportion_test(pass2 ~ pass1, data=passfail, all_success = TRUE),
+  paired_proportion_test(pass2 - pass1 ~ 1, data=passfail))
 ```
 
 ### Independence Test
@@ -106,13 +108,9 @@ combine_tests(
 
 ### Paired t-test
 ```{r}
-set.seed(15)
-testing <- tidyr::tibble(before=rnorm(50, mean=80, sd=7),
-                         after=rnorm(50, mean=85, sd=7))
-
 combine_tests(
-  one_t_test(before+after~1, data=testing),
-  paired_t_test(after - before ~ 1, data=testing))
+  one_t_test(score1 + score2 ~ 1, data=passfail),
+  paired_t_test(score2 - score1 ~ 1, data=passfail))
 ```
 
 ## Correlation tests
