@@ -21,6 +21,7 @@ as_gt.atest <- function(data,
                         footnote_col="footnote",
                         rowname_col=".rowname",
                         simplify = TRUE,
+                        groupname_col=c(),
                         row_group_as_column = TRUE,
                         ...) {
   xx <- separate_about(data)
@@ -30,8 +31,10 @@ as_gt.atest <- function(data,
 
   title <- attr(d, "title")
   em.groups <- attr(d, "by.vars")
-  if(".group" %in% names(d)) {
-    groupname_col <- ".group"
+  if(length(groupname_col) > 0) {
+    # leave it alone...
+  } else if(".GROUP" %in% names(d)) {
+    groupname_col <- ".GROUP"
   } else if(!is.null(em.groups)) {
     groupname_col <- em.groups
     for(g in groupname_col) { d[[g]] <- paste(g, d[[g]], sep=" = ") }

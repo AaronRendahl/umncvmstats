@@ -15,6 +15,7 @@ as_gt(data, ...)
   footnote_col = "footnote",
   rowname_col = ".rowname",
   simplify = TRUE,
+  groupname_col = c(),
   row_group_as_column = TRUE,
   ...
 )
