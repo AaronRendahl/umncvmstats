@@ -47,7 +47,10 @@ simplify_atest <- function(x) {
   } else if(N$G > 0) {                      # otherwise use grouping factor, if exists
     out <- out |> rename(.GROUP = ".G")
   }
-  if(N$M == 1) out <- out |> select(-".M")  # if only one model, don't show model info
+  if(N$M == 1) {
+    attr(out, "title") <- out[[".M"]][1]
+    out <- out |> select(-".M")  # if only one model, make it the title
+  }
 
   out |> rename(any_of(c(response=".Y", variable=".X", group=".G", model=".M")))
 }
