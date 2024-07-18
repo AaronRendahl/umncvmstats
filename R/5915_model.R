@@ -53,8 +53,8 @@ model_anova <- function(model, ...) {
 #' @importFrom car Anova
 #' @importFrom multcomp cld
 #' @importFrom emmeans emmeans
-model_means <- function(model, formula, ..., cld=TRUE, backtransform=TRUE,
-                        type=if(isTRUE(backtransform)) "response" else "linear") {
+model_means <- function(model, formula, cld=TRUE, backtransform=TRUE,
+                        type=if(isTRUE(backtransform)) "response" else "linear", ...) {
 
   int_warn <- "NOTE: Results may be misleading due to involvement in interactions\n"
   emX <- capture_warnings(emmeans(model, formula, type=type, ...))
@@ -69,25 +69,27 @@ model_means <- function(model, formula, ..., cld=TRUE, backtransform=TRUE,
   }
 
   attr(out, "mesg") <- c(attr(out, "mesg"), emX$warnings)
-  as_atest(out, model, estimate.vars=c("emmean", "response", "estimate", "SE", "df"),
-           inference.vars="t.ratio")
+  as_atest(out, model,
+           estimate.vars=c("emmean", "response", "estimate", "ratio", "SE", "df"),
+           inference.vars=c("null", "t.ratio"))
 }
 
 #' @export
 #' @importFrom emmeans emmeans
 #' @importFrom graphics pairs
 #' @rdname model_means
-pairwise_model_means <- function(model, formula, ...) {
+pairwise_model_means <- function(model, formula, backtransform=TRUE,
+                                 type=if(isTRUE(backtransform)) "response" else "linear", ...) {
   emX <- capture_warnings({
-    em <- emmeans(model, formula, ...)
+    em <- emmeans(model, formula, type=type, ...)
     pairs(em, infer=TRUE) |> summary()
   })
   out <- emX$result
   attr(out, "mesg") <- c(attr(out, "mesg"), emX$warnings)
   as_atest(out, model,
            pri.vars="contrast",
-           estimate.vars=c("estimate", "SE", "df"),
-           inference.vars="t.ratio")
+           estimate.vars=c("emmean", "response", "estimate", "ratio", "SE", "df"),
+           inference.vars="null", "t.ratio")
 }
 
 #' @export
