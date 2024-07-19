@@ -26,12 +26,10 @@ library(umncvmstats)
 Most of the graphical functions we will use come from the `ggplot` package.
 There are a couple additions from this package to make a couple things easier.
 
-+ `geom_beeswarm`, originally from the `ggbeeswarm` package, modified for our purpose
++ `geom_beeswarm`, originally from the `ggbeeswarm` package, modified
   to handle horizontal plots better and tailor the default settings.
 + `hide_y_axis`, to hide the y-axis of a plot
-+ `geom_smooth_binomial`, to add a logistic regression fit to a plot
-
-**NOTE: STILL WORKING ON THESE...**
++ `geom_smooth_logistic`, to add a logistic regression fit to a plot
 
 ### Combining plots
 
@@ -85,7 +83,7 @@ ggplot(mtcars2) + aes(x=wt, y=mpg) + geom_point() +
 #| fig.height: 4
 plot1 <- ggplot(mtcars2) + aes(gear) + geom_bar()
 plot2 <- ggplot(mtcars2) + aes(gear, fill=cyl) + geom_bar()
-plot3 <- ggplot(mtcars2) + aes(gear, fill=cyl) + 
+plot3 <- ggplot(mtcars2) + aes(gear, fill=cyl) +
   geom_bar(position=position_dodge(preserve="single"))
 
 plot1 + plot2 + plot3
