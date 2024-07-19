@@ -10,11 +10,32 @@ Description: Standardized functions and output for one and two sample
 Language: en-US
 License: GPL (>= 3)
 Imports: 
-  ggplot2, gt, gtsummary, broom, beeswarm, 
-  car, emmeans, multcomp, multcompView, stringr, tidyr, 
-  dplyr, forcats, tibble, rlang, purrr, cli, rstudioapi, knitr
+  beeswarm, 
+  broom, 
+  car,
+  cli, 
+  dplyr, 
+  emmeans, 
+  forcats, 
+  ggplot2, 
+  gt, 
+  gtsummary, 
+  knitr,
+  multcomp, 
+  multcompView, 
+  purrr, 
+  rlang, 
+  rstudioapi, 
+  stringr, 
+  tibble, 
+  tidyr, 
+  scales
 Suggests: 
-  tidyverse, conflicted, patchwork, rmarkdown, lubridate
+  conflicted, 
+  lubridate,
+  patchwork, 
+  rmarkdown,
+  tidyverse
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
