@@ -6,6 +6,9 @@
 \usage{
 scale_y_binary(...)
 }
+\arguments{
+\item{...}{Additional parameters, passed to scale_y_continuous}
+}
 \description{
 Make a binary scale
 }

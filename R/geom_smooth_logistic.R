@@ -23,6 +23,7 @@ geom_smooth_logistic <- function(...) {
 
 #' Make a binary scale
 #'
+#' @param ... Additional parameters, passed to scale_y_continuous
 #' @export
 scale_y_binary <- function(...) {
   tob <- function(x) {
