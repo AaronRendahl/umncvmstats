@@ -8,6 +8,7 @@
 #' @param na XX
 #'
 #' @return XX
+#' @rdname fmt_numbers
 #' @export
 format_pvalue <- function(p, digits=2, max.digits=4, justify=TRUE, addp=FALSE, na="") {
   if(digits > max.digits) max.digits <- digits
@@ -27,7 +28,7 @@ format_pvalue <- function(p, digits=2, max.digits=4, justify=TRUE, addp=FALSE, n
 #' @param columns XX
 #' @param ... Additional parameters, sent to [format_pvalue]
 #'
-#' @rdname format_pvalue
+#' @rdname fmt_numbers
 #' @export
 fmt_pvalue <- function(data, columns=any_of(c("p.value", "p.adjust")), ...) {
   data |>
