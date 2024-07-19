@@ -29,6 +29,7 @@ There are a couple additions from this package to make a couple things easier.
 + `geom_beeswarm`, originally from the `ggbeeswarm` package, modified
   to handle horizontal plots better and tailor the default settings.
 + `hide_y_axis`, to hide the y-axis of a plot
++ `scale_y_binary`, Converts a factor on y-axis to a 0/1 binary variable, to allow adding proportions.
 + `geom_smooth_logistic`, to add a logistic regression fit to a plot
 
 ### Combining plots
