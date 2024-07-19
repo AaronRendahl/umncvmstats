@@ -13,6 +13,7 @@ hide_y_axis <- function() {
 #'
 #' @param ... XXX
 #'
+#' @importFrom stats glm
 #' @importFrom stats binomial
 #' @export
 geom_smooth_logistic <- function(...) {
@@ -24,6 +25,7 @@ geom_smooth_logistic <- function(...) {
 #' Make a binary scale
 #'
 #' @param ... Additional parameters, passed to scale_y_continuous
+#' @importFrom scales new_transform
 #' @export
 scale_y_binary <- function(...) {
   tob <- function(x) {
@@ -34,5 +36,5 @@ scale_y_binary <- function(...) {
     }
   }
   scale_y_continuous(
-    transform=scales::new_transform("binary", tob, inverse=identity), ...)
+    transform=new_transform("binary", tob, inverse=identity), ...)
 }
