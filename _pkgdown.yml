@@ -11,3 +11,43 @@ articles:
   - output
   - graphics
   - multipletests
+reference:
+- title: Tests for Proportions
+- contents:
+  - one_proportion_test
+  - two_proportion_test
+  - paired_proportion_test
+  - independence_test
+- title: Tests for Means
+- contents:
+  - one_t_test
+  - two_t_test
+  - paired_t_test
+- title: Inference about Models
+- contents:
+  - correlation_test
+  - matches("model")
+- title: Output
+  desc: To control output from statistical tests
+- contents:
+  - combine_tests
+  - as_gt
+  - tab_compact
+  - tab_padding
+  - fmt_numbers
+  - format_pvalue
+- title: Misc
+- contents:
+  - descriptive_statistics
+  - new_assignment
+- title: Graphics
+- contents:
+  - geom_beeswarm
+  - position_beeswarm
+  - scale_y_binary
+  - geom_smooth_logistic
+  - hide_y_axis
+- title: Datasets
+- contents:
+  - mtcars2
+  - passfail
