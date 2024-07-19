@@ -66,13 +66,13 @@ a |> as_gt() |> fmt_pvalue(digits=3, max.digits=5)
 
 ### Compacting Tables
 
-This compact table uses `font.size = 13` and `spacing = 1`.
+This compact table uses `font.size = 13` and `padding = 1`.
 ```{r}
 a |> as_gt() |> tab_compact()
 ```
 
 ```{r}
-a |> as_gt() |> tab_compact(font.size = 11, spacing = 3)
+a |> as_gt() |> tab_compact(font.size = 11, padding = 3)
 ```
 
 ### Text Output
