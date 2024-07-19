@@ -84,7 +84,9 @@ ggplot(mtcars2) + aes(x=wt, y=mpg) + geom_point() +
 plot1 <- ggplot(mtcars2) + aes(gear) + geom_bar()
 plot2 <- ggplot(mtcars2) + aes(gear, fill=cyl) + geom_bar()
 plot3 <- ggplot(mtcars2) + aes(gear, fill=cyl) +
-  geom_bar(position=position_dodge(preserve="single"))
+  geom_bar(position=position_dodge(preserve="single")) +
+  scale_y_continuous(expand = expansion(mult=c(0, 0.05)),
+                     breaks = seq(0, 12, by=4))
 
 plot1 + plot2 + plot3
 ```
