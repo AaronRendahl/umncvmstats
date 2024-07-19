@@ -136,23 +136,10 @@ plot1 + plot2
 ### Logistic Regression plots
 
 ```{r}
-ggplot(mtcars2) + aes(x=wt, y=vs) +
-  geom_beeswarm(
-    side=0, orientation = "y",
-    cex=2, pch=21, fill="white") +
-  geom_smooth_binomial() +
-  scale_y_discrete(expand=expansion(add=0.1))
-```
-
-```{r}
-name_success <- levels(mtcars2$vs)[2]
-ggplot(mtcars2) + aes(x=wt, y=(vs==levels(vs)[2])*1L) +
-  geom_beeswarm(
-    side = 0, orientation = "y",
-    cex=2, pch=21, fill="white") +
-  scale_y_continuous(name=sprintf('Probability \u201c%s\u201d', name_success), 
-                     breaks=seq(0,1, by=.20)) +
-  geom_smooth(method="glm", method.args=list(family=binomial()))
+ggplot(mtcars2) + aes(x=wt, y=vs, group=1) + 
+  geom_beeswarm(orientation="y", cex=2) +
+  scale_y_binary() +
+  geom_smooth_logistic()
 ```
 
 ### Estimates with error bars
