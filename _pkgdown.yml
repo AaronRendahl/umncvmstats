@@ -33,9 +33,7 @@ reference:
   - combine_tests
   - as_gt
   - tab_compact
-  - tab_padding
   - fmt_numbers
-  - format_pvalue
 - title: Misc
 - contents:
   - descriptive_statistics
@@ -43,7 +41,6 @@ reference:
 - title: Graphics
 - contents:
   - geom_beeswarm
-  - position_beeswarm
   - scale_y_binary
   - geom_smooth_logistic
   - hide_y_axis
