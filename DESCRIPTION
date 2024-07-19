@@ -26,10 +26,10 @@ Imports:
   purrr, 
   rlang, 
   rstudioapi, 
+  scales,
   stringr, 
   tibble, 
-  tidyr, 
-  scales
+  tidyr
 Suggests: 
   conflicted, 
   lubridate,
