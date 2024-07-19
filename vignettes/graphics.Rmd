@@ -149,11 +149,13 @@ wt_mse <- mtcars2 |> summarize(m=mean(wt), se=sd(wt)/sqrt(n()), .by=cyl)
 ```
 
 ```{r}
-ggplot(wt_mse) + aes(cyl, m, ymin=m-se, ymax=m+se) + 
+#| fig.width: 10
+#| fig.height: 5
+plot1 <- ggplot(wt_mse) + aes(cyl, m, ymin=m-se, ymax=m+se) + 
   geom_col() + geom_errorbar(width=0.5)
-ggplot(wt_mse) + aes(x=cyl) + 
+plot2 <- ggplot(wt_mse) + aes(x=cyl) + 
   geom_errorbar(aes(ymin=m-se, ymax=m+se), width=0.3) +
   geom_point(aes(y=m), size=2) +
   geom_beeswarm(aes(y=wt), data=mtcars2, pch=21, fill="gray", alpha=0.5)
-
+plot1 + plot2
 ```
