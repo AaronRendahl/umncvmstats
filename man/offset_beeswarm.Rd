@@ -88,7 +88,7 @@ points.
 \code{\link[beeswarm:swarmx]{beeswarm::swarmx()}}
 
 Other position adjustments: 
-\code{\link{position_beeswarm}()}
+\code{\link{geom_beeswarm}()}
 }
 \concept{position adjustments}
 \keyword{internal}

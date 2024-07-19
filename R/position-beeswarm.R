@@ -233,6 +233,7 @@ offset_beeswarm <- function(
 #'
 #'
 #' @export
+#' @rdname geom_beeswarm
 #' @importFrom beeswarm swarmx
 #' @seealso [geom_beeswarm()], [ggbeeswarm::position_quasirandom()],
 #' [beeswarm::swarmx()]
