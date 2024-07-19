@@ -9,6 +9,7 @@ devtools::build_site()
 
 ## subsets of build_site
 pkgdown::build_home()
+pkgdown::build_reference()
 pkgdown::build_articles()
 
 ## uploads and checks elsewhere
