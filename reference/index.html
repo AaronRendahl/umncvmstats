@@ -22,6 +22,8 @@
     <li><a class="dropdown-item" href="../articles/means.html">Tests for Means</a></li>
     <li><a class="dropdown-item" href="../articles/models.html">Inference about Models</a></li>
     <li><a class="dropdown-item" href="../articles/output.html">Controlling Output</a></li>
+    <li><a class="dropdown-item" href="../articles/graphics.html">Graphical Output</a></li>
+    <li><a class="dropdown-item" href="../articles/multipletests.html">Multiple Tests</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -37,7 +39,7 @@
     </div>
 
     <div class="section level2">
-      <h2 id="all-functions">All functions<a class="anchor" aria-label="anchor" href="#all-functions"></a></h2>
+      <h2 id="tests-for-proportions">Tests for Proportions<a class="anchor" aria-label="anchor" href="#tests-for-proportions"></a></h2>
 
 
 
@@ -49,64 +51,74 @@
 
       <dl><dt>
 
-          <code><a href="as_gt.html">as_gt()</a></code>
+          <code><a href="one_proportion_test.html">one_proportion_test()</a></code> <code><a href="one_proportion_test.html">wilson_test()</a></code> <code><a href="one_proportion_test.html">binomial_test()</a></code>
 
         </dt>
-        <dd>Create a gt table object</dd>
+        <dd>One proportion test</dd>
       </dl><dl><dt>
 
-          <code><a href="combine_tests.html">combine_tests()</a></code>
+          <code><a href="two_proportion_test.html">two_proportion_test()</a></code> <code><a href="two_proportion_test.html">pairwise_proportion_test()</a></code>
 
         </dt>
-        <dd>Combine multiple tests together</dd>
+        <dd>Two sample proportion test</dd>
       </dl><dl><dt>
 
-          <code><a href="correlation_test.html">correlation_test()</a></code>
+          <code><a href="paired_proportion_test.html">paired_proportion_test()</a></code>
 
         </dt>
-        <dd>Correlation Tests and Confidence Intervals</dd>
-      </dl><dl><dt>
-
-          <code><a href="descriptive_statistics.html">descriptive_statistics()</a></code>
-
-        </dt>
-        <dd>Summarize variables</dd>
-      </dl><dl><dt>
-
-          <code><a href="fmt_numbers.html">fmt_numbers()</a></code>
-
-        </dt>
-        <dd>Format numbers</dd>
-      </dl><dl><dt>
-
-          <code><a href="format_pvalue.html">format_pvalue()</a></code> <code><a href="format_pvalue.html">fmt_pvalue()</a></code>
-
-        </dt>
-        <dd>Format p-values</dd>
-      </dl><dl><dt>
-
-          <code><a href="geom_beeswarm.html">geom_beeswarm()</a></code>
-
-        </dt>
-        <dd>Points, jittered to reduce overplotting using the beeswarm package</dd>
-      </dl><dl><dt>
-
-          <code><a href="geom_smooth_binomial.html">geom_smooth_binomial()</a></code>
-
-        </dt>
-        <dd>Add a smooth from a logistic regression</dd>
-      </dl><dl><dt>
-
-          <code><a href="hide_y_axis.html">hide_y_axis()</a></code>
-
-        </dt>
-        <dd>Hide the y-axis of a ggplot</dd>
+        <dd>Paired proportion test (McNemar's)</dd>
       </dl><dl><dt>
 
           <code><a href="independence_test.html">independence_test()</a></code>
 
         </dt>
         <dd>Independence Tests for Count Data</dd>
+      </dl></div><div class="section level2">
+      <h2 id="tests-for-means">Tests for Means<a class="anchor" aria-label="anchor" href="#tests-for-means"></a></h2>
+
+
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="one_t_test.html">one_t_test()</a></code>
+
+        </dt>
+        <dd>One-sample t-test</dd>
+      </dl><dl><dt>
+
+          <code><a href="two_t_test.html">two_t_test()</a></code> <code><a href="two_t_test.html">pairwise_t_test()</a></code>
+
+        </dt>
+        <dd>Two Sample t-test</dd>
+      </dl><dl><dt>
+
+          <code><a href="paired_t_test.html">paired_t_test()</a></code>
+
+        </dt>
+        <dd>Paired t-test</dd>
+      </dl></div><div class="section level2">
+      <h2 id="inference-about-models">Inference about Models<a class="anchor" aria-label="anchor" href="#inference-about-models"></a></h2>
+
+
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="correlation_test.html">correlation_test()</a></code>
+
+        </dt>
+        <dd>Correlation Tests and Confidence Intervals</dd>
       </dl><dl><dt>
 
           <code><a href="model_anova.html">model_anova()</a></code>
@@ -131,54 +143,29 @@
 
         </dt>
         <dd>Get model means and slopes (trends)</dd>
-      </dl><dl><dt>
+      </dl></div><div class="section level2">
+      <h2 id="output">Output<a class="anchor" aria-label="anchor" href="#output"></a></h2>
 
-          <code><a href="mtcars2.html">mtcars2</a></code>
+      <div class="section-desc"><p>To control output from statistical tests</p></div>
 
-        </dt>
-        <dd>Motor Trend Car Road Tests</dd>
-      </dl><dl><dt>
 
-          <code><a href="new_assignment.html">new_assignment()</a></code>
+    </div><div class="section level2">
 
-        </dt>
-        <dd>Create a blank new assignment</dd>
-      </dl><dl><dt>
 
-          <code><a href="one_proportion_test.html">one_proportion_test()</a></code> <code><a href="one_proportion_test.html">wilson_test()</a></code> <code><a href="one_proportion_test.html">binomial_test()</a></code>
 
-        </dt>
-        <dd>One proportion test</dd>
-      </dl><dl><dt>
 
-          <code><a href="one_t_test.html">one_t_test()</a></code>
+      <dl><dt>
+
+          <code><a href="combine_tests.html">combine_tests()</a></code>
 
         </dt>
-        <dd>One-sample t-test</dd>
+        <dd>Combine multiple tests together</dd>
       </dl><dl><dt>
 
-          <code><a href="paired_proportion_test.html">paired_proportion_test()</a></code>
+          <code><a href="as_gt.html">as_gt()</a></code>
 
         </dt>
-        <dd>Paired proportion test (McNemar's)</dd>
-      </dl><dl><dt>
-
-          <code><a href="paired_t_test.html">paired_t_test()</a></code>
-
-        </dt>
-        <dd>Paired t-test</dd>
-      </dl><dl><dt>
-
-          <code><a href="passfail.html">passfail</a></code>
-
-        </dt>
-        <dd>Scores on pre/post test (generated data)</dd>
-      </dl><dl><dt>
-
-          <code><a href="position_beeswarm.html">position_beeswarm()</a></code>
-
-        </dt>
-        <dd>Arrange points using the beeswarm package.</dd>
+        <dd>Create a gt table object</dd>
       </dl><dl><dt>
 
           <code><a href="tab_compact.html">tab_compact()</a></code>
@@ -193,18 +180,106 @@
         <dd>Set gt table padding</dd>
       </dl><dl><dt>
 
-          <code><a href="two_proportion_test.html">two_proportion_test()</a></code> <code><a href="two_proportion_test.html">pairwise_proportion_test()</a></code>
+          <code><a href="fmt_numbers.html">fmt_numbers()</a></code>
 
         </dt>
-        <dd>Two sample proportion test</dd>
+        <dd>Format numbers</dd>
       </dl><dl><dt>
 
-          <code><a href="two_t_test.html">two_t_test()</a></code> <code><a href="two_t_test.html">pairwise_t_test()</a></code>
+          <code><a href="format_pvalue.html">format_pvalue()</a></code> <code><a href="format_pvalue.html">fmt_pvalue()</a></code>
 
         </dt>
-        <dd>Two Sample t-test</dd>
+        <dd>Format p-values</dd>
+      </dl></div><div class="section level2">
+      <h2 id="misc">Misc<a class="anchor" aria-label="anchor" href="#misc"></a></h2>
+
+
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="descriptive_statistics.html">descriptive_statistics()</a></code>
+
+        </dt>
+        <dd>Summarize variables</dd>
+      </dl><dl><dt>
+
+          <code><a href="new_assignment.html">new_assignment()</a></code>
+
+        </dt>
+        <dd>Create a blank new assignment</dd>
+      </dl></div><div class="section level2">
+      <h2 id="graphics">Graphics<a class="anchor" aria-label="anchor" href="#graphics"></a></h2>
+
+
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="geom_beeswarm.html">geom_beeswarm()</a></code>
+
+        </dt>
+        <dd>Points, jittered to reduce overplotting using the beeswarm package</dd>
+      </dl><dl><dt>
+
+          <code><a href="position_beeswarm.html">position_beeswarm()</a></code>
+
+        </dt>
+        <dd>Arrange points using the beeswarm package.</dd>
+      </dl><dl><dt>
+
+          <code><a href="scale_y_binary.html">scale_y_binary()</a></code>
+
+        </dt>
+        <dd>Make a binary scale</dd>
+      </dl><dl><dt>
+
+          <code><a href="geom_smooth_logistic.html">geom_smooth_logistic()</a></code>
+
+        </dt>
+        <dd>Add a smooth from a logistic regression</dd>
+      </dl><dl><dt>
+
+          <code><a href="hide_y_axis.html">hide_y_axis()</a></code>
+
+        </dt>
+        <dd>Hide the y-axis of a ggplot</dd>
+      </dl></div><div class="section level2">
+      <h2 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a></h2>
+
+
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="mtcars2.html">mtcars2</a></code>
+
+        </dt>
+        <dd>Motor Trend Car Road Tests</dd>
+      </dl><dl><dt>
+
+          <code><a href="passfail.html">passfail</a></code>
+
+        </dt>
+        <dd>Scores on pre/post test (generated data)</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">

@@ -2,11 +2,13 @@ pandoc: 3.1.11
 pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
+  graphics: graphics.html
   means: means.html
   models: models.html
+  multipletests: multipletests.html
   output: output.html
   proportions: proportions.html
-last_built: 2024-07-18T21:46Z
+last_built: 2024-07-19T16:24Z
 urls:
   reference: https://aaronrendahl.github.io/umncvmstats/reference
   article: https://aaronrendahl.github.io/umncvmstats/articles

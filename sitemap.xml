@@ -1,9 +1,11 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/404.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/LICENSE.html</loc></url>
+<url><loc>https://aaronrendahl.github.io/umncvmstats/articles/graphics.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/articles/index.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/articles/means.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/articles/models.html</loc></url>
+<url><loc>https://aaronrendahl.github.io/umncvmstats/articles/multipletests.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/articles/output.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/articles/proportions.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/authors.html</loc></url>
@@ -15,7 +17,7 @@
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/fmt_numbers.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/format_pvalue.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/geom_beeswarm.html</loc></url>
-<url><loc>https://aaronrendahl.github.io/umncvmstats/reference/geom_smooth_binomial.html</loc></url>
+<url><loc>https://aaronrendahl.github.io/umncvmstats/reference/geom_smooth_logistic.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/hide_y_axis.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/independence_test.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/index.html</loc></url>
@@ -32,6 +34,7 @@
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/paired_t_test.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/passfail.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/position_beeswarm.html</loc></url>
+<url><loc>https://aaronrendahl.github.io/umncvmstats/reference/scale_y_binary.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/tab_compact.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/tab_padding.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/two_proportion_test.html</loc></url>

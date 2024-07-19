@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Tests for Proportions • umncvmstats</title>
+<title>Multiple Tests • umncvmstats</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Tests for Proportions">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Multiple Tests">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -59,22 +59,23 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Tests for Proportions</h1>
+      <h1>Multiple Tests</h1>
             
       
 
-      <div class="d-none name"><code>proportions.Rmd</code></div>
+      <div class="d-none name"><code>multipletests.Rmd</code></div>
     </div>
 
     
     
 <div class="section level2">
-<h2 id="one-proportion-test">One Proportion Test<a class="anchor" aria-label="anchor" href="#one-proportion-test"></a>
+<h2 id="multiple-tests">Multiple tests<a class="anchor" aria-label="anchor" href="#multiple-tests"></a>
 </h2>
-<p>It will automatically choose between Wilson’s CI and the “exact” CI.
-No null hypothesis is tested by default.</p>
+<p>In the one and two-sample tests (ie, when you’re not fitting a
+model), you can use <code>+</code> to specify that the test should be
+done on several variables.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">+</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
 <div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#mwlefoodfi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -527,30 +528,76 @@ No null hypothesis is tested by default.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead><tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="response">response</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="x">x</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="proportion">proportion</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="variable">variable</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean">mean</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
     </tr></thead>
-<tbody class="gt_table_body"><tr>
-<td headers="response" class="gt_row gt_left">vs = straight</td>
-<td headers="x" class="gt_row gt_right">14</td>
-<td headers="n" class="gt_row gt_right">32</td>
-<td headers="proportion" class="gt_row gt_right">0.44</td>
-<td headers="conf.low" class="gt_row gt_right">0.28</td>
-<td headers="conf.high" class="gt_row gt_right">0.61</td>
-</tr></tbody>
+<tbody class="gt_table_body">
+<tr>
+<td headers="response" class="gt_row gt_left">wt</td>
+<td headers="variable" class="gt_row gt_left">am = manual</td>
+<td headers="mean" class="gt_row gt_right"> 2.4</td>
+<td headers="conf.low" class="gt_row gt_right"> 2.0</td>
+<td headers="conf.high" class="gt_row gt_right"> 2.8</td>
+</tr>
+<tr>
+<td headers="response" class="gt_row gt_left">wt</td>
+<td headers="variable" class="gt_row gt_left">am = automatic</td>
+<td headers="mean" class="gt_row gt_right"> 3.8</td>
+<td headers="conf.low" class="gt_row gt_right"> 3.4</td>
+<td headers="conf.high" class="gt_row gt_right"> 4.1</td>
+</tr>
+<tr>
+<td headers="response" class="gt_row gt_left">wt</td>
+<td headers="variable" class="gt_row gt_left">vs = V-shaped</td>
+<td headers="mean" class="gt_row gt_right"> 3.7</td>
+<td headers="conf.low" class="gt_row gt_right"> 3.2</td>
+<td headers="conf.high" class="gt_row gt_right"> 4.1</td>
+</tr>
+<tr>
+<td headers="response" class="gt_row gt_left">wt</td>
+<td headers="variable" class="gt_row gt_left">vs = straight</td>
+<td headers="mean" class="gt_row gt_right"> 2.6</td>
+<td headers="conf.low" class="gt_row gt_right"> 2.2</td>
+<td headers="conf.high" class="gt_row gt_right"> 3.0</td>
+</tr>
+<tr>
+<td headers="response" class="gt_row gt_left">mpg</td>
+<td headers="variable" class="gt_row gt_left">am = manual</td>
+<td headers="mean" class="gt_row gt_right">24  </td>
+<td headers="conf.low" class="gt_row gt_right">21  </td>
+<td headers="conf.high" class="gt_row gt_right">28  </td>
+</tr>
+<tr>
+<td headers="response" class="gt_row gt_left">mpg</td>
+<td headers="variable" class="gt_row gt_left">am = automatic</td>
+<td headers="mean" class="gt_row gt_right">17  </td>
+<td headers="conf.low" class="gt_row gt_right">15  </td>
+<td headers="conf.high" class="gt_row gt_right">19  </td>
+</tr>
+<tr>
+<td headers="response" class="gt_row gt_left">mpg</td>
+<td headers="variable" class="gt_row gt_left">vs = V-shaped</td>
+<td headers="mean" class="gt_row gt_right">17  </td>
+<td headers="conf.low" class="gt_row gt_right">15  </td>
+<td headers="conf.high" class="gt_row gt_right">19  </td>
+</tr>
+<tr>
+<td headers="response" class="gt_row gt_left">mpg</td>
+<td headers="variable" class="gt_row gt_left">vs = straight</td>
+<td headers="mean" class="gt_row gt_right">25  </td>
+<td headers="conf.low" class="gt_row gt_right">21  </td>
+<td headers="conf.high" class="gt_row gt_right">28  </td>
+</tr>
+</tbody>
 <tfoot class="gt_footnotes"><tr>
-<td class="gt_footnote" colspan="6"> Wilson's proportion test (two.sided), with 95% confidence intervals.</td>
+<td class="gt_footnote" colspan="5"> One Sample t-test (two.sided), with 95% confidence intervals.</td>
     </tr></tfoot>
 </table>
 </div>
-<div class="section level3">
-<h3 id="separately-by-another-categorical-variable">Separately by another categorical variable<a class="anchor" aria-label="anchor" href="#separately-by-another-categorical-variable"></a>
-</h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/two_t_test.html">two_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">+</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
 <div id="eexombwkke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#eexombwkke table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1004,46 +1051,69 @@ No null hypothesis is tested by default.</p>
 <thead><tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="response">response</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="variable">variable</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="x">x</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="proportion">proportion</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="difference">difference</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="null">null</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.value">t.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="response" class="gt_row gt_left">vs = straight</td>
-<td headers="variable" class="gt_row gt_left">am = manual</td>
-<td headers="x" class="gt_row gt_right">7</td>
-<td headers="n" class="gt_row gt_right">13</td>
-<td headers="proportion" class="gt_row gt_right">0.54</td>
-<td headers="conf.low" class="gt_row gt_right">0.29</td>
-<td headers="conf.high" class="gt_row gt_right">0.77</td>
+<td headers="response" class="gt_row gt_left">wt</td>
+<td headers="variable" class="gt_row gt_left">am: automatic - manual</td>
+<td headers="difference" class="gt_row gt_right"> 1.4</td>
+<td headers="conf.low" class="gt_row gt_right">  0.85</td>
+<td headers="conf.high" class="gt_row gt_right"> 1.9</td>
+<td headers="null" class="gt_row gt_right">0 </td>
+<td headers="t.value" class="gt_row gt_right"> 5.5</td>
+<td headers="df" class="gt_row gt_right">29 </td>
+<td headers="p.value" class="gt_row gt_left">&lt; 0.0001</td>
 </tr>
 <tr>
-<td headers="response" class="gt_row gt_left">vs = straight</td>
-<td headers="variable" class="gt_row gt_left">am = automatic</td>
-<td headers="x" class="gt_row gt_right">7</td>
-<td headers="n" class="gt_row gt_right">19</td>
-<td headers="proportion" class="gt_row gt_right">0.37</td>
-<td headers="conf.low" class="gt_row gt_right">0.19</td>
-<td headers="conf.high" class="gt_row gt_right">0.59</td>
+<td headers="response" class="gt_row gt_left">wt</td>
+<td headers="variable" class="gt_row gt_left">vs: V-shaped - straight</td>
+<td headers="difference" class="gt_row gt_right"> 1.1</td>
+<td headers="conf.low" class="gt_row gt_right">  0.49</td>
+<td headers="conf.high" class="gt_row gt_right"> 1.7</td>
+<td headers="null" class="gt_row gt_right">0 </td>
+<td headers="t.value" class="gt_row gt_right"> 3.8</td>
+<td headers="df" class="gt_row gt_right">30 </td>
+<td headers="p.value" class="gt_row gt_left">  0.0007</td>
+</tr>
+<tr>
+<td headers="response" class="gt_row gt_left">mpg</td>
+<td headers="variable" class="gt_row gt_left">am: automatic - manual</td>
+<td headers="difference" class="gt_row gt_right">−7.2</td>
+<td headers="conf.low" class="gt_row gt_right">−11   </td>
+<td headers="conf.high" class="gt_row gt_right">−3.2</td>
+<td headers="null" class="gt_row gt_right">0 </td>
+<td headers="t.value" class="gt_row gt_right">−3.8</td>
+<td headers="df" class="gt_row gt_right">18 </td>
+<td headers="p.value" class="gt_row gt_left">  0.0014</td>
+</tr>
+<tr>
+<td headers="response" class="gt_row gt_left">mpg</td>
+<td headers="variable" class="gt_row gt_left">vs: V-shaped - straight</td>
+<td headers="difference" class="gt_row gt_right">−7.9</td>
+<td headers="conf.low" class="gt_row gt_right">−11   </td>
+<td headers="conf.high" class="gt_row gt_right">−4.4</td>
+<td headers="null" class="gt_row gt_right">0 </td>
+<td headers="t.value" class="gt_row gt_right">−4.7</td>
+<td headers="df" class="gt_row gt_right">23 </td>
+<td headers="p.value" class="gt_row gt_left">  0.0001</td>
 </tr>
 </tbody>
 <tfoot class="gt_footnotes"><tr>
-<td class="gt_footnote" colspan="7"> Wilson's proportion test (two.sided), with 95% confidence intervals.</td>
+<td class="gt_footnote" colspan="9"> Welch Two Sample t-test (two.sided), with 95% confidence intervals.</td>
     </tr></tfoot>
 </table>
 </div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="two-proportion-test">Two Proportion Test<a class="anchor" aria-label="anchor" href="#two-proportion-test"></a>
-</h2>
-<p>It will automatically choose between the asymptotic test (with or
-without continuity correction) and Fisher’s test.</p>
+<p>You can also use <code>|</code> to split the data set into groups
+before running the tests.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/two_proportion_test.html">two_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">+</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">|</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
 <div id="ulbfdpbcyv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ulbfdpbcyv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1495,35 +1565,109 @@ without continuity correction) and Fisher’s test.</p>
 </style>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="response">response</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=""></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="response">response</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="variable">variable</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="difference">difference</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean">mean</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="chisq.value">chisq.value</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
     </tr></thead>
-<tbody class="gt_table_body"><tr>
-<td headers="response" class="gt_row gt_left">vs = straight</td>
-<td headers="variable" class="gt_row gt_left">am: automatic - manual</td>
-<td headers="difference" class="gt_row gt_right">−0.17</td>
-<td headers="conf.low" class="gt_row gt_right">−0.24</td>
-<td headers="conf.high" class="gt_row gt_right">0.58</td>
-<td headers="chisq.value" class="gt_row gt_right">0.35</td>
-<td headers="p.value" class="gt_row gt_left">  0.56</td>
-</tr></tbody>
+<tbody class="gt_table_body">
+<tr class="gt_row_group_first">
+<td headers="cyl = 6 stub_1_1 stub_1" rowspan="4" class="gt_row gt_left gt_stub_row_group">cyl = 6</td>
+<td headers="cyl = 6 stub_1_1 response" class="gt_row gt_left">wt</td>
+<td headers="cyl = 6 stub_1_1 variable" class="gt_row gt_left">am = manual</td>
+<td headers="cyl = 6 stub_1_1 mean" class="gt_row gt_right"> 2.8</td>
+<td headers="cyl = 6 stub_1_1 conf.low" class="gt_row gt_right"> 2.4 </td>
+<td headers="cyl = 6 stub_1_1 conf.high" class="gt_row gt_right"> 3.1</td>
+</tr>
+<tr>
+<td headers="cyl = 6 response_2 response" class="gt_row gt_left">wt</td>
+<td headers="cyl = 6 response_2 variable" class="gt_row gt_left">am = automatic</td>
+<td headers="cyl = 6 response_2 mean" class="gt_row gt_right"> 3.4</td>
+<td headers="cyl = 6 response_2 conf.low" class="gt_row gt_right"> 3.2 </td>
+<td headers="cyl = 6 response_2 conf.high" class="gt_row gt_right"> 3.6</td>
+</tr>
+<tr>
+<td headers="cyl = 6 response_3 response" class="gt_row gt_left">mpg</td>
+<td headers="cyl = 6 response_3 variable" class="gt_row gt_left">am = manual</td>
+<td headers="cyl = 6 response_3 mean" class="gt_row gt_right">21  </td>
+<td headers="cyl = 6 response_3 conf.low" class="gt_row gt_right">19   </td>
+<td headers="cyl = 6 response_3 conf.high" class="gt_row gt_right">22  </td>
+</tr>
+<tr>
+<td headers="cyl = 6 response_4 response" class="gt_row gt_left">mpg</td>
+<td headers="cyl = 6 response_4 variable" class="gt_row gt_left">am = automatic</td>
+<td headers="cyl = 6 response_4 mean" class="gt_row gt_right">19  </td>
+<td headers="cyl = 6 response_4 conf.low" class="gt_row gt_right">17   </td>
+<td headers="cyl = 6 response_4 conf.high" class="gt_row gt_right">22  </td>
+</tr>
+<tr class="gt_row_group_first">
+<td headers="cyl = 4 stub_1_5 stub_1" rowspan="4" class="gt_row gt_left gt_stub_row_group">cyl = 4</td>
+<td headers="cyl = 4 stub_1_5 response" class="gt_row gt_left">wt</td>
+<td headers="cyl = 4 stub_1_5 variable" class="gt_row gt_left">am = manual</td>
+<td headers="cyl = 4 stub_1_5 mean" class="gt_row gt_right"> 2.0</td>
+<td headers="cyl = 4 stub_1_5 conf.low" class="gt_row gt_right"> 1.7 </td>
+<td headers="cyl = 4 stub_1_5 conf.high" class="gt_row gt_right"> 2.4</td>
+</tr>
+<tr>
+<td headers="cyl = 4 response_6 response" class="gt_row gt_left">wt</td>
+<td headers="cyl = 4 response_6 variable" class="gt_row gt_left">am = automatic</td>
+<td headers="cyl = 4 response_6 mean" class="gt_row gt_right"> 2.9</td>
+<td headers="cyl = 4 response_6 conf.low" class="gt_row gt_right"> 1.9 </td>
+<td headers="cyl = 4 response_6 conf.high" class="gt_row gt_right"> 3.9</td>
+</tr>
+<tr>
+<td headers="cyl = 4 response_7 response" class="gt_row gt_left">mpg</td>
+<td headers="cyl = 4 response_7 variable" class="gt_row gt_left">am = manual</td>
+<td headers="cyl = 4 response_7 mean" class="gt_row gt_right">28  </td>
+<td headers="cyl = 4 response_7 conf.low" class="gt_row gt_right">24   </td>
+<td headers="cyl = 4 response_7 conf.high" class="gt_row gt_right">32  </td>
+</tr>
+<tr>
+<td headers="cyl = 4 response_8 response" class="gt_row gt_left">mpg</td>
+<td headers="cyl = 4 response_8 variable" class="gt_row gt_left">am = automatic</td>
+<td headers="cyl = 4 response_8 mean" class="gt_row gt_right">23  </td>
+<td headers="cyl = 4 response_8 conf.low" class="gt_row gt_right">19   </td>
+<td headers="cyl = 4 response_8 conf.high" class="gt_row gt_right">27  </td>
+</tr>
+<tr class="gt_row_group_first">
+<td headers="cyl = 8 stub_1_9 stub_1" rowspan="4" class="gt_row gt_left gt_stub_row_group">cyl = 8</td>
+<td headers="cyl = 8 stub_1_9 response" class="gt_row gt_left">wt</td>
+<td headers="cyl = 8 stub_1_9 variable" class="gt_row gt_left">am = automatic</td>
+<td headers="cyl = 8 stub_1_9 mean" class="gt_row gt_right"> 4.1</td>
+<td headers="cyl = 8 stub_1_9 conf.low" class="gt_row gt_right"> 3.6 </td>
+<td headers="cyl = 8 stub_1_9 conf.high" class="gt_row gt_right"> 4.6</td>
+</tr>
+<tr>
+<td headers="cyl = 8 response_10 response" class="gt_row gt_left">wt</td>
+<td headers="cyl = 8 response_10 variable" class="gt_row gt_left">am = manual</td>
+<td headers="cyl = 8 response_10 mean" class="gt_row gt_right"> 3.4</td>
+<td headers="cyl = 8 response_10 conf.low" class="gt_row gt_right"> 0.83</td>
+<td headers="cyl = 8 response_10 conf.high" class="gt_row gt_right"> 5.9</td>
+</tr>
+<tr>
+<td headers="cyl = 8 response_11 response" class="gt_row gt_left">mpg</td>
+<td headers="cyl = 8 response_11 variable" class="gt_row gt_left">am = automatic</td>
+<td headers="cyl = 8 response_11 mean" class="gt_row gt_right">15  </td>
+<td headers="cyl = 8 response_11 conf.low" class="gt_row gt_right">13   </td>
+<td headers="cyl = 8 response_11 conf.high" class="gt_row gt_right">17  </td>
+</tr>
+<tr>
+<td headers="cyl = 8 response_12 response" class="gt_row gt_left">mpg</td>
+<td headers="cyl = 8 response_12 variable" class="gt_row gt_left">am = manual</td>
+<td headers="cyl = 8 response_12 mean" class="gt_row gt_right">15  </td>
+<td headers="cyl = 8 response_12 conf.low" class="gt_row gt_right">10   </td>
+<td headers="cyl = 8 response_12 conf.high" class="gt_row gt_right">20  </td>
+</tr>
+</tbody>
 <tfoot class="gt_footnotes"><tr>
-<td class="gt_footnote" colspan="7"> 2-sample test for equality of proportions with continuity correction (two.sided), with 95% confidence intervals.</td>
+<td class="gt_footnote" colspan="6"> One Sample t-test (two.sided), with 95% confidence intervals.</td>
     </tr></tfoot>
 </table>
 </div>
-<div class="section level3">
-<h3 id="together-in-one-table">together in one table<a class="anchor" aria-label="anchor" href="#together-in-one-table"></a>
-</h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="../reference/two_proportion_test.html">two_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/two_t_test.html">two_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">+</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">|</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
 <div id="kgufivjubq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#kgufivjubq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1975,83 +2119,107 @@ without continuity correction) and Fisher’s test.</p>
 </style>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="response">response</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=""></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="response">response</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="variable">variable</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="x">x</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="proportion">proportion</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="difference">difference</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="chisq.value">chisq.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="null">null</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.value">t.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="footnote">footnote</th>
     </tr></thead>
 <tbody class="gt_table_body">
-<tr>
-<td headers="response" class="gt_row gt_left">vs = straight</td>
-<td headers="variable" class="gt_row gt_left">am = manual</td>
-<td headers="x" class="gt_row gt_right">7</td>
-<td headers="n" class="gt_row gt_right">13</td>
-<td headers="proportion" class="gt_row gt_right">0.54</td>
-<td headers="difference" class="gt_row gt_right"><br></td>
-<td headers="conf.low" class="gt_row gt_right"> 0.29</td>
-<td headers="conf.high" class="gt_row gt_right">0.77</td>
-<td headers="chisq.value" class="gt_row gt_right"><br></td>
-<td headers="p.value" class="gt_row gt_left"><br></td>
-<td headers="footnote" class="gt_row gt_right">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> </td>
+<tr class="gt_row_group_first">
+<td headers="cyl = 6 stub_1_1 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">cyl = 6</td>
+<td headers="cyl = 6 stub_1_1 response" class="gt_row gt_left">wt</td>
+<td headers="cyl = 6 stub_1_1 variable" class="gt_row gt_left">am: automatic - manual</td>
+<td headers="cyl = 6 stub_1_1 difference" class="gt_row gt_right"> 0.63</td>
+<td headers="cyl = 6 stub_1_1 conf.low" class="gt_row gt_right"> 0.38 </td>
+<td headers="cyl = 6 stub_1_1 conf.high" class="gt_row gt_right"> 0.89</td>
+<td headers="cyl = 6 stub_1_1 null" class="gt_row gt_right">0 </td>
+<td headers="cyl = 6 stub_1_1 t.value" class="gt_row gt_right"> 6.7 </td>
+<td headers="cyl = 6 stub_1_1 df" class="gt_row gt_right"> 4.2</td>
+<td headers="cyl = 6 stub_1_1 p.value" class="gt_row gt_left">  0.0022</td>
 </tr>
 <tr>
-<td headers="response" class="gt_row gt_left">vs = straight</td>
-<td headers="variable" class="gt_row gt_left">am = automatic</td>
-<td headers="x" class="gt_row gt_right">7</td>
-<td headers="n" class="gt_row gt_right">19</td>
-<td headers="proportion" class="gt_row gt_right">0.37</td>
-<td headers="difference" class="gt_row gt_right"><br></td>
-<td headers="conf.low" class="gt_row gt_right"> 0.19</td>
-<td headers="conf.high" class="gt_row gt_right">0.59</td>
-<td headers="chisq.value" class="gt_row gt_right"><br></td>
-<td headers="p.value" class="gt_row gt_left"><br></td>
-<td headers="footnote" class="gt_row gt_right">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> </td>
+<td headers="cyl = 6 response_2 response" class="gt_row gt_left">mpg</td>
+<td headers="cyl = 6 response_2 variable" class="gt_row gt_left">am: automatic - manual</td>
+<td headers="cyl = 6 response_2 difference" class="gt_row gt_right">−1.4 </td>
+<td headers="cyl = 6 response_2 conf.low" class="gt_row gt_right">−3.9  </td>
+<td headers="cyl = 6 response_2 conf.high" class="gt_row gt_right"> 1.0 </td>
+<td headers="cyl = 6 response_2 null" class="gt_row gt_right">0 </td>
+<td headers="cyl = 6 response_2 t.value" class="gt_row gt_right">−1.6 </td>
+<td headers="cyl = 6 response_2 df" class="gt_row gt_right"> 4.4</td>
+<td headers="cyl = 6 response_2 p.value" class="gt_row gt_left">  0.19</td>
+</tr>
+<tr class="gt_row_group_first">
+<td headers="cyl = 4 stub_1_3 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">cyl = 4</td>
+<td headers="cyl = 4 stub_1_3 response" class="gt_row gt_left">wt</td>
+<td headers="cyl = 4 stub_1_3 variable" class="gt_row gt_left">am: automatic - manual</td>
+<td headers="cyl = 4 stub_1_3 difference" class="gt_row gt_right"> 0.89</td>
+<td headers="cyl = 4 stub_1_3 conf.low" class="gt_row gt_right"> 0.096</td>
+<td headers="cyl = 4 stub_1_3 conf.high" class="gt_row gt_right"> 1.7 </td>
+<td headers="cyl = 4 stub_1_3 null" class="gt_row gt_right">0 </td>
+<td headers="cyl = 4 stub_1_3 t.value" class="gt_row gt_right"> 3.2 </td>
+<td headers="cyl = 4 stub_1_3 df" class="gt_row gt_right"> 3.7</td>
+<td headers="cyl = 4 stub_1_3 p.value" class="gt_row gt_left">  0.036</td>
 </tr>
 <tr>
-<td headers="response" class="gt_row gt_left">vs = straight</td>
-<td headers="variable" class="gt_row gt_left">am: automatic - manual</td>
-<td headers="x" class="gt_row gt_right"><br></td>
-<td headers="n" class="gt_row gt_right"><br></td>
-<td headers="proportion" class="gt_row gt_right"><br></td>
-<td headers="difference" class="gt_row gt_right">−0.17</td>
-<td headers="conf.low" class="gt_row gt_right">−0.24</td>
-<td headers="conf.high" class="gt_row gt_right">0.58</td>
-<td headers="chisq.value" class="gt_row gt_right">0.35</td>
-<td headers="p.value" class="gt_row gt_left">  0.56</td>
-<td headers="footnote" class="gt_row gt_right">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> </td>
+<td headers="cyl = 4 response_4 response" class="gt_row gt_left">mpg</td>
+<td headers="cyl = 4 response_4 variable" class="gt_row gt_left">am: automatic - manual</td>
+<td headers="cyl = 4 response_4 difference" class="gt_row gt_right">−5.2 </td>
+<td headers="cyl = 4 response_4 conf.low" class="gt_row gt_right">−9.2  </td>
+<td headers="cyl = 4 response_4 conf.high" class="gt_row gt_right">−1.1 </td>
+<td headers="cyl = 4 response_4 null" class="gt_row gt_right">0 </td>
+<td headers="cyl = 4 response_4 t.value" class="gt_row gt_right">−2.9 </td>
+<td headers="cyl = 4 response_4 df" class="gt_row gt_right"> 9.0</td>
+<td headers="cyl = 4 response_4 p.value" class="gt_row gt_left">  0.018</td>
+</tr>
+<tr class="gt_row_group_first">
+<td headers="cyl = 8 stub_1_5 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">cyl = 8</td>
+<td headers="cyl = 8 stub_1_5 response" class="gt_row gt_left">wt</td>
+<td headers="cyl = 8 stub_1_5 variable" class="gt_row gt_left">am: automatic - manual</td>
+<td headers="cyl = 8 stub_1_5 difference" class="gt_row gt_right"> 0.73</td>
+<td headers="cyl = 8 stub_1_5 conf.low" class="gt_row gt_right">−0.068</td>
+<td headers="cyl = 8 stub_1_5 conf.high" class="gt_row gt_right"> 1.5 </td>
+<td headers="cyl = 8 stub_1_5 null" class="gt_row gt_right">0 </td>
+<td headers="cyl = 8 stub_1_5 t.value" class="gt_row gt_right"> 2.5 </td>
+<td headers="cyl = 8 stub_1_5 df" class="gt_row gt_right"> 4.4</td>
+<td headers="cyl = 8 stub_1_5 p.value" class="gt_row gt_left">  0.065</td>
+</tr>
+<tr>
+<td headers="cyl = 8 response_6 response" class="gt_row gt_left">mpg</td>
+<td headers="cyl = 8 response_6 variable" class="gt_row gt_left">am: automatic - manual</td>
+<td headers="cyl = 8 response_6 difference" class="gt_row gt_right">−0.35</td>
+<td headers="cyl = 8 response_6 conf.low" class="gt_row gt_right">−2.3  </td>
+<td headers="cyl = 8 response_6 conf.high" class="gt_row gt_right"> 1.6 </td>
+<td headers="cyl = 8 response_6 null" class="gt_row gt_right">0 </td>
+<td headers="cyl = 8 response_6 t.value" class="gt_row gt_right">−0.39</td>
+<td headers="cyl = 8 response_6 df" class="gt_row gt_right">10  </td>
+<td headers="cyl = 8 response_6 p.value" class="gt_row gt_left">  0.70</td>
 </tr>
 </tbody>
-<tfoot class="gt_footnotes">
-<tr>
-<td class="gt_footnote" colspan="11">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> Wilson's proportion test (two.sided), with 95% confidence intervals.</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="11">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> 2-sample test for equality of proportions with continuity correction (two.sided), with 95% confidence intervals.</td>
-    </tr>
-</tfoot>
+<tfoot class="gt_footnotes"><tr>
+<td class="gt_footnote" colspan="10"> Welch Two Sample t-test (two.sided), with 95% confidence intervals.</td>
+    </tr></tfoot>
 </table>
 </div>
 </div>
-</div>
 <div class="section level2">
-<h2 id="pairwise-proportion-tests">Pairwise Proportion Tests<a class="anchor" aria-label="anchor" href="#pairwise-proportion-tests"></a>
+<h2 id="combining-output">Combining output<a class="anchor" aria-label="anchor" href="#combining-output"></a>
 </h2>
+<p>You can use <code>combine_tests</code> to combine output from several
+tests together. It’ll do it’s best to output this meaningfully, but it’s
+up to you to combine meaningful things together.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="../reference/two_proportion_test.html">pairwise_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">am</span><span class="op">|</span><span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/two_t_test.html">two_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/correlation_test.html">correlation_test</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">hp</span>, data<span class="op">=</span><span class="va">mtcars2</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">am</span><span class="op">|</span><span class="va">cyl</span>, data<span class="op">=</span><span class="va">mtcars2</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/tab_compact.html">tab_compact</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="txvafbsnay" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#txvafbsnay table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -2075,7 +2243,7 @@ without continuity correction) and Fisher’s test.</p>
   margin-left: 0;
   margin-right: auto;
   color: #333333;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: normal;
   font-style: normal;
   background-color: #FFFFFF;
@@ -2213,8 +2381,8 @@ without continuity correction) and Fisher’s test.</p>
 }
 
 #txvafbsnay .gt_group_heading {
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 1px;
+  padding-bottom: 1px;
   padding-left: 5px;
   padding-right: 5px;
   color: #333333;
@@ -2262,8 +2430,8 @@ without continuity correction) and Fisher’s test.</p>
 }
 
 #txvafbsnay .gt_row {
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 1px;
+  padding-bottom: 1px;
   padding-left: 5px;
   padding-right: 5px;
   margin: 10px;
@@ -2319,8 +2487,8 @@ without continuity correction) and Fisher’s test.</p>
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 1px;
+  padding-bottom: 1px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -2335,8 +2503,8 @@ without continuity correction) and Fisher’s test.</p>
 }
 
 #txvafbsnay .gt_last_summary_row {
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 1px;
+  padding-bottom: 1px;
   padding-left: 5px;
   padding-right: 5px;
   border-bottom-style: solid;
@@ -2348,15 +2516,15 @@ without continuity correction) and Fisher’s test.</p>
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 1px;
+  padding-bottom: 1px;
   padding-left: 5px;
   padding-right: 5px;
 }
 
 #txvafbsnay .gt_first_grand_summary_row {
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 1px;
+  padding-bottom: 1px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-style: double;
@@ -2365,8 +2533,8 @@ without continuity correction) and Fisher’s test.</p>
 }
 
 #txvafbsnay .gt_last_grand_summary_row_top {
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 1px;
+  padding-bottom: 1px;
   padding-left: 5px;
   padding-right: 5px;
   border-bottom-style: double;
@@ -2404,8 +2572,8 @@ without continuity correction) and Fisher’s test.</p>
 #txvafbsnay .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding-top: 1px;
+  padding-bottom: 1px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -2426,8 +2594,8 @@ without continuity correction) and Fisher’s test.</p>
 
 #txvafbsnay .gt_sourcenote {
   font-size: 90%;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding-top: 1px;
+  padding-bottom: 1px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -2503,1297 +2671,289 @@ without continuity correction) and Fisher’s test.</p>
 </style>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="response">response</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=""></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="response">response</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="variable">variable</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="x">x</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="proportion">proportion</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mean">mean</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="difference">difference</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.adjust">p.adjust</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="footnote">footnote</th>
-    </tr></thead>
-<tbody class="gt_table_body">
-<tr>
-<td headers="response" class="gt_row gt_left">vs = straight</td>
-<td headers="variable" class="gt_row gt_left">cyl = 6</td>
-<td headers="x" class="gt_row gt_right">4</td>
-<td headers="n" class="gt_row gt_right">7</td>
-<td headers="proportion" class="gt_row gt_right">0.57</td>
-<td headers="difference" class="gt_row gt_right"><br></td>
-<td headers="conf.low" class="gt_row gt_right">0.18</td>
-<td headers="conf.high" class="gt_row gt_right">0.90</td>
-<td headers="p.value" class="gt_row gt_left"><br></td>
-<td headers="p.adjust" class="gt_row gt_left"><br></td>
-<td headers="footnote" class="gt_row gt_right">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1,2</sup></span> </td>
-</tr>
-<tr>
-<td headers="response" class="gt_row gt_left">vs = straight</td>
-<td headers="variable" class="gt_row gt_left">cyl = 4</td>
-<td headers="x" class="gt_row gt_right">10</td>
-<td headers="n" class="gt_row gt_right">11</td>
-<td headers="proportion" class="gt_row gt_right">0.91</td>
-<td headers="difference" class="gt_row gt_right"><br></td>
-<td headers="conf.low" class="gt_row gt_right">0.62</td>
-<td headers="conf.high" class="gt_row gt_right">0.98</td>
-<td headers="p.value" class="gt_row gt_left"><br></td>
-<td headers="p.adjust" class="gt_row gt_left"><br></td>
-<td headers="footnote" class="gt_row gt_right">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>3</sup></span> </td>
-</tr>
-<tr>
-<td headers="response" class="gt_row gt_left">vs = straight</td>
-<td headers="variable" class="gt_row gt_left">cyl = 8</td>
-<td headers="x" class="gt_row gt_right">0</td>
-<td headers="n" class="gt_row gt_right">14</td>
-<td headers="proportion" class="gt_row gt_right">0   </td>
-<td headers="difference" class="gt_row gt_right"><br></td>
-<td headers="conf.low" class="gt_row gt_right">0   </td>
-<td headers="conf.high" class="gt_row gt_right">0.23</td>
-<td headers="p.value" class="gt_row gt_left"><br></td>
-<td headers="p.adjust" class="gt_row gt_left"><br></td>
-<td headers="footnote" class="gt_row gt_right">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1,4</sup></span> </td>
-</tr>
-<tr>
-<td headers="response" class="gt_row gt_left">vs = straight</td>
-<td headers="variable" class="gt_row gt_left">cyl: 4 - 6</td>
-<td headers="x" class="gt_row gt_right"><br></td>
-<td headers="n" class="gt_row gt_right"><br></td>
-<td headers="proportion" class="gt_row gt_right"><br></td>
-<td headers="difference" class="gt_row gt_right">0.34</td>
-<td headers="conf.low" class="gt_row gt_right"><br></td>
-<td headers="conf.high" class="gt_row gt_right"><br></td>
-<td headers="p.value" class="gt_row gt_left">  0.25</td>
-<td headers="p.adjust" class="gt_row gt_left">  0.74</td>
-<td headers="footnote" class="gt_row gt_right">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>5,6,7</sup></span> </td>
-</tr>
-<tr>
-<td headers="response" class="gt_row gt_left">vs = straight</td>
-<td headers="variable" class="gt_row gt_left">cyl: 4 - 8</td>
-<td headers="x" class="gt_row gt_right"><br></td>
-<td headers="n" class="gt_row gt_right"><br></td>
-<td headers="proportion" class="gt_row gt_right"><br></td>
-<td headers="difference" class="gt_row gt_right">0.91</td>
-<td headers="conf.low" class="gt_row gt_right"><br></td>
-<td headers="conf.high" class="gt_row gt_right"><br></td>
-<td headers="p.value" class="gt_row gt_left">&lt; 0.0001</td>
-<td headers="p.adjust" class="gt_row gt_left">&lt; 0.0001</td>
-<td headers="footnote" class="gt_row gt_right">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>5,6,7</sup></span> </td>
-</tr>
-<tr>
-<td headers="response" class="gt_row gt_left">vs = straight</td>
-<td headers="variable" class="gt_row gt_left">cyl: 6 - 8</td>
-<td headers="x" class="gt_row gt_right"><br></td>
-<td headers="n" class="gt_row gt_right"><br></td>
-<td headers="proportion" class="gt_row gt_right"><br></td>
-<td headers="difference" class="gt_row gt_right">0.57</td>
-<td headers="conf.low" class="gt_row gt_right"><br></td>
-<td headers="conf.high" class="gt_row gt_right"><br></td>
-<td headers="p.value" class="gt_row gt_left">  0.0058</td>
-<td headers="p.adjust" class="gt_row gt_left">  0.018</td>
-<td headers="footnote" class="gt_row gt_right">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>5,6,7</sup></span> </td>
-</tr>
-</tbody>
-<tfoot class="gt_footnotes">
-<tr>
-<td class="gt_footnote" colspan="11">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> Exact binomial test (two.sided), with 95% confidence intervals.</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="11">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> Method chosen because n &lt; 10.</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="11">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>3</sup></span> Wilson's proportion test (two.sided), with 95% confidence intervals.</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="11">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>4</sup></span> Method chosen because observed proportion &lt; 0.10.</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="11">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>5</sup></span> Fisher's Exact Test for Count Data (two.sided)</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="11">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>6</sup></span> Method chosen due to expected counts &lt; 5.</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="11">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>7</sup></span> p-values adjusted for 3 multiple comparisons using the Bonferroni method.</td>
-    </tr>
-</tfoot>
-</table>
-</div>
-</div>
-<div class="section level2">
-<h2 id="paired-proportion-test-mcnemars">Paired Proportion Test (McNemar’s)<a class="anchor" aria-label="anchor" href="#paired-proportion-test-mcnemars"></a>
-</h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">pass1</span> <span class="op">+</span> <span class="va">pass2</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">passfail</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">pass2</span> <span class="op">~</span> <span class="va">pass1</span>, data <span class="op">=</span> <span class="va">passfail</span>, all_success <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="../reference/paired_proportion_test.html">paired_proportion_test</a></span><span class="op">(</span><span class="va">pass2</span> <span class="op">-</span> <span class="va">pass1</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">passfail</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div id="orehalspkz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#orehalspkz table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#orehalspkz thead, #orehalspkz tbody, #orehalspkz tfoot, #orehalspkz tr, #orehalspkz td, #orehalspkz th {
-  border-style: none;
-}
-
-#orehalspkz p {
-  margin: 0;
-  padding: 0;
-}
-
-#orehalspkz .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: 0;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#orehalspkz .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#orehalspkz .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#orehalspkz .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 1px;
-  padding-bottom: 3px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#orehalspkz .gt_heading {
-  background-color: #FFFFFF;
-  text-align: left;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#orehalspkz .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#orehalspkz .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#orehalspkz .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 2.5px;
-  padding-bottom: 3.5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#orehalspkz .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#orehalspkz .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#orehalspkz .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#orehalspkz .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 2.5px;
-  padding-bottom: 2.5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#orehalspkz .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#orehalspkz .gt_group_heading {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#orehalspkz .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#orehalspkz .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#orehalspkz .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#orehalspkz .gt_row {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#orehalspkz .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#orehalspkz .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#orehalspkz .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#orehalspkz .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#orehalspkz .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#orehalspkz .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#orehalspkz .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#orehalspkz .gt_last_summary_row {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#orehalspkz .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#orehalspkz .gt_first_grand_summary_row {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#orehalspkz .gt_last_grand_summary_row_top {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#orehalspkz .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#orehalspkz .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#orehalspkz .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#orehalspkz .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#orehalspkz .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#orehalspkz .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#orehalspkz .gt_left {
-  text-align: left;
-}
-
-#orehalspkz .gt_center {
-  text-align: center;
-}
-
-#orehalspkz .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#orehalspkz .gt_font_normal {
-  font-weight: normal;
-}
-
-#orehalspkz .gt_font_bold {
-  font-weight: bold;
-}
-
-#orehalspkz .gt_font_italic {
-  font-style: italic;
-}
-
-#orehalspkz .gt_super {
-  font-size: 65%;
-}
-
-#orehalspkz .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#orehalspkz .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#orehalspkz .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#orehalspkz .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#orehalspkz .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#orehalspkz .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#orehalspkz .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#orehalspkz .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#orehalspkz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="response">response</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="variable">variable</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="correlation">correlation</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="x">x</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="proportion">proportion</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="null">null</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="chisq.value">chisq.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.value">t.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="footnote">footnote</th>
     </tr></thead>
 <tbody class="gt_table_body">
-<tr>
-<td headers="response" class="gt_row gt_left">pass1 = pass</td>
-<td headers="variable" class="gt_row gt_left"><br></td>
-<td headers="x" class="gt_row gt_right">30</td>
-<td headers="n" class="gt_row gt_right">50</td>
-<td headers="proportion" class="gt_row gt_right">0.60</td>
-<td headers="conf.low" class="gt_row gt_right">0.46</td>
-<td headers="conf.high" class="gt_row gt_right">0.72</td>
-<td headers="null" class="gt_row gt_right"><br></td>
-<td headers="chisq.value" class="gt_row gt_right"><br></td>
-<td headers="p.value" class="gt_row gt_left"><br></td>
-<td headers="footnote" class="gt_row gt_right">
+<tr class="gt_row_group_first">
+<td headers="vs = V-shaped stub_1_1 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">vs = V-shaped</td>
+<td headers="vs = V-shaped stub_1_1 response" class="gt_row gt_left">wt</td>
+<td headers="vs = V-shaped stub_1_1 variable" class="gt_row gt_left">am = manual</td>
+<td headers="vs = V-shaped stub_1_1 mean" class="gt_row gt_right">2.9</td>
+<td headers="vs = V-shaped stub_1_1 difference" class="gt_row gt_right"><br></td>
+<td headers="vs = V-shaped stub_1_1 correlation" class="gt_row gt_right"><br></td>
+<td headers="vs = V-shaped stub_1_1 x" class="gt_row gt_right"><br></td>
+<td headers="vs = V-shaped stub_1_1 n" class="gt_row gt_right"><br></td>
+<td headers="vs = V-shaped stub_1_1 proportion" class="gt_row gt_right"><br></td>
+<td headers="vs = V-shaped stub_1_1 conf.low" class="gt_row gt_right"> 2.3 </td>
+<td headers="vs = V-shaped stub_1_1 conf.high" class="gt_row gt_right"> 3.4 </td>
+<td headers="vs = V-shaped stub_1_1 null" class="gt_row gt_right"><br></td>
+<td headers="vs = V-shaped stub_1_1 t.value" class="gt_row gt_right"><br></td>
+<td headers="vs = V-shaped stub_1_1 df" class="gt_row gt_right"><br></td>
+<td headers="vs = V-shaped stub_1_1 p.value" class="gt_row gt_left"><br></td>
+<td headers="vs = V-shaped stub_1_1 footnote" class="gt_row gt_right">
 <span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> </td>
 </tr>
 <tr>
-<td headers="response" class="gt_row gt_left">pass2 = pass</td>
-<td headers="variable" class="gt_row gt_left"><br></td>
-<td headers="x" class="gt_row gt_right">37</td>
-<td headers="n" class="gt_row gt_right">50</td>
-<td headers="proportion" class="gt_row gt_right">0.74</td>
-<td headers="conf.low" class="gt_row gt_right">0.60</td>
-<td headers="conf.high" class="gt_row gt_right">0.84</td>
-<td headers="null" class="gt_row gt_right"><br></td>
-<td headers="chisq.value" class="gt_row gt_right"><br></td>
-<td headers="p.value" class="gt_row gt_left"><br></td>
-<td headers="footnote" class="gt_row gt_right">
+<td headers="vs = V-shaped response_2 response" class="gt_row gt_left">wt</td>
+<td headers="vs = V-shaped response_2 variable" class="gt_row gt_left">am = automatic</td>
+<td headers="vs = V-shaped response_2 mean" class="gt_row gt_right">4.1</td>
+<td headers="vs = V-shaped response_2 difference" class="gt_row gt_right"><br></td>
+<td headers="vs = V-shaped response_2 correlation" class="gt_row gt_right"><br></td>
+<td headers="vs = V-shaped response_2 x" class="gt_row gt_right"><br></td>
+<td headers="vs = V-shaped response_2 n" class="gt_row gt_right"><br></td>
+<td headers="vs = V-shaped response_2 proportion" class="gt_row gt_right"><br></td>
+<td headers="vs = V-shaped response_2 conf.low" class="gt_row gt_right"> 3.6 </td>
+<td headers="vs = V-shaped response_2 conf.high" class="gt_row gt_right"> 4.6 </td>
+<td headers="vs = V-shaped response_2 null" class="gt_row gt_right"><br></td>
+<td headers="vs = V-shaped response_2 t.value" class="gt_row gt_right"><br></td>
+<td headers="vs = V-shaped response_2 df" class="gt_row gt_right"><br></td>
+<td headers="vs = V-shaped response_2 p.value" class="gt_row gt_left"><br></td>
+<td headers="vs = V-shaped response_2 footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> </td>
+</tr>
+<tr class="gt_row_group_first">
+<td headers="vs = straight stub_1_3 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">vs = straight</td>
+<td headers="vs = straight stub_1_3 response" class="gt_row gt_left">wt</td>
+<td headers="vs = straight stub_1_3 variable" class="gt_row gt_left">am = manual</td>
+<td headers="vs = straight stub_1_3 mean" class="gt_row gt_right">2.0</td>
+<td headers="vs = straight stub_1_3 difference" class="gt_row gt_right"><br></td>
+<td headers="vs = straight stub_1_3 correlation" class="gt_row gt_right"><br></td>
+<td headers="vs = straight stub_1_3 x" class="gt_row gt_right"><br></td>
+<td headers="vs = straight stub_1_3 n" class="gt_row gt_right"><br></td>
+<td headers="vs = straight stub_1_3 proportion" class="gt_row gt_right"><br></td>
+<td headers="vs = straight stub_1_3 conf.low" class="gt_row gt_right"> 1.6 </td>
+<td headers="vs = straight stub_1_3 conf.high" class="gt_row gt_right"> 2.4 </td>
+<td headers="vs = straight stub_1_3 null" class="gt_row gt_right"><br></td>
+<td headers="vs = straight stub_1_3 t.value" class="gt_row gt_right"><br></td>
+<td headers="vs = straight stub_1_3 df" class="gt_row gt_right"><br></td>
+<td headers="vs = straight stub_1_3 p.value" class="gt_row gt_left"><br></td>
+<td headers="vs = straight stub_1_3 footnote" class="gt_row gt_right">
 <span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> </td>
 </tr>
 <tr>
-<td headers="response" class="gt_row gt_left">pass2 = fail</td>
-<td headers="variable" class="gt_row gt_left">pass1 = pass</td>
-<td headers="x" class="gt_row gt_right">8</td>
-<td headers="n" class="gt_row gt_right">30</td>
-<td headers="proportion" class="gt_row gt_right">0.27</td>
-<td headers="conf.low" class="gt_row gt_right">0.14</td>
-<td headers="conf.high" class="gt_row gt_right">0.44</td>
-<td headers="null" class="gt_row gt_right"><br></td>
-<td headers="chisq.value" class="gt_row gt_right"><br></td>
-<td headers="p.value" class="gt_row gt_left"><br></td>
-<td headers="footnote" class="gt_row gt_right">
+<td headers="vs = straight response_4 response" class="gt_row gt_left">wt</td>
+<td headers="vs = straight response_4 variable" class="gt_row gt_left">am = automatic</td>
+<td headers="vs = straight response_4 mean" class="gt_row gt_right">3.2</td>
+<td headers="vs = straight response_4 difference" class="gt_row gt_right"><br></td>
+<td headers="vs = straight response_4 correlation" class="gt_row gt_right"><br></td>
+<td headers="vs = straight response_4 x" class="gt_row gt_right"><br></td>
+<td headers="vs = straight response_4 n" class="gt_row gt_right"><br></td>
+<td headers="vs = straight response_4 proportion" class="gt_row gt_right"><br></td>
+<td headers="vs = straight response_4 conf.low" class="gt_row gt_right"> 2.9 </td>
+<td headers="vs = straight response_4 conf.high" class="gt_row gt_right"> 3.5 </td>
+<td headers="vs = straight response_4 null" class="gt_row gt_right"><br></td>
+<td headers="vs = straight response_4 t.value" class="gt_row gt_right"><br></td>
+<td headers="vs = straight response_4 df" class="gt_row gt_right"><br></td>
+<td headers="vs = straight response_4 p.value" class="gt_row gt_left"><br></td>
+<td headers="vs = straight response_4 footnote" class="gt_row gt_right">
 <span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> </td>
 </tr>
-<tr>
-<td headers="response" class="gt_row gt_left">pass2 = pass</td>
-<td headers="variable" class="gt_row gt_left">pass1 = pass</td>
-<td headers="x" class="gt_row gt_right">22</td>
-<td headers="n" class="gt_row gt_right">30</td>
-<td headers="proportion" class="gt_row gt_right">0.73</td>
-<td headers="conf.low" class="gt_row gt_right">0.56</td>
-<td headers="conf.high" class="gt_row gt_right">0.86</td>
-<td headers="null" class="gt_row gt_right"><br></td>
-<td headers="chisq.value" class="gt_row gt_right"><br></td>
-<td headers="p.value" class="gt_row gt_left"><br></td>
-<td headers="footnote" class="gt_row gt_right">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> </td>
-</tr>
-<tr>
-<td headers="response" class="gt_row gt_left">pass2 = fail</td>
-<td headers="variable" class="gt_row gt_left">pass1 = fail</td>
-<td headers="x" class="gt_row gt_right">5</td>
-<td headers="n" class="gt_row gt_right">20</td>
-<td headers="proportion" class="gt_row gt_right">0.25</td>
-<td headers="conf.low" class="gt_row gt_right">0.11</td>
-<td headers="conf.high" class="gt_row gt_right">0.47</td>
-<td headers="null" class="gt_row gt_right"><br></td>
-<td headers="chisq.value" class="gt_row gt_right"><br></td>
-<td headers="p.value" class="gt_row gt_left"><br></td>
-<td headers="footnote" class="gt_row gt_right">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> </td>
-</tr>
-<tr>
-<td headers="response" class="gt_row gt_left">pass2 = pass</td>
-<td headers="variable" class="gt_row gt_left">pass1 = fail</td>
-<td headers="x" class="gt_row gt_right">15</td>
-<td headers="n" class="gt_row gt_right">20</td>
-<td headers="proportion" class="gt_row gt_right">0.75</td>
-<td headers="conf.low" class="gt_row gt_right">0.53</td>
-<td headers="conf.high" class="gt_row gt_right">0.89</td>
-<td headers="null" class="gt_row gt_right"><br></td>
-<td headers="chisq.value" class="gt_row gt_right"><br></td>
-<td headers="p.value" class="gt_row gt_left"><br></td>
-<td headers="footnote" class="gt_row gt_right">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> </td>
-</tr>
-<tr>
-<td headers="response" class="gt_row gt_left">pass: pass2 - pass1</td>
-<td headers="variable" class="gt_row gt_left"><br></td>
-<td headers="x" class="gt_row gt_right">15</td>
-<td headers="n" class="gt_row gt_right">23</td>
-<td headers="proportion" class="gt_row gt_right">0.65</td>
-<td headers="conf.low" class="gt_row gt_right"><br></td>
-<td headers="conf.high" class="gt_row gt_right"><br></td>
-<td headers="null" class="gt_row gt_right">0.50</td>
-<td headers="chisq.value" class="gt_row gt_right">2.1</td>
-<td headers="p.value" class="gt_row gt_left">  0.14</td>
-<td headers="footnote" class="gt_row gt_right">
+<tr class="gt_row_group_first">
+<td headers="NA stub_1_5 stub_1" rowspan="3" class="gt_row gt_left gt_stub_row_group">NA</td>
+<td headers="NA stub_1_5 response" class="gt_row gt_left">wt</td>
+<td headers="NA stub_1_5 variable" class="gt_row gt_left">am: automatic - manual</td>
+<td headers="NA stub_1_5 mean" class="gt_row gt_right"><br></td>
+<td headers="NA stub_1_5 difference" class="gt_row gt_right">1.4</td>
+<td headers="NA stub_1_5 correlation" class="gt_row gt_right"><br></td>
+<td headers="NA stub_1_5 x" class="gt_row gt_right"><br></td>
+<td headers="NA stub_1_5 n" class="gt_row gt_right"><br></td>
+<td headers="NA stub_1_5 proportion" class="gt_row gt_right"><br></td>
+<td headers="NA stub_1_5 conf.low" class="gt_row gt_right"> 0.85</td>
+<td headers="NA stub_1_5 conf.high" class="gt_row gt_right"> 1.9 </td>
+<td headers="NA stub_1_5 null" class="gt_row gt_right">0 </td>
+<td headers="NA stub_1_5 t.value" class="gt_row gt_right">5.5</td>
+<td headers="NA stub_1_5 df" class="gt_row gt_right">29 </td>
+<td headers="NA stub_1_5 p.value" class="gt_row gt_left">&lt; 0.0001</td>
+<td headers="NA stub_1_5 footnote" class="gt_row gt_right">
 <span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> </td>
 </tr>
-</tbody>
-<tfoot class="gt_footnotes">
 <tr>
-<td class="gt_footnote" colspan="11">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> Wilson's proportion test (two.sided), with 95% confidence intervals.</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="11">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> McNemar's test, using Wilson's proportion test (two.sided).</td>
-    </tr>
-</tfoot>
-</table>
-</div>
-</div>
-<div class="section level2">
-<h2 id="independence-test">Independence Test<a class="anchor" aria-label="anchor" href="#independence-test"></a>
-</h2>
-<p>It will automatically choose between the chi-squared test and
-Fisher’s test.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">~</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars2</span>, all_success <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="../reference/independence_test.html">independence_test</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">~</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div id="cbwjcfdjag" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cbwjcfdjag table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#cbwjcfdjag thead, #cbwjcfdjag tbody, #cbwjcfdjag tfoot, #cbwjcfdjag tr, #cbwjcfdjag td, #cbwjcfdjag th {
-  border-style: none;
-}
-
-#cbwjcfdjag p {
-  margin: 0;
-  padding: 0;
-}
-
-#cbwjcfdjag .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: 0;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#cbwjcfdjag .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#cbwjcfdjag .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#cbwjcfdjag .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 1px;
-  padding-bottom: 3px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#cbwjcfdjag .gt_heading {
-  background-color: #FFFFFF;
-  text-align: left;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#cbwjcfdjag .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#cbwjcfdjag .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#cbwjcfdjag .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 2.5px;
-  padding-bottom: 3.5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#cbwjcfdjag .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#cbwjcfdjag .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#cbwjcfdjag .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#cbwjcfdjag .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 2.5px;
-  padding-bottom: 2.5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#cbwjcfdjag .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#cbwjcfdjag .gt_group_heading {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#cbwjcfdjag .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#cbwjcfdjag .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#cbwjcfdjag .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#cbwjcfdjag .gt_row {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#cbwjcfdjag .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#cbwjcfdjag .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#cbwjcfdjag .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#cbwjcfdjag .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#cbwjcfdjag .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#cbwjcfdjag .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#cbwjcfdjag .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#cbwjcfdjag .gt_last_summary_row {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#cbwjcfdjag .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#cbwjcfdjag .gt_first_grand_summary_row {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#cbwjcfdjag .gt_last_grand_summary_row_top {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#cbwjcfdjag .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#cbwjcfdjag .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#cbwjcfdjag .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#cbwjcfdjag .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#cbwjcfdjag .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#cbwjcfdjag .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#cbwjcfdjag .gt_left {
-  text-align: left;
-}
-
-#cbwjcfdjag .gt_center {
-  text-align: center;
-}
-
-#cbwjcfdjag .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#cbwjcfdjag .gt_font_normal {
-  font-weight: normal;
-}
-
-#cbwjcfdjag .gt_font_bold {
-  font-weight: bold;
-}
-
-#cbwjcfdjag .gt_font_italic {
-  font-style: italic;
-}
-
-#cbwjcfdjag .gt_super {
-  font-size: 65%;
-}
-
-#cbwjcfdjag .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#cbwjcfdjag .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#cbwjcfdjag .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#cbwjcfdjag .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#cbwjcfdjag .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#cbwjcfdjag .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#cbwjcfdjag .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#cbwjcfdjag .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#cbwjcfdjag div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="response">response</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="variable">variable</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="x">x</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="proportion">proportion</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="footnote">footnote</th>
-    </tr></thead>
-<tbody class="gt_table_body">
-<tr>
-<td headers="response" class="gt_row gt_left">cyl = 4</td>
-<td headers="variable" class="gt_row gt_left">vs = V-shaped</td>
-<td headers="x" class="gt_row gt_right">1</td>
-<td headers="n" class="gt_row gt_right">18</td>
-<td headers="proportion" class="gt_row gt_right">0.056</td>
-<td headers="conf.low" class="gt_row gt_right">0.0014</td>
-<td headers="conf.high" class="gt_row gt_right">0.27</td>
-<td headers="p.value" class="gt_row gt_left"><br></td>
-<td headers="footnote" class="gt_row gt_right">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1,2</sup></span> </td>
-</tr>
-<tr>
-<td headers="response" class="gt_row gt_left">cyl = 6</td>
-<td headers="variable" class="gt_row gt_left">vs = V-shaped</td>
-<td headers="x" class="gt_row gt_right">3</td>
-<td headers="n" class="gt_row gt_right">18</td>
-<td headers="proportion" class="gt_row gt_right">0.17 </td>
-<td headers="conf.low" class="gt_row gt_right">0.058 </td>
-<td headers="conf.high" class="gt_row gt_right">0.39</td>
-<td headers="p.value" class="gt_row gt_left"><br></td>
-<td headers="footnote" class="gt_row gt_right">
+<td headers="NA response_6 response" class="gt_row gt_left">mpg</td>
+<td headers="NA response_6 variable" class="gt_row gt_left">wt</td>
+<td headers="NA response_6 mean" class="gt_row gt_right"><br></td>
+<td headers="NA response_6 difference" class="gt_row gt_right"><br></td>
+<td headers="NA response_6 correlation" class="gt_row gt_right">−0.87</td>
+<td headers="NA response_6 x" class="gt_row gt_right"><br></td>
+<td headers="NA response_6 n" class="gt_row gt_right"><br></td>
+<td headers="NA response_6 proportion" class="gt_row gt_right"><br></td>
+<td headers="NA response_6 conf.low" class="gt_row gt_right">−0.93</td>
+<td headers="NA response_6 conf.high" class="gt_row gt_right">−0.74</td>
+<td headers="NA response_6 null" class="gt_row gt_right"><br></td>
+<td headers="NA response_6 t.value" class="gt_row gt_right"><br></td>
+<td headers="NA response_6 df" class="gt_row gt_right"><br></td>
+<td headers="NA response_6 p.value" class="gt_row gt_left">&lt; 0.0001</td>
+<td headers="NA response_6 footnote" class="gt_row gt_right">
 <span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>3</sup></span> </td>
 </tr>
 <tr>
-<td headers="response" class="gt_row gt_left">cyl = 8</td>
-<td headers="variable" class="gt_row gt_left">vs = V-shaped</td>
-<td headers="x" class="gt_row gt_right">14</td>
-<td headers="n" class="gt_row gt_right">18</td>
-<td headers="proportion" class="gt_row gt_right">0.78 </td>
-<td headers="conf.low" class="gt_row gt_right">0.55  </td>
-<td headers="conf.high" class="gt_row gt_right">0.91</td>
-<td headers="p.value" class="gt_row gt_left"><br></td>
-<td headers="footnote" class="gt_row gt_right">
+<td headers="NA response_7 response" class="gt_row gt_left">mpg</td>
+<td headers="NA response_7 variable" class="gt_row gt_left">hp</td>
+<td headers="NA response_7 mean" class="gt_row gt_right"><br></td>
+<td headers="NA response_7 difference" class="gt_row gt_right"><br></td>
+<td headers="NA response_7 correlation" class="gt_row gt_right">−0.78</td>
+<td headers="NA response_7 x" class="gt_row gt_right"><br></td>
+<td headers="NA response_7 n" class="gt_row gt_right"><br></td>
+<td headers="NA response_7 proportion" class="gt_row gt_right"><br></td>
+<td headers="NA response_7 conf.low" class="gt_row gt_right">−0.89</td>
+<td headers="NA response_7 conf.high" class="gt_row gt_right">−0.59</td>
+<td headers="NA response_7 null" class="gt_row gt_right"><br></td>
+<td headers="NA response_7 t.value" class="gt_row gt_right"><br></td>
+<td headers="NA response_7 df" class="gt_row gt_right"><br></td>
+<td headers="NA response_7 p.value" class="gt_row gt_left">&lt; 0.0001</td>
+<td headers="NA response_7 footnote" class="gt_row gt_right">
 <span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>3</sup></span> </td>
 </tr>
-<tr>
-<td headers="response" class="gt_row gt_left">cyl = 4</td>
-<td headers="variable" class="gt_row gt_left">vs = straight</td>
-<td headers="x" class="gt_row gt_right">10</td>
-<td headers="n" class="gt_row gt_right">14</td>
-<td headers="proportion" class="gt_row gt_right">0.71 </td>
-<td headers="conf.low" class="gt_row gt_right">0.45  </td>
-<td headers="conf.high" class="gt_row gt_right">0.88</td>
-<td headers="p.value" class="gt_row gt_left"><br></td>
-<td headers="footnote" class="gt_row gt_right">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>3</sup></span> </td>
+<tr class="gt_row_group_first">
+<td headers="cyl = 6 stub_1_8 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">cyl = 6</td>
+<td headers="cyl = 6 stub_1_8 response" class="gt_row gt_left">vs = straight</td>
+<td headers="cyl = 6 stub_1_8 variable" class="gt_row gt_left">am = manual</td>
+<td headers="cyl = 6 stub_1_8 mean" class="gt_row gt_right"><br></td>
+<td headers="cyl = 6 stub_1_8 difference" class="gt_row gt_right"><br></td>
+<td headers="cyl = 6 stub_1_8 correlation" class="gt_row gt_right"><br></td>
+<td headers="cyl = 6 stub_1_8 x" class="gt_row gt_right">0</td>
+<td headers="cyl = 6 stub_1_8 n" class="gt_row gt_right">3</td>
+<td headers="cyl = 6 stub_1_8 proportion" class="gt_row gt_right">0   </td>
+<td headers="cyl = 6 stub_1_8 conf.low" class="gt_row gt_right"> 0   </td>
+<td headers="cyl = 6 stub_1_8 conf.high" class="gt_row gt_right"> 0.71</td>
+<td headers="cyl = 6 stub_1_8 null" class="gt_row gt_right"><br></td>
+<td headers="cyl = 6 stub_1_8 t.value" class="gt_row gt_right"><br></td>
+<td headers="cyl = 6 stub_1_8 df" class="gt_row gt_right"><br></td>
+<td headers="cyl = 6 stub_1_8 p.value" class="gt_row gt_left"><br></td>
+<td headers="cyl = 6 stub_1_8 footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>4,5</sup></span> </td>
 </tr>
 <tr>
-<td headers="response" class="gt_row gt_left">cyl = 6</td>
-<td headers="variable" class="gt_row gt_left">vs = straight</td>
-<td headers="x" class="gt_row gt_right">4</td>
-<td headers="n" class="gt_row gt_right">14</td>
-<td headers="proportion" class="gt_row gt_right">0.29 </td>
-<td headers="conf.low" class="gt_row gt_right">0.12  </td>
-<td headers="conf.high" class="gt_row gt_right">0.55</td>
-<td headers="p.value" class="gt_row gt_left"><br></td>
-<td headers="footnote" class="gt_row gt_right">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>3</sup></span> </td>
+<td headers="cyl = 6 response_9 response" class="gt_row gt_left">vs = straight</td>
+<td headers="cyl = 6 response_9 variable" class="gt_row gt_left">am = automatic</td>
+<td headers="cyl = 6 response_9 mean" class="gt_row gt_right"><br></td>
+<td headers="cyl = 6 response_9 difference" class="gt_row gt_right"><br></td>
+<td headers="cyl = 6 response_9 correlation" class="gt_row gt_right"><br></td>
+<td headers="cyl = 6 response_9 x" class="gt_row gt_right">4</td>
+<td headers="cyl = 6 response_9 n" class="gt_row gt_right">4</td>
+<td headers="cyl = 6 response_9 proportion" class="gt_row gt_right">1.0 </td>
+<td headers="cyl = 6 response_9 conf.low" class="gt_row gt_right"> 0.40</td>
+<td headers="cyl = 6 response_9 conf.high" class="gt_row gt_right"> 1.0 </td>
+<td headers="cyl = 6 response_9 null" class="gt_row gt_right"><br></td>
+<td headers="cyl = 6 response_9 t.value" class="gt_row gt_right"><br></td>
+<td headers="cyl = 6 response_9 df" class="gt_row gt_right"><br></td>
+<td headers="cyl = 6 response_9 p.value" class="gt_row gt_left"><br></td>
+<td headers="cyl = 6 response_9 footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>4,5</sup></span> </td>
+</tr>
+<tr class="gt_row_group_first">
+<td headers="cyl = 4 stub_1_10 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">cyl = 4</td>
+<td headers="cyl = 4 stub_1_10 response" class="gt_row gt_left">vs = straight</td>
+<td headers="cyl = 4 stub_1_10 variable" class="gt_row gt_left">am = manual</td>
+<td headers="cyl = 4 stub_1_10 mean" class="gt_row gt_right"><br></td>
+<td headers="cyl = 4 stub_1_10 difference" class="gt_row gt_right"><br></td>
+<td headers="cyl = 4 stub_1_10 correlation" class="gt_row gt_right"><br></td>
+<td headers="cyl = 4 stub_1_10 x" class="gt_row gt_right">7</td>
+<td headers="cyl = 4 stub_1_10 n" class="gt_row gt_right">8</td>
+<td headers="cyl = 4 stub_1_10 proportion" class="gt_row gt_right">0.88</td>
+<td headers="cyl = 4 stub_1_10 conf.low" class="gt_row gt_right"> 0.47</td>
+<td headers="cyl = 4 stub_1_10 conf.high" class="gt_row gt_right"> 1.0 </td>
+<td headers="cyl = 4 stub_1_10 null" class="gt_row gt_right"><br></td>
+<td headers="cyl = 4 stub_1_10 t.value" class="gt_row gt_right"><br></td>
+<td headers="cyl = 4 stub_1_10 df" class="gt_row gt_right"><br></td>
+<td headers="cyl = 4 stub_1_10 p.value" class="gt_row gt_left"><br></td>
+<td headers="cyl = 4 stub_1_10 footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>4,5</sup></span> </td>
 </tr>
 <tr>
-<td headers="response" class="gt_row gt_left">cyl = 8</td>
-<td headers="variable" class="gt_row gt_left">vs = straight</td>
-<td headers="x" class="gt_row gt_right">0</td>
-<td headers="n" class="gt_row gt_right">14</td>
-<td headers="proportion" class="gt_row gt_right">0    </td>
-<td headers="conf.low" class="gt_row gt_right">0     </td>
-<td headers="conf.high" class="gt_row gt_right">0.23</td>
-<td headers="p.value" class="gt_row gt_left"><br></td>
-<td headers="footnote" class="gt_row gt_right">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1,2</sup></span> </td>
+<td headers="cyl = 4 response_11 response" class="gt_row gt_left">vs = straight</td>
+<td headers="cyl = 4 response_11 variable" class="gt_row gt_left">am = automatic</td>
+<td headers="cyl = 4 response_11 mean" class="gt_row gt_right"><br></td>
+<td headers="cyl = 4 response_11 difference" class="gt_row gt_right"><br></td>
+<td headers="cyl = 4 response_11 correlation" class="gt_row gt_right"><br></td>
+<td headers="cyl = 4 response_11 x" class="gt_row gt_right">3</td>
+<td headers="cyl = 4 response_11 n" class="gt_row gt_right">3</td>
+<td headers="cyl = 4 response_11 proportion" class="gt_row gt_right">1.0 </td>
+<td headers="cyl = 4 response_11 conf.low" class="gt_row gt_right"> 0.29</td>
+<td headers="cyl = 4 response_11 conf.high" class="gt_row gt_right"> 1.0 </td>
+<td headers="cyl = 4 response_11 null" class="gt_row gt_right"><br></td>
+<td headers="cyl = 4 response_11 t.value" class="gt_row gt_right"><br></td>
+<td headers="cyl = 4 response_11 df" class="gt_row gt_right"><br></td>
+<td headers="cyl = 4 response_11 p.value" class="gt_row gt_left"><br></td>
+<td headers="cyl = 4 response_11 footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>4,5</sup></span> </td>
+</tr>
+<tr class="gt_row_group_first">
+<td headers="cyl = 8 stub_1_12 stub_1" rowspan="2" class="gt_row gt_left gt_stub_row_group">cyl = 8</td>
+<td headers="cyl = 8 stub_1_12 response" class="gt_row gt_left">vs = straight</td>
+<td headers="cyl = 8 stub_1_12 variable" class="gt_row gt_left">am = automatic</td>
+<td headers="cyl = 8 stub_1_12 mean" class="gt_row gt_right"><br></td>
+<td headers="cyl = 8 stub_1_12 difference" class="gt_row gt_right"><br></td>
+<td headers="cyl = 8 stub_1_12 correlation" class="gt_row gt_right"><br></td>
+<td headers="cyl = 8 stub_1_12 x" class="gt_row gt_right">0</td>
+<td headers="cyl = 8 stub_1_12 n" class="gt_row gt_right">12</td>
+<td headers="cyl = 8 stub_1_12 proportion" class="gt_row gt_right">0   </td>
+<td headers="cyl = 8 stub_1_12 conf.low" class="gt_row gt_right"> 0   </td>
+<td headers="cyl = 8 stub_1_12 conf.high" class="gt_row gt_right"> 0.26</td>
+<td headers="cyl = 8 stub_1_12 null" class="gt_row gt_right"><br></td>
+<td headers="cyl = 8 stub_1_12 t.value" class="gt_row gt_right"><br></td>
+<td headers="cyl = 8 stub_1_12 df" class="gt_row gt_right"><br></td>
+<td headers="cyl = 8 stub_1_12 p.value" class="gt_row gt_left"><br></td>
+<td headers="cyl = 8 stub_1_12 footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>4,6</sup></span> </td>
 </tr>
 <tr>
-<td headers="response" class="gt_row gt_left">cyl</td>
-<td headers="variable" class="gt_row gt_left">vs</td>
-<td headers="x" class="gt_row gt_right"><br></td>
-<td headers="n" class="gt_row gt_right"><br></td>
-<td headers="proportion" class="gt_row gt_right"><br></td>
-<td headers="conf.low" class="gt_row gt_right"><br></td>
-<td headers="conf.high" class="gt_row gt_right"><br></td>
-<td headers="p.value" class="gt_row gt_left">&lt; 0.0001</td>
-<td headers="footnote" class="gt_row gt_right">
+<td headers="cyl = 8 response_13 response" class="gt_row gt_left">vs = straight</td>
+<td headers="cyl = 8 response_13 variable" class="gt_row gt_left">am = manual</td>
+<td headers="cyl = 8 response_13 mean" class="gt_row gt_right"><br></td>
+<td headers="cyl = 8 response_13 difference" class="gt_row gt_right"><br></td>
+<td headers="cyl = 8 response_13 correlation" class="gt_row gt_right"><br></td>
+<td headers="cyl = 8 response_13 x" class="gt_row gt_right">0</td>
+<td headers="cyl = 8 response_13 n" class="gt_row gt_right">2</td>
+<td headers="cyl = 8 response_13 proportion" class="gt_row gt_right">0   </td>
+<td headers="cyl = 8 response_13 conf.low" class="gt_row gt_right"> 0   </td>
+<td headers="cyl = 8 response_13 conf.high" class="gt_row gt_right"> 0.84</td>
+<td headers="cyl = 8 response_13 null" class="gt_row gt_right"><br></td>
+<td headers="cyl = 8 response_13 t.value" class="gt_row gt_right"><br></td>
+<td headers="cyl = 8 response_13 df" class="gt_row gt_right"><br></td>
+<td headers="cyl = 8 response_13 p.value" class="gt_row gt_left"><br></td>
+<td headers="cyl = 8 response_13 footnote" class="gt_row gt_right">
 <span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>4,5</sup></span> </td>
 </tr>
 </tbody>
 <tfoot class="gt_footnotes">
 <tr>
-<td class="gt_footnote" colspan="9">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> Exact binomial test (two.sided), with 95% confidence intervals.</td>
+<td class="gt_footnote" colspan="16">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> One Sample t-test (two.sided), with 95% confidence intervals.</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="9">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> Method chosen because observed proportion &lt; 0.10.</td>
+<td class="gt_footnote" colspan="16">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> Welch Two Sample t-test (two.sided), with 95% confidence intervals.</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="9">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>3</sup></span> Wilson's proportion test (two.sided), with 95% confidence intervals.</td>
+<td class="gt_footnote" colspan="16">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>3</sup></span> Pearson's product-moment correlation (two.sided), with 95% confidence intervals</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="9">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>4</sup></span> Fisher's Exact Test for Count Data</td>
+<td class="gt_footnote" colspan="16">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>4</sup></span> Exact binomial test (two.sided), with 95% confidence intervals.</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="9">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>5</sup></span> Method chosen due to expected counts &lt; 5.</td>
+<td class="gt_footnote" colspan="16">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>5</sup></span> Method chosen because n &lt; 10.</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="16">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>6</sup></span> Method chosen because observed proportion &lt; 0.10.</td>
     </tr>
 </tfoot>
 </table>

@@ -37,6 +37,8 @@
     <li><a class="dropdown-item" href="../articles/means.html">Tests for Means</a></li>
     <li><a class="dropdown-item" href="../articles/models.html">Inference about Models</a></li>
     <li><a class="dropdown-item" href="../articles/output.html">Controlling Output</a></li>
+    <li><a class="dropdown-item" href="../articles/graphics.html">Graphical Output</a></li>
+    <li><a class="dropdown-item" href="../articles/multipletests.html">Multiple Tests</a></li>
   </ul>
 </li>
       </ul>
@@ -66,12 +68,10 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://aaronrendahl.github.io/umncvmstats/">umncvmstats</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="one-sample-t-test">One Sample t-test<a class="anchor" aria-label="anchor" href="#one-sample-t-test"></a>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
 <div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#mwlefoodfi table {
@@ -543,7 +543,7 @@
 <div class="section level3">
 <h3 id="separately-by-another-categorical-variable">Separately by another categorical variable<a class="anchor" aria-label="anchor" href="#separately-by-another-categorical-variable"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
 <div id="eexombwkke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#eexombwkke table {
@@ -1028,7 +1028,7 @@
 <div class="section level2">
 <h2 id="two-sample-t-test">Two Sample t-test<a class="anchor" aria-label="anchor" href="#two-sample-t-test"></a>
 </h2>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/two_t_test.html">two_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
 <div id="ulbfdpbcyv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ulbfdpbcyv table {
@@ -1510,7 +1510,7 @@
 <div class="section level3">
 <h3 id="together-in-one-table">together in one table<a class="anchor" aria-label="anchor" href="#together-in-one-table"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="../reference/two_t_test.html">two_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -2038,7 +2038,7 @@
 <div class="section level2">
 <h2 id="pairwise-t-tests">Pairwise t-tests<a class="anchor" aria-label="anchor" href="#pairwise-t-tests"></a>
 </h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="../reference/two_t_test.html">pairwise_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -2618,7 +2618,7 @@
 <div class="section level2">
 <h2 id="paired-t-test">Paired t-test<a class="anchor" aria-label="anchor" href="#paired-t-test"></a>
 </h2>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">score1</span> <span class="op">+</span> <span class="va">score2</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">passfail</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="../reference/paired_t_test.html">paired_t_test</a></span><span class="op">(</span><span class="va">score2</span> <span class="op">-</span> <span class="va">score1</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">passfail</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -3144,7 +3144,7 @@
 <p>By default, responses using <code>log(...)</code> are
 back-transformed. To keep the result on the log scale, use
 <code>backtransform = FALSE</code>.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">wt</span><span class="op">)</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars2</span>, backtransform <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="../reference/two_t_test.html">two_t_test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">wt</span><span class="op">)</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars2</span>, backtransform <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
@@ -3726,7 +3726,7 @@ back-transformed. To keep the result on the log scale, use
 </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">score1</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">score2</span><span class="op">)</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">passfail</span><span class="op">)</span>,</span>

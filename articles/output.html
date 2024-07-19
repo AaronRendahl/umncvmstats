@@ -37,6 +37,8 @@
     <li><a class="dropdown-item" href="../articles/means.html">Tests for Means</a></li>
     <li><a class="dropdown-item" href="../articles/models.html">Inference about Models</a></li>
     <li><a class="dropdown-item" href="../articles/output.html">Controlling Output</a></li>
+    <li><a class="dropdown-item" href="../articles/graphics.html">Graphical Output</a></li>
+    <li><a class="dropdown-item" href="../articles/multipletests.html">Multiple Tests</a></li>
   </ul>
 </li>
       </ul>
@@ -67,9 +69,6 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/" class="external-link">tibble</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://aaronrendahl.github.io/umncvmstats/">umncvmstats</a></span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="fl">34</span>, <span class="fl">99</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">99</span><span class="op">)</span>,</span>
@@ -82,7 +81,7 @@
 <p>All output from statistical tests in this package are stored as a
 special object (an <code>atest</code>) that knows how to print itself in
 a nice way.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span></span></code></pre></div>
 <div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#mwlefoodfi table {
@@ -622,9 +621,12 @@ a nice way.</p>
 <p>It does this by converting it into a <code>gt</code> object from the
 <a href="https://gt.rstudio.com/" class="external-link">gt</a> package.</p>
 <p>You can use any <code>gt</code> function by first doing this
-conversion yourself using <code>as_gt</code>. The following table looks
-the same because I haven’t added any other functions yet.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+conversion yourself using <code>as_gt</code>. If you use any
+<code>gt</code> functions you’ll need to load the <code>gt</code>
+library before <code>umncvmstats</code>.</p>
+<p>The following table looks the same because I haven’t added any other
+functions yet.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="eexombwkke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#eexombwkke table {
@@ -1169,7 +1171,7 @@ follows.</p>
 <p>The <code>fmt_numbers</code> function will format any numbers (except
 for integers and p-values), with either a fixed number of decimal places
 or significant figures.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/fmt_numbers.html">fmt_numbers</a></span><span class="op">(</span>decimals<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <div id="ulbfdpbcyv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ulbfdpbcyv table {
@@ -1706,7 +1708,7 @@ or significant figures.</p>
 </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/fmt_numbers.html">fmt_numbers</a></span><span class="op">(</span>n_sigfig<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <div id="kgufivjubq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#kgufivjubq table {
@@ -2247,7 +2249,7 @@ or significant figures.</p>
 <code>p.value</code> or <code>p.adjust</code>), with <code>digits</code>
 significant digits, up to <code>max.digits</code> decimals. The default
 is 2 significant digits, and 4 maximum digits.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/format_pvalue.html">fmt_pvalue</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fl">3</span>, max.digits<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 <div id="txvafbsnay" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#txvafbsnay table {
@@ -2790,7 +2792,7 @@ is 2 significant digits, and 4 maximum digits.</p>
 </h3>
 <p>This compact table uses <code>font.size = 13</code> and
 <code>spacing = 1</code>.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/tab_compact.html">tab_compact</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="orehalspkz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#orehalspkz table {
@@ -3327,7 +3329,7 @@ is 2 significant digits, and 4 maximum digits.</p>
 </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/tab_compact.html">tab_compact</a></span><span class="op">(</span>font.size <span class="op">=</span> <span class="fl">11</span>, spacing <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <div id="cbwjcfdjag" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#cbwjcfdjag table {
@@ -3870,7 +3872,7 @@ is 2 significant digits, and 4 maximum digits.</p>
 </h3>
 <p>To not use the <code>gt</code> style output, <code>print</code> with
 <code>as_gt=FALSE</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>as_gt<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 9</span></span></span>
 <span><span class="co">#&gt;       x     n proportion difference conf.low conf.high chisq.value    p.value</span></span>
@@ -3891,8 +3893,8 @@ is 2 significant digits, and 4 maximum digits.</p>
 loaded the <code>tibble</code> library, which loads as part of the
 <code>tidyverse</code>. There are several options for how to handle the
 footnotes.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 9</span></span></span>
 <span><span class="co">#&gt;       x     n proportion difference conf.low conf.high chisq.value    p.value</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
