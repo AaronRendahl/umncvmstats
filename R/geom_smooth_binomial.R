@@ -33,5 +33,5 @@ scale_y_binary <- function(...) {
     }
   }
   scale_y_continuous(
-    transform=scales::new_transform("binary", tob, inverse=identity))
+    transform=scales::new_transform("binary", tob, inverse=identity), ...)
 }
