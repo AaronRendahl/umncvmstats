@@ -1,25 +1,45 @@
 
-#' One proportion test
+#' One-sample proportion test
 #'
-#' A short description XX more ...
+#' Perform a one-sample proportion test.
 #'
-#' More details
+#' By default only the confidence interval for the proportion is reported,
+#' a hypothesis test can also be performed by specifying the desired null value.
 #'
-#' @param formula a formula of the form `~ x` or `x ~ 1`, where `x` is a factor variable.
+#' Two methods are currently supposed, either Wilson's method (either with or
+#' without) a continuity correction or the Clopper-Pearson "exact" method.
+#' If no method is specified, the default method is Wilson's method without
+#' continuity correction, however, the "exact" method is chosen if the sample
+#' size is less than 10, the observed proportion is less than 0.10, or the
+#' minimum expected count under the null is less than 5 (if a null hypothesis
+#' is specified).
+#'
+#' Wilson's method uses [stats::prop.test] and the exact method uses
+#' [stats::binom.test].
+#'
+#' @param formula a formula of the form `~ y` or `y ~ 1`, where `y` is a factor variable.
 #'     If not a factor, it will be automatically converted.
-#' @param data a data frame containing the values in the formula
-#' @param x number of successes
-#' @param n number of trials
-#' @param success optional: the level(s) for which proportions should be reported
-#' @param all_success if TRUE, then proportions for all levels are reported
-#' @param null null proportion (optional)
+#'     To perform test within subgroups, use `y ~ x` or `y ~ 1 | g`, or even `y ~ x | g`.
+#' @param data a data frame containing the values in the formula.
+#' @param x number of successes.
+#' @param n number of trials.
+#' @param success an optional vector specifying the level(s) for which proportions should be reported.
+#' @param all_success if TRUE, then proportions for all levels are reported.
+#' @param null a number specifying the null proportion for testing a null hypothesis; if not specified, no hypothesis test is performed.
 #' @param alternative  character string specifying the alternative hypothesis, must be one of "two.sided" (default), "greater" or "less".
 #' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
-#' @param correct a logical indicating whether Yates' continuity correction should be applied where possible.
+#' @param correct a logical indicating whether Yates' continuity correction should be applied; used for Wilson test only.
 #' @param method character string specifying which method to use. One of "default", "wilson", or "exact".
-#' @param ... more things
+#' @param ... further arguments to be passed to submethods, as appropriate
 #'
-#' @return An atest
+#' @return A tibble with class `atest` containing columns as follows:
+#' \item{x}{count of successes}
+#' \item{n}{sample size}
+#' \item{proportion}{proportion of successes}
+#' \item{conf.low}{lower confidence bound}
+#' \item{conf.high}{upper confidence bound}
+#' \item{null}{the specified null value (if specified)}
+#' \item{p.value}{the p-value of the test (if null specified)}
 #' @export
 one_proportion_test <- function(x, ...) { UseMethod("one_proportion_test") }
 
