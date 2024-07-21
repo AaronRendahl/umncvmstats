@@ -6,7 +6,7 @@
 \alias{one_proportion_test.default}
 \alias{wilson_test}
 \alias{binomial_test}
-\title{One proportion test}
+\title{One-sample proportion test}
 \usage{
 one_proportion_test(x, ...)
 
@@ -41,37 +41,57 @@ binomial_test(
 )
 }
 \arguments{
-\item{x}{number of successes}
+\item{x}{number of successes.}
 
-\item{...}{more things}
+\item{...}{further arguments to be passed to submethods, as appropriate}
 
-\item{formula}{a formula of the form \code{~ x} or \code{x ~ 1}, where \code{x} is a factor variable.
-If not a factor, it will be automatically converted.}
+\item{formula}{a formula of the form \code{~ y} or \code{y ~ 1}, where \code{y} is a factor variable.
+If not a factor, it will be automatically converted.
+To perform test within subgroups, use \code{y ~ x} or \code{y ~ 1 | g}, or even \code{y ~ x | g}.}
 
-\item{data}{a data frame containing the values in the formula}
+\item{data}{a data frame containing the values in the formula.}
 
-\item{success}{optional: the level(s) for which proportions should be reported}
+\item{success}{an optional vector specifying the level(s) for which proportions should be reported.}
 
-\item{all_success}{if TRUE, then proportions for all levels are reported}
+\item{all_success}{if TRUE, then proportions for all levels are reported.}
 
-\item{n}{number of trials}
+\item{n}{number of trials.}
 
-\item{null}{null proportion (optional)}
+\item{null}{a number specifying the null proportion for testing a null hypothesis; if not specified, no hypothesis test is performed.}
 
 \item{alternative}{character string specifying the alternative hypothesis, must be one of "two.sided" (default), "greater" or "less".}
 
 \item{conf.level}{confidence level of the returned confidence interval. Must be a single number between 0 and 1.}
 
-\item{correct}{a logical indicating whether Yates' continuity correction should be applied where possible.}
+\item{correct}{a logical indicating whether Yates' continuity correction should be applied; used for Wilson test only.}
 
 \item{method}{character string specifying which method to use. One of "default", "wilson", or "exact".}
 }
 \value{
-An atest
+A tibble with class \code{atest} containing columns as follows:
+\item{x}{count of successes}
+\item{n}{sample size}
+\item{proportion}{proportion of successes}
+\item{conf.low}{lower confidence bound}
+\item{conf.high}{upper confidence bound}
+\item{null}{the specified null value (if specified)}
+\item{p.value}{the p-value of the test (if null specified)}
 }
 \description{
-A short description XX more ...
+Perform a one-sample proportion test.
 }
 \details{
-More details
+By default only the confidence interval for the proportion is reported,
+a hypothesis test can also be performed by specifying the desired null value.
+
+Two methods are currently supposed, either Wilson's method (either with or
+without) a continuity correction or the Clopper-Pearson "exact" method.
+If no method is specified, the default method is Wilson's method without
+continuity correction, however, the "exact" method is chosen if the sample
+size is less than 10, the observed proportion is less than 0.10, or the
+minimum expected count under the null is less than 5 (if a null hypothesis
+is specified).
+
+Wilson's method uses \link[stats:prop.test]{stats::prop.test} and the exact method uses
+\link[stats:binom.test]{stats::binom.test}.
 }
