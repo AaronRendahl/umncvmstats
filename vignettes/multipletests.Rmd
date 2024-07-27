@@ -21,7 +21,7 @@ library(umncvmstats)
 
 ## Multiple tests
 
-In the one and two-sample tests (ie, when you're not fitting a model), you can use `+` to specify
+In the one and two-sample tests (that is, when you're not fitting a model), you can use `+` to specify
 that the test should be done on several variables. 
 
 ```{r}
