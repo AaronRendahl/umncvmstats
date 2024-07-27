@@ -41,6 +41,7 @@ reference:
 - title: Graphics
 - contents:
   - geom_beeswarm
+  - geom_bars
   - scale_y_binary
   - geom_smooth_logistic
   - hide_y_axis
