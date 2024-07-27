@@ -77,6 +77,7 @@ two_proportion_test.formula <- function(formula, data, success, method=c("defaul
 #' @param n vector with count of total trials in the two groups
 #' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
 #' @param conf.adjust adjust confidence bounds for `conf.adjust` simultaneous intervals using the Bonferroni method.
+#'   Used internally by `pairwise_proportion_test`; should only rarely be used by users.
 #' @param correct a logical indicating whether Yates' continuity correction should be applied; used for Wilson test only.
 #' @param ... further arguments to be passed to submethods, as appropriate.
 #'
@@ -125,9 +126,12 @@ two_proportion_test.default <- function(x, n,
 }
 
 #' @rdname two_proportion_test
+#' @param adjust method of adjusting p-values for multiple comparisons, one of "`bonferroni`", "`holm`", or "`none`".
+#' @param reverse reverse the direction of pairwise comparisons.
 #' @export
-pairwise_proportion_test <- function(formula, data, ...) {
-  pairwise(formula, data, "two_proportion_test", ...)
+pairwise_proportion_test <- function(formula, data, adjust=c("bonferroni", "holm", "none"), reverse=FALSE) {
+  adjust <- match.arg(adjust)
+  pairwise(formula, data, "two_proportion_test", adjust=adjust, reverse=reverse, ...)
 }
 
 #' Paired proportion test (McNemar's)
