@@ -40,9 +40,6 @@
 #' \item{conf.high}{upper confidence bound}
 #' \item{null}{the specified null value (if specified)}
 #' \item{p.value}{the p-value of the test (if null specified)}
-#' @export
-one_proportion_test <- function(x, ...) { UseMethod("one_proportion_test") }
-
 #' @rdname one_proportion_test
 #' @export
 one_proportion_test.formula <- function(formula, data, success, all_success=FALSE, ...) {
@@ -106,6 +103,10 @@ one_proportion_test.default <- function(x, n, null,
     wilson_test(x=x, n=n, null=null, alternative=alternative, conf.level=conf.level, correct=correct)
   }
 }
+
+#' @rdname one_proportion_test
+#' @export
+one_proportion_test <- function(x, ...) { UseMethod("one_proportion_test") }
 
 #' @rdname one_proportion_test
 #' @importFrom stats prop.test
