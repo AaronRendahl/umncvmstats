@@ -26,10 +26,10 @@
 #' @param success an optional vector specifying the level(s) for which proportions should be reported.
 #' @param all_success if TRUE, then proportions for all levels are reported.
 #' @param null a number specifying the null proportion for testing a null hypothesis; if not specified, no hypothesis test is performed.
-#' @param alternative  character string specifying the alternative hypothesis, must be one of "two.sided" (default), "greater" or "less".
+#' @param alternative  character string specifying the alternative hypothesis, must be one of "`two.sided`" (default), "`greater`" or "`less`".
 #' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
 #' @param correct a logical indicating whether Yates' continuity correction should be applied; used for Wilson test only.
-#' @param method character string specifying which method to use. One of "default", "wilson", or "exact".
+#' @param method character string specifying which method to use. One of "`default`", "`wilson`", or "`exact`".
 #' @param ... further arguments to be passed to submethods, as appropriate.
 #'
 #' @return A tibble with class `atest` containing columns as follows:
