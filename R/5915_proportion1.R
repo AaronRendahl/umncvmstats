@@ -6,8 +6,8 @@
 #' By default only the confidence interval for the proportion is reported,
 #' a hypothesis test can also be performed by specifying the desired null value.
 #'
-#' Two methods are currently supposed, either Wilson's method (either with or
-#' without) a continuity correction or the Clopper-Pearson "exact" method.
+#' Two methods are currently supposed, either Wilson's method (both with or
+#' without a continuity correction) or the Clopper-Pearson "exact" method.
 #' If no method is specified, the default method is Wilson's method without
 #' continuity correction, however, the "exact" method is chosen if the sample
 #' size is less than 10, the observed proportion is less than 0.10, or the
@@ -30,7 +30,7 @@
 #' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
 #' @param correct a logical indicating whether Yates' continuity correction should be applied; used for Wilson test only.
 #' @param method character string specifying which method to use. One of "default", "wilson", or "exact".
-#' @param ... further arguments to be passed to submethods, as appropriate
+#' @param ... further arguments to be passed to submethods, as appropriate.
 #'
 #' @return A tibble with class `atest` containing columns as follows:
 #' \item{x}{count of successes}
