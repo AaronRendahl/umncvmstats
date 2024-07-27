@@ -31,10 +31,6 @@
 #' \item{conf.high}{upper confidence bound}
 #' \item{chisq.value}{the chi-squared value (if chi-squared method used)}
 #' \item{p.value}{the p-value of the test}
-#'
-#' @export
-two_proportion_test <- function(x, ...) { UseMethod("two_proportion_test") }
-
 #' @rdname two_proportion_test
 #' @export
 two_proportion_test.formula <- function(formula, data, success, method=c("default", "chisq", "exact"),
@@ -126,10 +122,14 @@ two_proportion_test.default <- function(x, n,
 }
 
 #' @rdname two_proportion_test
+#' @export
+two_proportion_test <- function(x, ...) { UseMethod("two_proportion_test") }
+
+#' @rdname two_proportion_test
 #' @param adjust method of adjusting p-values for multiple comparisons, one of "`bonferroni`", "`holm`", or "`none`".
 #' @param reverse reverse the direction of pairwise comparisons.
 #' @export
-pairwise_proportion_test <- function(formula, data, adjust=c("bonferroni", "holm", "none"), reverse=FALSE) {
+pairwise_proportion_test <- function(formula, data, adjust=c("bonferroni", "holm", "none"), reverse=FALSE, ...) {
   adjust <- match.arg(adjust)
   pairwise(formula, data, "two_proportion_test", adjust=adjust, reverse=reverse, ...)
 }
