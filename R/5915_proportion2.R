@@ -1,11 +1,36 @@
-#' Two sample proportion test
+#' Two-sample proportion test
 #'
-#' @param formula XX
-#' @param data XX
-#' @param success XX
-#' @param method XX
-#' @param alternative XX
-#' @param ... XX
+#' Computes the absolute difference in proportion between two samples, and reports a
+#' confidence interval for this difference and a p-value for the null hypothesis
+#' of equal proportions (that is, a difference of zero).
+#'
+#' Two methods are currently supported, the asymptotic test using the chi-squared
+#' statistic (either with or without continuity correction) or Fisher's exact test.
+#' By default, the chi-squared method is used, with continuity correction determined
+#' as in the [stats::prop.test] function, unless the minimum expected count under the
+#' null of equal proportions is less than 5, in which case Fisher's exact test is used.
+#'
+#' When Fisher's exact test is used, no confidence interval for the difference
+#' in proportions is reported.
+#'
+#' The chi-squared option uses [stats::prop.test] and the exact test option uses
+#' [stats::fisher.test].
+#'
+#' @param formula a formula of the form `y ~ x`, where `y` and `x` are a factor variables.
+#'     If not a factor, it will be automatically converted.
+#'     To perform test within subgroups, use `y ~ x | g`.
+#' @param data a data frame containing the values in the formula.
+#' @param success an optional value specifying the level for which proportions should be reported.
+#' @param method character string specifying which method to use. One of "`default`", "`chisq`", or "`exact`".
+#' @param alternative  character string specifying the alternative hypothesis, must be one of "`two.sided`" (default), "`greater`" or "`less`".
+#' @param ... further arguments to be passed to submethods, as appropriate.
+#'
+#' @return A tibble with class `atest` containing columns as follows:
+#' \item{difference}{the difference in proportion between the two groups}
+#' \item{conf.low}{lower confidence bound}
+#' \item{conf.high}{upper confidence bound}
+#' \item{chisq.value}{the chi-squared value (if chi-squared method used)}
+#' \item{p.value}{the p-value of the test}
 #'
 #' @export
 two_proportion_test <- function(x, ...) { UseMethod("two_proportion_test") }
@@ -48,14 +73,12 @@ two_proportion_test.formula <- function(formula, data, success, method=c("defaul
   as_atest(result)
 }
 
-#' @param x XX
-#' @param n XX
-#' @param method XX
-#' @param alternative XX
-#' @param conf.level XX
-#' @param conf.adjust XX
-#' @param correct XX
-#' @param ... XX
+#' @param x vector with count of successes in the two groups
+#' @param n vector with count of total trials in the two groups
+#' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
+#' @param conf.adjust adjust confidence bounds for `conf.adjust` simultaneous intervals using the Bonferroni method.
+#' @param correct a logical indicating whether Yates' continuity correction should be applied; used for Wilson test only.
+#' @param ... further arguments to be passed to submethods, as appropriate.
 #'
 #' @importFrom stats fisher.test
 #' @importFrom stats prop.test
@@ -101,7 +124,6 @@ two_proportion_test.default <- function(x, n,
   as_atest(result, estimate.vars="difference", inference.vars="chisq.value")
 }
 
-#' @param ... XX
 #' @rdname two_proportion_test
 #' @export
 pairwise_proportion_test <- function(formula, data, ...) {
