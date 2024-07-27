@@ -1,3 +1,4 @@
+devtools::document()
 devtools::spell_check()
 devtools::document()
 devtools::check_man()
@@ -15,3 +16,5 @@ pkgdown::build_articles()
 ## uploads and checks elsewhere
 devtools::check_mac_release()
 devtools::check_win_release()
+
+pkgload::dev_help('one_proportion_test')
