@@ -37,7 +37,7 @@ model_coefs <- function(model, ...) {
              inference.vars=c("statistic"))
 }
 
-#' Get model anova table
+#' Get model Anova table
 #'
 #' @param model XX
 #' @param ... XX
