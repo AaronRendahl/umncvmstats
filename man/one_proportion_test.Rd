@@ -43,7 +43,7 @@ binomial_test(
 \arguments{
 \item{x}{number of successes.}
 
-\item{...}{further arguments to be passed to submethods, as appropriate}
+\item{...}{further arguments to be passed to submethods, as appropriate.}
 
 \item{formula}{a formula of the form \code{~ y} or \code{y ~ 1}, where \code{y} is a factor variable.
 If not a factor, it will be automatically converted.
@@ -84,8 +84,8 @@ Perform a one-sample proportion test.
 By default only the confidence interval for the proportion is reported,
 a hypothesis test can also be performed by specifying the desired null value.
 
-Two methods are currently supposed, either Wilson's method (either with or
-without) a continuity correction or the Clopper-Pearson "exact" method.
+Two methods are currently supposed, either Wilson's method (both with or
+without a continuity correction) or the Clopper-Pearson "exact" method.
 If no method is specified, the default method is Wilson's method without
 continuity correction, however, the "exact" method is chosen if the sample
 size is less than 10, the observed proportion is less than 0.10, or the
