@@ -2,7 +2,7 @@
 % Please edit documentation in R/5915_model.R
 \name{model_anova}
 \alias{model_anova}
-\title{Get model anova table}
+\title{Get model Anova table}
 \usage{
 model_anova(model, ...)
 }
@@ -15,5 +15,5 @@ model_anova(model, ...)
 XX
 }
 \description{
-Get model anova table
+Get model Anova table
 }
