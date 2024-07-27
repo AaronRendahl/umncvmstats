@@ -102,8 +102,7 @@ plot1 + plot2 + plot3
 ```
 
 ### Boxplots
-
-method="compactswarm", priority = "random", 
+by default now uses compact swarm, with random priority
 
 ```{r}
 #| fig-width: 5
