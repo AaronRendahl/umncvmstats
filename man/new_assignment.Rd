@@ -8,24 +8,18 @@ new_assignment(
   filename,
   title,
   author,
-  open = is_interactive() & isAvailable(),
-  template = "template.qmd"
+  open = is_interactive() & isAvailable()
 )
 }
 \arguments{
-\item{filename}{XX}
+\item{filename}{desired filename of new file.}
 
-\item{title}{XX}
+\item{title}{desired title, to be inserted into new file.}
 
-\item{author}{XX}
+\item{author}{desired author, to be inserted into new file.}
 
-\item{open}{XX}
-
-\item{template}{XX}
-}
-\value{
-XX
+\item{open}{a logical specifying whether or not to open the new file for editing.}
 }
 \description{
-Create a blank new assignment
+Create a blank new assignment from the included quarto template.
 }
