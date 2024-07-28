@@ -111,12 +111,12 @@ ggplot(mtcars2) + aes(wt) + geom_boxplot() +
   hide_y_axis()
 
 ggplot(mtcars2) + aes(x=wt, y=0) + geom_boxplot(outlier.shape = NA) + 
-  geom_beeswarm(cex=4, pch=21, fill="gray", alpha=0.5, orientation="y") +
+  geom_beeswarm(spacing=3, pch=21, fill="gray", alpha=0.5, orientation="y") +
   hide_y_axis()
 
 ggplot(mtcars2) + aes(x=wt, y=0) + geom_boxplot(outlier.shape = NA) + 
   geom_point(position=position_beeswarm(
-                            orientation="y", cex=4),
+                            orientation="y", spacing=3),
                             pch=21, fill="white") +
   hide_y_axis()
 ```
@@ -126,7 +126,7 @@ ggplot(mtcars2) + aes(x=wt, y=0) + geom_boxplot(outlier.shape = NA) +
 #| fig-height: 4
 plot1 <- ggplot(mtcars2) + aes(x=cyl, y=wt) + geom_boxplot()
 plot2 <- ggplot(mtcars2) + aes(x=cyl, y=wt) + geom_boxplot(outlier.shape = NA) +
-  geom_beeswarm(cex=2, pch=21, fill="gray", alpha=0.5)
+  geom_beeswarm(spacing=2, pch=21, fill="gray", alpha=0.5)
 plot1 + plot2
 ```
 
@@ -134,7 +134,7 @@ plot1 + plot2
 
 ```{r}
 ggplot(mtcars2) + aes(x=wt, y=vs, group=1) + 
-  geom_beeswarm(orientation="y", cex=2) +
+  geom_beeswarm(orientation="y", spacing=2) +
   scale_y_binary() +
   geom_smooth_logistic()
 ```
