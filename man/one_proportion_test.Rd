@@ -8,16 +8,27 @@
 \alias{binomial_test}
 \title{One-sample proportion test}
 \usage{
-\method{one_proportion_test}{formula}(formula, data, success, all_success = FALSE, ...)
+\method{one_proportion_test}{formula}(
+  formula,
+  data,
+  success,
+  all_success = FALSE,
+  method = c("default", "wilson", "exact"),
+  correct = FALSE,
+  alternative = c("two.sided", "less", "greater"),
+  conf.level = 0.95,
+  null = NULL,
+  ...
+)
 
 \method{one_proportion_test}{default}(
   x,
   n,
-  null,
+  method = c("default", "wilson", "exact"),
+  correct = FALSE,
   alternative = c("two.sided", "less", "greater"),
   conf.level = 0.95,
-  correct = FALSE,
-  method = c("default", "wilson", "exact"),
+  null = NULL,
   ...
 )
 
@@ -51,21 +62,21 @@ To perform test within subgroups, use \code{y ~ x} or \code{y ~ 1 | g}, or even 
 
 \item{all_success}{if TRUE, then proportions for all levels are reported.}
 
-\item{...}{further arguments to be passed to submethods, as appropriate.}
+\item{method}{character string specifying which method to use. One of "\code{default}", "\code{wilson}", or "\code{exact}".}
 
-\item{x}{number of successes.}
-
-\item{n}{number of trials.}
-
-\item{null}{a number specifying the null proportion for testing a null hypothesis; if not specified, no hypothesis test is performed.}
+\item{correct}{a logical indicating whether Yates' continuity correction should be applied; used for Wilson test only.}
 
 \item{alternative}{character string specifying the alternative hypothesis, must be one of "\code{two.sided}" (default), "\code{greater}" or "\code{less}".}
 
 \item{conf.level}{confidence level of the returned confidence interval. Must be a single number between 0 and 1.}
 
-\item{correct}{a logical indicating whether Yates' continuity correction should be applied; used for Wilson test only.}
+\item{null}{a number specifying the null proportion for testing a null hypothesis; if not specified, no hypothesis test is performed.}
 
-\item{method}{character string specifying which method to use. One of "\code{default}", "\code{wilson}", or "\code{exact}".}
+\item{...}{additional arguments, currently unused.}
+
+\item{x}{number of successes.}
+
+\item{n}{number of trials.}
 }
 \value{
 A tibble with class \code{atest} containing columns as follows:
