@@ -37,7 +37,7 @@ model_glance <- function(model, ...) {
 model_coefs <- function(model, ...) {
   out <- tidy(model, ...) |> rename(any_of(c(SE="std.error")))
   bind_cols(model_form(model), out) |>
-    as_atest(estimate.vars=c("term", "estimate", "SE"),
+    as_atest(estimate.vars=c("term", "estimate"),
              inference.vars=c("statistic"))
 }
 
@@ -118,7 +118,7 @@ model_means <- function(model, formula, cld=TRUE, backtransform=TRUE,
   if("df" %in% names(out) && all(is.infinite(out[["df"]]))) { out[["df"]] <- NULL }
   attr(out, "mesg") <- c(attr(out, "mesg"), emX$warnings)
   as_atest(out, model,
-           estimate.vars=c("emmean", "response", "prob", "estimate", "ratio", "SE", "df"),
+           estimate.vars=c("emmean", "response", "prob", "estimate", "ratio"),
            inference.vars=c("null", "t.ratio", "z.ratio"))
 }
 
@@ -137,7 +137,7 @@ pairwise_model_means <- function(model, formula, backtransform=TRUE,
   if("df" %in% names(out) && all(is.infinite(out[["df"]]))) { out[["df"]] <- NULL }
   as_atest(out, model,
            pri.vars="contrast",
-           estimate.vars=c("emmean", "response", "odds.ratio", "estimate", "ratio", "SE", "df"),
+           estimate.vars=c("emmean", "response", "odds.ratio", "estimate", "ratio"),
            inference.vars=c("null", "t.ratio", "z.ratio"))
 }
 

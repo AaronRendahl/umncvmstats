@@ -23,7 +23,7 @@ as_atest.data.frame <- function(x,
   }
   vars1 <- c(".y", ".y_value", ".y_contrast", ".terms", ".x", ".x_value", ".x_contrast", ".g", ".g_value")
   vars2 <- c(by.vars, pri.vars, estimate.vars)
-  vars3 <- c("SE", "conf.low", "conf.high")
+  vars3 <- c("SE", "df", "conf.low", "conf.high")
   vars4 <- inference.vars
   vars5 <- c("p.value", "p.adjust", "cld.group", "about")
   varsX <- setdiff(names(x), c(vars1, vars2, vars3, vars4, vars5))
