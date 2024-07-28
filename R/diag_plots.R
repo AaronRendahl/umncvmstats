@@ -33,7 +33,7 @@ diag_plots <- function(model) {
     ggtitle("Normal Q-Q")
   p3 <- ggplot(augm) + aes(x=.data$.fitted, y=sqrt(abs(.data$.std.resid))) +
     geom_point(pch=21) +
-    geom_smooth(formula=y~x, se=FALSE, method=loess,
+    geom_smooth(formula=y~x, se=FALSE, method="loess",
                 method.args=list(span=1), lwd=0.75) +
     xlab("Fitted values") + ylab("sqrt|Standardized residuals|") +
     ggtitle("Scale-Location")
