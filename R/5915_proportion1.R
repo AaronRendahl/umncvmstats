@@ -1,7 +1,8 @@
-
 #' One-sample proportion test
 #'
-#' Perform a one-sample proportion test.
+#' Compute the proportion of "successes" in a sample and the corresponding
+#' confidence interval. Optionally, compute a p-value for a
+#' specified null hypothesis.
 #'
 #' By default only the confidence interval for the proportion is reported,
 #' a hypothesis test can also be performed by specifying the desired null value.

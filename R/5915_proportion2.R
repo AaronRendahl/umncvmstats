@@ -1,7 +1,7 @@
 #' Two-sample proportion test
 #'
-#' Computes the absolute difference in proportion between two samples, and reports a
-#' confidence interval for this difference and a p-value for the null hypothesis
+#' Compute the absolute difference in proportion between two samples, the
+#' corresponding confidence interval, and a p-value for the null hypothesis
 #' of equal proportions (that is, a difference of zero).
 #'
 #' Two methods are currently supported, the asymptotic test using the chi-squared
