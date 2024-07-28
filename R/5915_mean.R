@@ -31,8 +31,8 @@ one_t_test <- function(formula, data,
   f <- parse_formula(formula=formula, data=data)
   x <- f$data$left
   name <- f$about$var.names
-  result <- t.test(x, alternative=alternative, mu=null, conf.level=conf.level) |>
-    tidy()
+  tt <- t.test(x, alternative=alternative, mu=null, conf.level=conf.level)
+  result <- tidy(tt) |> mutate(SE=tt$stderr)
   about <- sprintf("%s (%s), with %0.0f%% confidence intervals.",
                    result$method, result$alternative, conf.level*100)
   result <- result |> select(-c("method", "alternative")) |>
@@ -97,9 +97,9 @@ two_t_test <- function(formula, data,
   x <- checkif2(x)
   backtransform <- str_detect(y.name, "^log\\(.*\\)$") && isTRUE(backtransform)
   use.conf.level <- 1 - (1-conf.level)/conf.adjust
-  result <- t.test(y~x, alternative=alternative, mu=null,
-                   var.equal=var.equal, conf.level=use.conf.level) |>
-    broom::tidy()
+  tt <- t.test(y~x, alternative=alternative, mu=null,
+                   var.equal=var.equal, conf.level=use.conf.level)
+  result <- broom::tidy(tt) |> mutate(SE=tt$stderr)
   adjust_txt <- if(conf.adjust!=1) sprintf(", adjusted for %d comparisons using the Bonferroni method", conf.adjust) else ""
   about <- sprintf("%s (%s), with %0.0f%% confidence intervals%s.",
                    result$method, result$alternative, conf.level*100, adjust_txt)
@@ -162,13 +162,14 @@ paired_t_test <- function(formula, data,
   y.names <- f$about$var.names
   backtransform <- all(str_detect(y.names, "^log\\(.*\\)$")) && isTRUE(backtransform)
 
-  result <- t.test(f$data$left.1, f$data$left.2, paired=TRUE) |> tidy()
+  tt <- t.test(f$data$left.1, f$data$left.2, paired=TRUE)
+  result <- tidy(tt) |> mutate(SE=tt$stderr)
   about <- sprintf("%s (%s), with %0.0f%% confidence intervals.",
                    result$method, result$alternative, conf.level*100)
   if(backtransform) y.names <- str_replace(y.names, "^log\\((.*)\\)$", "\\1")
   response <- paste(y.names, collapse=if(backtransform) " / " else " - ")
   result <- result |>
-    select(difference="estimate", "conf.low", "conf.high", t.value="statistic", df="parameter", "p.value") |>
+    select(difference="estimate", "SE", "conf.low", "conf.high", t.value="statistic", df="parameter", "p.value") |>
     mutate(.y_contrast=response, null=null)
   result$about <- list(about)
   if(backtransform) {
