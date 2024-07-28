@@ -11,7 +11,7 @@ geom_beeswarm(
   stat = "identity",
   ...,
   method = "compactswarm",
-  cex = 1,
+  spacing = 1,
   side = 0L,
   priority = "random",
   fast = TRUE,
@@ -26,7 +26,7 @@ geom_beeswarm(
 
 position_beeswarm(
   method = "compactswarm",
-  cex = 1,
+  spacing = 1,
   side = 0L,
   priority = "random",
   fast = TRUE,
@@ -100,7 +100,7 @@ lists which parameters it can accept.
 
 \item{method}{Method for arranging points (see Details below)}
 
-\item{cex}{Scaling for adjusting point spacing (see \code{\link[beeswarm:swarmx]{beeswarm::swarmx()}}).
+\item{spacing}{Scaling for adjusting point spacing (see \code{\link[beeswarm:swarmx]{beeswarm::swarmx()}}).
 Values between 1 (default) and 3 tend to work best.}
 
 \item{side}{Direction to perform jittering: 0: both directions;
@@ -138,47 +138,10 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 }
 \description{
 The beeswarm geom is a convenient means to offset points within categories to
-reduce overplotting. Uses the beeswarm package
+reduce overplotting. Based on \code{ggbeeswarm::geom_beeswarm}, but
+with a default of a compact swarm with random priority.
+Uses the beeswarm package.
 }
-\details{
-\strong{method:} specifies the algorithm used to avoid overlapping points. The
-default \code{"swarm"} method places points in increasing order. If a point would
-overlap with an existing point, it is shifted sideways (along the group axis)
-by a minimal amount sufficient to avoid overlap.
-
-While the \code{"swarm"} method places points in a predetermined
-order, the \code{"compactswarm"} method uses a greedy strategy to determine which
-point will be placed next. This often leads to a more tightly-packed layout.
-The strategy is very simple: on each iteration, a point that can be placed as
-close as possible to the non-data axis is chosen and placed. If there are two
-or more equally good points, \code{priority} is used to break ties.
-
-The other 3 methods first discretise the values along the data axis, in order
-to create more efficient packing. The \code{"square"} method places points on a
-square grid, whereas \code{"hex"} uses a hexagonal grid. \code{"centre"}/\code{"center"}
-uses a square grid to produce a symmetric swarm. The number of break points
-for discretisation is determined by a combination of the available plotting
-area and the \code{cex} argument.
-
-\strong{priority:} controls the order in which points are placed, which generally
-has a noticeable effect on the plot appearance. \code{"ascending"} gives the
-'traditional' beeswarm plot. \code{"descending"} is the opposite. \code{"density"}
-prioritizes points with higher local density. \code{"random"} places points in a
-random order. \code{"none"} places points in the order provided.
-
-\strong{corral:} By default, swarms from different groups are not prevented from
-overlapping, i.e. \verb{"corral = "none"}. Thus, datasets that are very large or
-unevenly distributed may produce ugly overlapping beeswarms. To control
-runaway points one can use the following methods. \code{"gutter"} collects runaway
-points along the boundary between groups. \code{"wrap"} implement periodic boundaries.
-\code{"random"} places runaway points randomly in the region. \code{"omit"} omits runaway
-points.
-}
-\section{Aesthetics}{
-
-\Sexpr[results=rd,stage=build]{ggplot2:::rd_aesthetics("geom", "point")}
-}
-
 \seealso{
 \code{\link[ggbeeswarm:geom_quasirandom]{ggbeeswarm::geom_quasirandom()}} an alternative method,
 \code{\link[beeswarm:swarmx]{beeswarm::swarmx()}} how spacing is determined,
@@ -189,8 +152,4 @@ distribution of a variable
 
 \code{\link[=geom_beeswarm]{geom_beeswarm()}}, \code{\link[ggbeeswarm:position_quasirandom]{ggbeeswarm::position_quasirandom()}},
 \code{\link[beeswarm:swarmx]{beeswarm::swarmx()}}
-
-Other position adjustments: 
-\code{\link{offset_beeswarm}()}
 }
-\concept{position adjustments}

@@ -10,7 +10,7 @@ offset_beeswarm(
   xRange,
   yRange,
   method = "swarm",
-  cex = 1,
+  spacing = 1,
   side = 0L,
   priority = "ascending",
   fast = TRUE,
@@ -30,7 +30,7 @@ Usually obtained from data processed by ggplot2.}
 
 \item{method}{Method for arranging points (see Details below)}
 
-\item{cex}{Scaling for adjusting point spacing (see \code{\link[beeswarm:swarmx]{beeswarm::swarmx()}}).
+\item{spacing}{Scaling for adjusting point spacing (see \code{\link[beeswarm:swarmx]{beeswarm::swarmx()}}).
 Values between 1 (default) and 3 tend to work best.}
 
 \item{side}{Direction to perform jittering: 0: both directions;
@@ -67,7 +67,7 @@ to create more efficient packing. The \code{"square"} method places points on a
 square grid, whereas \code{"hex"} uses a hexagonal grid. \code{"centre"}/\code{"center"}
 uses a square grid to produce a symmetric swarm. The number of break points
 for discretisation is determined by a combination of the available plotting
-area and the \code{cex} argument.
+area and the \code{spacing} argument.
 
 \strong{priority:} controls the order in which points are placed, which generally
 has a noticeable effect on the plot appearance. \code{"ascending"} gives the
@@ -86,9 +86,5 @@ points.
 \seealso{
 \code{\link[=geom_beeswarm]{geom_beeswarm()}}, \code{\link[ggbeeswarm:position_quasirandom]{ggbeeswarm::position_quasirandom()}},
 \code{\link[beeswarm:swarmx]{beeswarm::swarmx()}}
-
-Other position adjustments: 
-\code{\link{geom_beeswarm}()}
 }
-\concept{position adjustments}
 \keyword{internal}
