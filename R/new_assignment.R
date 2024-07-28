@@ -1,5 +1,7 @@
 #' Create a blank new assignment
 #'
+#' Create a blank new assignment from the included quarto template.
+#'
 #' @param filename desired filename of new file.
 #' @param title desired title, to be inserted into new file.
 #' @param author desired author, to be inserted into new file.
