@@ -1,20 +1,25 @@
 #' One-sample t-test
 #'
-#' @param formula XX
-#' @param data XX
-#' @param alternative XX
-#' @param null XX
-#' @param conf.level XX
-#' @param backtransform XX
-#' @param var.equal XX
+#' Compute the mean of a sample and the corresponding confidence interval, using
+#' Student's t distribution. Optionally, compute a p-value for a
+#' specified null hypothesis.
+#'
+#' @param formula a formula of the form `~ y` or `y ~ 1`, where `y` is a numeric variable.
+#'     To perform test within subgroups, use `y ~ x` or `y ~ 1 | g`, or even `y ~ x | g`,
+#'     where `x` and `g` are factor variables.
+#' @param data a data frame containing the values in the formula.
+#' @param alternative character string specifying the alternative hypothesis, must be one of "`two.sided`" (default), "`greater`" or "`less`".
+#' @param null a number specifying the null proportion for testing a null hypothesis; if not specified, no hypothesis test is performed.
+#' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
+#' @param backtransform if response variable is of form `log(...)`, backtransform
+#'     the resulting estimate and confidence interval bounds.
 #'
 #' @importFrom stats t.test
 #' @export
 one_t_test <- function(formula, data,
                        alternative = c("two.sided", "less", "greater"),
                        null, conf.level = 0.95,
-                       backtransform=TRUE,
-                       var.equal = TRUE) {
+                       backtransform = TRUE) {
 
   a <- test_by(by_right=TRUE)
   if(!is.null(a)) return(a)
@@ -26,8 +31,7 @@ one_t_test <- function(formula, data,
   f <- parse_formula(formula=formula, data=data)
   x <- f$data$left
   name <- f$about$var.names
-  result <- t.test(x, alternative=alternative, mu=null,
-                   var.equal=var.equal, conf.level=conf.level) |>
+  result <- t.test(x, alternative=alternative, mu=null, conf.level=conf.level) |>
     tidy()
   about <- sprintf("%s (%s), with %0.0f%% confidence intervals.",
                    result$method, result$alternative, conf.level*100)
