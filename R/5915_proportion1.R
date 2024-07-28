@@ -155,6 +155,7 @@ wilson_test <- function(x, n, null,
     result <- result |> select(-c("conf.low", "conf.high"))
   }
   result$about <- list(about)
+  result$SE <- sqrt((x/n)*(1-x/n)/n)
   as_atest(result,
            estimate.vars=c("x", "n", "proportion"),
            inference.vars=c("null", "chisq.value"))
@@ -191,6 +192,7 @@ binomial_test <- function(x, n, null,
     result <- result |> select(-c("conf.low", "conf.high"))
   }
   result$about <- list(about)
+  result$SE <- sqrt((x/n)*(1-x/n)/n)
   as_atest(result,
            estimate.vars=c("x", "n", "proportion"),
            inference.vars=c("null", "chisq.value"))
