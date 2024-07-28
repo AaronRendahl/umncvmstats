@@ -11,6 +11,7 @@
 ^data-raw$
 _notes.R
 _exploration.R
+_CRAN.R
 ^vignettes-onhold$
 ^dev$
 ^revdep$
