@@ -8,6 +8,7 @@
 ^README\.Rmd$
 ^doc$
 ^Meta$
-_notes.R
 ^data-raw$
+_notes.R
+_exploration.R
 ^vignettes-onhold$
