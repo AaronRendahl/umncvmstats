@@ -1,17 +1,13 @@
 #' Points, jittered to reduce overplotting using the beeswarm package
 #'
 #' The beeswarm geom is a convenient means to offset points within categories to
-#'  reduce overplotting. Uses the beeswarm package
-#'
-#' @section Aesthetics:
-#' \Sexpr[results=rd,stage=build]{ggplot2:::rd_aesthetics("geom", "point")}
+#'  reduce overplotting. Based on `ggbeeswarm::geom_beeswarm`, but
+#'  with a default of a compact swarm with random priority.
+#'  Uses the beeswarm package.
 #'
 #' @inheritParams ggplot2::geom_point
+#' @inheritParams position_beeswarm
 #' @inheritParams offset_beeswarm
-#' @param dodge.width Amount by which points from different aesthetic groups
-#' will be dodged. This requires that one of the aesthetics is a factor.
-#' @param orientation The orientation (i.e., which axis to group on) is inferred from the data.
-#' This can be overridden by setting `orientation` to either `"x"` or `"y"`.
 #' @import ggplot2
 #' @seealso
 #'  [ggbeeswarm::geom_quasirandom()] an alternative method,
@@ -27,7 +23,7 @@ geom_beeswarm <- function(
   stat = 'identity',
   ...,
   method = "compactswarm",
-  cex = 1,
+  spacing = 1,
   side = 0L,
   priority = "random",
   fast = TRUE,
@@ -49,7 +45,7 @@ geom_beeswarm <- function(
 
   position <- position_beeswarm(
     method = method,
-    cex = cex,
+    spacing = spacing,
     side = side,
     priority = priority,
     fast = fast,

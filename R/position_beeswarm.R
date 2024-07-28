@@ -1,13 +1,12 @@
 #' An internal function to calculate new positions for geom_beeswarm
 #'
-#' @family position adjustments
 #' @param data A data.frame containing plotting data in columns x and y.
 #' Usually obtained from data processed by ggplot2.
 #' @param yLim.expand y data limits plus a small expansion using `grDevices::extendrange`
 #' @param xRange x axis scale range
 #' @param yRange y axis scale range
 #' @param method Method for arranging points (see Details below)
-#' @param cex Scaling for adjusting point spacing (see [beeswarm::swarmx()]).
+#' @param spacing Scaling for adjusting point spacing (see [beeswarm::swarmx()]).
 #' Values between 1 (default) and 3 tend to work best.
 #' @param side Direction to perform jittering: 0: both directions;
 #' 1: to the right or upwards; -1: to the left or downwards.
@@ -36,7 +35,7 @@
 #' square grid, whereas `"hex"` uses a hexagonal grid. `"centre"`/`"center"`
 #' uses a square grid to produce a symmetric swarm. The number of break points
 #' for discretisation is determined by a combination of the available plotting
-#' area and the `cex` argument.
+#' area and the `spacing` argument.
 #'
 #' **priority:** controls the order in which points are placed, which generally
 #' has a noticeable effect on the plot appearance. `"ascending"` gives the
@@ -63,7 +62,7 @@ offset_beeswarm <- function(
   xRange,
   yRange,
   method = "swarm",
-  cex = 1,
+  spacing = 1,
   side = 0L,
   priority = "ascending",
   fast = TRUE,
@@ -87,7 +86,7 @@ offset_beeswarm <- function(
       y = data$y,
       xsize = x.size,
       ysize = y.size,
-      cex = cex, side = side, priority = priority,
+      cex = spacing, side = side, priority = priority,
       fast = fast, compact = compact
     )$x
   } else {
@@ -96,8 +95,8 @@ offset_beeswarm <- function(
 
     # divisor is a magic number to get a reasonable baseline
     # better option would be to figure out point size in user coords
-    x.size <- xRange / 100 * cex
-    y.size <- yRange / 100 * cex
+    x.size <- xRange / 100 * spacing
+    y.size <- yRange / 100 * spacing
 
     # Hex method specific step
     if (method == "hex") y.size <- y.size * sqrt(3) / 2
@@ -115,7 +114,7 @@ offset_beeswarm <- function(
     if (any(data$y != y.pos)) {
       cli::cli_warn(c(
         "In `position_beeswarm`, method `{method}` discretizes the data axis (a.k.a the continuous or non-grouped axis).",
-        "This may result in changes to the position of the points along that axis, proportional to the value of `cex`."
+        "This may result in changes to the position of the points along that axis, proportional to the value of `spacing`."
       ), .frequency = "once", .frequency_id = "beeswarm_method_data_axis_warn")
     }
     data$y <- y.pos
@@ -178,59 +177,10 @@ offset_beeswarm <- function(
   return(data)
 }
 
-#' Arrange points using the beeswarm package.
-#'
-#' @family position adjustments
-#' @param method Method for arranging points (see Details below)
-#' @param cex Scaling for adjusting point spacing (see [beeswarm::swarmx()]).
-#' Values between 1 (default) and 3 tend to work best.
-#' @param side Direction to perform jittering: 0: both directions;
-#' 1: to the right or upwards; -1: to the left or downwards.
-#' @param priority Method used to perform point layout (see Details below)
-#' @param fast Use compiled version of swarm algorithm? This option is ignored
-#' for all methods expect `"swarm"` and `"compactswarm"`.
 #' @param dodge.width Amount by which points from different aesthetic groups
 #' will be dodged. This requires that one of the aesthetics is a factor.
-#' @param corral `string`. Method used to adjust points that would be placed to
-#' wide horizontally, default is `"none"`. See details below.
-#' @param corral.width `numeric`. Width of the corral, default is `0.9`.
 #' @param orientation The orientation (i.e., which axis to group on) is inferred from the data.
 #' This can be overridden by setting `orientation` to either `"x"` or `"y"`.
-
-#' @details
-#' **method:** specifies the algorithm used to avoid overlapping points. The
-#' default `"swarm"` method places points in increasing order. If a point would
-#' overlap with an existing point, it is shifted sideways (along the group axis)
-#' by a minimal amount sufficient to avoid overlap.
-#'
-#' While the `"swarm"` method places points in a predetermined
-#' order, the `"compactswarm"` method uses a greedy strategy to determine which
-#' point will be placed next. This often leads to a more tightly-packed layout.
-#' The strategy is very simple: on each iteration, a point that can be placed as
-#' close as possible to the non-data axis is chosen and placed. If there are two
-#' or more equally good points, `priority` is used to break ties.
-#'
-#' The other 3 methods first discretise the values along the data axis, in order
-#' to create more efficient packing. The `"square"` method places points on a
-#' square grid, whereas `"hex"` uses a hexagonal grid. `"centre"`/`"center"`
-#' uses a square grid to produce a symmetric swarm. The number of break points
-#' for discretisation is determined by a combination of the available plotting
-#' area and the `cex` argument.
-#'
-#' **priority:** controls the order in which points are placed, which generally
-#' has a noticeable effect on the plot appearance. `"ascending"` gives the
-#' 'traditional' beeswarm plot. `"descending"` is the opposite. `"density"`
-#' prioritizes points with higher local density. `"random"` places points in a
-#' random order. `"none"` places points in the order provided.
-#'
-#' **corral:** By default, swarms from different groups are not prevented from
-#' overlapping, i.e. `"corral = "none"`. Thus, datasets that are very large or
-#' unevenly distributed may produce ugly overlapping beeswarms. To control
-#' runaway points one can use the following methods. `"gutter"` collects runaway
-#' points along the boundary between groups. `"wrap"` implement periodic boundaries.
-#' `"random"` places runaway points randomly in the region. `"omit"` omits runaway
-#' points.
-#'
 #'
 #' @export
 #' @rdname geom_beeswarm
@@ -239,7 +189,7 @@ offset_beeswarm <- function(
 #' [beeswarm::swarmx()]
 position_beeswarm <- function(
   method = "compactswarm",
-  cex = 1,
+  spacing = 1,
   side = 0L,
   priority = "random",
   fast = TRUE,
@@ -256,7 +206,7 @@ position_beeswarm <- function(
 
   ggproto(NULL, PositionBeeswarm,
           method = method,
-          cex = cex,
+          spacing = spacing,
           side = side,
           priority = priority,
           fast = fast,
@@ -272,7 +222,7 @@ PositionBeeswarm <- ggplot2::ggproto("PositionBeeswarm", Position,
                                      setup_params = function(self, data) {
                                        params <- list(
                                          method = self$method,
-                                         cex = self$cex,
+                                         spacing = self$spacing,
                                          side = self$side,
                                          priority = self$priority,
                                          fast = self$fast,
@@ -330,7 +280,7 @@ PositionBeeswarm <- ggplot2::ggproto("PositionBeeswarm", Position,
                                          xRange = xRange,
                                          yRange = yRange,
                                          method = params$method,
-                                         cex = params$cex,
+                                         spacing = params$spacing,
                                          side = params$side,
                                          priority = params$priority,
                                          fast = params$fast,
