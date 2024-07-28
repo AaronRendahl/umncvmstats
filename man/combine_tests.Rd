@@ -7,7 +7,7 @@
 combine_tests(...)
 }
 \arguments{
-\item{...}{XX}
+\item{...}{the various tests to be combined.}
 }
 \description{
 Combine multiple tests together
