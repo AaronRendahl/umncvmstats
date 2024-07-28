@@ -2,7 +2,7 @@
 % Please edit documentation in R/geom_bars.R
 \name{geom_bars}
 \alias{geom_bars}
-\title{Title}
+\title{Bar charts}
 \usage{
 geom_bars(
   mapping = NULL,
@@ -19,31 +19,73 @@ geom_bars(
 )
 }
 \arguments{
-\item{mapping}{XX}
+\item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}}. If specified and
+\code{inherit.aes = TRUE} (the default), it is combined with the default mapping
+at the top level of the plot. You must supply \code{mapping} if there is no plot
+mapping.}
 
-\item{data}{XX}
+\item{data}{The data to be displayed in this layer. There are three
+options:
 
-\item{stat}{XX}
+If \code{NULL}, the default, the data is inherited from the plot
+data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
 
-\item{position}{XX}
+A \code{data.frame}, or other object, will override the plot
+data. All objects will be fortified to produce a data frame. See
+\code{\link[=fortify]{fortify()}} for which variables will be created.
 
-\item{...}{XX}
+A \code{function} will be called with a single argument,
+the plot data. The return value must be a \code{data.frame}, and
+will be used as the layer data. A \code{function} can be created
+from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
-\item{just}{XX}
+\item{stat}{Override the default connection between \code{geom_bar()} and
+\code{stat_count()}. For more information about overriding these connections,
+see how the \link[=layer_stats]{stat} and \link[=layer_geoms]{geom} arguments work.}
 
-\item{width}{XX}
+\item{position}{A position adjustment to use on the data for this layer. This
+can be used in various ways, including to prevent overplotting and
+improving the display. The \code{position} argument accepts the following:
+\itemize{
+\item The result of calling a position function, such as \code{position_jitter()}.
+This method allows for passing extra arguments to the position.
+\item A string naming the position adjustment. To give the position as a
+string, strip the function name of the \code{position_} prefix. For example,
+to use \code{position_jitter()}, give the position as \code{"jitter"}.
+\item For more information and other ways to specify the position, see the
+\link[=layer_positions]{layer position} documentation.
+}}
 
-\item{na.rm}{XX}
+\item{...}{Other arguments passed on to \code{\link[=layer]{layer()}}'s \code{params} argument.}
 
-\item{orientation}{XX}
+\item{just}{Adjustment for column placement. Set to \code{0.5} by default, meaning
+that columns will be centered about axis breaks. Set to \code{0} or \code{1} to place
+columns to the left/right of axis breaks. Note that this argument may have
+unintended behaviour when used with alternative positions, e.g.
+\code{position_dodge()}.}
 
-\item{show.legend}{XX}
+\item{width}{Bar width. By default, set to 90\% of the \code{resolution()} of the data.}
 
-\item{inherit.aes}{XX}
-}
-\value{
-XX
+\item{na.rm}{If \code{FALSE}, the default, missing values are removed with
+a warning. If \code{TRUE}, missing values are silently removed.}
+
+\item{orientation}{The orientation of the layer. The default (\code{NA})
+automatically determines the orientation from the aesthetic mapping. In the
+rare event that this fails it can be given explicitly by setting \code{orientation}
+to either \code{"x"} or \code{"y"}. See the \emph{Orientation} section for more detail.}
+
+\item{show.legend}{logical. Should this layer be included in the legends?
+\code{NA}, the default, includes if any aesthetics are mapped.
+\code{FALSE} never includes, and \code{TRUE} always includes.
+It can also be a named logical vector to finely select the aesthetics to
+display.}
+
+\item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
+rather than combining with them. This is most useful for helper functions
+that define both data and aesthetics and shouldn't inherit behaviour from
+the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
 }
 \description{
-Title
+Make a bar chart with \code{ggplot}, with bars within a group next to each other by
+default (that is, "dodged") instead of stacked. Based on \code{ggplot::geom_bar}.
 }
