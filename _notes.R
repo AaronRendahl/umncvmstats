@@ -12,6 +12,7 @@ devtools::build_site()
 pkgdown::build_home()
 pkgdown::build_reference()
 pkgdown::build_articles()
+pkgdown::build_article("proportions")
 
 ## uploads and checks elsewhere
 devtools::check_mac_release()
