@@ -3,6 +3,7 @@
 # quadratic location
 # std error
 # std error spread
+#' @importFrom stats cor
 makep <- function(d) {
   rho <- with(d, cor(x, y))
   txt <- sprintf("rho = %0.2f", rho)
@@ -15,6 +16,8 @@ makep <- function(d) {
          subtitle=txt)
 }
 
+#' @param seed which sample data to use.
+#' @param verbose logical specifying if messages about sample data should be displayed.
 #' @export
 #' @importFrom stats rbeta
 #' @importFrom stats runif
@@ -81,6 +84,10 @@ sample_data <- function(seed, verbose=FALSE) {
   out
 }
 
+#' Create a random data set for regression
+#'
+#' Create a random data set for regression and display the standard diagnostic plots.
+#'
 #' @export
 #' @importFrom stats lm
 #' @importFrom stats printCoefmat
