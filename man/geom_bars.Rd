@@ -61,7 +61,7 @@ to use \code{position_jitter()}, give the position as \code{"jitter"}.
 \item{just}{Adjustment for column placement. Set to \code{0.5} by default, meaning
 that columns will be centered about axis breaks. Set to \code{0} or \code{1} to place
 columns to the left/right of axis breaks. Note that this argument may have
-unintended behaviour when used with alternative positions, e.g.
+unintended behavior when used with alternative positions, e.g.
 \code{position_dodge()}.}
 
 \item{width}{Bar width. By default, set to 90\% of the \code{resolution()} of the data.}
@@ -82,7 +82,7 @@ display.}
 
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
-that define both data and aesthetics and shouldn't inherit behaviour from
+that define both data and aesthetics and shouldn't inherit behavior from
 the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
 }
 \description{

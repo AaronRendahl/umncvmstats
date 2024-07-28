@@ -45,7 +45,7 @@
 #' @param just Adjustment for column placement. Set to `0.5` by default, meaning
 #'   that columns will be centered about axis breaks. Set to `0` or `1` to place
 #'   columns to the left/right of axis breaks. Note that this argument may have
-#'   unintended behaviour when used with alternative positions, e.g.
+#'   unintended behavior when used with alternative positions, e.g.
 #'   `position_dodge()`.
 #' @param show.legend logical. Should this layer be included in the legends?
 #'   `NA`, the default, includes if any aesthetics are mapped.
@@ -54,7 +54,7 @@
 #'   display.
 #' @param inherit.aes If `FALSE`, overrides the default aesthetics,
 #'   rather than combining with them. This is most useful for helper functions
-#'   that define both data and aesthetics and shouldn't inherit behaviour from
+#'   that define both data and aesthetics and shouldn't inherit behavior from
 #'   the default plot specification, e.g. [borders()].
 #'
 #' @export
