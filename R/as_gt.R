@@ -1,19 +1,6 @@
-#' Create a gt table object
-#' @param x XX
-#' @param ... XX
-#'
-#' @export
-as_gt <- function(x, ...) { UseMethod("as_gt") }
-
 #' @export
 as_gt.default <- function(x, ...) {
   as.data.frame(x) |> as_gt()
-}
-
-#' @export
-#' @rdname as_gt
-as_gt.data.frame <- function(x, ...) {
-  gt::gt(x, ...)
 }
 
 #' @export
@@ -26,11 +13,29 @@ as_gt.gtsummary <- function(x, ...) {
   gtsummary::as_gt(x, ...)
 }
 
-#' @param footnote_col XX
-#' @param rowname_col XX
-#' @param groupname_col XX
-#' @param simplify XX
-#' @param row_group_as_column XX
+#' Create a gt table object
+#'
+#' Convert an object to a gt table.
+#'
+#' Behind the scenes, an `atest` object has a number of columns specifying the variables used in the
+#' original formula; these include not only the names of the variables (`.y ~ .x | .g`)
+#' but also for categorical variables, the values of the variables (`.y_value`, `.x_value`,
+#' `.g_value`) and any contrasts (`.y_contrast`, `.x_contrast`) for two-sample, pairwise,
+#' or paired comparisons. There is also a `.terms` variable for the right hand side of a
+#' an `atest` about a model.
+#'
+#' When `simplify = TRUE` (the default), these are converted to more readable columns,
+#' in particular, any values or contrasts are combined with the variable names, and
+#' new variables of `response`, `variable`, `group`, and `model` are used instead of
+#' the variables described above.
+#'
+#' @param x the object to convert.
+#' @param footnote_col the column to add footnotes to.
+#' @param rowname_col column to use as row names, if desired.
+#' @param groupname_col column to use as groups, if desired.
+#' @param simplify a logical variable, whether or not to simplify the table first. See Details.
+#' @param row_group_as_column a logical variable, whether or not to
+#' @param ... additional parameters, passed to `gt`.
 #' @rdname as_gt
 #' @export
 as_gt.atest <- function(x,
@@ -86,3 +91,11 @@ as_gt.atest <- function(x,
   out
 }
 
+#' @export
+as_gt.data.frame <- function(x, ...) {
+  gt::gt(x, ...)
+}
+
+#' @rdname as_gt
+#' @export
+as_gt <- function(x, ...) { UseMethod("as_gt") }
