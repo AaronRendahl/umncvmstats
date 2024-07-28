@@ -28,6 +28,7 @@ Imports:
   rlang, 
   rstudioapi, 
   scales,
+  stats,
   stringr, 
   tibble, 
   tidyr
