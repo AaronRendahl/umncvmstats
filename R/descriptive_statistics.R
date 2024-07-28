@@ -1,11 +1,14 @@
-#' Summarize variables
+#' Compute descriptive statistics for a data set
 #'
-#' @param data XX
-#' @param ... XX
-#' @param digits XX
-#' @param compact XX
+#' Use `gtsummary::tbl_summary` to summarize variables in a data set.
+#' For categorical variables, reports count/total and percent; for
+#' continuous variables, reports mean, standard deviation, median, and range.
 #'
-#' @return XX
+#' @param data the data set to summarize.
+#' @param ... additional parameters, sent to `tbl_summary`.
+#' @param digits desired number of significant figures, for numeric variables.
+#' @param compact logical specifying whether or not to compact the resulting `gt` table.
+#'
 #' @export
 #'
 #' @importFrom gtsummary tbl_summary
