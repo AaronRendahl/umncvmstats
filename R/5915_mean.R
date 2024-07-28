@@ -54,17 +54,26 @@ one_t_test <- function(formula, data,
   as_atest(result, estimate.vars="mean", inference.vars=character())
 }
 
-#' Two Sample t-test
-
-#' @param formula XX
+#' Two-sample t-test
 #'
-#' @param data XX
-#' @param alternative XX
-#' @param null XX
-#' @param var.equal XX
-#' @param conf.level XX
-#' @param conf.adjust XX
-#' @param backtransform XX
+#' Compute the difference in means between two samples, the
+#' corresponding confidence interval, and a p-value for the null hypothesis
+#' of equal means (that is, a difference of zero).
+#'
+#' @param formula a formula of the form `y ~ x`, where `y` is a numeric variable and `x` is a factor variable.
+#'     To perform test within subgroups, use `y ~ x | g`,
+#'     where `x` and `g` are factor variables.
+#' @param data a data frame containing the values in the formula.
+#' @param alternative character string specifying the alternative hypothesis, must be one of "`two.sided`" (default), "`greater`" or "`less`".
+#' @param null a number specifying the null proportion for testing a null hypothesis; if not specified, no hypothesis test is performed.
+#' @param var.equal a logical variable indicating whether to treat the two variances
+#'     as being equal. The default is to assume unequal variance.
+#' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
+#' @param backtransform if response variable is of form `log(...)`, backtransform
+#'     the resulting estimate and confidence interval bounds, so that they
+#'     report the ratio of the geometric means rather than the difference on the log scale.
+#' @param conf.adjust adjust confidence bounds for `conf.adjust` simultaneous intervals using the Bonferroni method.
+#'   Used internally by `pairwise_t_test`; should only rarely be used by users.
 #'
 #' @export
 two_t_test <- function(formula, data,
@@ -111,11 +120,13 @@ two_t_test <- function(formula, data,
   as_atest(result, estimate.vars=c("difference", "ratio"), inference.vars=c("null", "t.value", "df"))
 }
 
-#' @param ... XX
+#' @param adjust method of adjusting p-values for multiple comparisons, one of "`bonferroni`", "`holm`", or "`none`".
+#' @param reverse reverse the direction of pairwise comparisons.
+#' @param ... further arguments to be passed to submethods, as appropriate.
 #' @rdname two_t_test
 #' @export
-pairwise_t_test <- function(formula, data, ...) {
-  pairwise(formula, data, "two_t_test", ...)
+pairwise_t_test <- function(formula, data, adjust=c("bonferroni", "holm", "none"), reverse=FALSE, ...) {
+  pairwise(formula, data, "two_t_test", adjust=adjust, reverse=reverse, ...)
 }
 
 #' Paired t-test
