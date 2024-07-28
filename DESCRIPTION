@@ -21,7 +21,6 @@ Imports:
     forcats,
     ggplot2,
     graphics,
-    grDevices,
     gt,
     gtsummary,
     knitr,
