@@ -16,6 +16,7 @@ pkgdown::build_articles()
 ## uploads and checks elsewhere
 devtools::check_mac_release()
 devtools::check_win_release()
+devtools::check_win_devel()
 
 pkgload::dev_help('one_proportion_test')
 
