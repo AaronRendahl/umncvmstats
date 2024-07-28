@@ -16,8 +16,8 @@
 #' The chi-squared option uses [stats::prop.test] and the exact test option uses
 #' [stats::fisher.test].
 #'
-#' @param formula a formula of the form `y ~ x`, where `y` and `x` are a factor variables.
-#'     If not a factor, it will be automatically converted.
+#' @param formula a formula of the form `y ~ x`, where `y` and `x` are both factor variables.
+#'     If not factors, they will be automatically converted.
 #'     To perform test within subgroups, use `y ~ x | g`.
 #' @param data a data frame containing the values in the formula.
 #' @param success an optional value specifying the level for which proportions should be reported.

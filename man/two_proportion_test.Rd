@@ -38,8 +38,8 @@ pairwise_proportion_test(
 )
 }
 \arguments{
-\item{formula}{a formula of the form \code{y ~ x}, where \code{y} and \code{x} are a factor variables.
-If not a factor, it will be automatically converted.
+\item{formula}{a formula of the form \code{y ~ x}, where \code{y} and \code{x} are both factor variables.
+If not factors, they will be automatically converted.
 To perform test within subgroups, use \code{y ~ x | g}.}
 
 \item{data}{a data frame containing the values in the formula.}
