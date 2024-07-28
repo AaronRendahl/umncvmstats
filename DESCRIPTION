@@ -23,6 +23,7 @@ Imports:
   knitr,
   multcomp, 
   multcompView, 
+  patchwork, 
   purrr, 
   rlang, 
   rstudioapi, 
@@ -33,7 +34,6 @@ Imports:
 Suggests: 
   conflicted, 
   lubridate,
-  patchwork, 
   rmarkdown,
   tidyverse
 Encoding: UTF-8
