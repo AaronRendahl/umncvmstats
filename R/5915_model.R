@@ -12,10 +12,11 @@ model_form <- function(model) {
 
 #' Get model summary information
 #'
-#' @param model XX
-#' @param ... XX
+#' Retrieve statistics such as R-squared, AIC, and more, as computed by `broom::glance`.
 #'
-#' @return XX
+#' @param model a linear model or generalized linear model.
+#' @param ... additional parameters, passed to `broom::glance`.
+#'
 #' @importFrom broom glance
 #' @export
 model_glance <- function(model, ...) {
@@ -25,10 +26,13 @@ model_glance <- function(model, ...) {
 
 #' Get model coefficients
 #'
-#' @param model XX
-#' @param ... XX
+#' Retrieve coefficients and corresponding confidence intervals and p-values,
+#' as computed by `broom::tidy`.
 #'
-#' @return XX
+#' @param model a linear model or generalized linear model.
+#' @param ... additional parameters, passed to `broom::tidy`.
+#'
+#' @importFrom broom tidy
 #' @export
 model_coefs <- function(model, ...) {
   out <- tidy(model, ...) |> rename(any_of(c(SE="std.error")))
@@ -39,9 +43,11 @@ model_coefs <- function(model, ...) {
 
 #' Get model Anova table
 #'
-#' @param model XX
-#' @param ... XX
-#' @return XX
+#' Retrieve Anova (analysis of variance) table for a linear model, or analysis
+#' of deviance table for a generalized linear model, as computed by `car::Anova`.
+
+#' @param model a linear model or generalized linear model.
+#' @param ... additional parameters, passed to `car::Anova`.
 #' @export
 #' @importFrom car Anova
 model_anova <- function(model, ...) {
@@ -51,13 +57,45 @@ model_anova <- function(model, ...) {
 
 #' Get model means and slopes (trends)
 #'
-#' @param model XX
-#' @param formula XX
-#' @param ... XX
-#' @param cld XX
-#' @param backtransform XX
-#' @param type XX
-#' @return XX
+#' Retrieve estimated marginal means and slopes (trends) as computed by
+#' `emmeans::emmeans` and `emmeans::emtrends`, and tests for all pairwise differences,
+#' as computed by `emmeans::pairs.emmGrid`.
+#'
+#' For means, specify the desired combinations of explanatory variables
+#' using formula notation. For example, to get the means at all levels of a
+#' variable `x`, use `~ x`. To get the means at all combinations of `x1` and `x2`,
+#' use `~ x1 + x2.`
+#'
+#' For slopes, specify the desired slope on the left side of the formula. For
+#' example, to get the slopes for a variable `x` at each level of a variable `g`,
+#' use `x ~ g.` To get the overall slope, use `x ~ 1`.
+#'
+#' Additionally, one can specify groupings by using a `|` within a formula.
+#' For example, to get the means of all combinations of `x1` and `x2` grouped by each
+#' value of `x2`, use `~ x1 | x2`. This is especially useful for getting pairwise
+#' tests of means and trends within subgroups.
+#'
+#' By default, estimated marginal means and trends are estimated by computing
+#' the average mean or trend across all values of any other categorical
+#' explanatory variables equally, and at the mean value of any other numeric explanatory
+#' variables.
+#'
+#' One of most useful additional parameters that can be passed to `emmeans` is `at`,
+#' which allows one to specify specific values of continuous variables to compute
+#' means and/or trends at. For example, if one had a continuous variable `x` in the model,
+#' one could compute the means at `x=10` and `x=20` using `at = list(x = c(10, 20)`.
+#'
+#' @param model a linear model or generalized linear model.
+#' @param formula the desired means or slopes; see Details.
+#' @param cld a logical variable specifying if a compact letter display should be used
+#'     for pairwise comparisons between groups.
+#' @param backtransform if a linear model and response variable is of form `log(y)`,
+#'      or the model is a logistic model , backtransform the resulting estimate and
+#'      confidence interval bounds, so that they report either geometric means on the
+#'      original scale and ratios (for log-transformed responses) or proportions
+#'      and odds ratios (for logistic models).
+#' @param type specify method of backtransformation to `emmeans`. If used, `backtransform` is ignored.
+#' @param ... additional parameters, passed to `emmeans` or `emtrends`. See Details.
 #' @export
 #' @importFrom car Anova
 #' @importFrom multcomp cld
