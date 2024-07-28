@@ -79,8 +79,7 @@ continuous variables, reports mean, standard deviation, median, and range.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">model</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">descriptive_statistics</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in set_gtsummary_theme(suppressMessages(x)):</span> The following names of `x` are not accepted theme elemets:</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">"tbl_summary-str:categorical_stat"</span> and <span style="color: #0000BB;">"tbl_summary-str:continuous_stat"</span>.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in select(mtcars2, -model):</span> could not find function "select"</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
