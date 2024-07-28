@@ -13,3 +13,4 @@ _notes.R
 _exploration.R
 ^vignettes-onhold$
 ^dev$
+^revdep$
