@@ -7,13 +7,11 @@
 model_coefs(model, ...)
 }
 \arguments{
-\item{model}{XX}
+\item{model}{a linear model or generalized linear model.}
 
-\item{...}{XX}
-}
-\value{
-XX
+\item{...}{additional parameters, passed to \code{broom::tidy}.}
 }
 \description{
-Get model coefficients
+Retrieve coefficients and corresponding confidence intervals and p-values,
+as computed by \code{broom::tidy}.
 }

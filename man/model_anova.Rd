@@ -7,13 +7,11 @@
 model_anova(model, ...)
 }
 \arguments{
-\item{model}{XX}
+\item{model}{a linear model or generalized linear model.}
 
-\item{...}{XX}
-}
-\value{
-XX
+\item{...}{additional parameters, passed to \code{car::Anova}.}
 }
 \description{
-Get model Anova table
+Retrieve Anova (analysis of variance) table for a linear model, or analysis
+of deviance table for a generalized linear model, as computed by \code{car::Anova}.
 }

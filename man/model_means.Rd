@@ -29,21 +29,50 @@ model_slopes(model, formula, ..., cld = TRUE)
 pairwise_model_slopes(model, formula, ...)
 }
 \arguments{
-\item{model}{XX}
+\item{model}{a linear model or generalized linear model.}
 
-\item{formula}{XX}
+\item{formula}{the desired means or slopes; see Details.}
 
-\item{cld}{XX}
+\item{cld}{a logical variable specifying if a compact letter display should be used
+for pairwise comparisons between groups.}
 
-\item{backtransform}{XX}
+\item{backtransform}{if a linear model and response variable is of form \code{log(y)},
+or the model is a logistic model , backtransform the resulting estimate and
+confidence interval bounds, so that they report either geometric means on the
+original scale and ratios (for log-transformed responses) or proportions
+and odds ratios (for logistic models).}
 
-\item{type}{XX}
+\item{type}{specify method of backtransformation to \code{emmeans}. If used, \code{backtransform} is ignored.}
 
-\item{...}{XX}
-}
-\value{
-XX
+\item{...}{additional parameters, passed to \code{emmeans} or \code{emtrends}. See Details.}
 }
 \description{
-Get model means and slopes (trends)
+Retrieve estimated marginal means and slopes (trends) as computed by
+\code{emmeans::emmeans} and \code{emmeans::emtrends}, and tests for all pairwise differences,
+as computed by \code{emmeans::pairs.emmGrid}.
+}
+\details{
+For means, specify the desired combinations of explanatory variables
+using formula notation. For example, to get the means at all levels of a
+variable \code{x}, use \code{~ x}. To get the means at all combinations of \code{x1} and \code{x2},
+use \code{~ x1 + x2.}
+
+For slopes, specify the desired slope on the left side of the formula. For
+example, to get the slopes for a variable \code{x} at each level of a variable \code{g},
+use \code{x ~ g.} To get the overall slope, use \code{x ~ 1}.
+
+Additionally, one can specify groupings by using a \code{|} within a formula.
+For example, to get the means of all combinations of \code{x1} and \code{x2} grouped by each
+value of \code{x2}, use \code{~ x1 | x2}. This is especially useful for getting pairwise
+tests of means and trends within subgroups.
+
+By default, estimated marginal means and trends are estimated by computing
+the average mean or trend across all values of any other categorical
+explanatory variables equally, and at the mean value of any other numeric explanatory
+variables.
+
+One of most useful additional parameters that can be passed to \code{emmeans} is \code{at},
+which allows one to specify specific values of continuous variables to compute
+means and/or trends at. For example, if one had a continuous variable \code{x} in the model,
+one could compute the means at \code{x=10} and \code{x=20} using \verb{at = list(x = c(10, 20)}.
 }

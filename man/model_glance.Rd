@@ -7,13 +7,10 @@
 model_glance(model, ...)
 }
 \arguments{
-\item{model}{XX}
+\item{model}{a linear model or generalized linear model.}
 
-\item{...}{XX}
-}
-\value{
-XX
+\item{...}{additional parameters, passed to \code{broom::glance}.}
 }
 \description{
-Get model summary information
+Retrieve statistics such as R-squared, AIC, and more, as computed by \code{broom::glance}.
 }
