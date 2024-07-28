@@ -12,7 +12,9 @@
   data,
   success,
   method = c("default", "chisq", "exact"),
+  correct = TRUE,
   alternative = c("two.sided", "less", "greater"),
+  conf.level = 0.95,
   ...
 )
 
@@ -20,10 +22,10 @@
   x,
   n,
   method = c("default", "chisq", "exact"),
+  correct = TRUE,
   alternative = c("two.sided", "less", "greater"),
   conf.level = 0.95,
   conf.adjust = 1,
-  correct = TRUE,
   ...
 )
 
@@ -48,20 +50,20 @@ To perform test within subgroups, use \code{y ~ x | g}.}
 
 \item{method}{character string specifying which method to use. One of "\code{default}", "\code{chisq}", or "\code{exact}".}
 
+\item{correct}{a logical indicating whether ontinuity correction should be applied; used for chi-squared test only.}
+
 \item{alternative}{character string specifying the alternative hypothesis, must be one of "\code{two.sided}" (default), "\code{greater}" or "\code{less}".}
-
-\item{...}{further arguments to be passed to submethods, as appropriate.}
-
-\item{x}{vector with count of successes in the two groups}
-
-\item{n}{vector with count of total trials in the two groups}
 
 \item{conf.level}{confidence level of the returned confidence interval. Must be a single number between 0 and 1.}
 
+\item{...}{further arguments to be passed to submethods, as appropriate.}
+
+\item{x}{vector with count of successes in the two groups, or a 2x2 matrix with the counts.}
+
+\item{n}{vector with count of total trials in the two groups.}
+
 \item{conf.adjust}{adjust confidence bounds for \code{conf.adjust} simultaneous intervals using the Bonferroni method.
 Used internally by \code{pairwise_proportion_test}; should only rarely be used by users.}
-
-\item{correct}{a logical indicating whether Yates' continuity correction should be applied; used for Wilson test only.}
 
 \item{adjust}{method of adjusting p-values for multiple comparisons, one of "\code{bonferroni}", "\code{holm}", or "\code{none}".}
 

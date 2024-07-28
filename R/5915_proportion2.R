@@ -22,7 +22,9 @@
 #' @param data a data frame containing the values in the formula.
 #' @param success an optional value specifying the level for which proportions should be reported.
 #' @param method character string specifying which method to use. One of "`default`", "`chisq`", or "`exact`".
+#' @param correct a logical indicating whether ontinuity correction should be applied; used for chi-squared test only.
 #' @param alternative  character string specifying the alternative hypothesis, must be one of "`two.sided`" (default), "`greater`" or "`less`".
+#' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
 #' @param ... further arguments to be passed to submethods, as appropriate.
 #'
 #' @return A tibble with class `atest` containing columns as follows:
@@ -33,8 +35,12 @@
 #' \item{p.value}{the p-value of the test}
 #' @rdname two_proportion_test
 #' @export
-two_proportion_test.formula <- function(formula, data, success, method=c("default", "chisq", "exact"),
-                                        alternative = c("two.sided", "less", "greater"), ...) {
+two_proportion_test.formula <- function(formula, data, success,
+                                        method=c("default", "chisq", "exact"),
+                                        correct = TRUE,
+                                        alternative = c("two.sided", "less", "greater"),
+                                        conf.level = 0.95,
+                                        ...) {
 
   a <- test_by()
   if(!is.null(a)) return(a)
@@ -62,20 +68,18 @@ two_proportion_test.formula <- function(formula, data, success, method=c("defaul
   y <- y[ok]
   n <- length(x)
   m <- table(x, y)
-  result <- two_proportion_test.default(m, alternative=alternative, method=method, ...)
+  result <- two_proportion_test.default(m, method=method, correct=correct,
+                                        alternative=alternative, conf.level=conf.level, ...)
   result <- result |> mutate(.y = y.name, .y_value=success, .before=1) |>
     mutate(.x = x.name,
            .x_contrast=paste(levels(x), collapse=" - "))
   as_atest(result)
 }
 
-#' @param x vector with count of successes in the two groups
-#' @param n vector with count of total trials in the two groups
-#' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
+#' @param x vector with count of successes in the two groups, or a 2x2 matrix with the counts.
+#' @param n vector with count of total trials in the two groups.
 #' @param conf.adjust adjust confidence bounds for `conf.adjust` simultaneous intervals using the Bonferroni method.
 #'   Used internally by `pairwise_proportion_test`; should only rarely be used by users.
-#' @param correct a logical indicating whether Yates' continuity correction should be applied; used for Wilson test only.
-#' @param ... further arguments to be passed to submethods, as appropriate.
 #'
 #' @importFrom stats fisher.test
 #' @importFrom stats prop.test
@@ -83,8 +87,9 @@ two_proportion_test.formula <- function(formula, data, success, method=c("defaul
 #' @export
 two_proportion_test.default <- function(x, n,
                                         method=c("default", "chisq", "exact"),
+                                        correct = TRUE,
                                         alternative = c("two.sided", "less", "greater"),
-                                        conf.level = 0.95, conf.adjust=1, correct = TRUE,
+                                        conf.level = 0.95, conf.adjust=1,
                                         ...) {
   use.conf.level <- 1 - (1-conf.level)/conf.adjust
   method <- match.arg(method)
@@ -152,10 +157,10 @@ pairwise_proportion_test <- function(formula, data, adjust=c("bonferroni", "holm
 #'
 #' @export
 paired_proportion_test <- function(formula, data, success,
+                                   method = c("default", "wilson", "exact"),
                                    alternative = c("two.sided", "less", "greater"),
                                    correct = FALSE,
-                                   conf.level = NA,
-                                   method = c("default", "wilson", "exact")) {
+                                   conf.level = NA) {
   a <- test_by(by_right=TRUE)
   if(!is.null(a)) return(a)
 

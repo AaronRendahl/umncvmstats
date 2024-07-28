@@ -8,10 +8,10 @@ paired_proportion_test(
   formula,
   data,
   success,
+  method = c("default", "wilson", "exact"),
   alternative = c("two.sided", "less", "greater"),
   correct = FALSE,
-  conf.level = NA,
-  method = c("default", "wilson", "exact")
+  conf.level = NA
 )
 }
 \arguments{
@@ -23,13 +23,13 @@ where \code{x} and \code{g} are factor variables.}
 
 \item{success}{the level of the response variable to consider a success}
 
+\item{method}{character string specifying which method to use. One of "\code{default}", "\code{wilson}", or "\code{exact}".}
+
 \item{alternative}{character string specifying the alternative hypothesis, must be one of "\code{two.sided}" (default), "\code{greater}" or "\code{less}".}
 
 \item{correct}{a logical indicating whether Yates' continuity correction should be applied; used for Wilson test only.}
 
 \item{conf.level}{if desired, confidence level of the returned confidence interval. Must be a single number between 0 and 1.}
-
-\item{method}{character string specifying which method to use. One of "\code{default}", "\code{wilson}", or "\code{exact}".}
 }
 \description{
 Perform McNemar's test for paired proportions, by computing the proportion
