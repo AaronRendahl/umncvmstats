@@ -2,46 +2,50 @@ Package: umncvmstats
 Title: Standardized Functions for One and Two Sample Statistical Tests
 Version: 0.0.0.9000
 Authors@R: 
-    person("Aaron", "Rendahl", email = "rend0020@umn.edu", role = c("aut", "cre"),
+    person("Aaron", "Rendahl", , "rend0020@umn.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5434-3592"))
-Description: Standardized functions and output for one and two sample 
-    statistical tests, linear models, and logistic models, and
-    customized plotting functions to simplify common plotting needs.
-Language: en-US
+Description: Standardized functions and output for one and two sample
+    statistical tests, linear models, and logistic models, and customized
+    plotting functions to simplify common plotting needs.
 License: GPL (>= 3)
-Imports: 
-  beeswarm, 
-  broom, 
-  car,
-  cli, 
-  dplyr, 
-  emmeans, 
-  forcats, 
-  ggplot2, 
-  gt, 
-  gtsummary, 
-  knitr,
-  multcomp, 
-  multcompView, 
-  patchwork, 
-  purrr, 
-  rlang, 
-  rstudioapi, 
-  scales,
-  stats,
-  stringr, 
-  tibble, 
-  tidyr
-Suggests: 
-  conflicted, 
-  lubridate,
-  rmarkdown,
-  tidyverse
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
-VignetteBuilder: knitr
 URL: https://aaronrendahl.github.io/umncvmstats/
 Depends: 
     R (>= 2.10)
+Imports: 
+    beeswarm,
+    broom,
+    car,
+    cli,
+    dplyr,
+    emmeans,
+    forcats,
+    ggplot2,
+    graphics,
+    grDevices,
+    gt,
+    gtsummary,
+    knitr,
+    multcomp,
+    multcompView,
+    patchwork,
+    purrr,
+    rlang,
+    rstudioapi,
+    scales,
+    stats,
+    stringr,
+    tibble,
+    tidyr,
+    utils
+Suggests: 
+    conflicted,
+    lubridate,
+    rmarkdown,
+    tidyverse
+VignetteBuilder: 
+    knitr
+Encoding: UTF-8
+Language: en-US
 LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
