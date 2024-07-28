@@ -25,7 +25,7 @@ guess_cor <- function(seed=NA, nonp=FALSE, skew=nonp, rank=FALSE,
     s1 <- rbeta(1, shape1=1.3, shape2=1) * sample(c(-1,1), 1)
     s2 <- sample(c(0,0,0,0,1,2,-2),1)
     s <- runif(1, 0.3, 1.5)
-    e <- rnorm(50, s=s)
+    e <- rnorm(50, sd=s)
     e <- e*(1+sample(c(0,0,5),1)*(x - min(x)))
     x0 <- sample(c(-2,-1,0,1,2),1)
     y <- s1*x + s2*(x-x0)^2 + e

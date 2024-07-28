@@ -5,9 +5,9 @@
 # std error spread
 #' @importFrom stats cor
 makep <- function(d) {
-  rho <- with(d, cor(x, y))
+  rho <- cor(d$x, d$y)
   txt <- sprintf("rho = %0.2f", rho)
-  ggplot(d) + aes(x, y) + geom_point() +
+  ggplot(d) + aes(.data$x, .data$y) + geom_point() +
     scale_x_continuous(breaks=seq(0,10,by=2)) +
     scale_y_continuous(breaks=seq(0,10,by=2)) +
     #annotate("text", label=txt, x=-Inf, y=Inf, hjust=0, vjust=1) +
@@ -20,6 +20,7 @@ makep <- function(d) {
 #' @param verbose logical specifying if messages about sample data should be displayed.
 #' @export
 #' @importFrom stats rbeta
+#' @importFrom stats rexp
 #' @importFrom stats runif
 #' @importFrom stats rnorm
 #' @rdname sample_lm
@@ -90,6 +91,8 @@ sample_data <- function(seed, verbose=FALSE) {
 #'
 #' @export
 #' @importFrom stats lm
+#' @importFrom stats coef
+#' @importFrom stats summary.lm
 #' @importFrom stats printCoefmat
 sample_lm <- function(seed=sample(1e4-1, 1)) {
   d <- sample_data(seed)

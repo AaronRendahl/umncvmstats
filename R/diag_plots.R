@@ -20,24 +20,24 @@
 #' @export
 diag_plots <- function(model) {
   augm <- broom::augment(model)
-  p1 <- ggplot(augm) + aes(x=.fitted, y=.resid) +
+  p1 <- ggplot(augm) + aes(x=.data$.fitted, y=.data$.resid) +
     geom_point(pch=21) +
-    geom_smooth(formula=y~x, se=FALSE, method=loess,
+    geom_smooth(formula=y~x, se=FALSE, method="loess",
                 method.args=list(span=1), lwd=0.75) +
     geom_hline(yintercept=0, lty=2) +
     xlab("Fitted values") + ylab("Residuals") +
     ggtitle("Residuals vs Fitted")
-  p2 <- ggplot(augm) + aes(sample=.std.resid) +
+  p2 <- ggplot(augm) + aes(sample=.data$.std.resid) +
     geom_qq(pch=21) + geom_qq_line(lty=2) +
     xlab("Theoretical Quantiles") + ylab("Standardized residuals") +
     ggtitle("Normal Q-Q")
-  p3 <- ggplot(augm) + aes(x=.fitted, y=sqrt(abs(.std.resid))) +
+  p3 <- ggplot(augm) + aes(x=.data$.fitted, y=sqrt(abs(.data$.std.resid))) +
     geom_point(pch=21) +
     geom_smooth(formula=y~x, se=FALSE, method=loess,
                 method.args=list(span=1), lwd=0.75) +
     xlab("Fitted values") + ylab("sqrt|Standardized residuals|") +
     ggtitle("Scale-Location")
-  p4 <- ggplot(augm) + aes(x=.hat, y=.std.resid) +
+  p4 <- ggplot(augm) + aes(x=.data$.hat, y=.data$.std.resid) +
     geom_point(pch=21) +
     geom_hline(yintercept=0, lty=2) +
     xlab("Leverage") + ylab("Standardized residuals") +
