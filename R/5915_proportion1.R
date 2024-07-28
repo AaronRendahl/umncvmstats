@@ -22,16 +22,16 @@
 #'     If not a factor, it will be automatically converted.
 #'     To perform test within subgroups, use `y ~ x` or `y ~ 1 | g`, or even `y ~ x | g`.
 #' @param data a data frame containing the values in the formula.
-#' @param x number of successes.
-#' @param n number of trials.
 #' @param success an optional vector specifying the level(s) for which proportions should be reported.
 #' @param all_success if TRUE, then proportions for all levels are reported.
-#' @param null a number specifying the null proportion for testing a null hypothesis; if not specified, no hypothesis test is performed.
+#' @param method character string specifying which method to use. One of "`default`", "`wilson`", or "`exact`".
+#' @param correct a logical indicating whether Yates' continuity correction should be applied; used for Wilson test only.
 #' @param alternative  character string specifying the alternative hypothesis, must be one of "`two.sided`" (default), "`greater`" or "`less`".
 #' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
-#' @param correct a logical indicating whether Yates' continuity correction should be applied; used for Wilson test only.
-#' @param method character string specifying which method to use. One of "`default`", "`wilson`", or "`exact`".
-#' @param ... further arguments to be passed to submethods, as appropriate.
+#' @param null a number specifying the null proportion for testing a null hypothesis; if not specified, no hypothesis test is performed.
+#' @param x number of successes.
+#' @param n number of trials.
+#' @param ... additional arguments, currently unused.
 #'
 #' @return A tibble with class `atest` containing columns as follows:
 #' \item{x}{count of successes}
@@ -43,7 +43,16 @@
 #' \item{p.value}{the p-value of the test (if null specified)}
 #' @rdname one_proportion_test
 #' @export
-one_proportion_test.formula <- function(formula, data, success, all_success=FALSE, ...) {
+one_proportion_test.formula <- function(formula, data,
+                                        success, all_success=FALSE,
+                                        method = c("default", "wilson", "exact"),
+                                        correct = FALSE,
+                                        alternative = c("two.sided", "less", "greater"),
+                                        conf.level = 0.95,
+                                        null = NULL,
+                                        ...) {
+  method <- match.arg(method)
+  alternative <- match.arg(alternative)
 
   a <- test_by(by_right=TRUE)
   if(!is.null(a)) return(a)
@@ -68,24 +77,28 @@ one_proportion_test.formula <- function(formula, data, success, all_success=FALS
   n <- length(x)
   map(success, function(lev) {
     k <- sum(x == lev)
-    one_proportion_test.default(k, n, ...) |>
+    one_proportion_test.default(k, n, method=method, correct=correct, alternative=alternative,
+                                conf.level=conf.level, null=null) |>
       mutate(.y=name, .y_value=lev)
   }) |> combine_tests_list()
 }
 
 #' @rdname one_proportion_test
 #' @export
-one_proportion_test.default <- function(x, n, null,
-                            alternative = c("two.sided", "less", "greater"),
-                            conf.level = 0.95, correct = FALSE,
-                            method = c("default", "wilson", "exact"),
-                            ...) {
+one_proportion_test.default <- function(x, n,
+                                        method = c("default", "wilson", "exact"),
+                                        correct = FALSE,
+                                        alternative = c("two.sided", "less", "greater"),
+                                        conf.level = 0.95,
+                                        null = NULL,
+                                        ...) {
   method <- match.arg(method)
+  alternative <- match.arg(alternative)
   if(length(x)!=1) stop("x must be a single integer.")
   if(length(n)!=1) stop("x must be a single integer.")
   txt <- NULL
   if(method == "default") {
-    if(!missing(null) && min(null, 1-null)*n < 5) {
+    if(!is.null(null) && min(null, 1-null)*n < 5) {
       method <- "exact"; txt <- "expected observed under null < 5"
     }
     if(x/n < 0.1) {
@@ -116,7 +129,7 @@ wilson_test <- function(x, n, null,
                             alternative = c("two.sided", "less", "greater"),
                             conf.level = 0.95, correct = FALSE) {
   alternative <- match.arg(alternative)
-  do.test <- !missing(null)
+  do.test <- !missing(null) && !is.null(null)
   if(!do.test) { null <- 0.5 }
   do.ci <- !is.na(conf.level)
   if(!do.ci) { conf.level <- 0.95 }
@@ -154,7 +167,7 @@ binomial_test <- function(x, n, null,
                           alternative = c("two.sided", "less", "greater"),
                           conf.level = 0.95) {
   alternative <- match.arg(alternative)
-  do.test <- !missing(null)
+  do.test <- !missing(null) && !is.null(null)
   if(!do.test) { null <- 0.5 }
   do.ci <- !is.na(conf.level)
   if(!do.ci) { conf.level <- 0.95 }
