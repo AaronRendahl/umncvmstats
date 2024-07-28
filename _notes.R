@@ -18,3 +18,6 @@ devtools::check_mac_release()
 devtools::check_win_release()
 
 pkgload::dev_help('one_proportion_test')
+
+# https://github.com/ThinkR-open/prepare-for-cran
+checkhelper::find_missing_tags()
