@@ -1,3 +1,23 @@
+#' Compact a gt table
+#'
+#' Compact a gt table. Uses `tab_options` to set `table.font.size` and
+#' the various padding options (see Details).
+#'
+#' Padding options that are set are `data_row.padding`, `summary_row.padding`,
+#' `grand_summary_row.padding`, `footnotes.padding`, `source_notes.padding`, and
+#' `row_group.padding`; all are set to the same value.
+#'
+#' @param x the table to compact.
+#' @param font.size the desired font size.
+#' @param padding spacing between rows, in pixels.
+#'
+#' @export
+#' @importFrom gt tab_options
+tab_compact <- function(x, font.size=13, padding=1) {
+  x |> tab_options(table.font.size = font.size) |>
+    tab_padding(padding=padding)
+}
+
 #' @importFrom gt px
 #' @importFrom gt tab_options
 #' @rdname tab_compact
@@ -11,20 +31,6 @@ tab_padding <- function(x, padding) {
     footnotes.padding = sp,
     source_notes.padding = sp,
     row_group.padding = sp)
-}
-
-#' Compact a gt table
-#'
-#' @param x XX
-#' @param font.size XX
-#' @param padding spacing between rows, in pixels
-#'
-#' @return XX
-#' @export
-#' @importFrom gt tab_options
-tab_compact <- function(x, font.size=13, padding=1) {
-  x |> tab_options(table.font.size = font.size) |>
-    tab_padding(padding=padding)
 }
 
 
