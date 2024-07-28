@@ -20,3 +20,7 @@ Use \code{gtsummary::tbl_summary} to summarize variables in a data set.
 For categorical variables, reports count/total and percent; for
 continuous variables, reports mean, standard deviation, median, and range.
 }
+\examples{
+mtcars2 |> select(-model) |> descriptive_statistics()
+
+}
