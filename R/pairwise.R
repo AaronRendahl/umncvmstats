@@ -2,6 +2,7 @@
 #' @importFrom utils combn
 #' @importFrom forcats fct_rev
 #' @importFrom purrr map_dfr
+#' @noRd
 pairwise <- function(formula, data, FUN, conf.level=0.95, ..., adjust=c("bonferroni", "holm", "none"), reverse=FALSE) {
   adjust <- match.arg(adjust)
   f <- parse_formula(formula=formula, data=data)

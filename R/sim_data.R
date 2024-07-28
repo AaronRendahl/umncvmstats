@@ -4,6 +4,7 @@
 # std error
 # std error spread
 #' @importFrom stats cor
+#' @noRd
 makep <- function(d) {
   rho <- cor(d$x, d$y)
   txt <- sprintf("rho = %0.2f", rho)

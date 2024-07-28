@@ -1,5 +1,6 @@
 #' @importFrom stats as.formula
 #' @importFrom purrr map2
+#' @noRd
 test_by <- function(by_right=FALSE) {
   m <- match.call(
     definition=sys.function(sys.parent()),

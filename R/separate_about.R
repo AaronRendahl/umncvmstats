@@ -1,5 +1,6 @@
 #' @importFrom tibble enframe
 #' @importFrom forcats as_factor
+#' @noRd
 separate_about <- function(x, footnotes=c("default", "text", "below")) {
   # returns a list with two parts:
   # - result: the atest without the "about" column, but with ".row" added

@@ -2,6 +2,7 @@
 #' @importFrom tidyr pivot_longer
 #' @importFrom stats setNames
 #' @importFrom rlang :=
+#' @noRd
 simplify_atest <- function(x) {
   xx <- separate_about(x)
   d <- xx$result
