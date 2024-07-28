@@ -1,17 +1,16 @@
 #' Create a blank new assignment
 #'
-#' @param filename XX
-#' @param title XX
-#' @param author XX
-#' @param open XX
-#' @param template XX
+#' @param filename desired filename of new file.
+#' @param title desired title, to be inserted into new file.
+#' @param author desired author, to be inserted into new file.
+#' @param open a logical specifying whether or not to open the new file for editing.
 #'
-#' @return XX
 #' @importFrom rlang is_interactive
 #' @importFrom rstudioapi isAvailable
 #' @importFrom rstudioapi navigateToFile
 #' @export
-new_assignment <- function(filename, title, author, open=is_interactive() & isAvailable(), template="template.qmd") {
+new_assignment <- function(filename, title, author, open=is_interactive() & isAvailable()) {
+  template <- "template.qmd"
   if(!str_detect(filename, "\\.qmd$")) {
     filename <- paste0(filename, ".qmd")
   }
