@@ -1,18 +1,23 @@
 #' Independence Tests for Count Data
 #'
-#' @param x XX
-#' @param ... XX
+#' Perform an independence test between two categorical variables, using either
+#' the chi-squared method or Fisher's exact method.
 #'
-#' @export
-independence_test <- function(x, ...) { UseMethod("independence_test") }
-
-#' @param formula XX
-#' @param data XX
-#' @param ... XX
+#' By default, the chi-squared method with no continuity correction is used
+#' unless the minimum expected count under the null is less than 5, in which case
+#' Fisher's exact test is used.
+#'
+#' @param formula a formula of the form `y ~ x`, where `y` and `x` are both factor variables.
+#'     If not factors, they will be automatically converted.
+#'     To perform test within subgroups, use `y ~ x | g`.
+#' @param data a data frame containing the values in the formula.
+#' @param method character string specifying which method to use. One of "`default`", "`chisq`", or "`exact`".
+#' @param correct a logical indicating whether Yates' continuity correction should be applied; used for chi-squared test only.
+#' @param ... additional parameters, currently unused.
 #'
 #' @rdname independence_test
 #' @export
-independence_test.formula <- function(formula, data, ...) {
+independence_test.formula <- function(formula, data, method=c("default", "chisq", "exact"), correct=FALSE, ...) {
 
   a <- test_by()
   if(!is.null(a)) return(a)
@@ -30,17 +35,12 @@ independence_test.formula <- function(formula, data, ...) {
   y <- y[ok]
   n <- length(x)
   m <- table(x, y)
-  independence_test.default(m, ...) |>
+  independence_test.default(m, method=method, correct=correct) |>
     mutate(.y = y.name, .x = x.name) |>
     as_atest()
 }
 
-#' @param x XX
-#'
-#' @param method XX
-#' @param correct XX
-#' @param ... XX
-#'
+#' @param x instead of a formula, provide the matrix of counts directly.
 #' @importFrom stats chisq.test
 #' @rdname independence_test
 #' @export
@@ -68,3 +68,7 @@ independence_test.default <- function(x, method=c("default", "chisq", "exact"), 
   }
   as_atest(result, inference.vars=c("chisq.value", "df"))
 }
+
+#' @rdname independence_test
+#' @export
+independence_test <- function(x, ...) { UseMethod("independence_test") }
