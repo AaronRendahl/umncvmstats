@@ -53,7 +53,9 @@
 #'
 #' @keywords internal
 #' @importFrom beeswarm swarmx
-#' @importFrom cli cli_warn
+#' @importFrom rlang abort
+#' @importFrom rlang warn
+#' @importFrom rlang inform
 #' @seealso [geom_beeswarm()], [ggbeeswarm::position_quasirandom()],
 #' [beeswarm::swarmx()]
 offset_beeswarm <- function(
@@ -112,7 +114,7 @@ offset_beeswarm <- function(
     y.pos <- sapply(y.index, function(a) mids[a])
 
     if (any(data$y != y.pos)) {
-      cli::cli_warn(c(
+      rlang::warn(c(
         "In `position_beeswarm`, method `{method}` discretizes the data axis (a.k.a the continuous or non-grouped axis).",
         "This may result in changes to the position of the points along that axis, proportional to the value of `spacing`."
       ), .frequency = "once", .frequency_id = "beeswarm_method_data_axis_warn")
@@ -200,7 +202,7 @@ position_beeswarm <- function(
 ) {
 
   if (!is.null(orientation) && !(orientation %in% c("x", "y"))) {
-    cli::cli_abort("{.fn orientation} must be 'x', 'y', or NULL.")
+    rlang::abort("{.fn orientation} must be 'x', 'y', or NULL.")
   }
   if (method == "centre") method <- "center"
 
@@ -236,7 +238,7 @@ PositionBeeswarm <- ggplot2::ggproto("PositionBeeswarm", Position,
                                        } else {
                                          flipped_aes <- has_flipped_aes(data, group_has_equal = TRUE)
                                          if (flipped_aes) {
-                                           cli::cli_inform("Orientation inferred to be along y-axis; override with `position_beeswarm(orientation = 'x')`")
+                                           rlang::inform("Orientation inferred to be along y-axis; override with `position_beeswarm(orientation = 'x')`")
                                          }
                                        }
                                        params$flipped_aes <- flipped_aes
