@@ -1,13 +1,33 @@
-#' Format p-values
+#' Format numbers and p-values
 #'
-#' @param p XX
-#' @param digits XX
-#' @param max.digits XX
-#' @param justify XX
-#' @param addp XX
-#' @param na XX
+#' @param data data set with columns to format.
+#' @param columns desired columns to format.
+#' @param ... additional parameters, sent to [format_pvalue] (for `fmt_pvalue`) or [fmt_number] (for `fmt_numbers`)
 #'
-#' @return XX
+#' @export
+fmt_numbers <- function(data,
+                        columns =
+                          where(is.double) &
+                          !any_of(c("p.value", "p.adjust")),
+                        ...) {
+  data |> fmt_number(columns={{columns}}, ...)
+}
+
+#' @rdname fmt_numbers
+#' @export
+fmt_pvalue <- function(data, columns=any_of(c("p.value", "p.adjust")), ...) {
+  data |>
+    fmt(columns={{columns}}, fns=\(p) format_pvalue(p, ...) |> str_replace_all("<", "&lt;")) |>
+    cols_align(align="left", columns={{columns}})
+}
+
+#' @param p a vector of p-value(s) to format.
+#' @param digits the desired number of significant figures.
+#' @param max.digits the maximum number of decimal places.
+#' @param justify logical specifying whether or not to align by decimal point.
+#' @param addp logical specifying whether `p =` or `p <` should be added to the output.
+#' @param na value to replace missing values with (defaults to a blank).
+#'
 #' @rdname fmt_numbers
 #' @export
 format_pvalue <- function(p, digits=2, max.digits=4, justify=TRUE, addp=FALSE, na="") {
@@ -22,31 +42,4 @@ format_pvalue <- function(p, digits=2, max.digits=4, justify=TRUE, addp=FALSE, n
                      TRUE ~ paste0(pad, pf))
   attributes(p_fmt) <- attributes(unclass(p))
   return(p_fmt)
-}
-
-#' @param data XX
-#' @param columns XX
-#' @param ... Additional parameters, sent to [format_pvalue]
-#'
-#' @rdname fmt_numbers
-#' @export
-fmt_pvalue <- function(data, columns=any_of(c("p.value", "p.adjust")), ...) {
-  data |>
-    fmt(columns={{columns}}, fns=\(p) format_pvalue(p, ...) |> str_replace_all("<", "&lt;")) |>
-    cols_align(align="left", columns={{columns}})
-}
-
-#' Format numbers
-#'
-#' @param data XX
-#' @param columns XX
-#' @param ... XX
-#'
-#' @export
-fmt_numbers <- function(data,
-                        columns =
-                          where(is.double) &
-                          !any_of(c("p.value", "p.adjust")),
-                        ...) {
-  data |> fmt_number(columns={{columns}}, ...)
 }
