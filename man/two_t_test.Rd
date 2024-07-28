@@ -3,7 +3,7 @@
 \name{two_t_test}
 \alias{two_t_test}
 \alias{pairwise_t_test}
-\title{Two Sample t-test}
+\title{Two-sample t-test}
 \usage{
 two_t_test(
   formula,
@@ -16,27 +16,45 @@ two_t_test(
   backtransform = TRUE
 )
 
-pairwise_t_test(formula, data, ...)
+pairwise_t_test(
+  formula,
+  data,
+  adjust = c("bonferroni", "holm", "none"),
+  reverse = FALSE,
+  ...
+)
 }
 \arguments{
-\item{formula}{XX}
+\item{formula}{a formula of the form \code{y ~ x}, where \code{y} is a numeric variable and \code{x} is a factor variable.
+To perform test within subgroups, use \code{y ~ x | g},
+where \code{x} and \code{g} are factor variables.}
 
-\item{data}{XX}
+\item{data}{a data frame containing the values in the formula.}
 
-\item{alternative}{XX}
+\item{alternative}{character string specifying the alternative hypothesis, must be one of "\code{two.sided}" (default), "\code{greater}" or "\code{less}".}
 
-\item{null}{XX}
+\item{null}{a number specifying the null proportion for testing a null hypothesis; if not specified, no hypothesis test is performed.}
 
-\item{var.equal}{XX}
+\item{var.equal}{a logical variable indicating whether to treat the two variances
+as being equal. The default is to assume unequal variance.}
 
-\item{conf.level}{XX}
+\item{conf.level}{confidence level of the returned confidence interval. Must be a single number between 0 and 1.}
 
-\item{conf.adjust}{XX}
+\item{conf.adjust}{adjust confidence bounds for \code{conf.adjust} simultaneous intervals using the Bonferroni method.
+Used internally by \code{pairwise_t_test}; should only rarely be used by users.}
 
-\item{backtransform}{XX}
+\item{backtransform}{if response variable is of form \code{log(...)}, backtransform
+the resulting estimate and confidence interval bounds, so that they
+report the ratio of the geometric means rather than the difference on the log scale.}
 
-\item{...}{XX}
+\item{adjust}{method of adjusting p-values for multiple comparisons, one of "\code{bonferroni}", "\code{holm}", or "\code{none}".}
+
+\item{reverse}{reverse the direction of pairwise comparisons.}
+
+\item{...}{further arguments to be passed to submethods, as appropriate.}
 }
 \description{
-Two Sample t-test
+Compute the difference in means between two samples, the
+corresponding confidence interval, and a p-value for the null hypothesis
+of equal means (that is, a difference of zero).
 }

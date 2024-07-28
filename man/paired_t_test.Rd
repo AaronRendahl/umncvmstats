@@ -14,18 +14,24 @@ paired_t_test(
 )
 }
 \arguments{
-\item{formula}{XX}
+\item{formula}{a formula of the form \code{y2 - y1 ~ 1} or \code{~ y2 -y1}, where \code{y1} and \code{y2} are numeric variables.
+To perform test within subgroups, use \code{y2 - y1 ~ x} or \code{y2 - y1 ~ 1 | g}, or even \code{y2- y1 ~ x | g},
+where \code{x} and \code{g} are factor variables.}
 
-\item{data}{XX}
+\item{data}{a data frame containing the values in the formula.}
 
-\item{alternative}{XX}
+\item{alternative}{character string specifying the alternative hypothesis, must be one of "\code{two.sided}" (default), "\code{greater}" or "\code{less}".}
 
-\item{null}{XX}
+\item{null}{a number specifying the null proportion for testing a null hypothesis; if not specified, no hypothesis test is performed.}
 
-\item{conf.level}{XX}
+\item{conf.level}{confidence level of the returned confidence interval. Must be a single number between 0 and 1.}
 
-\item{backtransform}{XX}
+\item{backtransform}{if response variable is of form \code{log(y2) - log(y1)}, backtransform
+the resulting estimate and confidence interval bounds, so that they
+report the ratio of the geometric means rather than the difference on the log scale.}
 }
 \description{
-Paired t-test
+Compute the mean difference between paired samples, the corresponding
+confidence interval, and a p-value for the null hypothesis of equal means
+(that is, a difference of zero).
 }

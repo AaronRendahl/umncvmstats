@@ -10,25 +10,27 @@ one_t_test(
   alternative = c("two.sided", "less", "greater"),
   null,
   conf.level = 0.95,
-  backtransform = TRUE,
-  var.equal = TRUE
+  backtransform = TRUE
 )
 }
 \arguments{
-\item{formula}{XX}
+\item{formula}{a formula of the form \code{~ y} or \code{y ~ 1}, where \code{y} is a numeric variable.
+To perform test within subgroups, use \code{y ~ x} or \code{y ~ 1 | g}, or even \code{y ~ x | g},
+where \code{x} and \code{g} are factor variables.}
 
-\item{data}{XX}
+\item{data}{a data frame containing the values in the formula.}
 
-\item{alternative}{XX}
+\item{alternative}{character string specifying the alternative hypothesis, must be one of "\code{two.sided}" (default), "\code{greater}" or "\code{less}".}
 
-\item{null}{XX}
+\item{null}{a number specifying the null proportion for testing a null hypothesis; if not specified, no hypothesis test is performed.}
 
-\item{conf.level}{XX}
+\item{conf.level}{confidence level of the returned confidence interval. Must be a single number between 0 and 1.}
 
-\item{backtransform}{XX}
-
-\item{var.equal}{XX}
+\item{backtransform}{if response variable is of form \code{log(...)}, backtransform
+the resulting estimate and confidence interval bounds.}
 }
 \description{
-One-sample t-test
+Compute the mean of a sample and the corresponding confidence interval, using
+Student's t distribution. Optionally, compute a p-value for a
+specified null hypothesis.
 }
