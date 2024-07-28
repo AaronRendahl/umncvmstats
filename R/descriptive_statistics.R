@@ -9,7 +9,7 @@
 #' @param digits desired number of significant figures, for numeric variables.
 #' @param compact logical specifying whether or not to compact the resulting `gt` table.
 #' @examples
-#' mtcars2 |> select(-model) |> descriptive_statistics()
+#' mtcars2 |> dplyr::select(-model) |> descriptive_statistics()
 #'
 #' @export
 #'

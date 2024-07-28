@@ -21,6 +21,6 @@ For categorical variables, reports count/total and percent; for
 continuous variables, reports mean, standard deviation, median, and range.
 }
 \examples{
-mtcars2 |> select(-model) |> descriptive_statistics()
+mtcars2 |> dplyr::select(-model) |> descriptive_statistics()
 
 }
