@@ -36,14 +36,13 @@ one_t_test <- function(formula, data,
   about <- sprintf("%s (%s), with %0.0f%% confidence intervals.",
                    result$method, result$alternative, conf.level*100)
   result <- result |> select(-c("method", "alternative")) |>
-    rename(mean="estimate") |>
+    rename(mean="estimate", df="parameter") |>
     mutate(.y=name, .before=1)
   if(!do.test) {
-    result <- result |> select(-c("statistic", "parameter", "p.value"))
+    result <- result |> select(-c("statistic", "p.value"))
   } else {
     result <- result |> mutate(null=null) |>
-      rename(t.value="statistic", df="parameter") |>
-      relocate("null", "t.value", "df", "p.value", .after="conf.high")
+      rename(t.value="statistic")
   }
   result$about <- list(about)
   if(str_detect(result$.y, "^log\\(.*\\)$") && isTRUE(backtransform)) {
