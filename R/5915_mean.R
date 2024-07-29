@@ -47,8 +47,9 @@ one_t_test <- function(formula, data,
   result$about <- list(about)
   if(str_detect(result$.y, "^log\\(.*\\)$") && isTRUE(backtransform)) {
     result$.y <- str_replace(result$.y, "^log\\((.*)\\)$", "\\1")
+    result$SE <- exp(result$mean) * result$SE
     result <- result |> mutate(across(any_of(c("mean","conf.low", "conf.high", "null")), exp))
-    result$about[[1]] <- c(result$about[[1]], "Results are backtransformed from the log scale (that is, the geometric mean is reported).")
+    result$about[[1]] <- c(result$about[[1]], "Results are backtransformed from the log scale (that is, the geometric mean is reported), and the standard error is estimated using the delta method.")
   }
   as_atest(result, estimate.vars="mean", inference.vars=character())
 }
@@ -112,9 +113,10 @@ two_t_test <- function(formula, data,
   result$about <- list(about)
   if(backtransform) {
      result$.y <- str_replace(result$.y, "^log\\((.*)\\)$", "\\1")
+     result$SE <- exp(result$difference) * result$SE
      result <- result |> mutate(across(any_of(c("difference","conf.low", "conf.high", "null")), exp)) |>
        rename(ratio="difference")
-     result$about[[1]] <- c(result$about[[1]], "Results are backtransformed from the log scale (that is, the ratio is reported).")
+     result$about[[1]] <- c(result$about[[1]], "Results are backtransformed from the log scale (that is, the ratio is reported), and the standard error is estimated using the delta method.")
   }
   as_atest(result, estimate.vars=c("difference", "ratio"), inference.vars=c("null", "t.value", "df"))
 }
@@ -172,9 +174,10 @@ paired_t_test <- function(formula, data,
     mutate(.y_contrast=response, null=null)
   result$about <- list(about)
   if(backtransform) {
+    result$SE <- exp(result$difference) * result$SE
     result <- result |> mutate(across(any_of(c("difference","conf.low", "conf.high", "null")), exp)) |>
       rename(ratio="difference")
-    result$about[[1]] <- c(result$about[[1]], "Results are backtransformed from the log scale (that is, the ratio is reported).")
+    result$about[[1]] <- c(result$about[[1]], "Results are backtransformed from the log scale (that is, the ratio is reported), and the standard error is estimated using the delta method.")
   }
   as_atest(result, estimate.vars=c("difference", "ratio"), inference.vars=c("null", "t.value", "df"))
 }
