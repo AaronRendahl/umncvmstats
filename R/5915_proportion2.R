@@ -97,6 +97,10 @@ two_proportion_test.default <- function(x, n,
   method <- match.arg(method)
   alternative <- match.arg(alternative)
   if(!missing(n)) { m <- cbind(x, n-x) } else { m <- x }
+  n <- rowSums(m)
+  se <- sqrt(sum(m[,1]/n*m[,2]/n/n))
+  p1 <- m[1,1]/n
+  p2 <- m[2,2]/n
   E <- outer(rowSums(m), colSums(m))/sum(m)
   computed.diff <- unname(-diff(m[,1]/rowSums(m)))
   if((method=="default" && any(E < 5)) || method=="exact") {
@@ -125,6 +129,7 @@ two_proportion_test.default <- function(x, n,
       relocate(c("chisq.value", "p.value"), .after="conf.high")
   }
   result$about <- list(about)
+  result$SE <- se
   as_atest(result, estimate.vars="difference", inference.vars="chisq.value")
 }
 
