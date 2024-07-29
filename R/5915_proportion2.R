@@ -34,6 +34,7 @@
 #' \item{chisq.value}{the chi-squared value (if chi-squared method used)}
 #' \item{p.value}{the p-value of the test}
 #' @rdname two_proportion_test
+#' @importFrom forcats fct_relevel
 #' @export
 two_proportion_test.formula <- function(formula, data, success,
                                         method=c("default", "chisq", "exact"),
@@ -63,6 +64,7 @@ two_proportion_test.formula <- function(formula, data, success,
     }
   }
   stopifnot(success %in% levels(y))
+  y <- fct_relevel(y, success)
   ok <- !is.na(x) & !is.na(y)
   x <- x[ok]
   y <- y[ok]
@@ -96,7 +98,7 @@ two_proportion_test.default <- function(x, n,
   alternative <- match.arg(alternative)
   if(!missing(n)) { m <- cbind(x, n-x) } else { m <- x }
   E <- outer(rowSums(m), colSums(m))/sum(m)
-  computed.diff <- unname(diff(m[,1]/rowSums(m)))
+  computed.diff <- unname(-diff(m[,1]/rowSums(m)))
   if((method=="default" && any(E < 5)) || method=="exact") {
     ft <- fisher.test(m, alternative=alternative) |> tidy()
     about <- c(sprintf("%s (%s)", ft$method, ft$alternative))
@@ -117,7 +119,7 @@ two_proportion_test.default <- function(x, n,
                      result$method, result$alternative, conf.level*100, adjust_txt)
     about <- c(about, capture$warnings)
     result <- result |>
-      mutate(difference=.data$estimate2 - .data$estimate1, .before=1) |>
+      mutate(difference=.data$estimate1 - .data$estimate2, .before=1) |>
       select(-c("method", "alternative", "parameter", "estimate1", "estimate2")) |>
       rename(chisq.value="statistic") |>
       relocate(c("chisq.value", "p.value"), .after="conf.high")
