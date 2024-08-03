@@ -23,4 +23,4 @@ pkgload::dev_help('one_proportion_test')
 
 # https://github.com/ThinkR-open/prepare-for-cran
 attachment::att_amend_desc()
-checkhelper::find_missing_tags()
+tags <- checkhelper::find_missing_tags()
