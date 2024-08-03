@@ -16,6 +16,20 @@
 x <- c(12345, 1234.5, 123.45, 12.345, 1.2345, 0.12345, 0.09999)
 p <- 3
 
+format_pvalue <- function(p, digits=2, max.digits=4, justify=TRUE, addp=FALSE, na="") {
+  if(digits > max.digits) max.digits <- digits
+  pr <- round(p, max.digits)
+  pf <- formatC(pr, digits=digits, format="fg", flag="#") |> str_sub(1, max.digits+2)
+  pad <- if(addp) "p\u00A0=\u00A0" else if(justify) "\u2007\u00A0" else ""
+  lessthan <- if(addp) "p\u00A0<\u00A0" else "<\u00A0"
+  min.value <- sprintf("%s0.%s1", lessthan, paste(rep(0, max.digits-1), collapse=""))
+  p_fmt <- case_when(is.na(pr) ~ na,
+                     pr < .Machine$double.eps*10 ~ min.value,
+                     TRUE ~ paste0(pad, pf))
+  attributes(p_fmt) <- attributes(unclass(p))
+  return(p_fmt)
+}
+
 decimals_for <- function(x, digits=2) {
   n <- floor(log10(abs(x))) + 1 - digits
   nc <- nchar(as.character(round(x/10^n)))
@@ -25,7 +39,12 @@ decimals_for <- function(x, digits=2) {
 
 decimals_for(1234, digits=2)
 decimals_for(9.899, digits=3)
+decimals_for(0.02241)
 
+
+x <- c(3.456, 45.56678, 3.4, 0, 234234)
+formatC(x, digits=3, format="f")
+formatC(x, digits=3, format="e")
 
 library(gt)
 a <- combine_tests(
@@ -43,7 +62,7 @@ dd <- sapply(a$SE, decimals_for, digits=2)
 for(idx in seq_along(dd)) {
   aa <- aa |> fmt_numbers(c("proportion", "SE", "conf.low", "conf.high"), decimals=dd[idx], rows=idx)
 }
-aa
+aa2 <- aa |> fmt_numbers("proportion", decimals=4)
 
 a |> as_gt() |>
   fmt_numbers(c("proportion", "SE", "conf.low", "conf.high"), decimals=3, rows=1) |>
