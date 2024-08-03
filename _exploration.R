@@ -13,6 +13,11 @@
 ## better bar plot axis spacing and ticks?
 ## log ticks (see below)
 
+## test_by doesn't work unless package is loaded!
+## umncvmstats::one_t_test(mpg~wt, data=mtcars)
+
+## also model_means gave an error when trying it on a recent model...
+
 x <- c(12345, 1234.5, 123.45, 12.345, 1.2345, 0.12345, 0.09999)
 p <- 3
 
