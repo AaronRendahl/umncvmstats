@@ -27,6 +27,8 @@
 ## also model_means gave an error when trying it on a recent model...
 ## and descriptive_statistics couldn't do "by" a factor variable on horse data?
 
+## allow one_proportion_test(y ~ 1 + x)
+
 x <- c(12345, 1234.5, 123.45, 12.345, 1.2345, 0.12345, 0.09999)
 p <- 3
 
