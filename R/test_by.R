@@ -38,7 +38,7 @@ test_by <- function(by_right=FALSE) {
   subformula <- clean_formula(formula, by_name)
   result <- data |>
     mutate(.group=f$data[[by_name]]) |>
-    nest(.by=".group") |>
+    nest(.by=".group") |> arrange(.data$.group) |>
     mutate(.x=map2(.data$data, .data$.group, \(.x, .g) {
       paramsi <- params
       paramsi$data <- .x
