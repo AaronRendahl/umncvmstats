@@ -19,7 +19,7 @@ clean_formula <- function(formula, how=c("group", "right")) {
   formula
 }
 
-parse_formula <- function (formula, data, split_chars="+") {
+parse_formula <- function (formula, data, split_chars="+", drop1=TRUE) {
   if (!inherits(formula, "formula")) stop("formula must be a formula object")
   model <- formula
   expr2char <- function(x) paste(deparse(x), collapse = "")
@@ -33,8 +33,9 @@ parse_formula <- function (formula, data, split_chars="+") {
     }
     ops <- c(NA_character_, ops)
     vars <- c(model.vars, model)
-    as_tibble(list(ops=ops, var.names=sapply(rev(vars), expr2char), vars=rev(vars))) |>
-      filter(.data$var.names!="1")
+    out <- as_tibble(list(ops=ops, var.names=sapply(rev(vars), expr2char), vars=rev(vars)))
+    if(drop1) out <- out |> filter(.data$var.names!="1")
+    out
   }
 
   ans <- list(left = NULL, right = NULL, condition = NULL)
@@ -68,7 +69,7 @@ parse_formula <- function (formula, data, split_chars="+") {
 }
 
 split_formula <- function(formula) {
-  f <- parse_formula(formula)
+  f <- parse_formula(formula, drop1=FALSE)
   fs <- f |> filter(.data$side=="left") |> select(left="vars")
   out <- y ~ 1
   has_right <- has_group <- FALSE
