@@ -22,7 +22,7 @@
 #' @param data a data frame containing the values in the formula.
 #' @param success an optional value specifying the level for which proportions should be reported.
 #' @param method character string specifying which method to use. One of "`default`", "`chisq`", or "`exact`".
-#' @param correct a logical indicating whether ontinuity correction should be applied; used for chi-squared test only.
+#' @param correct a logical indicating whether continuity correction should be applied; used for chi-squared test only.
 #' @param alternative  character string specifying the alternative hypothesis, must be one of "`two.sided`" (default), "`greater`" or "`less`".
 #' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
 #' @param ... further arguments to be passed to submethods, as appropriate.
