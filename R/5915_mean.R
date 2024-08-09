@@ -31,19 +31,28 @@ one_t_test <- function(formula, data,
   f <- parse_formula(formula=formula, data=data)
   x <- f$data$left
   name <- f$about$var.names
-  tt <- t.test(x, alternative=alternative, mu=null, conf.level=conf.level)
-  result <- tidy(tt) |> mutate(SE=tt$stderr)
-  about <- sprintf("%s (%s), with %0.0f%% confidence intervals.",
-                   result$method, result$alternative, conf.level*100)
-  result <- result |> select(-c("method", "alternative")) |>
-    rename(mean="estimate", df="parameter") |>
-    mutate(.y=name, .before=1)
-  if(!do.test) {
-    result <- result |> select(-c("statistic", "p.value"))
+  nn <- sum(!is.na(x))
+  if(nn==0) {
+    result <- tibble(n=0L, mean=NA, SE=NA)
+    about <- "No non-missing values found."
+  } else if(nn==1) {
+    result <- tibble(n=1L, mean=x[!is.na(x)], SE=NA)
+    about <- "Unable to do inference with only one non-missing value."
   } else {
-    result <- result |> mutate(null=null) |>
-      rename(t.value="statistic")
+    tt <- t.test(x, alternative=alternative, mu=null, conf.level=conf.level)
+    result <- tidy(tt) |> mutate(SE=tt$stderr, n=nn)
+    about <- sprintf("%s (%s), with %0.0f%% confidence intervals.",
+                     result$method, result$alternative, conf.level*100)
+    result <- result |> select(-c("method", "alternative")) |>
+      rename(mean="estimate", df="parameter")
+    if(!do.test) {
+      result <- result |> select(-c("statistic", "p.value"))
+    } else {
+      result <- result |> mutate(null=null) |>
+        rename(t.value="statistic")
+    }
   }
+  result <- result |> mutate(.y=name, .before=1)
   result$about <- list(about)
   if(str_detect(result$.y, "^log\\(.*\\)$") && isTRUE(backtransform)) {
     result$.y <- str_replace(result$.y, "^log\\((.*)\\)$", "\\1")
@@ -51,7 +60,7 @@ one_t_test <- function(formula, data,
     result <- result |> mutate(across(any_of(c("mean","conf.low", "conf.high", "null")), exp))
     result$about[[1]] <- c(result$about[[1]], "Results are backtransformed from the log scale (that is, the geometric mean is reported), and the standard error is estimated using the delta method.")
   }
-  as_atest(result, estimate.vars="mean", inference.vars=character())
+  as_atest(result, estimate.vars=c("n", "mean"), inference.vars=character())
 }
 
 #' Two-sample t-test
