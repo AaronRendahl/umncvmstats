@@ -37,7 +37,7 @@ test_by <- function(by_right=FALSE) {
   new.name <- f$about$var.names[f$about$side==by_name]
   subformula <- clean_formula(formula, by_name)
   result <- data |>
-    mutate(.group=f$data[[by_name]]) |>
+    mutate(.group=f$data[[by_name]] |> forcats::fct_na_value_to_level("(Missing)")) |>
     nest(.by=".group") |> arrange(.data$.group) |>
     mutate(.x=map2(.data$data, .data$.group, \(.x, .g) {
       paramsi <- params
