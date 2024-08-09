@@ -50,7 +50,7 @@ To perform test within subgroups, use \code{y ~ x | g}.}
 
 \item{method}{character string specifying which method to use. One of "\code{default}", "\code{chisq}", or "\code{exact}".}
 
-\item{correct}{a logical indicating whether ontinuity correction should be applied; used for chi-squared test only.}
+\item{correct}{a logical indicating whether continuity correction should be applied; used for chi-squared test only.}
 
 \item{alternative}{character string specifying the alternative hypothesis, must be one of "\code{two.sided}" (default), "\code{greater}" or "\code{less}".}
 
