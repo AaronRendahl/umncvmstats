@@ -94,9 +94,14 @@ one_proportion_test.default <- function(x, n,
                                         ...) {
   method <- match.arg(method)
   alternative <- match.arg(alternative)
-  if(length(x)!=1) stop("x must be a single integer.")
-  if(length(n)!=1) stop("x must be a single integer.")
+  if(length(x)!=1 || x < 0) stop("x must be a single non-negative integer.")
+  if(length(n)!=1 || n < 0) stop("n must be a single non-negative integer.")
+  if(x > n) stop("x must be less or equal to n")
   txt <- NULL
+  if(n==0) {
+    return(as_atest(tibble(x=NA_integer_, n=0L, about=list(c("No non-missing values found."))),
+                    estimate.vars=c("x", "n", "proportion")))
+  }
   if(method == "default") {
     if(!is.null(null) && min(null, 1-null)*n < 5) {
       method <- "exact"; txt <- "expected observed under null < 5"
