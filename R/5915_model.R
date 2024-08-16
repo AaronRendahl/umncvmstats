@@ -1,13 +1,13 @@
 model_form <- function(model) {
   f <- model$terms
-  .y <- format(f[[2]])
+  .y <- deparse1(f[[2]])
   .y_value <- NULL
-  if((.y %in% names(model$data)) &&
+  if("data" %in% names(model) && (.y %in% names(model$data)) &&
      is.factor(model$data[[.y]]) &&
      (nlevels(model$data[[.y]])==2)) {
     .y_value <- levels(model$data[[.y]])[2]
   }
-  tibble(.y=.y, .y_value=.y_value, .terms=format(f[[3]]))
+  tibble(.y=.y, .y_value=.y_value, .terms=deparse1(f[[3]]))
 }
 
 #' Get model summary information
