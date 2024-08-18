@@ -70,7 +70,7 @@ as_gt.atest <- function(x,
       d[[footnote_col]] <- ""
   }
 
-  out <- d |> select(-any_of(".row")) |>
+  out <- d |> select(-any_of(".row")) |> select(!starts_with("_decimals_")) |>
     gt(groupname_col=groupname_col, rowname_col=rowname_col,
        row_group_as_column=row_group_as_column,
        row_group.sep=", ", ...) |>
@@ -82,12 +82,23 @@ as_gt.atest <- function(x,
     opt_vertical_padding(scale = 0.5) |>
     tab_options(table.align='left')
 
+  decimal_columns <- str_subset(names(d), "^_decimals_")
+  for(col in decimal_columns) {
+    n <- str_remove(col, "^_decimals_")
+    if(!n %in% names(d)) next
+    dec <- d[[col]]
+    for(k in which(!is.na(dec) & !is.na(d[[n]]))) {
+      out <- out |> fmt_number(columns = all_of(n), rows=k, decimals=dec[k])
+    }
+  }
+
   if(!is.null(title)) {
     out <- out |> tab_header(title=title)
   }
   if(!is.null(a)) {
     out <- out |> tab_footnotes(a$footnote.text, footnote_col, a$.row)
   }
+
   out
 }
 
