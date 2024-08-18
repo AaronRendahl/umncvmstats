@@ -106,7 +106,7 @@ one_proportion_test.default <- function(x, n,
     if(!is.null(null) && min(null, 1-null)*n < 5) {
       method <- "exact"; txt <- "expected observed under null < 5"
     }
-    if(x/n < 0.1) {
+    if(min(x, n-x)/n < 0.1) {
       method <- "exact"; txt <- "observed proportion < 0.10"
     }
     if(n < 10) {
