@@ -34,6 +34,7 @@ reference:
   - combine_tests
   - as_gt
   - tab_compact
+  - set_digits
   - fmt_numbers
 - title: Misc
 - contents:
