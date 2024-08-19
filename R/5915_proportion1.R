@@ -117,10 +117,10 @@ one_proportion_test.default <- function(x, n,
   if(method=="exact") {
     out <- binomial_test(x=x, n=n, null=null, alternative=alternative, conf.level=conf.level)
     out$about[[1]] <- c(out$about[[1]], txt)
-    out
   } else {
-    wilson_test(x=x, n=n, null=null, alternative=alternative, conf.level=conf.level, correct=correct)
+    out <- wilson_test(x=x, n=n, null=null, alternative=alternative, conf.level=conf.level, correct=correct)
   }
+  out
 }
 
 #' @rdname one_proportion_test
@@ -160,7 +160,7 @@ wilson_test <- function(x, n, null,
     result <- result |> select(-c("conf.low", "conf.high"))
   }
   result$about <- list(about)
-  result$SE <- sqrt((x/n)*(1-x/n)/n)
+  result$SE <- if(x==0 || x==n) NA else sqrt((x/n)*(1-x/n)/n)
   as_atest(result,
            estimate.vars=c("x", "n", "proportion"),
            inference.vars=c("null", "chisq.value"))
@@ -197,7 +197,7 @@ binomial_test <- function(x, n, null,
     result <- result |> select(-c("conf.low", "conf.high"))
   }
   result$about <- list(about)
-  result$SE <- sqrt((x/n)*(1-x/n)/n)
+  result$SE <- if(x==0 || x==n) NA else sqrt((x/n)*(1-x/n)/n)
   as_atest(result,
            estimate.vars=c("x", "n", "proportion"),
            inference.vars=c("null", "chisq.value"))
