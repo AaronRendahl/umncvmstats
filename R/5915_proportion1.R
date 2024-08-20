@@ -100,7 +100,7 @@ one_proportion_test.default <- function(x, n,
   txt <- NULL
   if(n==0) {
     return(as_atest(tibble(x=NA_integer_, n=0L, about=list(c("No non-missing values found."))),
-                    estimate.vars=c("x", "n", "proportion")))
+                    about.vars=c("x", "n"), estimate.vars="proportion"))
   }
   if(method == "default") {
     if(!is.null(null) && min(null, 1-null)*n < 5) {
@@ -162,7 +162,8 @@ wilson_test <- function(x, n, null,
   result$about <- list(about)
   result$SE <- if(x==0 || x==n) NA else sqrt((x/n)*(1-x/n)/n)
   as_atest(result,
-           estimate.vars=c("x", "n", "proportion"),
+           about.vars=c("x", "n"),
+           estimate.vars="proportion",
            inference.vars=c("null", "chisq.value"))
 }
 
@@ -199,6 +200,7 @@ binomial_test <- function(x, n, null,
   result$about <- list(about)
   result$SE <- if(x==0 || x==n) NA else sqrt((x/n)*(1-x/n)/n)
   as_atest(result,
-           estimate.vars=c("x", "n", "proportion"),
+           about.vars=c("x", "n"),
+           estimate.vars="proportion",
            inference.vars=c("null", "chisq.value"))
 }
