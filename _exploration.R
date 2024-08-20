@@ -17,18 +17,13 @@
 ## test_by doesn't work unless package is loaded!
 ## umncvmstats::one_t_test(mpg~wt, data=mtcars)
 
-## in descriptive stats, min/max give warning and report Inf if all missing
-## also model_means gave an error when trying it on a recent model...
-
-tibble(b=c(NA, 1:15)) |> mutate(a=c(3, 1:4, 5.1, rep(NA, 10))) |>
-         mutate(g=c("A", rep("B", 15))) |>
-         descriptive_statistics(by="g")
 
 ## FIXED
 ## when one_proportion_test(y~x), x doesn't stay in factor order
 ## allow one_proportion_test(y ~ 1 + x)
 ## when one_proportion_test(y~x), what about missing x?
 ## error with boolean grouping
+## in descriptive stats, min/max give warning and report Inf if all missing
 
 ## digits by SE when SE=0 (ie, proportion of 0/Na)
 ## this may be an example?
