@@ -67,7 +67,7 @@ format_signif <- function (x, digits = 3, max_small = 6, max_big = 6, keep_big =
 set_digits <- function(x, digits=2, decimals,
                        rows=seq_len(nrow(x)),
                        columns=c("_estimate_", "SE", "conf.low", "conf.high"),
-                       by=c("SE", "ME"), by_row=TRUE, overwrite=TRUE) {
+                       by=NA, by_row=TRUE, overwrite=TRUE) {
   if(missing(decimals)) {
     if(!is.numeric(digits) | any(digits<1)) stop("digits must be numeric and >= 1")
     if(isTRUE(is.na(by))) {
@@ -100,7 +100,7 @@ set_digits <- function(x, digits=2, decimals,
   for(idx in seq_along(rows)) for(j in seq_along(columns)) {
     col <- columns[j]
     row <- rows[idx]
-    if(isTRUE(is.na(by))) {
+    if(isTRUE(is.na(decimals[idx]))) {
       dec <- decimals_for(x[[col]][row], digits)
     } else {
       dec <- decimals[idx]
