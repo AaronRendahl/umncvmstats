@@ -41,7 +41,7 @@ as_atest.data.frame <- function(x,
   attr(x, "inference.vars") <- inference.vars
   attr(x, "pri.vars") <- pri.vars
   attr(x, "by.vars") <- by.vars
-  x
+  x |> set_digits(overwrite=FALSE)
 }
 
 #' @export
