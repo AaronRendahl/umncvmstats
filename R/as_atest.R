@@ -5,7 +5,8 @@ as_atest <- function(x, ...) {
 #' @importFrom purrr is_list
 #' @export
 as_atest.data.frame <- function(x,
-                                estimate.vars=attr(x, "estimate.vars"),
+                                about.vars=attr(x, "about.vars"),
+                                estimate.vars=x[["_estimate_"]],
                                 inference.vars=attr(x, "inference.vars"),
                                 pri.vars=attr(x, "pri.vars"),
                                 by.vars=attr(x, "by.vars"),
@@ -21,11 +22,14 @@ as_atest.data.frame <- function(x,
     xdf <- x[["df"]][dfok]
     if(length(xdf) > 0 && all(abs(round(xdf) - xdf) < 1e-6)) x[["df"]] <- as.integer(round(x[["df"]]))
   }
+  if(!is.null(estimate.vars)) {
+    x[["_estimate_"]] <- estimate.vars
+  }
   vars1 <- c(".y", ".y_value", ".y_contrast", ".terms", ".x", ".x_value", ".x_contrast", ".g", ".g_value")
-  vars2 <- c(by.vars, pri.vars, estimate.vars)
+  vars2 <- c(by.vars, pri.vars, about.vars, setdiff(unique(estimate.vars), NA))
   vars3 <- c("SE", "df", "conf.low", "conf.high")
   vars4 <- inference.vars
-  vars5 <- c("p.value", "p.adjust", "cld.group", "about")
+  vars5 <- c("p.value", "p.adjust", "cld.group", "about", "_estimate_")
   varsX <- setdiff(names(x), c(vars1, vars2, vars3, vars4, vars5)) |>
     str_subset("^_decimals_", negate=TRUE)
   if(length(varsX)>0) {
@@ -33,8 +37,10 @@ as_atest.data.frame <- function(x,
   }
   x <- x |> select(any_of(c(vars1, vars2, varsX, vars3, vars4, vars5)), everything())
   if(!inherits(x, "atest")) class(x) <- c("atest", class(x))
-  attr(x, "estimate.vars") <- estimate.vars
+  attr(x, "about.vars") <- about.vars
   attr(x, "inference.vars") <- inference.vars
+  attr(x, "pri.vars") <- pri.vars
+  attr(x, "by.vars") <- by.vars
   x
 }
 
