@@ -14,7 +14,7 @@
 set_digits <- function(x, digits=2, decimals,
                        rows=seq_len(nrow(x)),
                        columns=c("_estimate_", "SE", "conf.low", "conf.high"),
-                       by="SE", by_row=TRUE) {
+                       by=c("SE", "ME"), by_row=TRUE) {
   if(missing(decimals)) {
     if(!is.numeric(digits) | any(digits<1)) stop("digits must be numeric and >= 1")
     if(isTRUE(is.na(by))) {
