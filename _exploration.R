@@ -1,10 +1,11 @@
 ## TODO
 
-## n_sigfig = 2 rounds 143 to 140, don't like that...
+## document set_digits
 ## make an "about" data to describe all the variables?
 ## add a cross-tabs/count function
 ## standard language in footnote, especially about % CI?
 ## "response" and "emmean" in column names of model output? also ".trend"?
+## don't do cld if only two groups
 
 ## rename geom_beeswarm?
 ## "inference" instead of "test"
@@ -34,6 +35,8 @@ tibble(b=c(NA, 1:15)) |> mutate(a=c(3, 1:4, 5.1, rep(NA, 10))) |>
 ## combine_tests(
 ##     one_proportion_test(cyl ~ vs, data = mtcars2, all_success = TRUE),
 ##     independence_test(cyl ~ vs, data = mtcars2)) |> set_digits()
+
+## n_sigfig = 2 rounds 143 to 140, don't like that...
 
 x <- c(12345, 1234.5, 123.45, 12.345, 1.2345, 0.12345, 0.09999)
 p <- 3
