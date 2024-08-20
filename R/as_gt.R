@@ -76,6 +76,7 @@ as_gt.atest <- function(x,
        row_group_as_column=row_group_as_column,
        row_group.sep=", ", ...) |>
     #fmt_number(decimals = 2, columns = where(is.double) & !any_of(c("p.value", "p.adjust"))) |>
+    fmt(columns = where(is.double) & !any_of(c("p.value", "p.adjust")), fns=format_signif) |>
     cols_align_decimal(where(is.double) & !any_of(c("p.value", "p.adjust"))) |>
     fmt_pvalue() |>
     sub_missing(missing_text="") |>
