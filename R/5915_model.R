@@ -37,8 +37,9 @@ model_glance <- function(model, ...) {
 model_coefs <- function(model, ...) {
   out <- tidy(model, ...) |> rename(any_of(c(SE="std.error")))
   bind_cols(model_form(model), out) |>
-    as_atest(estimate.vars=c("term", "estimate"),
-             inference.vars=c("statistic"))
+    as_atest(about.vars="term",
+             estimate.vars="estimate",
+             inference.vars="statistic")
 }
 
 #' Get model Anova table
@@ -117,8 +118,10 @@ model_means <- function(model, formula, cld=TRUE, backtransform=TRUE,
   }
   if("df" %in% names(out) && all(is.infinite(out[["df"]]))) { out[["df"]] <- NULL }
   attr(out, "mesg") <- c(attr(out, "mesg"), emX$warnings)
+  estvar <- attr(out, "estName")
+  if(length(estvar)!=1) stop("Internal error: more than one estimate variable found.")
   as_atest(out, model,
-           estimate.vars=c("emmean", "response", "prob", "estimate", "ratio"),
+           estimate.vars=estvar,
            inference.vars=c("null", "t.ratio", "z.ratio"))
 }
 
@@ -135,9 +138,11 @@ pairwise_model_means <- function(model, formula, backtransform=TRUE,
   out <- emX$result
   attr(out, "mesg") <- c(attr(out, "mesg"), emX$warnings)
   if("df" %in% names(out) && all(is.infinite(out[["df"]]))) { out[["df"]] <- NULL }
+  estvar <- attr(out, "estName")
+  if(length(estvar)!=1) stop("Internal error: more than one estimate variable found.")
   as_atest(out, model,
            pri.vars="contrast",
-           estimate.vars=c("emmean", "response", "odds.ratio", "estimate", "ratio"),
+           estimate.vars=estvar,
            inference.vars=c("null", "t.ratio", "z.ratio"))
 }
 
@@ -158,7 +163,9 @@ model_slopes <- function(model, formula, ..., cld=TRUE) {
     out <- summary(em)
   }
   if("df" %in% names(out) && all(is.infinite(out[["df"]]))) { out[["df"]] <- NULL }
-  as_atest(out, model, estimate.vars=setdiff(names(out), c("cld.group", "p.value")))
+  estvar <- attr(out, "estName")
+  if(length(estvar)!=1) stop("Internal error: single estimate variable not found.")
+  as_atest(out, model, estimate.vars=estvar)
 }
 
 #' @export
@@ -171,5 +178,7 @@ pairwise_model_slopes <- function(model, formula, ...) {
   formula[[3]] <- NULL
   em <- emtrends(model, specs=formula, var=var, ...)
   out <- pairs(em, infer=TRUE) |> summary()
-  as_atest(out, model, estimate.vars=setdiff(names(out), "p.value"))
+  estvar <- attr(out, "estName")
+  if(length(estvar)!=1) stop("Internal error: single estimate variable not found.")
+  as_atest(out, model, estimate.vars=estvar)
 }
