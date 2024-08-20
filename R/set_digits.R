@@ -3,7 +3,8 @@ places_for <- function(x, digits=2) {
   x <- abs(x)
   n <- floor(log10(x)) + 1 - digits
   nc <- nchar(formatC(x/10^n, digits=0, format="f"))
-  if_else(nc > digits, n + 1, n)
+  out <- if_else(nc > digits, n + 1, n)
+  if_else(x==0, -digits, out)
 }
 
 decimals_for <- function(x, digits=2) {
