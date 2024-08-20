@@ -31,7 +31,7 @@ simplify_atest <- function(x) {
                                     !is.na(.data$.x_contrast) ~ pasteif(.data$.x_contrast, .data$.x, FUN=\(a, b) paste(b, a, sep=": ")),
                                     TRUE ~ .data$.x),
                      .G = pasteif(.data$.g, .data$.g_value, " = "),
-                     .M = if_else(!is.na(.data$.terms), pasteif(pasteif(.data$.y, .data$.y_value, " = "), .data$.terms, " ~ "), NA_character_),
+                     .M = if_else(!is.na(.data$.terms), pasteif(pasteif(.data$.y, .data$.y_value, FUN=\(a, b) sprintf("(%s = %s)", a, b)), .data$.terms, " ~ "), NA_character_),
                      .before=1) |>
     select(-any_of(nn))
 
