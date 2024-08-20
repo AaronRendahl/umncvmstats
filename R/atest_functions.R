@@ -8,7 +8,7 @@ as_tibble.atest <- function(x, footnotes=c("byrow", "below", "asis"), ...) {
   } else if(footnotes.exist && footnotes=="below") {
     x <- separate_about(x, footnotes="below")
   }
-  x |> rm_class("atest")
+  x |> rm_class("atest") |> select(-starts_with("_decimals"), -any_of("_estimate_"))
 }
 
 #' @export
@@ -19,7 +19,8 @@ print.atest <- function(x, as_gt=TRUE, ...) {
     invisible(a)
   } else {
     a <- separate_about(x, footnotes="text")
-    print(a$result)
+    out <- a$result |> select(-starts_with("_decimals"), -any_of("_estimate_"))
+    print(out)
     cat(a$about, sep="\n")
     invisible(x)
   }
@@ -40,7 +41,7 @@ as.data.frame.atest <- function(x, ...) {
 #' @export
 knit_print.atest <- function(x, options, inline=FALSE, ...) {
   if(isFALSE(options$as_gt)) {
-    print(x, as_gt=FALSE)
+    print(out, as_gt=FALSE)
   } else {
     knit_print(as_gt(x), options=options, inline=inline, ...)
   }
