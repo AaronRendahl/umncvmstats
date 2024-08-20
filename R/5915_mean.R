@@ -60,7 +60,7 @@ one_t_test <- function(formula, data,
     result <- result |> mutate(across(any_of(c("mean","conf.low", "conf.high", "null")), exp))
     result$about[[1]] <- c(result$about[[1]], "Results are backtransformed from the log scale (that is, the geometric mean is reported), and the standard error is estimated using the delta method.")
   }
-  as_atest(result, estimate.vars=c("n", "mean"), inference.vars=character())
+  as_atest(result, about.vars="n", estimate.vars="mean")
 }
 
 #' Two-sample t-test
@@ -119,15 +119,17 @@ two_t_test <- function(formula, data,
     mutate(null=null) |>
     relocate("null", "t.value", "df", "p.value", .after="conf.high") |>
     mutate(.y = y.name, .x = x.name)
+  estname <- "difference"
   result$about <- list(about)
   if(backtransform) {
      result$.y <- str_replace(result$.y, "^log\\((.*)\\)$", "\\1")
      result$SE <- exp(result$difference) * result$SE
      result <- result |> mutate(across(any_of(c("difference","conf.low", "conf.high", "null")), exp)) |>
        rename(ratio="difference")
+     estname <- "ratio"
      result$about[[1]] <- c(result$about[[1]], "Results are backtransformed from the log scale (that is, the ratio is reported), and the standard error is estimated using the delta method.")
   }
-  as_atest(result, estimate.vars=c("difference", "ratio"), inference.vars=c("null", "t.value"))
+  as_atest(result, estimate.vars=estname, inference.vars=c("null", "t.value"))
 }
 
 #' @param adjust method of adjusting p-values for multiple comparisons, one of "`bonferroni`", "`holm`", or "`none`".
@@ -181,12 +183,14 @@ paired_t_test <- function(formula, data,
   result <- result |>
     select(difference="estimate", "SE", "conf.low", "conf.high", t.value="statistic", df="parameter", "p.value") |>
     mutate(.y_contrast=response, null=null)
+  estname <- "difference"
   result$about <- list(about)
   if(backtransform) {
     result$SE <- exp(result$difference) * result$SE
     result <- result |> mutate(across(any_of(c("difference","conf.low", "conf.high", "null")), exp)) |>
       rename(ratio="difference")
     result$about[[1]] <- c(result$about[[1]], "Results are backtransformed from the log scale (that is, the ratio is reported), and the standard error is estimated using the delta method.")
+    estname <- "ratio"
   }
-  as_atest(result, estimate.vars=c("difference", "ratio"), inference.vars=c("null", "t.value"))
+  as_atest(result, estimate.vars=estname, inference.vars=c("null", "t.value"))
 }
