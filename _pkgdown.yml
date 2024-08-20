@@ -35,6 +35,7 @@ reference:
   - as_gt
   - tab_compact
   - set_digits
+  - format_signif
   - fmt_numbers
 - title: Misc
 - contents:
