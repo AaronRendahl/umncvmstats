@@ -33,11 +33,6 @@ descriptive_statistics <- function(data, ..., digits=2, compact=TRUE) {
   out
 }
 
-# tibble(a=1:10,b=rnorm(10)) |>
-#   tbl_summary(type = all_continuous() ~ "continuous2",
-#               statistic = all_continuous() ~ c("{mean} \u00B1 {sd}", "{median} ({minX}, {maxX})")) |>
-#   add_stat_label(label=all_continuous() ~ c("Mean \u00B1 SD", "Median (Min, Max)"))
-
 minX <- function(x) {
   x <- x[!is.na(x)]
   n <- length(x)
