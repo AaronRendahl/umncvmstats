@@ -13,7 +13,7 @@
 #' @export
 set_digits <- function(x, digits=2, decimals,
                        rows=seq_len(nrow(x)),
-                       columns=c(attr(x, "estimate.vars"), "SE", "conf.low", "conf.high"),
+                       columns=c("_estimate_", "SE", "conf.low", "conf.high"),
                        by="SE", by_row=TRUE) {
   if(missing(decimals)) {
     if(!is.numeric(digits) | any(digits<1)) stop("digits must be numeric and >= 1")
@@ -27,29 +27,43 @@ set_digits <- function(x, digits=2, decimals,
         }
       }
       decimals <- rep(NA_integer_, length(rows))
+      by <- intersect(by, names(x))
+      for(b in by) {
+        d_by <- decimals_for(x[[b]][rows], digits)
+        decimals <- pmax(decimals, d_by, na.rm=TRUE)
+      }
+      x$ME <- NULL
+      if(!by_row) decimals <- max(decimals, na.rm=TRUE)
     }
-    by <- intersect(by, names(x))
-    for(b in by) {
-      d_by <- decimals_for(x[[b]][rows], digits)
-      decimals <- pmax(decimals, d_by, na.rm=TRUE)
-    }
-    x$ME <- NULL
-    if(!by_row) decimals <- max(decimals, na.rm=TRUE)
   }
-  numeric.vals <- names(x)[sapply(x, is.double)]
-  if(!any(columns %in% numeric.vals)) return(x)
-  columns <- intersect(columns, numeric.vals)
+  if("_estimate_" %in% columns) {
+    columns <- c(columns, x[["_estimate_"]][rows]) |>
+      setdiff(c("_estimate_", NA))
+  }
+  columns <- intersect(columns, names(x)[sapply(x, is.double)])
+  if(length(columns)==0) return(x)
   if(length(decimals)==1) decimals <- rep(decimals, length(rows))
   if(length(decimals)!=length(rows)) stop("length of decimals must be either 1 or length of rows")
-  colnames <- paste0("_decimals_", columns)
-  for(col in setdiff(colnames, names(x))) x[[col]] <- NA
   for(idx in seq_along(rows)) for(j in seq_along(columns)) {
+    col <- columns[j]
+    row <- rows[idx]
     if(isTRUE(is.na(by))) {
-      dec <- decimals_for(x[[columns[idx]]][rows[idx]], digits)
+      dec <- decimals_for(x[[col]][row], digits)
     } else {
       dec <- decimals[idx]
     }
-    x[[colnames[j]]][rows[idx]] <- as.integer(dec)
+    if(columns[j]==x[["_estimate_"]][row]) {
+      colname <- "_decimals_estimate_"
+    } else if(col %in% x[["_estimate_"]][-row]) {
+      if(!is.na(x[[col]][row])) {
+        warning(sprintf("Internal warning: missing value expected for %s, row %d", col, row))
+      }
+      next
+    } else {
+      colname <- paste0("_decimals_", col)
+    }
+    if(!colname %in% names(x)) x[[colname]] <- NA
+    x[[colname]][row] <- as.integer(dec)
   }
   x
 }
