@@ -105,7 +105,8 @@ set_digits <- function(x, digits=2, decimals,
     } else {
       dec <- decimals[idx]
     }
-    if(columns[j]==x[["_estimate_"]][row]) {
+    rowest <- x[["_estimate_"]][row]
+    if(!is.na(rowest) & columns[j]==rowest) {
       colname <- "_decimals_estimate_"
     } else if(col %in% x[["_estimate_"]][-row]) {
       if(!is.na(x[[col]][row])) {
