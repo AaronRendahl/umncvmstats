@@ -16,17 +16,24 @@
 ## test_by doesn't work unless package is loaded!
 ## umncvmstats::one_t_test(mpg~wt, data=mtcars)
 
-
 ## in descriptive stats, min/max give warning and report Inf if all missing
-
 ## also model_means gave an error when trying it on a recent model...
-## and descriptive_statistics couldn't do "by" a factor variable on horse data?
+
+tibble(b=c(NA, 1:15)) |> mutate(a=c(3, 1:4, 5.1, rep(NA, 10))) |>
+         mutate(g=c("A", rep("B", 15))) |>
+         descriptive_statistics(by="g")
 
 ## FIXED
 ## when one_proportion_test(y~x), x doesn't stay in factor order
 ## allow one_proportion_test(y ~ 1 + x)
 ## when one_proportion_test(y~x), what about missing x?
 ## error with boolean grouping
+
+## digits by SE when SE=0 (ie, proportion of 0/Na)
+## this may be an example?
+## combine_tests(
+##     one_proportion_test(cyl ~ vs, data = mtcars2, all_success = TRUE),
+##     independence_test(cyl ~ vs, data = mtcars2)) |> set_digits()
 
 x <- c(12345, 1234.5, 123.45, 12.345, 1.2345, 0.12345, 0.09999)
 p <- 3
@@ -45,12 +52,7 @@ format_pvalue <- function(p, digits=2, max.digits=4, justify=TRUE, addp=FALSE, n
   return(p_fmt)
 }
 
-decimals_for <- function(x, digits=2) {
-  n <- floor(log10(abs(x))) + 1 - digits
-  nc <- nchar(as.character(round(x/10^n)))
-  if(nc > digits) n <- n + 1
-  pmax(-n, 0)
-}
+
 
 decimals_for(1234, digits=2)
 decimals_for(9.899, digits=3)
@@ -111,3 +113,48 @@ scale_x_discrete(
     axis.ticks.length.x.bottom = unit(0, "pt"),
     axis.text.x.bottom = element_text(margin = margin(t = -8.75))
   )
+
+
+
+###################
+devtools::load_all()
+winsorize <- function(x, cutoff=0.05) {
+  x |> pmax(quantile(x, cutoff, na.rm=TRUE)) |>
+    pmin(quantile(x, 1-cutoff, na.rm=TRUE))
+}
+
+
+d <- readxl::read_excel("~/Sandbox/JoeHerbert_2024-08-02/JoeHerbert_2024-08-16.xlsx")
+d2 <- d
+vs <- c("Ph", "pCO2", "pO2", "ctHb", "K", "Na", "Cl", "Lac", "Base_excess",
+        "HCO3", "CREA", "PCV", "TS")
+for(v in vs) d2 <- d2 |> mutate(across(all_of(v), winsorize), .by=Species)
+dF <- filter(d2, Species=="Feline")
+dC <- filter(d2, Species=="Canine")
+
+paste(vs, collapse=" + ")
+mF <- glm(Survival ~
+            Ph + pCO2 + log10(pO2) + ctHb +
+            K + Na + Cl +
+            log10(Lac) + Base_excess + HCO3 +
+            log10(CREA) + PCV + TS,
+          data=dF, family="binomial")
+model_coefs(mF)
+
+
+############
+aa <- combine_tests(
+  one_proportion_test(vs ~ 1 + am, mtcars2),
+  two_proportion_test(vs ~ am, mtcars2),
+  one_proportion_test(1, 1000),
+  one_proportion_test(999, 1000),
+  one_proportion_test(1, 1e6))
+a1 <- aa |> set_digits(3L, columns=c(attr(aa, "estimate.vars"), "SE", "conf.low", "conf.high"))
+aa |> set_digits_by(3L)
+aa |> set_digits_by(2L)
+aa |> set_digits_by(2L, by_row=FALSE)
+aa[1:2,]
+
+a1 <- aa[1:2,] |> set_digits_by(5)
+a2 <- aa[3:4,] |> set_digits_by(1)
+combine_tests(a1, a2)
