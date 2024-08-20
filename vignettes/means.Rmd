@@ -1,8 +1,8 @@
 ---
-title: "Tests for Means"
+title: "Inference for Means"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Tests for Means}
+  %\VignetteIndexEntry{Inference for Means}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

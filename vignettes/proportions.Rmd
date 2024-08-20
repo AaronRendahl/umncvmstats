@@ -1,8 +1,8 @@
 ---
-title: "Tests for Proportions"
+title: "Inference for Proportions"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Tests for Proportions}
+  %\VignetteIndexEntry{Inference for Proportions}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
