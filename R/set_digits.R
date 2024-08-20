@@ -11,15 +11,16 @@ decimals_for <- function(x, digits=2) {
 }
 
 format_signif1 <- function(x, digits=3, max_small=6, max_big=6, keep_big=digits) {
+  if(is.na(x)) return(NA_character_)
   max_small <- max(max_small, digits)
   keep_big <- min(keep_big, max_big)
-  n <- tmpfor(x, digits=digits)
+  n <- places_for(x, digits=digits)
   if(n < -max_small) {
     formatC(x, digits-1, format="e")
   } else if(n <= 0) {
     formatC(x, abs(n), format="f")
   } else {
-    n2 <- tmpfor(x, digits=max_big)
+    n2 <- places_for(x, digits=max_big)
     if(n2 > 0) {
       formatC(x, digits=keep_big-1, format="e")
     } else {
