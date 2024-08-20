@@ -39,7 +39,7 @@ two_t_test(wt + mpg ~ am | cyl, data = mtcars2)
 ## Combining output
 
 You can use `combine_tests` to combine output from several tests together. 
-It'll do it's best to output this meaningfully, but it's up to you to combine
+The package will do its best to output this meaningfully, but it's up to you to combine
 meaningful things together.
 
 ```{r}
