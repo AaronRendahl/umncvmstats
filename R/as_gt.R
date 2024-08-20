@@ -70,7 +70,8 @@ as_gt.atest <- function(x,
       d[[footnote_col]] <- ""
   }
 
-  out <- d |> select(-any_of(".row")) |> select(!starts_with("_decimals_")) |>
+  out <- d |> select(-any_of(".row")) |>
+    select(!starts_with("_decimals_")) |> select(-any_of("_estimate_")) |>
     gt(groupname_col=groupname_col, rowname_col=rowname_col,
        row_group_as_column=row_group_as_column,
        row_group.sep=", ", ...) |>
