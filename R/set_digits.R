@@ -1,3 +1,10 @@
+decimals_for <- function(x, digits=2) {
+  n <- floor(log10(abs(x))) + 1 - digits
+  nc <- nchar(as.character(round(x/10^n)))
+  n <- if_else(nc > digits, n + 1, n)
+  if_else(x==0, 0, pmax(-n, 0))
+}
+
 #' Set desired digits for values in an atest
 #'
 #' @param x The atest object
