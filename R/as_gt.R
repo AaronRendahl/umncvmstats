@@ -86,10 +86,14 @@ as_gt.atest <- function(x,
   decimal_columns <- str_subset(names(d), "^_decimals_")
   for(col in decimal_columns) {
     n <- str_remove(col, "^_decimals_")
-    if(!n %in% names(d)) next
+    if(n!="estimate_" && !n %in% names(d)) next
     dec <- d[[col]]
-    for(k in which(!is.na(dec) & !is.na(d[[n]]))) {
-      out <- out |> fmt_number(columns = all_of(n), rows=k, decimals=dec[k])
+    n <- if(n=="estimate_") d[["_estimate_"]] else rep(n, nrow(d))
+    for(k in seq_len(nrow(d))) {
+      nk <- n[k]
+      if(!is.na(dec[k]) && !is.na(d[[nk]][k])) {
+        out <- out |> fmt_number(columns = all_of(nk), rows=k, decimals=dec[k])
+      }
     }
   }
 
