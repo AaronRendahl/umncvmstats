@@ -33,8 +33,8 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/proportions.html">Tests for Proportions</a></li>
-    <li><a class="dropdown-item" href="../articles/means.html">Tests for Means</a></li>
+<li><a class="dropdown-item" href="../articles/proportions.html">Inference for Proportions</a></li>
+    <li><a class="dropdown-item" href="../articles/means.html">Inference for Means</a></li>
     <li><a class="dropdown-item" href="../articles/models.html">Inference about Models</a></li>
     <li><a class="dropdown-item" href="../articles/output.html">Controlling Output</a></li>
     <li><a class="dropdown-item" href="../articles/graphics.html">Graphical Output</a></li>
@@ -2289,8 +2289,9 @@ before running the tests.</p>
 <h2 id="combining-output">Combining output<a class="anchor" aria-label="anchor" href="#combining-output"></a>
 </h2>
 <p>You can use <code>combine_tests</code> to combine output from several
-tests together. It’ll do it’s best to output this meaningfully, but it’s
-up to you to combine meaningful things together.</p>
+tests together. The package will do its best to output this
+meaningfully, but it’s up to you to combine meaningful things
+together.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">am</span><span class="op">|</span><span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span>,</span>

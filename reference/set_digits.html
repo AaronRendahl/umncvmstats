@@ -18,8 +18,8 @@
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/proportions.html">Tests for Proportions</a></li>
-    <li><a class="dropdown-item" href="../articles/means.html">Tests for Means</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/proportions.html">Inference for Proportions</a></li>
+    <li><a class="dropdown-item" href="../articles/means.html">Inference for Means</a></li>
     <li><a class="dropdown-item" href="../articles/models.html">Inference about Models</a></li>
     <li><a class="dropdown-item" href="../articles/output.html">Controlling Output</a></li>
     <li><a class="dropdown-item" href="../articles/graphics.html">Graphical Output</a></li>
@@ -52,8 +52,9 @@
 <span>  <span class="va">decimals</span>,</span>
 <span>  rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"_estimate_"</span>, <span class="st">"SE"</span>, <span class="st">"conf.low"</span>, <span class="st">"conf.high"</span><span class="op">)</span>,</span>
-<span>  by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SE"</span>, <span class="st">"ME"</span><span class="op">)</span>,</span>
-<span>  by_row <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  by <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  by_row <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  overwrite <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -89,6 +90,10 @@ corresponding to the estimate, the SE, and the confidence intervals.</p></dd>
 <dt id="arg-by-row">by_row<a class="anchor" aria-label="anchor" href="#arg-by-row"></a></dt>
 <dd><p>Whether or not to compute the significant digits by row (the default),
 or to use the number of digits such that all rows have at least this many.</p></dd>
+
+
+<dt id="arg-overwrite">overwrite<a class="anchor" aria-label="anchor" href="#arg-overwrite"></a></dt>
+<dd><p>Whether or not to overwrite an existing digits specification.</p></dd>
 
 </dl></div>
 

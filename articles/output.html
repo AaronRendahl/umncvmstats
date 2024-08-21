@@ -33,8 +33,8 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/proportions.html">Tests for Proportions</a></li>
-    <li><a class="dropdown-item" href="../articles/means.html">Tests for Means</a></li>
+<li><a class="dropdown-item" href="../articles/proportions.html">Inference for Proportions</a></li>
+    <li><a class="dropdown-item" href="../articles/means.html">Inference for Means</a></li>
     <li><a class="dropdown-item" href="../articles/models.html">Inference about Models</a></li>
     <li><a class="dropdown-item" href="../articles/output.html">Controlling Output</a></li>
     <li><a class="dropdown-item" href="../articles/graphics.html">Graphical Output</a></li>
@@ -76,13 +76,18 @@
 <span>  <span class="fu"><a href="../reference/two_proportion_test.html">two_proportion_test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">34</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">99</span>,<span class="fl">99</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="../reference/two_proportion_test.html">two_proportion_test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">34</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">99</span>,<span class="fl">99</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
-<h2 id="about-output-from-this-package">About output from this package<a class="anchor" aria-label="anchor" href="#about-output-from-this-package"></a>
+<h2 id="rounding">Rounding<a class="anchor" aria-label="anchor" href="#rounding"></a>
 </h2>
-<p>All output from statistical tests in this package are stored as a
-special object (an <code>atest</code>) that knows how to print itself in
-a nice way.</p>
+<p>It’s trickier than I think it should be to get R to output a
+reasonable number of digits. This package makes a guess that should be
+reasonable in most, but not all, cases.</p>
+<p>To modify the number of digits that are output, use the
+<code>set_digits</code> function. You can either specify the number of
+significant digits or the number of decimal places. By default, digits
+for the estimate, the SE, and the confidence bounds are set for all
+rows.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">a</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/set_digits.html">set_digits</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#mwlefoodfi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -549,11 +554,11 @@ a nice way.</p>
 <tr>
 <td headers="x" class="gt_row gt_right">34</td>
 <td headers="n" class="gt_row gt_right">99</td>
-<td headers="proportion" class="gt_row gt_right">0.343</td>
+<td headers="proportion" class="gt_row gt_right">0.34</td>
 <td headers="difference" class="gt_row gt_right"><br></td>
 <td headers="SE" class="gt_row gt_right">0.048</td>
-<td headers="conf.low" class="gt_row gt_right"> 0.257</td>
-<td headers="conf.high" class="gt_row gt_right"> 0.441</td>
+<td headers="conf.low" class="gt_row gt_right"> 0.26 </td>
+<td headers="conf.high" class="gt_row gt_right"> 0.44 </td>
 <td headers="chisq.value" class="gt_row gt_right"><br></td>
 <td headers="p.value" class="gt_row gt_left"><br></td>
 <td headers="footnote" class="gt_row gt_right">
@@ -562,11 +567,11 @@ a nice way.</p>
 <tr>
 <td headers="x" class="gt_row gt_right">25</td>
 <td headers="n" class="gt_row gt_right">99</td>
-<td headers="proportion" class="gt_row gt_right">0.253</td>
+<td headers="proportion" class="gt_row gt_right">0.25</td>
 <td headers="difference" class="gt_row gt_right"><br></td>
 <td headers="SE" class="gt_row gt_right">0.044</td>
-<td headers="conf.low" class="gt_row gt_right"> 0.177</td>
-<td headers="conf.high" class="gt_row gt_right"> 0.346</td>
+<td headers="conf.low" class="gt_row gt_right"> 0.18 </td>
+<td headers="conf.high" class="gt_row gt_right"> 0.35 </td>
 <td headers="chisq.value" class="gt_row gt_right"><br></td>
 <td headers="p.value" class="gt_row gt_left"><br></td>
 <td headers="footnote" class="gt_row gt_right">
@@ -575,11 +580,11 @@ a nice way.</p>
 <tr>
 <td headers="x" class="gt_row gt_right">10</td>
 <td headers="n" class="gt_row gt_right">99</td>
-<td headers="proportion" class="gt_row gt_right">0.101</td>
+<td headers="proportion" class="gt_row gt_right">0.10</td>
 <td headers="difference" class="gt_row gt_right"><br></td>
 <td headers="SE" class="gt_row gt_right">0.030</td>
 <td headers="conf.low" class="gt_row gt_right"> 0.056</td>
-<td headers="conf.high" class="gt_row gt_right"> 0.176</td>
+<td headers="conf.high" class="gt_row gt_right"> 0.18 </td>
 <td headers="chisq.value" class="gt_row gt_right"><br></td>
 <td headers="p.value" class="gt_row gt_left"><br></td>
 <td headers="footnote" class="gt_row gt_right">
@@ -591,7 +596,7 @@ a nice way.</p>
 <td headers="proportion" class="gt_row gt_right"><br></td>
 <td headers="difference" class="gt_row gt_right">−0.091</td>
 <td headers="SE" class="gt_row gt_right">0.065</td>
-<td headers="conf.low" class="gt_row gt_right">−0.228</td>
+<td headers="conf.low" class="gt_row gt_right">−0.23 </td>
 <td headers="conf.high" class="gt_row gt_right"> 0.046</td>
 <td headers="chisq.value" class="gt_row gt_right"> 1.55</td>
 <td headers="p.value" class="gt_row gt_left">  0.21</td>
@@ -602,10 +607,10 @@ a nice way.</p>
 <td headers="x" class="gt_row gt_right"><br></td>
 <td headers="n" class="gt_row gt_right"><br></td>
 <td headers="proportion" class="gt_row gt_right"><br></td>
-<td headers="difference" class="gt_row gt_right">−0.242</td>
+<td headers="difference" class="gt_row gt_right">−0.24 </td>
 <td headers="SE" class="gt_row gt_right">0.057</td>
-<td headers="conf.low" class="gt_row gt_right">−0.363</td>
-<td headers="conf.high" class="gt_row gt_right">−0.122</td>
+<td headers="conf.low" class="gt_row gt_right">−0.36 </td>
+<td headers="conf.high" class="gt_row gt_right">−0.12 </td>
 <td headers="chisq.value" class="gt_row gt_right">15.5 </td>
 <td headers="p.value" class="gt_row gt_left">  0.0001</td>
 <td headers="footnote" class="gt_row gt_right">
@@ -624,16 +629,8 @@ a nice way.</p>
 </tfoot>
 </table>
 </div>
-<p>It does this by converting it into a <code>gt</code> object from the
-<a href="https://gt.rstudio.com/" class="external-link">gt</a> package.</p>
-<p>You can use any <code>gt</code> function by first doing this
-conversion yourself using <code>as_gt</code>. If you use any
-<code>gt</code> functions you’ll need to load the <code>gt</code>
-library before <code>umncvmstats</code>.</p>
-<p>The following table looks the same because I haven’t added any other
-functions yet.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/set_digits.html">set_digits</a></span><span class="op">(</span>decimals<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <div id="eexombwkke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#eexombwkke table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1100,11 +1097,11 @@ functions yet.</p>
 <tr>
 <td headers="x" class="gt_row gt_right">34</td>
 <td headers="n" class="gt_row gt_right">99</td>
-<td headers="proportion" class="gt_row gt_right">0.343</td>
+<td headers="proportion" class="gt_row gt_right">0.34</td>
 <td headers="difference" class="gt_row gt_right"><br></td>
-<td headers="SE" class="gt_row gt_right">0.048</td>
-<td headers="conf.low" class="gt_row gt_right"> 0.257</td>
-<td headers="conf.high" class="gt_row gt_right"> 0.441</td>
+<td headers="SE" class="gt_row gt_right">0.05</td>
+<td headers="conf.low" class="gt_row gt_right"> 0.26</td>
+<td headers="conf.high" class="gt_row gt_right"> 0.44</td>
 <td headers="chisq.value" class="gt_row gt_right"><br></td>
 <td headers="p.value" class="gt_row gt_left"><br></td>
 <td headers="footnote" class="gt_row gt_right">
@@ -1113,11 +1110,11 @@ functions yet.</p>
 <tr>
 <td headers="x" class="gt_row gt_right">25</td>
 <td headers="n" class="gt_row gt_right">99</td>
-<td headers="proportion" class="gt_row gt_right">0.253</td>
+<td headers="proportion" class="gt_row gt_right">0.25</td>
 <td headers="difference" class="gt_row gt_right"><br></td>
-<td headers="SE" class="gt_row gt_right">0.044</td>
-<td headers="conf.low" class="gt_row gt_right"> 0.177</td>
-<td headers="conf.high" class="gt_row gt_right"> 0.346</td>
+<td headers="SE" class="gt_row gt_right">0.04</td>
+<td headers="conf.low" class="gt_row gt_right"> 0.18</td>
+<td headers="conf.high" class="gt_row gt_right"> 0.35</td>
 <td headers="chisq.value" class="gt_row gt_right"><br></td>
 <td headers="p.value" class="gt_row gt_left"><br></td>
 <td headers="footnote" class="gt_row gt_right">
@@ -1126,11 +1123,11 @@ functions yet.</p>
 <tr>
 <td headers="x" class="gt_row gt_right">10</td>
 <td headers="n" class="gt_row gt_right">99</td>
-<td headers="proportion" class="gt_row gt_right">0.101</td>
+<td headers="proportion" class="gt_row gt_right">0.10</td>
 <td headers="difference" class="gt_row gt_right"><br></td>
-<td headers="SE" class="gt_row gt_right">0.030</td>
-<td headers="conf.low" class="gt_row gt_right"> 0.056</td>
-<td headers="conf.high" class="gt_row gt_right"> 0.176</td>
+<td headers="SE" class="gt_row gt_right">0.03</td>
+<td headers="conf.low" class="gt_row gt_right"> 0.06</td>
+<td headers="conf.high" class="gt_row gt_right"> 0.18</td>
 <td headers="chisq.value" class="gt_row gt_right"><br></td>
 <td headers="p.value" class="gt_row gt_left"><br></td>
 <td headers="footnote" class="gt_row gt_right">
@@ -1140,10 +1137,10 @@ functions yet.</p>
 <td headers="x" class="gt_row gt_right"><br></td>
 <td headers="n" class="gt_row gt_right"><br></td>
 <td headers="proportion" class="gt_row gt_right"><br></td>
-<td headers="difference" class="gt_row gt_right">−0.091</td>
-<td headers="SE" class="gt_row gt_right">0.065</td>
-<td headers="conf.low" class="gt_row gt_right">−0.228</td>
-<td headers="conf.high" class="gt_row gt_right"> 0.046</td>
+<td headers="difference" class="gt_row gt_right">−0.09</td>
+<td headers="SE" class="gt_row gt_right">0.06</td>
+<td headers="conf.low" class="gt_row gt_right">−0.23</td>
+<td headers="conf.high" class="gt_row gt_right"> 0.05</td>
 <td headers="chisq.value" class="gt_row gt_right"> 1.55</td>
 <td headers="p.value" class="gt_row gt_left">  0.21</td>
 <td headers="footnote" class="gt_row gt_right">
@@ -1153,10 +1150,10 @@ functions yet.</p>
 <td headers="x" class="gt_row gt_right"><br></td>
 <td headers="n" class="gt_row gt_right"><br></td>
 <td headers="proportion" class="gt_row gt_right"><br></td>
-<td headers="difference" class="gt_row gt_right">−0.242</td>
-<td headers="SE" class="gt_row gt_right">0.057</td>
-<td headers="conf.low" class="gt_row gt_right">−0.363</td>
-<td headers="conf.high" class="gt_row gt_right">−0.122</td>
+<td headers="difference" class="gt_row gt_right">−0.24</td>
+<td headers="SE" class="gt_row gt_right">0.06</td>
+<td headers="conf.low" class="gt_row gt_right">−0.36</td>
+<td headers="conf.high" class="gt_row gt_right">−0.12</td>
 <td headers="chisq.value" class="gt_row gt_right">15.5 </td>
 <td headers="p.value" class="gt_row gt_left">  0.0001</td>
 <td headers="footnote" class="gt_row gt_right">
@@ -1175,16 +1172,10 @@ functions yet.</p>
 </tfoot>
 </table>
 </div>
-<p>There are also a few useful functions in this package, as
-follows.</p>
-<div class="section level3">
-<h3 id="rounding">Rounding<a class="anchor" aria-label="anchor" href="#rounding"></a>
-</h3>
-<p>The <code>fmt_numbers</code> function will format any numbers (except
-for integers and p-values), with either a fixed number of decimal places
-or significant figures.</p>
+<p>Specific values can be specified using the column names and row
+numbers.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/fmt_numbers.html">fmt_numbers</a></span><span class="op">(</span>decimals<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/set_digits.html">set_digits</a></span><span class="op">(</span>decimals<span class="op">=</span><span class="fl">5</span>, columns<span class="op">=</span><span class="st">"proportion"</span>, rows<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <div id="ulbfdpbcyv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ulbfdpbcyv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1651,7 +1642,7 @@ or significant figures.</p>
 <tr>
 <td headers="x" class="gt_row gt_right">34</td>
 <td headers="n" class="gt_row gt_right">99</td>
-<td headers="proportion" class="gt_row gt_right">0.343</td>
+<td headers="proportion" class="gt_row gt_right">0.34343</td>
 <td headers="difference" class="gt_row gt_right"><br></td>
 <td headers="SE" class="gt_row gt_right">0.048</td>
 <td headers="conf.low" class="gt_row gt_right"> 0.257</td>
@@ -1664,7 +1655,7 @@ or significant figures.</p>
 <tr>
 <td headers="x" class="gt_row gt_right">25</td>
 <td headers="n" class="gt_row gt_right">99</td>
-<td headers="proportion" class="gt_row gt_right">0.253</td>
+<td headers="proportion" class="gt_row gt_right">0.25253</td>
 <td headers="difference" class="gt_row gt_right"><br></td>
 <td headers="SE" class="gt_row gt_right">0.044</td>
 <td headers="conf.low" class="gt_row gt_right"> 0.177</td>
@@ -1677,7 +1668,7 @@ or significant figures.</p>
 <tr>
 <td headers="x" class="gt_row gt_right">10</td>
 <td headers="n" class="gt_row gt_right">99</td>
-<td headers="proportion" class="gt_row gt_right">0.101</td>
+<td headers="proportion" class="gt_row gt_right">0.101  </td>
 <td headers="difference" class="gt_row gt_right"><br></td>
 <td headers="SE" class="gt_row gt_right">0.030</td>
 <td headers="conf.low" class="gt_row gt_right"> 0.056</td>
@@ -1695,7 +1686,7 @@ or significant figures.</p>
 <td headers="SE" class="gt_row gt_right">0.065</td>
 <td headers="conf.low" class="gt_row gt_right">−0.228</td>
 <td headers="conf.high" class="gt_row gt_right"> 0.046</td>
-<td headers="chisq.value" class="gt_row gt_right"> 1.545</td>
+<td headers="chisq.value" class="gt_row gt_right"> 1.55</td>
 <td headers="p.value" class="gt_row gt_left">  0.21</td>
 <td headers="footnote" class="gt_row gt_right">
 <span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> </td>
@@ -1708,7 +1699,7 @@ or significant figures.</p>
 <td headers="SE" class="gt_row gt_right">0.057</td>
 <td headers="conf.low" class="gt_row gt_right">−0.363</td>
 <td headers="conf.high" class="gt_row gt_right">−0.122</td>
-<td headers="chisq.value" class="gt_row gt_right">15.458</td>
+<td headers="chisq.value" class="gt_row gt_right">15.5 </td>
 <td headers="p.value" class="gt_row gt_left">  0.0001</td>
 <td headers="footnote" class="gt_row gt_right">
 <span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> </td>
@@ -1726,8 +1717,13 @@ or significant figures.</p>
 </tfoot>
 </table>
 </div>
+<p>You can also set the number of decimals based on significant digits
+for a given column or columns; for example, when created, the decimals
+are set based on the number of significant digits needed for the SE and
+ME columns, where ME (the margin of error) is calculated from conf.high
+and conf.low.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/fmt_numbers.html">fmt_numbers</a></span><span class="op">(</span>n_sigfig<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/set_digits.html">set_digits</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fl">2</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SE"</span>, <span class="st">"ME"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div id="kgufivjubq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#kgufivjubq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -2196,9 +2192,9 @@ or significant figures.</p>
 <td headers="n" class="gt_row gt_right">99</td>
 <td headers="proportion" class="gt_row gt_right">0.343</td>
 <td headers="difference" class="gt_row gt_right"><br></td>
-<td headers="SE" class="gt_row gt_right">0.0477</td>
-<td headers="conf.low" class="gt_row gt_right"> 0.257 </td>
-<td headers="conf.high" class="gt_row gt_right"> 0.441 </td>
+<td headers="SE" class="gt_row gt_right">0.048</td>
+<td headers="conf.low" class="gt_row gt_right"> 0.257</td>
+<td headers="conf.high" class="gt_row gt_right"> 0.441</td>
 <td headers="chisq.value" class="gt_row gt_right"><br></td>
 <td headers="p.value" class="gt_row gt_left"><br></td>
 <td headers="footnote" class="gt_row gt_right">
@@ -2209,9 +2205,9 @@ or significant figures.</p>
 <td headers="n" class="gt_row gt_right">99</td>
 <td headers="proportion" class="gt_row gt_right">0.253</td>
 <td headers="difference" class="gt_row gt_right"><br></td>
-<td headers="SE" class="gt_row gt_right">0.0437</td>
-<td headers="conf.low" class="gt_row gt_right"> 0.177 </td>
-<td headers="conf.high" class="gt_row gt_right"> 0.346 </td>
+<td headers="SE" class="gt_row gt_right">0.044</td>
+<td headers="conf.low" class="gt_row gt_right"> 0.177</td>
+<td headers="conf.high" class="gt_row gt_right"> 0.346</td>
 <td headers="chisq.value" class="gt_row gt_right"><br></td>
 <td headers="p.value" class="gt_row gt_left"><br></td>
 <td headers="footnote" class="gt_row gt_right">
@@ -2222,9 +2218,9 @@ or significant figures.</p>
 <td headers="n" class="gt_row gt_right">99</td>
 <td headers="proportion" class="gt_row gt_right">0.101</td>
 <td headers="difference" class="gt_row gt_right"><br></td>
-<td headers="SE" class="gt_row gt_right">0.0303</td>
-<td headers="conf.low" class="gt_row gt_right"> 0.0558</td>
-<td headers="conf.high" class="gt_row gt_right"> 0.176 </td>
+<td headers="SE" class="gt_row gt_right">0.030</td>
+<td headers="conf.low" class="gt_row gt_right"> 0.056</td>
+<td headers="conf.high" class="gt_row gt_right"> 0.176</td>
 <td headers="chisq.value" class="gt_row gt_right"><br></td>
 <td headers="p.value" class="gt_row gt_left"><br></td>
 <td headers="footnote" class="gt_row gt_right">
@@ -2234,10 +2230,10 @@ or significant figures.</p>
 <td headers="x" class="gt_row gt_right"><br></td>
 <td headers="n" class="gt_row gt_right"><br></td>
 <td headers="proportion" class="gt_row gt_right"><br></td>
-<td headers="difference" class="gt_row gt_right">−0.0909</td>
-<td headers="SE" class="gt_row gt_right">0.0647</td>
-<td headers="conf.low" class="gt_row gt_right">−0.228 </td>
-<td headers="conf.high" class="gt_row gt_right"> 0.0460</td>
+<td headers="difference" class="gt_row gt_right">−0.091</td>
+<td headers="SE" class="gt_row gt_right">0.065</td>
+<td headers="conf.low" class="gt_row gt_right">−0.228</td>
+<td headers="conf.high" class="gt_row gt_right"> 0.046</td>
 <td headers="chisq.value" class="gt_row gt_right"> 1.55</td>
 <td headers="p.value" class="gt_row gt_left">  0.21</td>
 <td headers="footnote" class="gt_row gt_right">
@@ -2247,10 +2243,10 @@ or significant figures.</p>
 <td headers="x" class="gt_row gt_right"><br></td>
 <td headers="n" class="gt_row gt_right"><br></td>
 <td headers="proportion" class="gt_row gt_right"><br></td>
-<td headers="difference" class="gt_row gt_right">−0.242 </td>
-<td headers="SE" class="gt_row gt_right">0.0565</td>
-<td headers="conf.low" class="gt_row gt_right">−0.363 </td>
-<td headers="conf.high" class="gt_row gt_right">−0.122 </td>
+<td headers="difference" class="gt_row gt_right">−0.242</td>
+<td headers="SE" class="gt_row gt_right">0.057</td>
+<td headers="conf.low" class="gt_row gt_right">−0.363</td>
+<td headers="conf.high" class="gt_row gt_right">−0.122</td>
 <td headers="chisq.value" class="gt_row gt_right">15.5 </td>
 <td headers="p.value" class="gt_row gt_left">  0.0001</td>
 <td headers="footnote" class="gt_row gt_right">
@@ -2269,12 +2265,21 @@ or significant figures.</p>
 </tfoot>
 </table>
 </div>
-<p>The <code>fmt_pvalue</code> function formats p-values (anything named
-<code>p.value</code> or <code>p.adjust</code>), with <code>digits</code>
-significant digits, up to <code>max.digits</code> decimals. The default
-is 2 significant digits, and 4 maximum digits.</p>
+<div class="section level3">
+<h3 id="rounding-p-values">Rounding p-values<a class="anchor" aria-label="anchor" href="#rounding-p-values"></a>
+</h3>
+<p>Rounding p-values are currently a special case and are handled within
+the <code>gt</code> mechanism, as follows.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="about-output-from-this-package">About output from this package<a class="anchor" aria-label="anchor" href="#about-output-from-this-package"></a>
+</h2>
+<p>All output from statistical tests in this package are stored as a
+special object (an <code>atest</code>) that knows how to print itself in
+a nice way.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/fmt_numbers.html">fmt_pvalue</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fl">3</span>, max.digits<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">a</span></span></code></pre></div>
 <div id="txvafbsnay" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#txvafbsnay table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -2786,7 +2791,7 @@ is 2 significant digits, and 4 maximum digits.</p>
 <td headers="conf.low" class="gt_row gt_right">−0.228</td>
 <td headers="conf.high" class="gt_row gt_right"> 0.046</td>
 <td headers="chisq.value" class="gt_row gt_right"> 1.55</td>
-<td headers="p.value" class="gt_row gt_left">  0.214</td>
+<td headers="p.value" class="gt_row gt_left">  0.21</td>
 <td headers="footnote" class="gt_row gt_right">
 <span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> </td>
 </tr>
@@ -2799,7 +2804,7 @@ is 2 significant digits, and 4 maximum digits.</p>
 <td headers="conf.low" class="gt_row gt_right">−0.363</td>
 <td headers="conf.high" class="gt_row gt_right">−0.122</td>
 <td headers="chisq.value" class="gt_row gt_right">15.5 </td>
-<td headers="p.value" class="gt_row gt_left">  0.00008</td>
+<td headers="p.value" class="gt_row gt_left">  0.0001</td>
 <td headers="footnote" class="gt_row gt_right">
 <span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> </td>
 </tr>
@@ -2816,14 +2821,16 @@ is 2 significant digits, and 4 maximum digits.</p>
 </tfoot>
 </table>
 </div>
-</div>
-<div class="section level3">
-<h3 id="compacting-tables">Compacting Tables<a class="anchor" aria-label="anchor" href="#compacting-tables"></a>
-</h3>
-<p>This compact table uses <code>font.size = 13</code> and
-<code>padding = 1</code>.</p>
+<p>It does this by converting it into a <code>gt</code> object from the
+<a href="https://gt.rstudio.com/" class="external-link">gt</a> package.</p>
+<p>You can use any <code>gt</code> function by first doing this
+conversion yourself using <code>as_gt</code>. If you use any
+<code>gt</code> functions you’ll need to load the <code>gt</code>
+library before <code>umncvmstats</code>.</p>
+<p>The following table looks the same because I haven’t added any other
+functions yet.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/tab_compact.html">tab_compact</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="orehalspkz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#orehalspkz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -2847,7 +2854,7 @@ is 2 significant digits, and 4 maximum digits.</p>
   margin-left: 0;
   margin-right: auto;
   color: #333333;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: normal;
   font-style: normal;
   background-color: #FFFFFF;
@@ -2985,8 +2992,8 @@ is 2 significant digits, and 4 maximum digits.</p>
 }
 
 #orehalspkz .gt_group_heading {
-  padding-top: 1px;
-  padding-bottom: 1px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
   color: #333333;
@@ -3034,8 +3041,8 @@ is 2 significant digits, and 4 maximum digits.</p>
 }
 
 #orehalspkz .gt_row {
-  padding-top: 1px;
-  padding-bottom: 1px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
   margin: 10px;
@@ -3091,8 +3098,8 @@ is 2 significant digits, and 4 maximum digits.</p>
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
-  padding-top: 1px;
-  padding-bottom: 1px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -3107,8 +3114,8 @@ is 2 significant digits, and 4 maximum digits.</p>
 }
 
 #orehalspkz .gt_last_summary_row {
-  padding-top: 1px;
-  padding-bottom: 1px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
   border-bottom-style: solid;
@@ -3120,15 +3127,15 @@ is 2 significant digits, and 4 maximum digits.</p>
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
-  padding-top: 1px;
-  padding-bottom: 1px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
 
 #orehalspkz .gt_first_grand_summary_row {
-  padding-top: 1px;
-  padding-bottom: 1px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-style: double;
@@ -3137,8 +3144,8 @@ is 2 significant digits, and 4 maximum digits.</p>
 }
 
 #orehalspkz .gt_last_grand_summary_row_top {
-  padding-top: 1px;
-  padding-bottom: 1px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
   border-bottom-style: double;
@@ -3176,8 +3183,8 @@ is 2 significant digits, and 4 maximum digits.</p>
 #orehalspkz .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding-top: 1px;
-  padding-bottom: 1px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -3198,8 +3205,8 @@ is 2 significant digits, and 4 maximum digits.</p>
 
 #orehalspkz .gt_sourcenote {
   font-size: 90%;
-  padding-top: 1px;
-  padding-bottom: 1px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -3365,8 +3372,17 @@ is 2 significant digits, and 4 maximum digits.</p>
 </tfoot>
 </table>
 </div>
+<p>There are also a few useful functions in this package, as
+follows.</p>
+<div class="section level3">
+<h3 id="formatting-p-values">Formatting p-values<a class="anchor" aria-label="anchor" href="#formatting-p-values"></a>
+</h3>
+<p>The <code>fmt_pvalue</code> function formats p-values (anything named
+<code>p.value</code> or <code>p.adjust</code>), with <code>digits</code>
+significant digits, up to <code>max.digits</code> decimals. The default
+is 2 significant digits, and 4 maximum digits.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/tab_compact.html">tab_compact</a></span><span class="op">(</span>font.size <span class="op">=</span> <span class="fl">11</span>, padding <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/format_pvalue.html">fmt_pvalue</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fl">3</span>, max.digits<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 <div id="cbwjcfdjag" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#cbwjcfdjag table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -3390,7 +3406,7 @@ is 2 significant digits, and 4 maximum digits.</p>
   margin-left: 0;
   margin-right: auto;
   color: #333333;
-  font-size: 11px;
+  font-size: 16px;
   font-weight: normal;
   font-style: normal;
   background-color: #FFFFFF;
@@ -3528,8 +3544,8 @@ is 2 significant digits, and 4 maximum digits.</p>
 }
 
 #cbwjcfdjag .gt_group_heading {
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
   color: #333333;
@@ -3577,8 +3593,8 @@ is 2 significant digits, and 4 maximum digits.</p>
 }
 
 #cbwjcfdjag .gt_row {
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
   margin: 10px;
@@ -3634,8 +3650,8 @@ is 2 significant digits, and 4 maximum digits.</p>
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -3650,8 +3666,8 @@ is 2 significant digits, and 4 maximum digits.</p>
 }
 
 #cbwjcfdjag .gt_last_summary_row {
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
   border-bottom-style: solid;
@@ -3663,15 +3679,15 @@ is 2 significant digits, and 4 maximum digits.</p>
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
 
 #cbwjcfdjag .gt_first_grand_summary_row {
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-style: double;
@@ -3680,8 +3696,8 @@ is 2 significant digits, and 4 maximum digits.</p>
 }
 
 #cbwjcfdjag .gt_last_grand_summary_row_top {
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
   border-bottom-style: double;
@@ -3719,8 +3735,8 @@ is 2 significant digits, and 4 maximum digits.</p>
 #cbwjcfdjag .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -3741,8 +3757,8 @@ is 2 significant digits, and 4 maximum digits.</p>
 
 #cbwjcfdjag .gt_sourcenote {
   font-size: 90%;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -3878,6 +3894,1098 @@ is 2 significant digits, and 4 maximum digits.</p>
 <td headers="conf.low" class="gt_row gt_right">−0.228</td>
 <td headers="conf.high" class="gt_row gt_right"> 0.046</td>
 <td headers="chisq.value" class="gt_row gt_right"> 1.55</td>
+<td headers="p.value" class="gt_row gt_left">  0.214</td>
+<td headers="footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> </td>
+</tr>
+<tr>
+<td headers="x" class="gt_row gt_right"><br></td>
+<td headers="n" class="gt_row gt_right"><br></td>
+<td headers="proportion" class="gt_row gt_right"><br></td>
+<td headers="difference" class="gt_row gt_right">−0.242</td>
+<td headers="SE" class="gt_row gt_right">0.057</td>
+<td headers="conf.low" class="gt_row gt_right">−0.363</td>
+<td headers="conf.high" class="gt_row gt_right">−0.122</td>
+<td headers="chisq.value" class="gt_row gt_right">15.5 </td>
+<td headers="p.value" class="gt_row gt_left">  0.00008</td>
+<td headers="footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> </td>
+</tr>
+</tbody>
+<tfoot class="gt_footnotes">
+<tr>
+<td class="gt_footnote" colspan="10">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> Wilson's proportion test (two.sided), with 95% confidence intervals.</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="10">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> 2-sample test for equality of proportions with continuity correction (two.sided), with 95% confidence intervals.</td>
+    </tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div class="section level3">
+<h3 id="compacting-tables">Compacting Tables<a class="anchor" aria-label="anchor" href="#compacting-tables"></a>
+</h3>
+<p>This compact table uses <code>font.size = 13</code> and
+<code>padding = 1</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/tab_compact.html">tab_compact</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div id="fvsybhaagl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fvsybhaagl table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#fvsybhaagl thead, #fvsybhaagl tbody, #fvsybhaagl tfoot, #fvsybhaagl tr, #fvsybhaagl td, #fvsybhaagl th {
+  border-style: none;
+}
+
+#fvsybhaagl p {
+  margin: 0;
+  padding: 0;
+}
+
+#fvsybhaagl .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: 0;
+  margin-right: auto;
+  color: #333333;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#fvsybhaagl .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#fvsybhaagl .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#fvsybhaagl .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 1px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#fvsybhaagl .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#fvsybhaagl .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fvsybhaagl .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#fvsybhaagl .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 2.5px;
+  padding-bottom: 3.5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#fvsybhaagl .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#fvsybhaagl .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#fvsybhaagl .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#fvsybhaagl .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#fvsybhaagl .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#fvsybhaagl .gt_group_heading {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#fvsybhaagl .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#fvsybhaagl .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#fvsybhaagl .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#fvsybhaagl .gt_row {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#fvsybhaagl .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fvsybhaagl .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#fvsybhaagl .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#fvsybhaagl .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#fvsybhaagl .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fvsybhaagl .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#fvsybhaagl .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#fvsybhaagl .gt_last_summary_row {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fvsybhaagl .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fvsybhaagl .gt_first_grand_summary_row {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#fvsybhaagl .gt_last_grand_summary_row_top {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fvsybhaagl .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#fvsybhaagl .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fvsybhaagl .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#fvsybhaagl .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fvsybhaagl .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#fvsybhaagl .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fvsybhaagl .gt_left {
+  text-align: left;
+}
+
+#fvsybhaagl .gt_center {
+  text-align: center;
+}
+
+#fvsybhaagl .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#fvsybhaagl .gt_font_normal {
+  font-weight: normal;
+}
+
+#fvsybhaagl .gt_font_bold {
+  font-weight: bold;
+}
+
+#fvsybhaagl .gt_font_italic {
+  font-style: italic;
+}
+
+#fvsybhaagl .gt_super {
+  font-size: 65%;
+}
+
+#fvsybhaagl .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#fvsybhaagl .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#fvsybhaagl .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#fvsybhaagl .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#fvsybhaagl .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#fvsybhaagl .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#fvsybhaagl .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#fvsybhaagl .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#fvsybhaagl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="x">x</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="proportion">proportion</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="difference">difference</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="chisq.value">chisq.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="footnote">footnote</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="x" class="gt_row gt_right">34</td>
+<td headers="n" class="gt_row gt_right">99</td>
+<td headers="proportion" class="gt_row gt_right">0.343</td>
+<td headers="difference" class="gt_row gt_right"><br></td>
+<td headers="SE" class="gt_row gt_right">0.048</td>
+<td headers="conf.low" class="gt_row gt_right"> 0.257</td>
+<td headers="conf.high" class="gt_row gt_right"> 0.441</td>
+<td headers="chisq.value" class="gt_row gt_right"><br></td>
+<td headers="p.value" class="gt_row gt_left"><br></td>
+<td headers="footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> </td>
+</tr>
+<tr>
+<td headers="x" class="gt_row gt_right">25</td>
+<td headers="n" class="gt_row gt_right">99</td>
+<td headers="proportion" class="gt_row gt_right">0.253</td>
+<td headers="difference" class="gt_row gt_right"><br></td>
+<td headers="SE" class="gt_row gt_right">0.044</td>
+<td headers="conf.low" class="gt_row gt_right"> 0.177</td>
+<td headers="conf.high" class="gt_row gt_right"> 0.346</td>
+<td headers="chisq.value" class="gt_row gt_right"><br></td>
+<td headers="p.value" class="gt_row gt_left"><br></td>
+<td headers="footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> </td>
+</tr>
+<tr>
+<td headers="x" class="gt_row gt_right">10</td>
+<td headers="n" class="gt_row gt_right">99</td>
+<td headers="proportion" class="gt_row gt_right">0.101</td>
+<td headers="difference" class="gt_row gt_right"><br></td>
+<td headers="SE" class="gt_row gt_right">0.030</td>
+<td headers="conf.low" class="gt_row gt_right"> 0.056</td>
+<td headers="conf.high" class="gt_row gt_right"> 0.176</td>
+<td headers="chisq.value" class="gt_row gt_right"><br></td>
+<td headers="p.value" class="gt_row gt_left"><br></td>
+<td headers="footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> </td>
+</tr>
+<tr>
+<td headers="x" class="gt_row gt_right"><br></td>
+<td headers="n" class="gt_row gt_right"><br></td>
+<td headers="proportion" class="gt_row gt_right"><br></td>
+<td headers="difference" class="gt_row gt_right">−0.091</td>
+<td headers="SE" class="gt_row gt_right">0.065</td>
+<td headers="conf.low" class="gt_row gt_right">−0.228</td>
+<td headers="conf.high" class="gt_row gt_right"> 0.046</td>
+<td headers="chisq.value" class="gt_row gt_right"> 1.55</td>
+<td headers="p.value" class="gt_row gt_left">  0.21</td>
+<td headers="footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> </td>
+</tr>
+<tr>
+<td headers="x" class="gt_row gt_right"><br></td>
+<td headers="n" class="gt_row gt_right"><br></td>
+<td headers="proportion" class="gt_row gt_right"><br></td>
+<td headers="difference" class="gt_row gt_right">−0.242</td>
+<td headers="SE" class="gt_row gt_right">0.057</td>
+<td headers="conf.low" class="gt_row gt_right">−0.363</td>
+<td headers="conf.high" class="gt_row gt_right">−0.122</td>
+<td headers="chisq.value" class="gt_row gt_right">15.5 </td>
+<td headers="p.value" class="gt_row gt_left">  0.0001</td>
+<td headers="footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> </td>
+</tr>
+</tbody>
+<tfoot class="gt_footnotes">
+<tr>
+<td class="gt_footnote" colspan="10">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> Wilson's proportion test (two.sided), with 95% confidence intervals.</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="10">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> 2-sample test for equality of proportions with continuity correction (two.sided), with 95% confidence intervals.</td>
+    </tr>
+</tfoot>
+</table>
+</div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/tab_compact.html">tab_compact</a></span><span class="op">(</span>font.size <span class="op">=</span> <span class="fl">11</span>, padding <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<div id="vijbfglzvn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vijbfglzvn table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#vijbfglzvn thead, #vijbfglzvn tbody, #vijbfglzvn tfoot, #vijbfglzvn tr, #vijbfglzvn td, #vijbfglzvn th {
+  border-style: none;
+}
+
+#vijbfglzvn p {
+  margin: 0;
+  padding: 0;
+}
+
+#vijbfglzvn .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: 0;
+  margin-right: auto;
+  color: #333333;
+  font-size: 11px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#vijbfglzvn .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#vijbfglzvn .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 1px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#vijbfglzvn .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 2.5px;
+  padding-bottom: 3.5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#vijbfglzvn .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#vijbfglzvn .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#vijbfglzvn .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#vijbfglzvn .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#vijbfglzvn .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#vijbfglzvn .gt_group_heading {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#vijbfglzvn .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vijbfglzvn .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#vijbfglzvn .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#vijbfglzvn .gt_row {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#vijbfglzvn .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vijbfglzvn .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#vijbfglzvn .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#vijbfglzvn .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#vijbfglzvn .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vijbfglzvn .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#vijbfglzvn .gt_last_summary_row {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vijbfglzvn .gt_first_grand_summary_row {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_last_grand_summary_row_top {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#vijbfglzvn .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vijbfglzvn .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vijbfglzvn .gt_left {
+  text-align: left;
+}
+
+#vijbfglzvn .gt_center {
+  text-align: center;
+}
+
+#vijbfglzvn .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#vijbfglzvn .gt_font_normal {
+  font-weight: normal;
+}
+
+#vijbfglzvn .gt_font_bold {
+  font-weight: bold;
+}
+
+#vijbfglzvn .gt_font_italic {
+  font-style: italic;
+}
+
+#vijbfglzvn .gt_super {
+  font-size: 65%;
+}
+
+#vijbfglzvn .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#vijbfglzvn .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#vijbfglzvn .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#vijbfglzvn .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#vijbfglzvn .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#vijbfglzvn .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#vijbfglzvn .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#vijbfglzvn .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#vijbfglzvn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="x">x</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="proportion">proportion</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="difference">difference</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="chisq.value">chisq.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="footnote">footnote</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="x" class="gt_row gt_right">34</td>
+<td headers="n" class="gt_row gt_right">99</td>
+<td headers="proportion" class="gt_row gt_right">0.343</td>
+<td headers="difference" class="gt_row gt_right"><br></td>
+<td headers="SE" class="gt_row gt_right">0.048</td>
+<td headers="conf.low" class="gt_row gt_right"> 0.257</td>
+<td headers="conf.high" class="gt_row gt_right"> 0.441</td>
+<td headers="chisq.value" class="gt_row gt_right"><br></td>
+<td headers="p.value" class="gt_row gt_left"><br></td>
+<td headers="footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> </td>
+</tr>
+<tr>
+<td headers="x" class="gt_row gt_right">25</td>
+<td headers="n" class="gt_row gt_right">99</td>
+<td headers="proportion" class="gt_row gt_right">0.253</td>
+<td headers="difference" class="gt_row gt_right"><br></td>
+<td headers="SE" class="gt_row gt_right">0.044</td>
+<td headers="conf.low" class="gt_row gt_right"> 0.177</td>
+<td headers="conf.high" class="gt_row gt_right"> 0.346</td>
+<td headers="chisq.value" class="gt_row gt_right"><br></td>
+<td headers="p.value" class="gt_row gt_left"><br></td>
+<td headers="footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> </td>
+</tr>
+<tr>
+<td headers="x" class="gt_row gt_right">10</td>
+<td headers="n" class="gt_row gt_right">99</td>
+<td headers="proportion" class="gt_row gt_right">0.101</td>
+<td headers="difference" class="gt_row gt_right"><br></td>
+<td headers="SE" class="gt_row gt_right">0.030</td>
+<td headers="conf.low" class="gt_row gt_right"> 0.056</td>
+<td headers="conf.high" class="gt_row gt_right"> 0.176</td>
+<td headers="chisq.value" class="gt_row gt_right"><br></td>
+<td headers="p.value" class="gt_row gt_left"><br></td>
+<td headers="footnote" class="gt_row gt_right">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> </td>
+</tr>
+<tr>
+<td headers="x" class="gt_row gt_right"><br></td>
+<td headers="n" class="gt_row gt_right"><br></td>
+<td headers="proportion" class="gt_row gt_right"><br></td>
+<td headers="difference" class="gt_row gt_right">−0.091</td>
+<td headers="SE" class="gt_row gt_right">0.065</td>
+<td headers="conf.low" class="gt_row gt_right">−0.228</td>
+<td headers="conf.high" class="gt_row gt_right"> 0.046</td>
+<td headers="chisq.value" class="gt_row gt_right"> 1.55</td>
 <td headers="p.value" class="gt_row gt_left">  0.21</td>
 <td headers="footnote" class="gt_row gt_right">
 <span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>2</sup></span> </td>
@@ -3914,7 +5022,7 @@ is 2 significant digits, and 4 maximum digits.</p>
 </h3>
 <p>To not use the <code>gt</code> style output, <code>print</code> with
 <code>as_gt=FALSE</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>as_gt<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 10</span></span></span>
 <span><span class="co">#&gt;       x     n proportion difference     SE conf.low conf.high chisq.value</span></span>
@@ -3935,7 +5043,7 @@ is 2 significant digits, and 4 maximum digits.</p>
 loaded the <code>tibble</code> library, which loads as part of the
 <code>tidyverse</code>. There are several options for how to handle the
 footnotes.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 10</span></span></span>
 <span><span class="co">#&gt;       x     n proportion difference     SE conf.low conf.high chisq.value</span></span>
