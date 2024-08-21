@@ -18,6 +18,7 @@
 #' @importFrom gtsummary all_continuous
 #' @importFrom gtsummary all_categorical
 #' @importFrom gtsummary with_gtsummary_theme
+#' @importFrom gtsummary add_stat_label
 descriptive_statistics <- function(data, ..., digits=2, compact=TRUE) {
   theme_here <- list(
     "tbl_summary-arg:digits" = all_continuous() ~ digits,
