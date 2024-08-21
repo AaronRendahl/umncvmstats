@@ -23,7 +23,7 @@ devtools::check_mac_release()
 devtools::check_win_release()
 devtools::check_win_devel()
 
-pkgload::dev_help('one_proportion_test')
+pkgload::dev_help('one_proportion_inference')
 
 # https://github.com/ThinkR-open/prepare-for-cran
 attachment::att_amend_desc()

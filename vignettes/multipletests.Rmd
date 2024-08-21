@@ -47,6 +47,6 @@ combine_tests(
   one_t_test(wt ~ am|vs, data = mtcars2),
   two_t_test(wt ~ am, data = mtcars2),
   correlation_test(mpg ~ wt + hp, data=mtcars2),
-  one_proportion_test(vs ~ am|cyl, data=mtcars2)) |>
+  one_proportion_inference(vs ~ am|cyl, data=mtcars2)) |>
   as_gt() |> tab_compact()
 ```

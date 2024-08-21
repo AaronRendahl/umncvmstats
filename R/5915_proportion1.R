@@ -1,4 +1,4 @@
-#' One-sample proportion test
+#' One-sample proportion inference
 #'
 #' Compute the proportion of "successes" in a sample and the corresponding
 #' confidence interval. Optionally, compute a p-value for a
@@ -41,9 +41,9 @@
 #' \item{conf.high}{upper confidence bound}
 #' \item{null}{the specified null value (if specified)}
 #' \item{p.value}{the p-value of the test (if null specified)}
-#' @rdname one_proportion_test
+#' @rdname one_proportion_inference
 #' @export
-one_proportion_test.formula <- function(formula, data,
+one_proportion_inference.formula <- function(formula, data,
                                         success, all_success=FALSE,
                                         method = c("default", "wilson", "exact"),
                                         correct = FALSE,
@@ -77,15 +77,15 @@ one_proportion_test.formula <- function(formula, data,
   n <- length(x)
   map(success, function(lev) {
     k <- sum(x == lev)
-    one_proportion_test.default(k, n, method=method, correct=correct, alternative=alternative,
+    one_proportion_inference.default(k, n, method=method, correct=correct, alternative=alternative,
                                 conf.level=conf.level, null=null) |>
       mutate(.y=name, .y_value=lev)
   }) |> combine_tests_list()
 }
 
-#' @rdname one_proportion_test
+#' @rdname one_proportion_inference
 #' @export
-one_proportion_test.default <- function(x, n,
+one_proportion_inference.default <- function(x, n,
                                         method = c("default", "wilson", "exact"),
                                         correct = FALSE,
                                         alternative = c("two.sided", "less", "greater"),
@@ -123,11 +123,11 @@ one_proportion_test.default <- function(x, n,
   out
 }
 
-#' @rdname one_proportion_test
+#' @rdname one_proportion_inference
 #' @export
-one_proportion_test <- function(x, ...) { UseMethod("one_proportion_test") }
+one_proportion_inference <- function(x, ...) { UseMethod("one_proportion_inference") }
 
-#' @rdname one_proportion_test
+#' @rdname one_proportion_inference
 #' @importFrom stats prop.test
 #' @export
 wilson_test <- function(x, n, null,
@@ -167,7 +167,7 @@ wilson_test <- function(x, n, null,
            inference.vars=c("null", "chisq.value"))
 }
 
-#' @rdname one_proportion_test
+#' @rdname one_proportion_inference
 #' @importFrom stats binom.test
 #' @export
 binomial_test <- function(x, n, null,

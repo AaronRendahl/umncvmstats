@@ -23,9 +23,9 @@ library(umncvmstats)
 
 ```{r}
 a <- combine_tests(
-  one_proportion_test(34, 99),
-  one_proportion_test(25, 99),
-  one_proportion_test(10, 99),
+  one_proportion_inference(34, 99),
+  one_proportion_inference(25, 99),
+  one_proportion_inference(10, 99),
   two_proportion_test(c(25, 34), c(99,99)),
   two_proportion_test(c(10, 34), c(99,99)))
 ```

@@ -14,7 +14,7 @@ articles:
 reference:
 - title: Tests for Proportions
 - contents:
-  - one_proportion_test
+  - one_proportion_inference
   - two_proportion_test
   - paired_proportion_test
   - independence_test
