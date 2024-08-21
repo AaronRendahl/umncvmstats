@@ -3,6 +3,7 @@
 #' @param ... the various tests to be combined.
 #'
 #' @export
+#' @rdname combine_tests
 combine_tests <- function(...) {
   x <- list(...)
   about.vars <- lapply(x, \(xi) attr(xi, "about.vars")) |> unlist() |> unique()
@@ -13,6 +14,8 @@ combine_tests <- function(...) {
                            pri.vars=pri.vars, by.vars=by.vars)
 }
 
+#' @rdname combine_tests
+#' @param a list of tests to be combined.
 combine_tests_list <- function(x) {
   do.call(combine_tests, x)
 }

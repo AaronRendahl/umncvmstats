@@ -2,12 +2,17 @@
 % Please edit documentation in R/combine_tests.R
 \name{combine_tests}
 \alias{combine_tests}
+\alias{combine_tests_list}
 \title{Combine multiple tests together}
 \usage{
 combine_tests(...)
+
+combine_tests_list(x)
 }
 \arguments{
 \item{...}{the various tests to be combined.}
+
+\item{a}{list of tests to be combined.}
 }
 \description{
 Combine multiple tests together
