@@ -15,7 +15,7 @@ combine_tests <- function(...) {
 }
 
 #' @rdname combine_tests
-#' @param a list of tests to be combined.
+#' @param x a list of tests to be combined.
 combine_tests_list <- function(x) {
   do.call(combine_tests, x)
 }

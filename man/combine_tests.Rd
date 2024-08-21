@@ -12,7 +12,7 @@ combine_tests_list(x)
 \arguments{
 \item{...}{the various tests to be combined.}
 
-\item{a}{list of tests to be combined.}
+\item{x}{a list of tests to be combined.}
 }
 \description{
 Combine multiple tests together
