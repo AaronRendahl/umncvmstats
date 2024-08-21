@@ -25,7 +25,7 @@ reference:
   - paired_t_inference
 - title: Inference about Models
 - contents:
-  - correlation_test
+  - correlation_inference
   - matches("model")
   - diag_plots
 - title: Output

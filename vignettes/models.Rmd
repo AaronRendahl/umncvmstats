@@ -19,9 +19,9 @@ knitr::opts_chunk$set(
 library(umncvmstats)
 ```
 
-## Correlation tests
+## Inference about a correlation
 ```{r}
-correlation_test(mpg ~ wt + hp, data = mtcars2)
+correlation_inference(mpg ~ wt + hp, data = mtcars2)
 ```
 
 ## Model Creation

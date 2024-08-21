@@ -9,7 +9,7 @@
 #'
 #' @importFrom stats cor.test
 #' @export
-correlation_test <- function(formula, data,
+correlation_inference <- function(formula, data,
                              alternative = c("two.sided", "less", "greater"),
                              method = c("pearson", "kendall", "spearman"),
                              conf.level = 0.95, ...) {
