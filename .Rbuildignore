@@ -9,10 +9,10 @@
 ^doc$
 ^Meta$
 ^data-raw$
-_notes.R
-_exploration.R
-_tests.R
-_CRAN.R
+^_notes.R
+^_exploration.R
+^_tests.R
+^_CRAN.R
 ^vignettes-onhold$
 ^dev$
 ^revdep$
