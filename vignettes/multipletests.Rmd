@@ -25,15 +25,15 @@ In the one and two-sample tests (that is, when you're not fitting a model), you 
 that the test should be done on several variables. 
 
 ```{r}
-one_t_test(wt + mpg ~ am + vs, data = mtcars2)
-two_t_test(wt + mpg ~ am + vs, data = mtcars2)
+one_t_inference(wt + mpg ~ am + vs, data = mtcars2)
+two_t_inference(wt + mpg ~ am + vs, data = mtcars2)
 ```
 
 You can also use `|` to split the data set into groups before running the tests.
 
 ```{r}
-one_t_test(wt + mpg ~ am | cyl, data = mtcars2)
-two_t_test(wt + mpg ~ am | cyl, data = mtcars2)
+one_t_inference(wt + mpg ~ am | cyl, data = mtcars2)
+two_t_inference(wt + mpg ~ am | cyl, data = mtcars2)
 ```
 
 ## Combining output
@@ -44,8 +44,8 @@ meaningful things together.
 
 ```{r}
 combine_tests(
-  one_t_test(wt ~ am|vs, data = mtcars2),
-  two_t_test(wt ~ am, data = mtcars2),
+  one_t_inference(wt ~ am|vs, data = mtcars2),
+  two_t_inference(wt ~ am, data = mtcars2),
   correlation_test(mpg ~ wt + hp, data=mtcars2),
   one_proportion_inference(vs ~ am|cyl, data=mtcars2)) |>
   as_gt() |> tab_compact()
