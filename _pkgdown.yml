@@ -15,8 +15,8 @@ reference:
 - title: Tests for Proportions
 - contents:
   - one_proportion_inference
-  - two_proportion_test
-  - paired_proportion_test
+  - two_proportion_inference
+  - paired_proportion_inference
   - independence_test
 - title: Tests for Means
 - contents:

@@ -32,26 +32,26 @@ one_proportion_inference(vs ~ 1, data = mtcars2)
 one_proportion_inference(vs ~ am, data = mtcars2)
 ```
 
-## Two Proportion Test
+## Inference for Two Proportions
 
 It will automatically choose between the asymptotic test (with or without continuity correction) and Fisher's test.
 
 ```{r}
-two_proportion_test(vs ~ am, data = mtcars2)
+two_proportion_inference(vs ~ am, data = mtcars2)
 ```
 
 ### together in one table
 ```{r}
 combine_tests(
   one_proportion_inference(vs ~ am, data = mtcars2),
-  two_proportion_test(vs ~ am, data = mtcars2))
+  two_proportion_inference(vs ~ am, data = mtcars2))
 ```
 
 ## Pairwise Proportion Tests
 ```{r}
 combine_tests(
   one_proportion_inference(vs ~ cyl, data = mtcars2),
-  pairwise_proportion_test(vs ~ cyl, data = mtcars2))
+  pairwise_proportion_inference(vs ~ cyl, data = mtcars2))
 ```
 
 ## Paired Proportion Test (McNemar's)
@@ -59,7 +59,7 @@ combine_tests(
 combine_tests(
   one_proportion_inference(pass1 + pass2 ~ 1, data = passfail),
   one_proportion_inference(pass2 ~ pass1, data = passfail, all_success = TRUE),
-  paired_proportion_test(pass2 - pass1 ~ 1, data = passfail))
+  paired_proportion_inference(pass2 - pass1 ~ 1, data = passfail))
 ```
 
 ## Independence Test

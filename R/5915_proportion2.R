@@ -1,4 +1,4 @@
-#' Two-sample proportion test
+#' Two-sample proportion inference
 #'
 #' Compute the absolute difference in proportion between two samples, the
 #' corresponding confidence interval, and a p-value for the null hypothesis
@@ -33,10 +33,10 @@
 #' \item{conf.high}{upper confidence bound}
 #' \item{chisq.value}{the chi-squared value (if chi-squared method used)}
 #' \item{p.value}{the p-value of the test}
-#' @rdname two_proportion_test
+#' @rdname two_proportion_inference
 #' @importFrom forcats fct_relevel
 #' @export
-two_proportion_test.formula <- function(formula, data, success,
+two_proportion_inference.formula <- function(formula, data, success,
                                         method=c("default", "chisq", "exact"),
                                         correct = TRUE,
                                         alternative = c("two.sided", "less", "greater"),
@@ -70,7 +70,7 @@ two_proportion_test.formula <- function(formula, data, success,
   y <- y[ok]
   n <- length(x)
   m <- table(x, y)
-  result <- two_proportion_test.default(m, method=method, correct=correct,
+  result <- two_proportion_inference.default(m, method=method, correct=correct,
                                         alternative=alternative, conf.level=conf.level, ...)
   result <- result |> mutate(.y = y.name, .y_value=success, .before=1) |>
     mutate(.x = x.name,
@@ -81,13 +81,13 @@ two_proportion_test.formula <- function(formula, data, success,
 #' @param x vector with count of successes in the two groups, or a 2x2 matrix with the counts.
 #' @param n vector with count of total trials in the two groups.
 #' @param conf.adjust adjust confidence bounds for `conf.adjust` simultaneous intervals using the Bonferroni method.
-#'   Used internally by `pairwise_proportion_test`; should only rarely be used by users.
+#'   Used internally by `pairwise_proportion_inference`; should only rarely be used by users.
 #'
 #' @importFrom stats fisher.test
 #' @importFrom stats prop.test
-#' @rdname two_proportion_test
+#' @rdname two_proportion_inference
 #' @export
-two_proportion_test.default <- function(x, n,
+two_proportion_inference.default <- function(x, n,
                                         method=c("default", "chisq", "exact"),
                                         correct = TRUE,
                                         alternative = c("two.sided", "less", "greater"),
@@ -133,17 +133,17 @@ two_proportion_test.default <- function(x, n,
   as_atest(result, estimate.vars="difference", inference.vars="chisq.value")
 }
 
-#' @rdname two_proportion_test
+#' @rdname two_proportion_inference
 #' @export
-two_proportion_test <- function(x, ...) { UseMethod("two_proportion_test") }
+two_proportion_inference <- function(x, ...) { UseMethod("two_proportion_inference") }
 
-#' @rdname two_proportion_test
+#' @rdname two_proportion_inference
 #' @param adjust method of adjusting p-values for multiple comparisons, one of "`bonferroni`", "`holm`", or "`none`".
 #' @param reverse reverse the direction of pairwise comparisons.
 #' @export
-pairwise_proportion_test <- function(formula, data, adjust=c("bonferroni", "holm", "none"), reverse=FALSE, ...) {
+pairwise_proportion_inference <- function(formula, data, adjust=c("bonferroni", "holm", "none"), reverse=FALSE, ...) {
   adjust <- match.arg(adjust)
-  pairwise(formula, data, "two_proportion_test", adjust=adjust, reverse=reverse, ...)
+  pairwise(formula, data, "two_proportion_inference", adjust=adjust, reverse=reverse, ...)
 }
 
 #' Paired proportion test (McNemar's)
@@ -163,7 +163,7 @@ pairwise_proportion_test <- function(formula, data, adjust=c("bonferroni", "holm
 #' @param conf.level if desired, confidence level of the returned confidence interval. Must be a single number between 0 and 1.
 #'
 #' @export
-paired_proportion_test <- function(formula, data, success,
+paired_proportion_inference <- function(formula, data, success,
                                    method = c("default", "wilson", "exact"),
                                    alternative = c("two.sided", "less", "greater"),
                                    correct = FALSE,
