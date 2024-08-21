@@ -30,6 +30,32 @@ a <- combine_tests(
   two_proportion_test(c(10, 34), c(99,99)))
 ```
 
+## Rounding
+
+It's trickier than I think it should be to get R to output a reasonable number of digits.
+This package makes a guess that should be reasonable in most, but not all, cases.
+
+To modify the number of digits that are output, use the `set_digits` function. You can either specify the number of significant digits or the number of decimal places. By default, digits for the estimate, the SE, and the confidence bounds are set for all rows.
+
+```{r}
+a |> set_digits(digits=2)
+a |> set_digits(decimals=2)
+```
+
+Specific values can be specified using the column names and row numbers.
+```{r}
+a |> set_digits(decimals=5, columns="proportion", rows=1:2)
+```
+
+You can also set the number of decimals based on significant digits for a given column or columns; for example, when created, the decimals are set based on the number of significant digits needed for the SE and ME columns, where ME (the margin of error) is calculated from conf.high and conf.low.
+```{r}
+a |> set_digits(digits=2, by=c("SE", "ME"))
+```
+
+### Rounding p-values
+Rounding p-values are currently a special case and are handled within the `gt` mechanism, as follows.
+
+
 ## About output from this package
 
 All output from statistical tests in this package are stored as a special object (an `atest`) that knows how to print itself in a nice way.
@@ -50,14 +76,7 @@ a |> as_gt()
 
 There are also a few useful functions in this package, as follows.
 
-### Rounding
-
-The `fmt_numbers` function will format any numbers (except for integers and p-values), with either a fixed number of decimal places or significant figures.
-
-```{r}
-a |> as_gt() |> fmt_numbers(decimals=3)
-a |> as_gt() |> fmt_numbers(n_sigfig=3)
-```
+### Formatting p-values
 
 The `fmt_pvalue` function formats p-values (anything named `p.value` or `p.adjust`), with `digits` significant digits, up to `max.digits` decimals. The default is 2 significant digits, and 4 maximum digits.
 ```{r}
