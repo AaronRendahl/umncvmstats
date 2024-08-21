@@ -69,12 +69,12 @@
     
     
 <div class="section level2">
-<h2 id="one-proportion-test">One Proportion Test<a class="anchor" aria-label="anchor" href="#one-proportion-test"></a>
+<h2 id="inference-for-one-proportion">Inference for One Proportion<a class="anchor" aria-label="anchor" href="#inference-for-one-proportion"></a>
 </h2>
 <p>It will automatically choose between Wilson’s CI and the “exact” CI.
 No null hypothesis is tested by default.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_proportion_inference.html">one_proportion_inference</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
 <div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#mwlefoodfi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -552,7 +552,7 @@ No null hypothesis is tested by default.</p>
 <h3 id="separately-by-another-categorical-variable">Separately by another categorical variable<a class="anchor" aria-label="anchor" href="#separately-by-another-categorical-variable"></a>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_proportion_inference.html">one_proportion_inference</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
 <div id="eexombwkke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#eexombwkke table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1529,7 +1529,7 @@ without continuity correction) and Fisher’s test.</p>
 </h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/one_proportion_inference.html">one_proportion_inference</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="../reference/two_proportion_test.html">two_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div id="kgufivjubq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#kgufivjubq table {
@@ -2061,7 +2061,7 @@ without continuity correction) and Fisher’s test.</p>
 </h2>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/one_proportion_inference.html">one_proportion_inference</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="../reference/two_proportion_test.html">pairwise_proportion_test</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div id="txvafbsnay" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#txvafbsnay table {
@@ -2653,8 +2653,8 @@ without continuity correction) and Fisher’s test.</p>
 </h2>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">pass1</span> <span class="op">+</span> <span class="va">pass2</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">passfail</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">pass2</span> <span class="op">~</span> <span class="va">pass1</span>, data <span class="op">=</span> <span class="va">passfail</span>, all_success <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/one_proportion_inference.html">one_proportion_inference</a></span><span class="op">(</span><span class="va">pass1</span> <span class="op">+</span> <span class="va">pass2</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">passfail</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/one_proportion_inference.html">one_proportion_inference</a></span><span class="op">(</span><span class="va">pass2</span> <span class="op">~</span> <span class="va">pass1</span>, data <span class="op">=</span> <span class="va">passfail</span>, all_success <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="../reference/paired_proportion_test.html">paired_proportion_test</a></span><span class="op">(</span><span class="va">pass2</span> <span class="op">-</span> <span class="va">pass1</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">passfail</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div id="orehalspkz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#orehalspkz table {
@@ -3247,7 +3247,7 @@ without continuity correction) and Fisher’s test.</p>
 Fisher’s test.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="../reference/one_proportion_test.html">one_proportion_test</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">~</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars2</span>, all_success <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/one_proportion_inference.html">one_proportion_inference</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">~</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars2</span>, all_success <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="../reference/independence_test.html">independence_test</a></span><span class="op">(</span><span class="va">cyl</span> <span class="op">~</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div id="cbwjcfdjag" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#cbwjcfdjag table {
