@@ -20,9 +20,9 @@ reference:
   - independence_test
 - title: Tests for Means
 - contents:
-  - one_t_test
-  - two_t_test
-  - paired_t_test
+  - one_t_inference
+  - two_t_inference
+  - paired_t_inference
 - title: Inference about Models
 - contents:
   - correlation_test

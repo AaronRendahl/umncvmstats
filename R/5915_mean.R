@@ -16,7 +16,7 @@
 #'
 #' @importFrom stats t.test
 #' @export
-one_t_test <- function(formula, data,
+one_t_inference <- function(formula, data,
                        alternative = c("two.sided", "less", "greater"),
                        null, conf.level = 0.95,
                        backtransform = TRUE) {
@@ -82,10 +82,10 @@ one_t_test <- function(formula, data,
 #'     the resulting estimate and confidence interval bounds, so that they
 #'     report the ratio of the geometric means rather than the difference on the log scale.
 #' @param conf.adjust adjust confidence bounds for `conf.adjust` simultaneous intervals using the Bonferroni method.
-#'   Used internally by `pairwise_t_test`; should only rarely be used by users.
+#'   Used internally by `pairwise_t_inference`; should only rarely be used by users.
 #'
 #' @export
-two_t_test <- function(formula, data,
+two_t_inference <- function(formula, data,
                        alternative = c("two.sided", "less", "greater"),
                        null = 0,
                        var.equal = FALSE,
@@ -135,10 +135,10 @@ two_t_test <- function(formula, data,
 #' @param adjust method of adjusting p-values for multiple comparisons, one of "`bonferroni`", "`holm`", or "`none`".
 #' @param reverse reverse the direction of pairwise comparisons.
 #' @param ... further arguments to be passed to submethods, as appropriate.
-#' @rdname two_t_test
+#' @rdname two_t_inference
 #' @export
-pairwise_t_test <- function(formula, data, adjust=c("bonferroni", "holm", "none"), reverse=FALSE, ...) {
-  pairwise(formula, data, "two_t_test", adjust=adjust, reverse=reverse, ...)
+pairwise_t_inference <- function(formula, data, adjust=c("bonferroni", "holm", "none"), reverse=FALSE, ...) {
+  pairwise(formula, data, "two_t_inference", adjust=adjust, reverse=reverse, ...)
 }
 
 #' Paired t-test
@@ -159,7 +159,7 @@ pairwise_t_test <- function(formula, data, adjust=c("bonferroni", "holm", "none"
 #'     report the ratio of the geometric means rather than the difference on the log scale.
 #'
 #' @export
-paired_t_test <- function(formula, data,
+paired_t_inference <- function(formula, data,
                           alternative = c("two.sided", "less", "greater"),
                           null = 0,
                           conf.level = 0.95,
