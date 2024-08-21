@@ -36,7 +36,7 @@ reference:
   - tab_compact
   - set_digits
   - format_signif
-  - fmt_numbers
+  - format_pvalue
 - title: Misc
 - contents:
   - descriptive_statistics

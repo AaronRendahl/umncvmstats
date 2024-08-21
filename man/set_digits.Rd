@@ -10,8 +10,9 @@ set_digits(
   decimals,
   rows = seq_len(nrow(x)),
   columns = c("_estimate_", "SE", "conf.low", "conf.high"),
-  by = c("SE", "ME"),
-  by_row = TRUE
+  by = NA,
+  by_row = TRUE,
+  overwrite = TRUE
 )
 }
 \arguments{
@@ -30,6 +31,8 @@ corresponding to the estimate, the SE, and the confidence intervals.}
 
 \item{by_row}{Whether or not to compute the significant digits by row (the default),
 or to use the number of digits such that all rows have at least this many.}
+
+\item{overwrite}{Whether or not to overwrite an existing digits specification.}
 }
 \description{
 Set desired digits for values in an atest
