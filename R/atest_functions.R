@@ -41,7 +41,7 @@ as.data.frame.atest <- function(x, ...) {
 #' @export
 knit_print.atest <- function(x, options, inline=FALSE, ...) {
   if(isFALSE(options$as_gt)) {
-    print(out, as_gt=FALSE)
+    print(x, as_gt=FALSE)
   } else {
     knit_print(as_gt(x), options=options, inline=inline, ...)
   }
