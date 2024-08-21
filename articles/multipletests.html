@@ -75,7 +75,7 @@
 model), you can use <code>+</code> to specify that the test should be
 done on several variables.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">+</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_t_inference.html">one_t_inference</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">+</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
 <div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#mwlefoodfi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -624,7 +624,7 @@ done on several variables.</p>
 </table>
 </div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/two_t_test.html">two_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">+</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/two_t_inference.html">two_t_inference</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">+</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">+</span> <span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
 <div id="eexombwkke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#eexombwkke table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1145,7 +1145,7 @@ done on several variables.</p>
 <p>You can also use <code>|</code> to split the data set into groups
 before running the tests.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">+</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">|</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/one_t_inference.html">one_t_inference</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">+</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">|</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
 <div id="ulbfdpbcyv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ulbfdpbcyv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1738,7 +1738,7 @@ before running the tests.</p>
 </table>
 </div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/two_t_test.html">two_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">+</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">|</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/two_t_inference.html">two_t_inference</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">+</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">|</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
 <div id="kgufivjubq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#kgufivjubq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -2294,9 +2294,9 @@ meaningfully, but it’s up to you to combine meaningful things
 together.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="../reference/one_t_test.html">one_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">am</span><span class="op">|</span><span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="../reference/two_t_test.html">two_t_test</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="../reference/correlation_test.html">correlation_test</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">hp</span>, data<span class="op">=</span><span class="va">mtcars2</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/one_t_inference.html">one_t_inference</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">am</span><span class="op">|</span><span class="va">vs</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/two_t_inference.html">two_t_inference</a></span><span class="op">(</span><span class="va">wt</span> <span class="op">~</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars2</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/correlation_inference.html">correlation_inference</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span> <span class="op">+</span> <span class="va">hp</span>, data<span class="op">=</span><span class="va">mtcars2</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="../reference/one_proportion_inference.html">one_proportion_inference</a></span><span class="op">(</span><span class="va">vs</span> <span class="op">~</span> <span class="va">am</span><span class="op">|</span><span class="va">cyl</span>, data<span class="op">=</span><span class="va">mtcars2</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/as_gt.html">as_gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/tab_compact.html">tab_compact</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="txvafbsnay" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
