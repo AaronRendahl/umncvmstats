@@ -9,13 +9,13 @@ format_signif(x, digits = 3, max_small = 6, max_big = 6, keep_big = digits)
 \arguments{
 \item{x}{the numbers to format}
 
-\item{digits}{XX}
+\item{digits}{how many significant digits to show}
 
-\item{max_small}{XX}
+\item{max_small}{maximum number of decimals to show before using scientific notation}
 
-\item{max_big}{XX}
+\item{max_big}{maxiumum number of places to show (for large numbers) before using scientific notation}
 
-\item{keep_big}{XX}
+\item{keep_big}{number of significant digits to show when using scientific notation for large numbers}
 }
 \description{
 Format to significant digits

@@ -33,10 +33,10 @@ format_signif1 <- function(x, digits=3, max_small=6, max_big=6, keep_big=digits)
 #' Format to significant digits
 #'
 #' @param x the numbers to format
-#' @param digits XX
-#' @param max_small XX
-#' @param max_big XX
-#' @param keep_big XX
+#' @param digits how many significant digits to show
+#' @param max_small maximum number of decimals to show before using scientific notation
+#' @param max_big maxiumum number of places to show (for large numbers) before using scientific notation
+#' @param keep_big number of significant digits to show when using scientific notation for large numbers
 #'
 #' @export
 format_signif <- function (x, digits = 3, max_small = 6, max_big = 6, keep_big = digits) {
