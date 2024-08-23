@@ -20,7 +20,7 @@ skim <- function(data, ..., .data_name = NULL) {
   out
 }
 
-#' @import skimr df_name
+#' @importFrom skimr df_name
 skimr_process_data_name <- function (object) {
   raw_name <- df_name(object)
   no_ticks <- gsub("`", "", raw_name)
