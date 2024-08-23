@@ -51,10 +51,12 @@ print.askim_df <- function(x, viewer=TRUE, ...) {
   }
 }
 
+#' @importFrom knitr asis_output
 #' @export
 knit_print.askim_df <- function(x, ...) {
   s <- summary(x)
   a1 <- sprintf("**Summary of %s:**\n\n%d rows, %d columns", s$data_name, s$data_rows, s$data_cols)
   a2 <- NextMethod(options=list(skimr_include_summary=FALSE))
-  paste(a1, a2)
+  a <- paste(a1, a2)
+  asis_output(a)
 }
