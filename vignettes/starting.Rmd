@@ -1,0 +1,94 @@
+---
+title: "Getting Started with R"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with R}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+#| include: false
+#| message: false
+library(conflicted)
+library(tidyverse)
+library(umncvmstats)
+conflicts_prefer(dplyr::select)
+```
+
+## Setting up R and Rstudio
+
+### Installing R and Rstudio
+
+Download and install R <https://cran.rstudio.com>
+
+Download and install Rstudio
+<https://posit.co/download/rstudio-desktop/>
+
+Install needed packages. Don't worry about warning about Rtools from
+devtools.
+
+```{r}
+#| eval: false
+install.packages("tidyverse")
+install.packages("devtools")
+devtools::install_github("AaronRendahl/umncvmstats")
+```
+
+### Setting preferences
+
+There are a couple important preferences to set.
+
+Under either preferences (PC?) or Tools (Mac), select Global Options.
+
+For General (on the left side), and Basic (on the top):
+
+-   unselect “Restore .RData into workspace at startup”
+
+-   for “Save workspace to .RData on exit” select “Never”
+
+For "R Markdown" (on the left side),
+
+-   unselect "Show output inline for all R Markdown documents"
+
+### File Management
+
+Be able to download a file and put it somewhere. Be able to find your R
+files.
+
+### Creating a Project
+
+All files in main folder, if want to use subfolders, talk to us about
+"here".
+
+### Starting R
+
+## Basic R/Rstudio
+
+### Introduction to Panes
+
+### Basic R
+
+### Reading data
+
+```{r}
+skim(mtcars2)
+```
+
+## Basic Quarto
+
+### Creating a new assignment
+
+```{r eval=FALSE}
+new_assignment("yourname_HW01", "Homework 1", "Your Name")
+```

@@ -5,11 +5,12 @@ articles:
 - title: Articles
   navbar: ~
   contents:
+  - starting
+  - graphics
   - proportions
   - means
   - models
   - output
-  - graphics
   - multipletests
 reference:
 - title: Tests for Proportions
