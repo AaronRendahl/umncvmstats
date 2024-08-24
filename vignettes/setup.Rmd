@@ -57,6 +57,12 @@ install.packages("devtools")
 devtools::install_github("AaronRendahl/umncvmstats")
 ```
 
+You only need to run these lines once, you do not need to run them every time 
+you open R.
+
+However, I may ask you to reinstall the `umncvmstats` package during the semester; it's
+possible as the class uses it, we'll find things that need to be updated.
+
 ### For updated installations only:
 If you had a previous version of R that you recently updated to most recent version,
 you should also make sure that all your packages are updated, using this code.
@@ -105,16 +111,47 @@ to try inline output and see if you prefer it.
 knitr::include_graphics("preferences2.png")
 ```
 
-### File Management
+## File Management
 
-Be able to download a file and put it somewhere. Be able to find your R
-files.
+To be able to work with data files and R, you need to be able to be use your
+file manager (Finder on Mac) to navigate to files and folders, move and rename files, 
+and find files you've downloaded.
 
-### Creating a Project
+Let's set up a folder for you to use for all your R code and assignments in this class,
+and practice downloading files and moving them to this folder.
 
-All files in main folder, if want to use subfolders, talk to us about
-"here".
+1. Decide where you want your files for this class to be and use your file manager
+to create a new folder there. Computers sometimes have issues with spaces in filenames,
+so I recommend using only letters, numbers, and underscores for the name of this folder. For example, "VMED5915_Fall2024".
 
-### Starting R
+2. Download the following file and move it in this folder. 
+On most systems it will default to saving in a "Downloads" folder; find the file
+there and move it to the folder you just created.
+You may also be able to use "Save File As" to save it there directly.
+
+http://www.stat.umn.edu/~rend0020/data/books1.csv
+
+3. You also may need to download files from Google Drive. That can be a little different, so let's try that too. Go to this Google Drive folder and download the `books.xlsx` file, and move it to your class folder.
+
+https://drive.google.com/drive/folders/1EViFHfhuxpKpte4IQXHoG_Ck_RgUC_rx?usp=drive_link
 
 
+Note that I'm having you put all your files in the main folder; if want to use subfolders, ask about the "here" package, which helps your files to be found no matter how your files are arranged.
+
+## Creating a Project
+
+Now that you have a folder for this class, you need to tell Rstudio that that folder is the one you want to use for everything. In Rstudio, this folder will be called a "project". Using a project really helps with reproducibility, and helps Rstudio find the files it needs to work properly (though it can have trouble with subfolders, so if you want to use subfolders, ask about the `here` package).
+
+* Open Rstudio and go to File > New Project. Then select "Existing Directory" and choose the folder you created for this class.
+
+This will create a new file ending in `Rproj` in the folder you created and open Rstudio in that project folder. Check to make sure it's in the desired project by looking at the upper right corner of Rstudio, it should say the name of your folder there.
+
+In the lower right pane you should also see a list of the files in this folder, which should include the Rproj file that Rstudio just created, along with the files you downloaded earlier.
+
+## Starting R
+
+It's important that every time you start Rstudio to work on things for this class that you open this project file. There's (at least) two ways to do that; you can either use your file manager to find the folder you created and open the Rproj file; assuming your installation worked properly, that should open R within that project. Alternatively, you can use the File > Open Project or File > Recent Projects menus. These can also be found in the upper right where the current project name is shown.
+
+* Try closing Rstudio and reopening it in the project for this class. Check the upper right corner and the files pane to make sure it's open properly.
+
+I recommend one of those methods for opening a project, especially when one has multiple projects. However, if you want to always open in this specific project, use the preference in Tools > Global Options > General > Basic to set the "Restore most recently opened project at setup" option.
