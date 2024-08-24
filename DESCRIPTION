@@ -43,7 +43,8 @@ Suggests:
     here,
     lubridate,
     rmarkdown,
-    tidyverse
+    tidyverse,
+    xfun
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
