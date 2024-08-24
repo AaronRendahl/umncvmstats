@@ -35,20 +35,26 @@ You need both; "R" is the software underneath that actually does the work;
 "Rstudio" is the interface that makes the doing the work much easier.
 
 For Fall 2024, you should have R version 4.4.1 and Rstudio version 2024.04.2 Build 764.
-You can check the version of R by checking the Console pane when you start Rstudio, or
-by typing `R.version.string` in the console. You can check the version of Rstudio using Help > About Rstudio, or by by typing `RStudio.Version()$version` in the console.
+You can check the version of R by checking the Console pane when you start Rstudio, and the version of Rstudio using Help > About Rstudio. You can also use the following commands in the console.
+
+```{r}
+#| eval: false
+R.version.string
+RStudio.Version()$version
+```
 
 ## Installing packages
 
 R has many add-on packages that allow one to do more specialized tasks or
 make every-day tasks easier. We'll be using a set of packages called the
-"tidyverse", and a package specifically for this course called "umncvmstats".
+`tidyverse`, and a package specifically for this course called `umncvmstats` (which needs the `devtools` package for installation.)
 
-To install them, start Rstudio and run these three lines into the console.
-Each of these will download and install not only the package, but all
+To install them, start Rstudio and run these three lines in the console, one at a time. (The console is in the left pane; we'll do a fuller introduction to the other panes later.)
+
+Each of these lines will download and install not only the package, but all
 other packages that it depends on it, so it can take a while (minutes, not hours).
 
-The "devtools" installation may give you a warning about "Rtools"; this can be ignored.
+The `devtools` installation may give you a warning about `Rtools`; this can be ignored.
 
 ```{r}
 #| eval: false
@@ -115,26 +121,30 @@ knitr::include_graphics("preferences2.png")
 
 To be able to work with data files and R, you need to be able to be use your
 file manager (Finder on Mac) to navigate to files and folders, move and rename files, 
-and find files you've downloaded.
+and find and open files you've downloaded.
 
 Let's set up a folder for you to use for all your R code and assignments in this class,
-and practice downloading files and moving them to this folder.
+and practice downloading some test files and moving them to this folder. 
+
+Close Rstudio before doing this; these are tasks in your web browser and file manager, not Rstudio.
 
 1. Decide where you want your files for this class to be and use your file manager
 to create a new folder there. Computers sometimes have issues with spaces in filenames,
-so I recommend using only letters, numbers, and underscores for the name of this folder. For example, "VMED5915_Fall2024".
+so I recommend using only letters, numbers, and underscores for the name of this folder. For example, `VMED5915_Fall2024`.
 
 2. Download the following file and move it in this folder. 
 On most systems it will default to saving in a "Downloads" folder; find the file
 there and move it to the folder you just created.
 You may also be able to use "Save File As" to save it there directly.
 
-http://www.stat.umn.edu/~rend0020/data/books1.csv
++ http://www.stat.umn.edu/~rend0020/5915_data/books1.csv
++ http://www.stat.umn.edu/~rend0020/5915_data/books1.xlsx
 
-3. You also may need to download files from Google Drive. That can be a little different, so let's try that too. Go to this Google Drive folder and download the `books.xlsx` file, and move it to your class folder.
+3. You also may need to download files from Google Drive. That can be a little different, so let's try that too. Go to this Google Drive folder and download the `books.csv` and `books.xlsx` files, and move them to your class folder.
 
-https://drive.google.com/drive/folders/1EViFHfhuxpKpte4IQXHoG_Ck_RgUC_rx?usp=drive_link
++ [Link to Google Drive data folder](https://drive.google.com/drive/folders/1EViFHfhuxpKpte4IQXHoG_Ck_RgUC_rx?usp=drive_link){target="_blank"}
 
+You should now have four test files in your folder for this class; we'll try opening them later.
 
 Note that I'm having you put all your files in the main folder; if want to use subfolders, ask about the "here" package, which helps your files to be found no matter how your files are arranged.
 
@@ -155,3 +165,49 @@ It's important that every time you start Rstudio to work on things for this clas
 * Try closing Rstudio and reopening it in the project for this class. Check the upper right corner and the files pane to make sure it's open properly.
 
 I recommend one of those methods for opening a project, especially when one has multiple projects. However, if you want to always open in this specific project, use the preference in Tools > Global Options > General > Basic to set the "Restore most recently opened project at setup" option.
+
+## Introduction to the Panes
+
+When you first open Rstudio, you'll see three panes, each with several tabs.
+
+The left pane is for the console; this is where you'll type commands and view text-based output. I expect us to only use this tab in this pane.
+
+The upper right pane is for the "Environment"; this shows a list of the objects that R has in memory at the current time. I expect us to only use this tab in this pane.
+
+The lower right pane is for the "Files" in the current project; this is also where plot-based output will appear (in the "Plots" tab), formatted output will appear (in the "Viewer" tab), and help will appear (in the "Help" tab). You can also see (and install) packages from the "Packages" tab.
+
+When files are opened or data sets are viewed, the console pane will drop to the lower left, and a fourth pane will appear in the upper right, with tabs for the files and data sets.
+
+```{r}
+#| echo: false
+#| fig.alt: Screenshot of the Rstudio Panes
+#| out.width: "100%"
+knitr::include_graphics("panes3.png")
+```
+
+## Opening data files
+
+Finally, we'll confirm that R can open each of the files you downloaded earlier.
+Run the following lines in the console. Running the first two lines, to load the excel files, should result in no output; running the second two lines, to open the csv files, should output the number of rows and columns and the column specification.
+
+```{r, eval=FALSE}
+d1 <- readxl::read_excel("books.xlsx")
+d2 <- readxl::read_excel("books1.xlsx")
+d3 <- readr::read_csv("books.csv")
+d4 <- readr::read_csv("books1.csv")
+```
+
+In the upper right pane, click on the environment tab, and then click on the names `d1` through `d4` in turn; they should each open a tab in the top left pane to display the spreadsheet. (Be sure to click on the name to open the tab; clicking on the arrow will instead expand a list of the variables, which can also be useful.) They should all have four variables, `volume`, `area`, `weight`, and `cover`.
+
+```{r}
+#| echo: false
+#| fig.alt: Screenshot of Viewing a Data Set
+#| out.width: "100%"
+knitr::include_graphics("panes4.png")
+```
+
+Note that you can't edit data directly in Rstudio using this view; this is only for viewing the data set. That might seem odd, but as we'll see, we'll only interact with R using typed commands to ensure reproducibility.
+
+Assuming that worked, you can delete these test files. Use your file manager to do so, and then click the circular arrow in the top right of lower pane (on the Files tab) to update the listing of the files in Rstudio. There's also some rudimentary file operations available in that pane, but not as robust as in your file manager.
+
+Your R/Rstudio setup should now be ready to go!
