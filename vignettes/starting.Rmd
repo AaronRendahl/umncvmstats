@@ -1,0 +1,39 @@
+---
+title: "Getting Started with R and Quarto"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with R and Quarto}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+#| include: false
+#| message: false
+library(conflicted)
+library(tidyverse)
+library(umncvmstats)
+conflicts_prefer(dplyr::select)
+```
+
+## Introduction to Panes
+
+## Basic R
+
+## Basic Quarto
+
+## Creating a new assignment
+
+```{r eval=FALSE}
+new_assignment("yourname_HW01", "Homework 1", "Your Name")
+```
