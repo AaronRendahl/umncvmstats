@@ -1,8 +1,8 @@
 ---
-title: "Multiple Tests"
+title: "Running Multiple Tests"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Multiple Tests}
+  %\VignetteIndexEntry{Running Multiple Tests}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

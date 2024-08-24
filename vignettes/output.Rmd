@@ -1,8 +1,8 @@
 ---
-title: "Controlling Output"
+title: "Formatting Output"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Controlling Output}
+  %\VignetteIndexEntry{Formatting Output}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
