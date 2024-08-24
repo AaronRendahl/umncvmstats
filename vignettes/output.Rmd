@@ -53,10 +53,10 @@ a |> set_digits(digits=2, by=c("SE", "ME"))
 ```
 
 ### Rounding p-values
-Rounding p-values are currently a special case and are handled within the `gt` mechanism, as follows.
+Rounding p-values are currently handled within the `gt` mechanism, as described below.
 
 
-## About output from this package
+## Formatting output from this package
 
 All output from statistical tests in this package are stored as a special object (an `atest`) that knows how to print itself in a nice way.
 
@@ -102,9 +102,11 @@ To not use the `gt` style output, `print` with `as_gt=FALSE`.
 a |> print(as_gt=FALSE)
 ```
 
-### Raw Table
+## Raw Table
 
 To get the raw table, use `as_tibble`. You'll need to have loaded the `tibble` library, which loads as part of the `tidyverse`. There are several options for how to handle the footnotes.
+
+This is useful when further processing or graphics based on output is desired.
 
 ```{r}
 a |> as_tibble()
