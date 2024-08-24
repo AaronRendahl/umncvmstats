@@ -5,8 +5,8 @@ articles:
 - title: Articles
   navbar: ~
   contents:
+  - setup
   - starting
-  - starting2
   - graphics
   - proportions
   - means
