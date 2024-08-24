@@ -1,8 +1,8 @@
 ---
-title: "Getting Started with R"
+title: "Setting up R and Rstudio"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Getting Started with R}
+  %\VignetteIndexEntry{Setting up R and Rstudio}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -26,17 +26,29 @@ library(umncvmstats)
 conflicts_prefer(dplyr::select)
 ```
 
-## Setting up R and Rstudio
+## Installing R and Rstudio
 
-### Installing R and Rstudio
-
-Download and install R <https://cran.rstudio.com>
-
-Download and install Rstudio
+Download and install both R and Rstudio. See links here:
 <https://posit.co/download/rstudio-desktop/>
 
-Install needed packages. Don't worry about warning about Rtools from
-devtools.
+You need both; "R" is the software underneath that actually does the work; 
+"Rstudio" is the interface that makes the doing the work much easier.
+
+For Fall 2024, you should have R version 4.4.1 and Rstudio version 2024.04.2 Build 764.
+You can check the version of R by checking the Console pane when you start Rstudio, or
+by typing `R.version.string` in the console. You can check the version of Rstudio using Help > About Rstudio, or by by typing `RStudio.Version()$version` in the console.
+
+## Installing packages
+
+R has many add-on packages that allow one to do more specialized tasks or
+make every-day tasks easier. We'll be using a set of packages called the
+"tidyverse", and a package specifically for this course called "umncvmstats".
+
+To install them, start Rstudio and run these three lines into the console.
+Each of these will download and install not only the package, but all
+other packages that it depends on it, so it can take a while (minutes, not hours).
+
+The "devtools" installation may give you a warning about "Rtools"; this can be ignored.
 
 ```{r}
 #| eval: false
@@ -45,21 +57,53 @@ install.packages("devtools")
 devtools::install_github("AaronRendahl/umncvmstats")
 ```
 
-### Setting preferences
+### For updated installations only:
+If you had a previous version of R that you recently updated to most recent version,
+you should also make sure that all your packages are updated, using this code.
 
-There are a couple important preferences to set.
+If you just did installed R for the first time, this is unnecessary.
 
-Under either preferences (PC?) or Tools (Mac), select Global Options.
+```{r}
+#| eval: false
+update.packages(ask = FALSE, checkBuilt = TRUE)
+```
 
-For General (on the left side), and Basic (on the top):
+## Setting preferences
 
--   unselect “Restore .RData into workspace at startup”
+There are three important preferences to set.
 
--   for “Save workspace to .RData on exit” select “Never”
+Under the Tools menu, select Global Options.
 
-For "R Markdown" (on the left side),
+- For General (on the left side), and Basic (on the top):
 
--   unselect "Show output inline for all R Markdown documents"
+  1. Unselect “Restore .RData into workspace at startup”.
+
+  2. For “Save workspace to .RData on exit” select “Never”.
+
+This preference is important as it prevents R from remembering anything from
+session to session. Although that sounds like a good idea, it can make your 
+work very difficult to reproduce.
+
+```{r}
+#| echo: false
+#| fig.alt: Screenshot of the Preferences/General window
+#| out.width: "80%"
+knitr::include_graphics("preferences1.png")
+```
+
+- For "R Markdown" (on the left side),
+
+  3. Unselect "Show output inline for all R Markdown documents".
+
+I suggest you start this way, as that's what I'll demonstrate, but you're welcome
+to try inline output and see if you prefer it.
+
+```{r}
+#| echo: false
+#| fig.alt: Screenshot of the Preferences/R Markdown window
+#| out.width: "80%"
+knitr::include_graphics("preferences2.png")
+```
 
 ### File Management
 
@@ -73,22 +117,4 @@ All files in main folder, if want to use subfolders, talk to us about
 
 ### Starting R
 
-## Basic R/Rstudio
 
-### Introduction to Panes
-
-### Basic R
-
-### Reading data
-
-```{r}
-skim(mtcars2)
-```
-
-## Basic Quarto
-
-### Creating a new assignment
-
-```{r eval=FALSE}
-new_assignment("yourname_HW01", "Homework 1", "Your Name")
-```
