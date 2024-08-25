@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Getting Started with R • umncvmstats</title>
+<title>Getting Started with R and Quarto • umncvmstats</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Getting Started with R">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Getting Started with R and Quarto">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -33,13 +33,15 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/starting.html">Getting Started with R</a></li>
-    <li><a class="dropdown-item" href="../articles/graphics.html">Graphical Output</a></li>
+<li><a class="dropdown-item" href="../articles/setup.html">Setting up R and Rstudio</a></li>
+    <li><a class="dropdown-item" href="../articles/starting.html">Getting Started with R and Quarto</a></li>
+    <li><a class="dropdown-item" href="../articles/graphics.html">Creating Graphics</a></li>
+    <li><a class="dropdown-item" href="../articles/data.html">Working with Data Sets</a></li>
     <li><a class="dropdown-item" href="../articles/proportions.html">Inference for Proportions</a></li>
     <li><a class="dropdown-item" href="../articles/means.html">Inference for Means</a></li>
     <li><a class="dropdown-item" href="../articles/models.html">Inference about Models</a></li>
-    <li><a class="dropdown-item" href="../articles/output.html">Controlling Output</a></li>
-    <li><a class="dropdown-item" href="../articles/multipletests.html">Multiple Tests</a></li>
+    <li><a class="dropdown-item" href="../articles/output.html">Formatting Output</a></li>
+    <li><a class="dropdown-item" href="../articles/multipletests.html">Running Multiple Tests</a></li>
   </ul>
 </li>
       </ul>
@@ -60,7 +62,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Getting Started with R</h1>
+      <h1>Getting Started with R and Quarto</h1>
             
       
 
@@ -69,286 +71,21 @@
 
     
     
+<p><a href="https://aaronrendahl.github.io/umncvmstats/" class="uri">https://aaronrendahl.github.io/umncvmstats/</a></p>
+<p><a href="https://r4ds.hadley.nz/" class="external-link uri">https://r4ds.hadley.nz/</a></p>
 <div class="section level2">
-<h2 id="setting-up-r-and-rstudio">Setting up R and Rstudio<a class="anchor" aria-label="anchor" href="#setting-up-r-and-rstudio"></a>
+<h2 id="basic-r">Basic R<a class="anchor" aria-label="anchor" href="#basic-r"></a>
 </h2>
-<div class="section level3">
-<h3 id="installing-r-and-rstudio">Installing R and Rstudio<a class="anchor" aria-label="anchor" href="#installing-r-and-rstudio"></a>
-</h3>
-<p>Download and install R <a href="https://cran.rstudio.com" class="external-link uri">https://cran.rstudio.com</a></p>
-<p>Download and install Rstudio <a href="https://posit.co/download/rstudio-desktop/" class="external-link uri">https://posit.co/download/rstudio-desktop/</a></p>
-<p>Install needed packages. Don’t worry about warning about Rtools from
-devtools.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"AaronRendahl/umncvmstats"</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="setting-preferences">Setting preferences<a class="anchor" aria-label="anchor" href="#setting-preferences"></a>
-</h3>
-<p>There are a couple important preferences to set.</p>
-<p>Under either preferences (PC?) or Tools (Mac), select Global
-Options.</p>
-<p>For General (on the left side), and Basic (on the top):</p>
-<ul>
-<li><p>unselect “Restore .RData into workspace at startup”</p></li>
-<li><p>for “Save workspace to .RData on exit” select “Never”</p></li>
-</ul>
-<p>For “R Markdown” (on the left side),</p>
-<ul>
-<li>unselect “Show output inline for all R Markdown documents”</li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="file-management">File Management<a class="anchor" aria-label="anchor" href="#file-management"></a>
-</h3>
-<p>Be able to download a file and put it somewhere. Be able to find your
-R files.</p>
-</div>
-<div class="section level3">
-<h3 id="creating-a-project">Creating a Project<a class="anchor" aria-label="anchor" href="#creating-a-project"></a>
-</h3>
-<p>All files in main folder, if want to use subfolders, talk to us about
-“here”.</p>
-</div>
-<div class="section level3">
-<h3 id="starting-r">Starting R<a class="anchor" aria-label="anchor" href="#starting-r"></a>
-</h3>
-</div>
-</div>
-<div class="section level2">
-<h2 id="basic-rrstudio">Basic R/Rstudio<a class="anchor" aria-label="anchor" href="#basic-rrstudio"></a>
-</h2>
-<div class="section level3">
-<h3 id="introduction-to-panes">Introduction to Panes<a class="anchor" aria-label="anchor" href="#introduction-to-panes"></a>
-</h3>
-</div>
-<div class="section level3">
-<h3 id="basic-r">Basic R<a class="anchor" aria-label="anchor" href="#basic-r"></a>
-</h3>
-</div>
-<div class="section level3">
-<h3 id="reading-data">Reading data<a class="anchor" aria-label="anchor" href="#reading-data"></a>
-</h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/skim.html">skim</a></span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span></span></code></pre></div>
-<p><strong>Summary of mtcars2:</strong></p>
-<p>32 rows, 12 columns</p>
-<p><strong>Variable type: character</strong></p>
-<table class="table">
-<colgroup>
-<col width="19%">
-<col width="13%">
-<col width="19%">
-<col width="5%">
-<col width="5%">
-<col width="8%">
-<col width="12%">
-<col width="15%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">skim_variable</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="right">min</th>
-<th align="right">max</th>
-<th align="right">empty</th>
-<th align="right">n_unique</th>
-<th align="right">whitespace</th>
-</tr></thead>
-<tbody><tr class="odd">
-<td align="left">model</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">7</td>
-<td align="right">19</td>
-<td align="right">0</td>
-<td align="right">32</td>
-<td align="right">0</td>
-</tr></tbody>
-</table>
-<p><strong>Variable type: factor</strong></p>
-<table class="table">
-<colgroup>
-<col width="17%">
-<col width="12%">
-<col width="17%">
-<col width="10%">
-<col width="11%">
-<col width="31%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">skim_variable</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="left">ordered</th>
-<th align="right">n_unique</th>
-<th align="left">top_counts</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">cyl</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="left">FALSE</td>
-<td align="right">3</td>
-<td align="left">8: 14, 4: 11, 6: 7</td>
-</tr>
-<tr class="even">
-<td align="left">vs</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="left">FALSE</td>
-<td align="right">2</td>
-<td align="left">V-s: 18, str: 14</td>
-</tr>
-<tr class="odd">
-<td align="left">am</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="left">FALSE</td>
-<td align="right">2</td>
-<td align="left">aut: 19, man: 13</td>
-</tr>
-<tr class="even">
-<td align="left">gear</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="left">FALSE</td>
-<td align="right">3</td>
-<td align="left">3: 15, 4: 12, 5: 5</td>
-</tr>
-<tr class="odd">
-<td align="left">carb</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="left">FALSE</td>
-<td align="right">6</td>
-<td align="left">2: 10, 4: 10, 1: 7, 3: 3</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Variable type: numeric</strong></p>
-<table class="table">
-<colgroup>
-<col width="15%">
-<col width="10%">
-<col width="15%">
-<col width="7%">
-<col width="7%">
-<col width="6%">
-<col width="7%">
-<col width="7%">
-<col width="7%">
-<col width="7%">
-<col width="6%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">skim_variable</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="right">mean</th>
-<th align="right">sd</th>
-<th align="right">p0</th>
-<th align="right">p25</th>
-<th align="right">p50</th>
-<th align="right">p75</th>
-<th align="right">p100</th>
-<th align="left">hist</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">mpg</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">20.09</td>
-<td align="right">6.03</td>
-<td align="right">10.40</td>
-<td align="right">15.43</td>
-<td align="right">19.20</td>
-<td align="right">22.80</td>
-<td align="right">33.90</td>
-<td align="left">▃▇▅▁▂</td>
-</tr>
-<tr class="even">
-<td align="left">disp</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">230.72</td>
-<td align="right">123.94</td>
-<td align="right">71.10</td>
-<td align="right">120.83</td>
-<td align="right">196.30</td>
-<td align="right">326.00</td>
-<td align="right">472.00</td>
-<td align="left">▇▃▃▃▂</td>
-</tr>
-<tr class="odd">
-<td align="left">hp</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">146.69</td>
-<td align="right">68.56</td>
-<td align="right">52.00</td>
-<td align="right">96.50</td>
-<td align="right">123.00</td>
-<td align="right">180.00</td>
-<td align="right">335.00</td>
-<td align="left">▇▇▆▃▁</td>
-</tr>
-<tr class="even">
-<td align="left">drat</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">3.60</td>
-<td align="right">0.53</td>
-<td align="right">2.76</td>
-<td align="right">3.08</td>
-<td align="right">3.70</td>
-<td align="right">3.92</td>
-<td align="right">4.93</td>
-<td align="left">▇▃▇▅▁</td>
-</tr>
-<tr class="odd">
-<td align="left">wt</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">3.22</td>
-<td align="right">0.98</td>
-<td align="right">1.51</td>
-<td align="right">2.58</td>
-<td align="right">3.33</td>
-<td align="right">3.61</td>
-<td align="right">5.42</td>
-<td align="left">▃▃▇▁▂</td>
-</tr>
-<tr class="even">
-<td align="left">qsec</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">17.85</td>
-<td align="right">1.79</td>
-<td align="right">14.50</td>
-<td align="right">16.89</td>
-<td align="right">17.71</td>
-<td align="right">18.90</td>
-<td align="right">22.90</td>
-<td align="left">▃▇▇▂▁</td>
-</tr>
-</tbody>
-</table>
-</div>
 </div>
 <div class="section level2">
 <h2 id="basic-quarto">Basic Quarto<a class="anchor" aria-label="anchor" href="#basic-quarto"></a>
 </h2>
-<div class="section level3">
-<h3 id="creating-a-new-assignment">Creating a new assignment<a class="anchor" aria-label="anchor" href="#creating-a-new-assignment"></a>
-</h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/new_assignment.html">new_assignment</a></span><span class="op">(</span><span class="st">"yourname_HW01"</span>, <span class="st">"Homework 1"</span>, <span class="st">"Your Name"</span><span class="op">)</span></span></code></pre></div>
 </div>
+<div class="section level2">
+<h2 id="creating-a-new-assignment">Creating a new assignment<a class="anchor" aria-label="anchor" href="#creating-a-new-assignment"></a>
+</h2>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/new_assignment.html">new_assignment</a></span><span class="op">(</span><span class="st">"yourname_HW01"</span>, <span class="st">"Homework 1"</span>, <span class="st">"Your Name"</span><span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

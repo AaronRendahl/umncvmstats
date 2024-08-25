@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Controlling Output • umncvmstats</title>
+<title>Formatting Output • umncvmstats</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Controlling Output">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Formatting Output">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -33,13 +33,15 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/starting.html">Getting Started with R</a></li>
-    <li><a class="dropdown-item" href="../articles/graphics.html">Graphical Output</a></li>
+<li><a class="dropdown-item" href="../articles/setup.html">Setting up R and Rstudio</a></li>
+    <li><a class="dropdown-item" href="../articles/starting.html">Getting Started with R and Quarto</a></li>
+    <li><a class="dropdown-item" href="../articles/graphics.html">Creating Graphics</a></li>
+    <li><a class="dropdown-item" href="../articles/data.html">Working with Data Sets</a></li>
     <li><a class="dropdown-item" href="../articles/proportions.html">Inference for Proportions</a></li>
     <li><a class="dropdown-item" href="../articles/means.html">Inference for Means</a></li>
     <li><a class="dropdown-item" href="../articles/models.html">Inference about Models</a></li>
-    <li><a class="dropdown-item" href="../articles/output.html">Controlling Output</a></li>
-    <li><a class="dropdown-item" href="../articles/multipletests.html">Multiple Tests</a></li>
+    <li><a class="dropdown-item" href="../articles/output.html">Formatting Output</a></li>
+    <li><a class="dropdown-item" href="../articles/multipletests.html">Running Multiple Tests</a></li>
   </ul>
 </li>
       </ul>
@@ -60,7 +62,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Controlling Output</h1>
+      <h1>Formatting Output</h1>
             
       
 
@@ -2269,12 +2271,12 @@ and conf.low.</p>
 <div class="section level3">
 <h3 id="rounding-p-values">Rounding p-values<a class="anchor" aria-label="anchor" href="#rounding-p-values"></a>
 </h3>
-<p>Rounding p-values are currently a special case and are handled within
-the <code>gt</code> mechanism, as follows.</p>
+<p>Rounding p-values are currently handled within the <code>gt</code>
+mechanism, as described below.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="about-output-from-this-package">About output from this package<a class="anchor" aria-label="anchor" href="#about-output-from-this-package"></a>
+<h2 id="formatting-output-from-this-package">Formatting output from this package<a class="anchor" aria-label="anchor" href="#formatting-output-from-this-package"></a>
 </h2>
 <p>All output from statistical tests in this package are stored as a
 special object (an <code>atest</code>) that knows how to print itself in
@@ -5037,13 +5039,16 @@ is 2 significant digits, and 4 maximum digits.</p>
 <span><span class="co">#&gt; 1 Wilson's proportion test (two.sided), with 95% confidence intervals.</span></span>
 <span><span class="co">#&gt; 2 2-sample test for equality of proportions with continuity correction (two.sided), with 95% confidence intervals.</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="raw-table">Raw Table<a class="anchor" aria-label="anchor" href="#raw-table"></a>
-</h3>
+</div>
+<div class="section level2">
+<h2 id="raw-table">Raw Table<a class="anchor" aria-label="anchor" href="#raw-table"></a>
+</h2>
 <p>To get the raw table, use <code>as_tibble</code>. You’ll need to have
 loaded the <code>tibble</code> library, which loads as part of the
 <code>tidyverse</code>. There are several options for how to handle the
 footnotes.</p>
+<p>This is useful when further processing or graphics based on output is
+desired.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 10</span></span></span>
@@ -5055,7 +5060,6 @@ footnotes.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>        -<span style="color: #BB0000;">0.090</span><span style="color: #BB0000; text-decoration: underline;">9</span> 0.064<span style="text-decoration: underline;">7</span>  -<span style="color: #BB0000;">0.228</span>     0.046<span style="text-decoration: underline;">0</span>        1.55</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>    <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>        -<span style="color: #BB0000;">0.242</span>  0.056<span style="text-decoration: underline;">5</span>  -<span style="color: #BB0000;">0.363</span>    -<span style="color: #BB0000;">0.122</span>        15.5 </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: p.value &lt;dbl&gt;, about &lt;chr&gt;</span></span></span></code></pre></div>
-</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
