@@ -26,7 +26,11 @@ library(umncvmstats)
 conflicts_prefer(dplyr::select)
 ```
 
-## Introduction to Panes
+https://aaronrendahl.github.io/umncvmstats/
+
+
+https://r4ds.hadley.nz/
+
 
 ## Basic R
 

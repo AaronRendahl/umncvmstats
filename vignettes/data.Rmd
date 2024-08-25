@@ -1,0 +1,41 @@
+---
+title: "Working with Data Sets"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Working with Data Sets}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+#| include: false
+library(dplyr)
+library(ggplot2)
+library(patchwork)
+library(umncvmstats)
+```
+
+https://dplyr.tidyverse.org/
+
+## Summarizing data
+
+```{r}
+mtcars2 |> skim()
+```
+
+```{r}
+mtcars2 |> select(-model) |> descriptive_statistics()
+```
+
+## Working with data
+
+mutate, select, filter, summarize
+
+## 

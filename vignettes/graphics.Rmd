@@ -1,8 +1,8 @@
 ---
-title: "Graphical Output"
+title: "Creating Graphics"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Graphical Output}
+  %\VignetteIndexEntry{Creating Graphics}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -21,6 +21,8 @@ library(ggplot2)
 library(patchwork)
 library(umncvmstats)
 ```
+
+https://ggplot2.tidyverse.org/
 
 
 Most of the graphical functions we will use come from the `ggplot` package.
