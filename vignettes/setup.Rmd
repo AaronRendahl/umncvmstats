@@ -237,6 +237,11 @@ We'll also use functions by using the "pipe" operator, `|>`. Think of it as a tr
 a |> mean()
 ```
 
+### Getting unstuck
+One can easily get "stuck" in R by giving it only half of an expected pair of delimiters, for example, only an opening `"` or `(`. If this happens, you'll see a `+` at the console instead of a `>`, indicating that R is expecting more input.
+
+If this happens, use [Control-C] to cancel the current input line.
+
 ### Loading packages
 
 As mentioned above, R has many add-on packages that extend the basic functionality. You've installed these packages, but you still have to tell R anytime to you want to use one.
@@ -255,6 +260,7 @@ You'll notice that the `tidyverse` library gave you a message about conflicts; w
 To help with this, I recommend using the `conflicted` package. Let's load it and then try one of the functions that was noted as having a conflict.
 
 ```{r}
+#| error: true
 library(conflicted)
 filter()
 ```
