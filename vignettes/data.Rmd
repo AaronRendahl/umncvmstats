@@ -1,8 +1,8 @@
 ---
-title: "Working with Data Sets"
+title: "Data Calculation and Transformation"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Working with Data Sets}
+  %\VignetteIndexEntry{Data Calculation and Transformation}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

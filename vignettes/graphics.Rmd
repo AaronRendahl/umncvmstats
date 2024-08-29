@@ -1,8 +1,8 @@
 ---
-title: "Creating Graphics"
+title: "Data Visualization"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Creating Graphics}
+  %\VignetteIndexEntry{Data Visualization}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
