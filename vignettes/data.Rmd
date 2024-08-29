@@ -24,6 +24,9 @@ library(umncvmstats)
 
 https://dplyr.tidyverse.org/
 
+https://r4ds.hadley.nz/
+
+
 ## Summarizing data
 
 ```{r}

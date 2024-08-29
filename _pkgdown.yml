@@ -6,7 +6,6 @@ articles:
   navbar: ~
   contents:
   - setup
-  - starting
   - graphics
   - data
   - proportions
