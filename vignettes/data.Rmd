@@ -22,16 +22,32 @@ library(patchwork)
 library(umncvmstats)
 ```
 
-https://dplyr.tidyverse.org/
+For more on working with data in R using the `tidyverse`, see the following resources:
 
-https://r4ds.hadley.nz/
++ [dplyr Reference](https://dplyr.tidyverse.org/)
++ [R for Data Science book](https://r4ds.hadley.nz/)
 
+## Reading in data
+
+csv, excel (sheet), na, skip
+
+For further examples in this document, I'll use the `mtcars2` data set, which is included in the `umncvmstats` package.
 
 ## Summarizing data
+
+After first reading in a data file, use the `skim` function to be sure it read in properly. This shows the number of rows and columns that were read, and then for each type of variable (character/factor/numeric, etc.), it shows some basic summary information about each variable.
+
+This function is in `umncvmstats` and uses the `skimr` package behind the scenes; further control is possible by using that package directly.
 
 ```{r}
 mtcars2 |> skim()
 ```
+
+To get basic descriptive statistics, use the `descriptive_statistics` function, which shows mean/SD/median/range for continuous variables and count/percent for categorical variables (or continuous variables with just a few values).
+
+Here I'm using `select` (to be seen later) to remove the `model` variable before computing these statistics.
+
+This is a version of `tbl_summary` from the `gtsummary` package; further control is possible by using that package directly.
 
 ```{r}
 mtcars2 |> select(-model) |> descriptive_statistics()
@@ -39,6 +55,35 @@ mtcars2 |> select(-model) |> descriptive_statistics()
 
 ## Working with data
 
-mutate, select, filter, summarize
+select, filter, arrange (desc)
 
-## 
+count (by)
+
+mutate (by)
+
+summarize (by)
+
+## Comparison
+
+<, <=, >, >=, ==, != %in%, |, &, is.na, !
+
+## Statistics functions
+
+mean, sd, var, median, quartile, min, max, IQR
+
+na.rm
+
+log/log10/log2
+
+
+## Data functions
+
+if_else, case_when, cut
+
+## Factors
+
+droplevels
+as_factor, fct_relevel, fct_recode
+fct_infreq, fct_reorder
+
+
