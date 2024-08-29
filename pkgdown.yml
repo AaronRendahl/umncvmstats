@@ -10,8 +10,7 @@ articles:
   output: output.html
   proportions: proportions.html
   setup: setup.html
-  starting: starting.html
-last_built: 2024-08-25T20:14Z
+last_built: 2024-08-29T20:49Z
 urls:
   reference: https://aaronrendahl.github.io/umncvmstats/reference
   article: https://aaronrendahl.github.io/umncvmstats/articles
