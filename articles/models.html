@@ -576,9 +576,16 @@ their interaction.</p>
 <span><span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">mpg</span> <span class="op">*</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars2</span>, family<span class="op">=</span><span class="va">binomial</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="anova-analysis-of-deviance">ANOVA / Analysis of Deviance<a class="anchor" aria-label="anchor" href="#anova-analysis-of-deviance"></a>
+<h2 id="model-diagnostics">Model Diagnostics<a class="anchor" aria-label="anchor" href="#model-diagnostics"></a>
 </h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/diag_plots.html">diag_plots</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span></span></code></pre></div>
+<p><img src="models_files/figure-html/unnamed-chunk-4-1.png" width="100%"></p>
+</div>
+<div class="section level2">
+<h2 id="anova-analysis-of-deviance">ANOVA / Analysis of Deviance<a class="anchor" aria-label="anchor" href="#anova-analysis-of-deviance"></a>
+</h2>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_anova.html">model_anova</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span></span></code></pre></div>
 <div id="eexombwkke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#eexombwkke table {
@@ -1074,7 +1081,7 @@ their interaction.</p>
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_anova.html">model_anova</a></span><span class="op">(</span><span class="va">m1_log</span><span class="op">)</span></span></code></pre></div>
 <div id="ulbfdpbcyv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ulbfdpbcyv table {
@@ -1570,7 +1577,7 @@ their interaction.</p>
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_anova.html">model_anova</a></span><span class="op">(</span><span class="va">m2</span><span class="op">)</span></span></code></pre></div>
 <div id="kgufivjubq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#kgufivjubq table {
@@ -2059,7 +2066,7 @@ their interaction.</p>
 <div class="section level2">
 <h2 id="model-summary-values">Model summary values<a class="anchor" aria-label="anchor" href="#model-summary-values"></a>
 </h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_glance.html">model_glance</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span></span></code></pre></div>
 <div id="txvafbsnay" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#txvafbsnay table {
@@ -2546,7 +2553,7 @@ their interaction.</p>
 </tr></tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_glance.html">model_glance</a></span><span class="op">(</span><span class="va">m2</span><span class="op">)</span></span></code></pre></div>
 <div id="orehalspkz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#orehalspkz table {
@@ -3029,7 +3036,7 @@ their interaction.</p>
 <div class="section level2">
 <h2 id="model-coefficients">Model coefficients<a class="anchor" aria-label="anchor" href="#model-coefficients"></a>
 </h2>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/combine_tests.html">combine_tests</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/model_coefs.html">model_coefs</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="../reference/model_coefs.html">model_coefs</a></span><span class="op">(</span><span class="va">m1_log</span><span class="op">)</span>,</span>
@@ -3637,7 +3644,7 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 <div class="section level3">
 <h3 id="linear-model">Linear Model<a class="anchor" aria-label="anchor" href="#linear-model"></a>
 </h3>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <div id="fvsybhaagl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#fvsybhaagl table {
@@ -4125,7 +4132,7 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <div id="vijbfglzvn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#vijbfglzvn table {
@@ -4637,7 +4644,7 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <div id="egslqeqmfa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#egslqeqmfa table {
@@ -5153,7 +5160,7 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="va">cyl</span> <span class="op">|</span> <span class="va">wt</span>, at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>wt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div id="amrewkadgw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#amrewkadgw table {
@@ -5719,7 +5726,7 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="va">cyl</span> <span class="op">|</span> <span class="va">wt</span>, at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>wt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div id="xbhisifmmy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#xbhisifmmy table {
@@ -6299,7 +6306,7 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 <div class="section level3">
 <h3 id="linear-model-with-log-response">Linear Model, with log response<a class="anchor" aria-label="anchor" href="#linear-model-with-log-response"></a>
 </h3>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m1_log</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <div id="ucmrwtkdbi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ucmrwtkdbi table {
@@ -6817,7 +6824,7 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m1_log</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <div id="rslsqjlmpg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#rslsqjlmpg table {
@@ -7343,7 +7350,7 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m1_log</span>, <span class="op">~</span><span class="va">cyl</span>, backtransform <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div id="udacgqflgk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#udacgqflgk table {
@@ -7862,7 +7869,7 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m1_log</span>, <span class="op">~</span><span class="va">cyl</span>, backtransform <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div id="jhvqltorlv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#jhvqltorlv table {
@@ -8381,7 +8388,7 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 <div class="section level3">
 <h3 id="logistic-model">Logistic Model<a class="anchor" aria-label="anchor" href="#logistic-model"></a>
 </h3>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m2</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <div id="uzjcdmfnby" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#uzjcdmfnby table {
@@ -8895,7 +8902,7 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m2</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <div id="esrejldsxt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#esrejldsxt table {
@@ -9417,7 +9424,7 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m2</span>, <span class="op">~</span><span class="va">cyl</span>, backtransform<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div id="yqwtxjxwiy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#yqwtxjxwiy table {
@@ -9931,7 +9938,7 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m2</span>, <span class="op">~</span><span class="va">cyl</span>, backtransform<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div id="jisysoqowe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#jisysoqowe table {
@@ -10453,7 +10460,7 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 </h2>
 <p>For continuous explanatory variables, the slopes can be obtained and
 compared in a similar way.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m1</span>, <span class="va">wt</span><span class="op">~</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <div id="ytkovhgshl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ytkovhgshl table {
@@ -10941,7 +10948,7 @@ compared in a similar way.</p>
 </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m1</span>, <span class="va">wt</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <div id="cphlxbgrza" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#cphlxbgrza table {
@@ -11449,7 +11456,7 @@ compared in a similar way.</p>
 </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_slopes</a></span><span class="op">(</span><span class="va">m1</span>, <span class="va">wt</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning in as_atest.data.frame(x, ...): Internal warning: variable type unclear</span></span>
 <span><span class="co">#&gt; for: t.ratio</span></span></code></pre></div>
@@ -11965,7 +11972,7 @@ compared in a similar way.</p>
 </div>
 <p>For log-response or logistic models, no back-transformation is
 done.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m1_log</span>, <span class="va">wt</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <div id="ktayyjktvo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ktayyjktvo table {
@@ -12473,7 +12480,7 @@ done.</p>
 </tfoot>
 </table>
 </div>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m2</span>, <span class="va">mpg</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <div id="rzbzjrestn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#rzbzjrestn table {

@@ -70,11 +70,31 @@
 
     
     
-<p><a href="https://dplyr.tidyverse.org/" class="external-link uri">https://dplyr.tidyverse.org/</a></p>
-<p><a href="https://r4ds.hadley.nz/" class="external-link uri">https://r4ds.hadley.nz/</a></p>
+<p>For more on working with data in R using the <code>tidyverse</code>,
+see the following resources:</p>
+<ul>
+<li><a href="https://dplyr.tidyverse.org/" class="external-link">dplyr Reference</a></li>
+<li><a href="https://r4ds.hadley.nz/" class="external-link">R for Data Science book</a></li>
+</ul>
+<div class="section level2">
+<h2 id="reading-in-data">Reading in data<a class="anchor" aria-label="anchor" href="#reading-in-data"></a>
+</h2>
+<p>csv, excel (sheet), na, skip</p>
+<p>For further examples in this document, I’ll use the
+<code>mtcars2</code> data set, which is included in the
+<code>umncvmstats</code> package.</p>
+</div>
 <div class="section level2">
 <h2 id="summarizing-data">Summarizing data<a class="anchor" aria-label="anchor" href="#summarizing-data"></a>
 </h2>
+<p>After first reading in a data file, use the <code>skim</code>
+function to be sure it read in properly. This shows the number of rows
+and columns that were read, and then for each type of variable
+(character/factor/numeric, etc.), it shows some basic summary
+information about each variable.</p>
+<p>This function is in <code>umncvmstats</code> and uses the
+<code>skimr</code> package behind the scenes; further control is
+possible by using that package directly.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/skim.html">skim</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Summary of mtcars2:</strong></p>
@@ -282,6 +302,16 @@
 </tr>
 </tbody>
 </table>
+<p>To get basic descriptive statistics, use the
+<code>descriptive_statistics</code> function, which shows
+mean/SD/median/range for continuous variables and count/percent for
+categorical variables (or continuous variables with just a few
+values).</p>
+<p>Here I’m using <code>select</code> (to be seen later) to remove the
+<code>model</code> variable before computing these statistics.</p>
+<p>This is a version of <code>tbl_summary</code> from the
+<code>gtsummary</code> package; further control is possible by using
+that package directly.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">model</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/descriptive_statistics.html">descriptive_statistics</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -902,10 +932,33 @@
 <div class="section level2">
 <h2 id="working-with-data">Working with data<a class="anchor" aria-label="anchor" href="#working-with-data"></a>
 </h2>
-<p>mutate, select, filter, summarize</p>
+<p>select, filter, arrange (desc)</p>
+<p>count (by)</p>
+<p>mutate (by)</p>
+<p>summarize (by)</p>
 </div>
 <div class="section level2">
-<h2 id="section"></h2>
+<h2 id="comparison">Comparison<a class="anchor" aria-label="anchor" href="#comparison"></a>
+</h2>
+<p>&lt;, &lt;=, &gt;, &gt;=, ==, != %in%, |, &amp;, is.na, !</p>
+</div>
+<div class="section level2">
+<h2 id="statistics-functions">Statistics functions<a class="anchor" aria-label="anchor" href="#statistics-functions"></a>
+</h2>
+<p>mean, sd, var, median, quartile, min, max, IQR</p>
+<p>na.rm</p>
+<p>log/log10/log2</p>
+</div>
+<div class="section level2">
+<h2 id="data-functions">Data functions<a class="anchor" aria-label="anchor" href="#data-functions"></a>
+</h2>
+<p>if_else, case_when, cut</p>
+</div>
+<div class="section level2">
+<h2 id="factors">Factors<a class="anchor" aria-label="anchor" href="#factors"></a>
+</h2>
+<p>droplevels as_factor, fct_relevel, fct_recode fct_infreq,
+fct_reorder</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
