@@ -14,7 +14,7 @@ format:
 ---
 
 ```{r}
-#| message: FALSE
+#| message: false
 library(conflicted)
 library(here)
 library(tidyverse)
@@ -30,6 +30,8 @@ Please comment on all your R code.
 ```{r}
 1+1
 ```
+
+
 
 ## About
 
