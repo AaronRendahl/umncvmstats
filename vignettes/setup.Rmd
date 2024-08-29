@@ -191,6 +191,21 @@ When files are opened or data sets are viewed, the console pane will drop to the
 knitr::include_graphics("panes3.png")
 ```
 
+### Getting Help
+
+If I've planned this semester properly, all the functions you will need are mentioned in the documentation of the `umncvmstats` package, that is, the files you're reading right now.
+
+
+For further help, especially about parameters, we can look up the help file for a specific function using `?`. This works great -- if you happen to remember the name of the function. For example, to get help on the `read_csv` function (which we'll see soon), try typing this in the console:
+
+```{r}
+#| eval: false
+?read_csv
+```
+
+For reference, Rstudio has some "cheat sheets" built in; go to Help > Cheat Sheets.
+The ones on the Rstudio IDE, Data Transformation, and Data Visualization are likely to be the most helpful.
+
 ### R Basics
 
 Let's start by having R do some basic mathematics; try typing this into the console.
@@ -205,7 +220,7 @@ You'll note the `[1]` at the beginning of the line; this is because in R, everyt
 1:50
 ```
 
-We'll often want to save the result of a assignment. Let's have it save the result of this computation in the variable `a`. Note that it doesn't output anything when a result is saved, to see the result you have to input the variable again.
+We'll often want to save the result of a assignment. Let's have it save the result of this computation in the variable `a`. Note that it doesn't output anything when a result is saved, to see the result you have to input the variable again. Think of the `<-` as an arrow pointing to the left.
 
 ```{r}
 a <- 2 + 2
