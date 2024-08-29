@@ -39,6 +39,15 @@ m1_log <- lm(log(mpg) ~ wt * cyl, data = mtcars2)
 m2 <- glm(am ~ mpg * cyl, data = mtcars2, family=binomial)
 ```
 
+## Model Diagnostics
+```{r}
+#| fig.width: 7
+#| fig.height: 7
+#| out.width: "100%"
+diag_plots(m1)
+```
+
+
 ## ANOVA / Analysis of Deviance
 ```{r}
 model_anova(m1)
