@@ -1,8 +1,8 @@
 ---
-title: "Output Options"
+title: "Additional Options"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Output Options}
+  %\VignetteIndexEntry{Additional Options}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
