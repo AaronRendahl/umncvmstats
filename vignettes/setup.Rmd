@@ -220,7 +220,7 @@ You'll note the `[1]` at the beginning of the line; this is because in R, everyt
 1:50
 ```
 
-We'll often want to save the result of a assignment. Let's have it save the result of this computation in the variable `a`. Note that it doesn't output anything when a result is saved, to see the result you have to input the variable again. Think of the `<-` as an arrow pointing to the left.
+We'll often want to save the result of an operation. Let's have it save the result of this computation in the variable `a`. Note that it doesn't output anything when a result is saved, to see the result you have to input the variable again. Think of the `<-` as an arrow pointing to the left.
 
 ```{r}
 a <- 2 + 2
