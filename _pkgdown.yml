@@ -5,13 +5,14 @@ articles:
 - title: Articles
   navbar: ~
   contents:
-  - setup
+  - starting
   - data
   - graphics
   - proportions
   - means
   - models
   - options
+  - summary
 reference:
 - title: Tests for Proportions
 - contents:
