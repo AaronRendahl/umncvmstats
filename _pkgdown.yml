@@ -6,8 +6,8 @@ articles:
   navbar: ~
   contents:
   - setup
-  - graphics
   - data
+  - graphics
   - proportions
   - means
   - models
