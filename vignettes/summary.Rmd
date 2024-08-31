@@ -1,0 +1,57 @@
+---
+title: "Summary"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Summary}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## To get started
+
+Various basic R ideas are covered in the [Getting Started](starting) page, including how to:
+
+-   Open your class "Project"
+
+-   Use the panes in Rstudio
+
+-   Use the assignment operator `<-` to save the result of an operation
+
+-   Use functions, that is, be able to call a function with one or more (possibly named) parameters
+
+-   Use the pipe `|>` to send a value to a function
+
+-   Use the `c` function to "combine" values together
+
+-   Get unstuck by using [Control-C]) to cancel the current input line
+
+-   Load packages using the `library` function
+
+-   Create scripts and Quarto files and send commands from them to the console
+
+-   Render Quarto files and open the result in your browser
+
+-   `read_csv` and `read_excel`, with optional parameters `na`, `skip`, and `sheet`
+
+-   `skim` to check that it was read properly
+
+-   `mutate`, `as_factor`, and optionally `fct_recode` to create factor variables
+
+-   `descriptive_statistics` to get a summary of descriptive statistics for all variables
+
+## About data
+
+
+
+## About graphics
+
+## Statistical inference
+
+### Options for output
