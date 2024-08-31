@@ -1,8 +1,8 @@
 ---
-title: "Data"
+title: "About Data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Data}
+  %\VignetteIndexEntry{About Data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
