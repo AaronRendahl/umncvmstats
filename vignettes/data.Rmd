@@ -17,8 +17,7 @@ knitr::opts_chunk$set(
 ```{r setup}
 #| include: false
 library(dplyr)
-library(ggplot2)
-library(patchwork)
+library(forcats)
 library(umncvmstats)
 ```
 
@@ -27,15 +26,33 @@ For more on working with data in R using the `tidyverse`, see the following reso
 -   [dplyr Reference](https://dplyr.tidyverse.org/)
 -   [R for Data Science book](https://r4ds.hadley.nz/)
 
+## About data sets
+
 ## Reading in data
 
-We'll most often read in data from either csv or Excel sheets. The
+We'll most often read in data from either csv or Excel sheets. The functions `read_csv` and `read_excel` are used for this.
 
-csv, excel (sheet), na, skip
+Both take the filename as the first parameter, and have additional parameters `na` to specify what values should be considered missing, and `skip` to skip a certain number of rows at the top. For an Excel sheet, there's also the optional `sheet` parameter to specify which sheet to read; by default the first sheet is read.
+
+It's also recommended to use the `here` function to specify the location of the file within your project; this allows you to move your script or Quarto file to subfolders within the project without changing the code.
+
+For example, the following code reads in a csv file `test.csv` from the main folder, considers a single period `.` and the code `NA` to be missing values, and skips the first two lines. It also saves the result in the variable `testdata`.
+
+```{r}
+#| eval: false
+testdata <- read_csv(here("test.csv"), na = c(".", "NA"), skip = 2)
+```
+
+Here's similar for reading an Excel file, that specifically chooses to read from the sheet named `mydata`. If not specified, the first sheet is chosen.
+
+```{r}
+#| eval: false
+testdata <- read_excel(here("test.csv"), sheet = "mydata", na = c(".", "NA"), skip = 2)
+```
 
 For further examples in this document, I'll use the `mtcars2` data set, which is included in the `umncvmstats` package.
 
-## Summarizing data
+### Checking that it was read properly
 
 After first reading in a data file, use the `skim` function to be sure it read in properly. This shows the number of rows and columns that were read, and then for each type of variable (character/factor/numeric, etc.), it shows some basic summary information about each variable.
 
@@ -44,6 +61,46 @@ This function is in `umncvmstats` and uses the `skimr` package behind the scenes
 ```{r}
 mtcars2 |> skim()
 ```
+
+In R, a categorical variable is called a `factor`; text variables should usually be factors unless they are simply used for identification, like the `model` variable, here.
+
+The most common error is that a variable that should be numeric is read in as text, due to an unspecified missing value code. Be sure to check that all variables are of the expected type, and that the values as summarized make sense.
+
+### Creating factors
+
+The `mtcars2` data set is based on the `mtcars` data set, which is included in your basic R installation. In the original `mtcars` data set, though, all variables are numeric; the categorical variables are all coded as 0/1.
+
+Compare the `skim` summary of the `mtcars` data set with `mtcars2`:
+
+```{r}
+mtcars |> skim()
+```
+
+To convert these variables into categorical variables, we use the functions `mutate`, `as_factor`, and optionally `fct_recode`; we'll see more about them later, for now, let's just see a couple examples of how we use them to convert these variables.
+
+-   `mutate` function creates new variables (possibly overwriting old ones). Within `mutate` we use `newname = [operation]` to perform an operation and assign the result to the variable `newname`. Multiple variables can be created within one call to `mutate` by using commas.
+-   `as_factor` converts a variable to a categorical variable. You may also see the original version, `factor`; this version is from the `tidyverse` and is preferred for improved consistency.
+-   `fct_recode` changes the coding of the values.
+
+As an example, the following code:
+
+-   will save the result into a new variable `my_mtcars`
+-   pipes the `mtcars` dataset into the `mutate` function, then within mutate,
+    -   creates a new variable `cyl` (which will overwrite the previous `cyl`) by running `as_factor` on the `cyl` variable
+    -   creates a new variable `vs` (which again, overwrites the previous `vs`) by first running `as_factor` on `vs` and then recoding it so that `0` becomes `V-shaped` and `1` becomes `Straight`. Quotation marks are recommended, though in certain cases are not absolutely necessary.
+
+We then `skim` the new result.
+
+```{r}
+my_mtcars <- mtcars |>
+  mutate(cyl = as_factor(cyl),
+         vs = as_factor(vs) |> fct_recode("V-shaped"="0", "Straight"="1"))
+skim(my_mtcars)
+```
+
+## Summarizing data
+
+### Descriptive statistics for all variables
 
 To get basic descriptive statistics, use the `descriptive_statistics` function, which shows mean/SD/median/range for continuous variables and count/percent for categorical variables (or continuous variables with just a few values).
 
@@ -55,41 +112,119 @@ This is a version of `tbl_summary` from the `gtsummary` package; further control
 mtcars2 |> select(-model) |> descriptive_statistics()
 ```
 
+This output is formatted, making it great for understanding and display, but hard to work with further. To work with further, we need to compute these values ourselves.
+
+### Summarizing categorical variables
+
+Use `count` to count categorical variables; count combinations of multiple variables by separating with a comma.
+
+```{r}
+mtcars2 |> count(vs)
+mtcars2 |> count(vs, am)
+```
+
+We can then use `mutate` to make a new variable with the percent; see more on `mutate` later. This adds columns with the overall percent for each desired combination of variables. Note that within each computation, the percents sum to 100%.
+```{r}
+mtcars2 |> count(vs) |> mutate(percent = n / sum(n))
+mtcars2 |> count(vs, am) |> mutate(percent = n / sum(n))
+```
+
+If, however, we want to compute the percent of one variable within categories of another variable, we can use the `.by` parameter, which does the computation separately for each value of the specified variable. Now the percents within each value of `am` (automatic or manual) sum to 100%.
+
+```{r}
+mtcars2 |> count(vs, am) |> mutate(percent = n / sum(n), .by=am)
+```
+
+
+Another option is to use `xtabs` to get a "cross-tabulation" of multiple variables. This uses the "formula" syntax, which we'll see more of when we do inference. It also stores the result in a matrix, which is easier to view but harder to work with. The row and columns sums can be added using `addmargins`.
+
+```{r}
+xtabs(~vs + am, data=mtcars2)
+xtabs(~vs + am, data=mtcars2) |> addmargins()
+```
+
+### Summarizing continuous variables
+
+To get summary statistics for a continuous variable, use `summarize`. Within `summarize`, use `newname = [operation]` to perform an operation and assign the result to the variable. To do this separately for each value of a categorical variable, use the `.by` parameter. Note the `.` in front of `.by`; that is used here to make conflicts with your desired name less likely.
+
+```{r}
+mtcars2 |> summarize(mean_mpg=mean(mpg), sd_mpg=sd(mpg))
+mtcars2 |> summarize(mean_mpg=mean(mpg), sd_mpg=sd(mpg), .by=am)
+```
+
+See list of useful summary functions below.
+
 ## Working with data
+
+### Selecting rows or columns
 
 -   Selecting columns (`select`)
     -   Select `model` and `mpg` columns: `mtcars2 |> select(model, mpg)`
     -   Select all but `model` and `mpg` columns: `mtcars2 |> select(-model, -mpg)`
 -   Selecting rows (`filter`)
     -   Select rows that have manual transmissions: `mtcars2 |> filter(am=="manual")`
-    -   Select rows that have mpg > 25: `mtcars2 |> filter(mpg > 25)`
+    -   Select rows that have mpg \> 25: `mtcars2 |> filter(mpg > 25)`
     -   See "Comparison" below for more options
--   Sort the data set
-    -   Sort by increasing mpg: `mtcars2 |> arrange(mpg)`
-arrange (desc)
 
-count (by)
+### Sorting
 
-mutate (by)
+Use `arrange` to sort
 
-summarize (by)
+-   Sort by increasing mpg: `mtcars2 |> arrange(mpg)`
+-   Sort by decreasing mpg: `mtcars2 |> arrange(desc(mpg))`
 
-## Comparison
+### Creating new variables
 
-\<, \<=, \>, \>=, ==, !=, %in%, \|, &, is.na, !
+We use the `mutate` function to add a variable.
 
-## Statistics functions
+-   `mutate` function creates new variables (possibly overwriting old ones). Within `mutate` we use `newname = [operation]` to perform an operation and assign the result to the variable
 
-mean, sd, var, median, quartile, min, max, IQR
+Best practice is that variables use only letters, numbers, and the underscore (`_`), and start with a letter.
 
-na.rm
+This data set has fuel economy in miles per gallon (`mpg`); suppose we instead want to use the UK standard of liters/100 kilometers.
 
-log/log10/log2
+```{r}
+mtcars2 <- mtcars2 |> 
+  mutate(Lp100km = 3.78541 / 1.60934 * 100 / mpg)
+mtcars2 |> select(mpg, Lp100km) |> skim()
+```
 
-## Data functions
+In addition to arithmetic, there are a number of useful function for creating new variables, as seen below.
 
-if_else, case_when, cut
+## Useful functions
 
-## Factors
+### For summarizing
 
-droplevels as_factor, fct_relevel, fct_recode fct_infreq, fct_reorder
+Useful summary functions include:
+
+-   `mean`: mean
+-   `sd`: standard deviation
+-   `var`: variance
+-   `median`: median
+-   `quantile`: quantile (or percentile); use the `probs` parameter to specify which. For example, `quantile(x, probs=0.25)` gets the 25th percentile of the variable `x`.
+-   `min`: minimum value
+-   `max`: maximum value
+-   `IQR`: interquartile range
+
+R is very careful with missing values and will not compute these if any of the values are missing; this is a good thing as it forces you to specifically handle it. If you want to remove any missing values before computing these statistics, set the parameter `na.rm = TRUE` for any of these functions.
+
+### For comparing
+
+-   `<`, `<=`, `>`, `>=`, `==`, `!=`
+-   `%in%`
+-   `|`, `&`, `!`
+-   `is.na`
+
+### For creating new variables
+
+-   arithmetic functions (`+`, `-`, `*`, `/`)
+-   `log`, `log10`, `log2`
+-   `if_else`, `case_when`, `cut`
+
+### For factors
+
+-   `as_factor`
+-   `fct_recode`
+-   `fct_relevel`
+-   `fct_infreq`, `fct_reorder`
+-   `droplevels`
