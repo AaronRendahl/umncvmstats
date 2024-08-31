@@ -246,10 +246,19 @@ Most of the time, we'll use R **functions**; for example, the `mean` function. H
 mean(a)
 ```
 
-We'll also use functions by using the "pipe" operator, `|>`. Think of it as a triangle that sends the thing on the left into the function on the right. Note that we still need the parenthesis. This makes it easy to chain results of functions together into new functions.
+We pass values to a function by putting them in parentheses after the function name; there can be multiple parameters (separated by a comma), and they can be named (by using a single equals sign`=`). For example, if there were missing values (`NA`) in our data, the mean would be undefined, unless we specifically told R to remove the missing values first by setting the `na.rm` parameter to `TRUE`. (Best practice is to always write out `TRUE` and `FALSE` with all caps.)
+
+```{r}
+a2 <- c(1, 2, 3, 4, NA)
+mean(a2)
+mean(a2, na.rm=TRUE)
+```
+
+We'll also use functions by using the "pipe" operator, `|>`. Think of it as a triangle that sends the thing on the left into the function on the right, as the first parameter. Additional parameters can be included too. Note that we still need the parenthesis, whether or not we have additional parameters. This makes it easy to chain results of functions together into new functions.
 
 ```{r}
 a |> mean()
+a2 |> mean(na.rm=TRUE)
 ```
 
 ### Getting unstuck
