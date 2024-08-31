@@ -1,8 +1,8 @@
 ---
-title: "Getting Started with R, Rstudio, and Quarto"
+title: "Getting Started"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Getting Started with R, Rstudio, and Quarto}
+  %\VignetteIndexEntry{Getting Started}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 

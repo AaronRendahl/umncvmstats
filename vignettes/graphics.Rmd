@@ -1,8 +1,8 @@
 ---
-title: "Data Visualization"
+title: "Graphics"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Data Visualization}
+  %\VignetteIndexEntry{Graphics}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -22,10 +22,13 @@ library(patchwork)
 library(umncvmstats)
 ```
 
-https://ggplot2.tidyverse.org/
+
 
 
 Most of the graphical functions we will use come from the `ggplot` package.
+
+See https://ggplot2.tidyverse.org/ for a full reference.
+
 There are a couple additions from this package to make a couple things easier.
 
 + `geom_beeswarm`, originally from the `ggbeeswarm` package, modified
@@ -42,8 +45,7 @@ For more control, see the [package documentation](https://patchwork.data-imagini
 
 ### Resizing plots
 
-To resize a plot, use the `fig-width` and `fig-height` options at the top of the chunk.
-The default size is usually about 6 by 6.
+To resize a plot in Quarto output, use the `fig-width` and `fig-height` options at the top of the chunk. The default size is usually about 6 by 6.
 
 This is also the easiest way to change the size of the text in a plot; 
 when a plot is made larger, the text stays the same size, so is smaller relative to the rest of the plot.
