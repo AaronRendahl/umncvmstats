@@ -1,8 +1,8 @@
 ---
-title: "Formatting Output"
+title: "Output Options"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Formatting Output}
+  %\VignetteIndexEntry{Output Options}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -21,15 +21,6 @@ library(gt)
 library(umncvmstats)
 ```
 
-```{r}
-a <- combine_tests(
-  one_proportion_inference(34, 99),
-  one_proportion_inference(25, 99),
-  one_proportion_inference(10, 99),
-  two_proportion_inference(c(25, 34), c(99,99)),
-  two_proportion_inference(c(10, 34), c(99,99)))
-```
-
 ## Rounding
 
 It's trickier than I think it should be to get R to output a reasonable number of digits.
@@ -38,7 +29,16 @@ This package makes a guess that should be reasonable in most, but not all, cases
 To modify the number of digits that are output, use the `set_digits` function. You can either specify the number of significant digits or the number of decimal places. By default, digits for the estimate, the SE, and the confidence bounds are set for all rows.
 
 ```{r}
+a <- one_proportion_inference(vs~cyl, data=mtcars2)
+```
+
+This sets the number of significant digits to 2 (for the estimate, the SE, and the confidence bounds),
+```{r}
 a |> set_digits(digits=2)
+```
+
+This sets the number of decimal places to 2.
+```{r}
 a |> set_digits(decimals=2)
 ```
 
@@ -48,6 +48,9 @@ a |> set_digits(decimals=5, columns="proportion", rows=1:2)
 ```
 
 You can also set the number of decimals based on significant digits for a given column or columns; for example, when created, the decimals are set based on the number of significant digits needed for the SE and ME columns, where ME (the margin of error) is calculated from conf.high and conf.low.
+
+This determines how many decimals are needed to display the SE and ME with 2 significant digits, and uses that for the estimate, the SE, and the confidence bounds. This is the default setting in most cases.
+
 ```{r}
 a |> set_digits(digits=2, by=c("SE", "ME"))
 ```
@@ -94,14 +97,6 @@ a |> as_gt() |> tab_compact()
 a |> as_gt() |> tab_compact(font.size = 11, padding = 3)
 ```
 
-## Output as text
-
-To not use the `gt` style output, `print` with `as_gt=FALSE`.
-
-```{r}
-a |> print(as_gt=FALSE)
-```
-
 ## Output as data set
 
 To get the underlying output as a data set, use `as_tibble`. You'll need to have loaded the `tibble` library, which loads as part of the `tidyverse`. There are several options for how to handle the footnotes.
@@ -110,4 +105,36 @@ This is useful when further processing or graphics based on output is desired.
 
 ```{r}
 a |> as_tibble()
+```
+
+## Multiple tests
+
+In the one and two-sample tests (that is, when you're not fitting a model), you can use `+` to specify
+that the test should be done on several variables. 
+
+```{r}
+one_t_inference(wt + mpg ~ am + vs, data = mtcars2)
+two_t_inference(wt + mpg ~ am + vs, data = mtcars2)
+```
+
+You can also use `|` to split the data set into groups before running the tests.
+
+```{r}
+one_t_inference(wt + mpg ~ am | cyl, data = mtcars2)
+two_t_inference(wt + mpg ~ am | cyl, data = mtcars2)
+```
+
+## Combining output
+
+You can use `combine_tests` to combine output from several tests together. 
+The package will do its best to output this meaningfully, but it's up to you to combine
+meaningful things together.
+
+```{r}
+combine_tests(
+  one_t_inference(wt ~ am|vs, data = mtcars2),
+  two_t_inference(wt ~ am, data = mtcars2),
+  correlation_inference(mpg ~ wt + hp, data=mtcars2),
+  one_proportion_inference(vs ~ am|cyl, data=mtcars2)) |>
+  as_gt() |> tab_compact()
 ```

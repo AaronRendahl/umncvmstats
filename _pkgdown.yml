@@ -12,7 +12,6 @@ articles:
   - means
   - models
   - output
-  - multipletests
 reference:
 - title: Tests for Proportions
 - contents:
