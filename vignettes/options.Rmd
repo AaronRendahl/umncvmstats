@@ -21,87 +21,85 @@ library(gt)
 library(umncvmstats)
 ```
 
-## Rounding
+## Formatting `umncvmstats` Results
 
-It's trickier than I think it should be to get R to output a reasonable number of digits.
-This package makes a guess that should be reasonable in most, but not all, cases.
+All output from statistical tests in this package are stored as a special object (an `atest`) that knows how to print itself in a nice way.
+
+It does this by converting it into a `gt` object from the [gt](https://gt.rstudio.com/) package.
+
+You can use any `gt` function by first doing this conversion yourself using `as_gt`. If you use any `gt` functions you'll need to load the `gt` library before `umncvmstats`.
+
+The following code simply converts to a `gt` object, though has no change from the default output because I haven't added any other functions yet.
+
+```{r}
+a <- pairwise_t_inference(mpg ~ cyl, data=mtcars2)
+a |> as_gt()
+```
+
+### Compacting Results
+
+The `tab_compact` function makes the table of results smaller; by default it uses `font.size = 13` and `padding = 1`.
+
+```{r}
+a |> as_gt() |> tab_compact()
+```
+
+For comparison, here is `font.size = 11` and `padding = 3`.
+
+```{r}
+a |> as_gt() |> tab_compact(font.size = 11, padding = 3)
+```
+
+## Rounding `umncvmstats` Results
+
+### By significant digits or decimals
+It's trickier than I think it should be to get R to output a reasonable number of digits; this was one reason I wrote this package.
+
+The formatted output from statistical inference functions in this package makes a guess that should be reasonable in most, but not all, cases.
 
 To modify the number of digits that are output, use the `set_digits` function. You can either specify the number of significant digits or the number of decimal places. By default, digits for the estimate, the SE, and the confidence bounds are set for all rows.
 
-```{r}
-a <- one_proportion_inference(vs~cyl, data=mtcars2)
-```
+The `set_digits` function should be used directly on the results object, before any `gt` formatting.
 
-This sets the number of significant digits to 2 (for the estimate, the SE, and the confidence bounds),
+The code sets the number of significant digits to 2 (for the estimate, the SE, and the confidence bounds),
 ```{r}
 a |> set_digits(digits=2)
 ```
 
-This sets the number of decimal places to 2.
+This code sets the number of decimal places to 2.
 ```{r}
 a |> set_digits(decimals=2)
 ```
 
 Specific values can be specified using the column names and row numbers.
 ```{r}
-a |> set_digits(decimals=5, columns="proportion", rows=1:2)
+a |> set_digits(decimals=5, columns="difference", rows=1:2)
 ```
 
 You can also set the number of decimals based on significant digits for a given column or columns; for example, when created, the decimals are set based on the number of significant digits needed for the SE and ME columns, where ME (the margin of error) is calculated from conf.high and conf.low.
 
-This determines how many decimals are needed to display the SE and ME with 2 significant digits, and uses that for the estimate, the SE, and the confidence bounds. This is the default setting in most cases.
+This determines how many decimals are needed to display the SE and ME with 2 significant digits, and uses that for the estimate, the SE, and the confidence bounds. The following is the current default setting.
 
 ```{r}
 a |> set_digits(digits=2, by=c("SE", "ME"))
 ```
 
 ### Rounding p-values
-Rounding p-values are currently handled within the `gt` mechanism, as described below.
+Rounding p-values are currently handled within the `gt` mechanism, using the `fmt_pvalue` function, which formats p-values (anything named `p.value` or `p.adjust`), with `digits` significant digits, up to `max.digits` decimals. The default is 2 significant digits, and 4 maximum digits.
 
-
-## Formatting
-
-All output from statistical tests in this package are stored as a special object (an `atest`) that knows how to print itself in a nice way.
-
-```{r}
-a
-```
-
-It does this by converting it into a `gt` object from the [gt](https://gt.rstudio.com/) package.
-
-You can use any `gt` function by first doing this conversion yourself using `as_gt`. If you use any `gt` functions you'll need to load the `gt` library before `umncvmstats`.
-
-The following table looks the same because I haven't added any other functions yet.
-
-```{r}
-a |> as_gt()
-```
-
-There are also a few useful functions in this package, as follows.
-
-### Formatting p-values
-
-The `fmt_pvalue` function formats p-values (anything named `p.value` or `p.adjust`), with `digits` significant digits, up to `max.digits` decimals. The default is 2 significant digits, and 4 maximum digits.
+Here's what the output would look like with 3 significant digits and 5 maximum digits.
 ```{r}
 a |> as_gt() |> fmt_pvalue(digits=3, max.digits=5)
 ```
 
-### Compacting Tables
-
-This compact table uses `font.size = 13` and `padding = 1`.
-```{r}
-a |> as_gt() |> tab_compact()
-```
-
-```{r}
-a |> as_gt() |> tab_compact(font.size = 11, padding = 3)
-```
 
 ## Output as data set
 
 To get the underlying output as a data set, use `as_tibble`. You'll need to have loaded the `tibble` library, which loads as part of the `tidyverse`. There are several options for how to handle the footnotes.
 
 This is useful when further processing or graphics based on output is desired.
+
+You'll notice that the column names are different from the formatted output; the formatted output tries to simplify the table to make it clearer to read, while this instead returns the underlying pieces for you to handle as needed in your specific case.
 
 ```{r}
 a |> as_tibble()
