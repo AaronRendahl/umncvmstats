@@ -14,44 +14,59 @@ knitr::opts_chunk$set(
 )
 ```
 
-## To get started
+## Getting started
 
 Various basic R ideas are covered in the [Getting Started](starting) page, including how to:
 
 -   Open your class "Project"
-
 -   Use the panes in Rstudio
-
 -   Use the assignment operator `<-` to save the result of an operation
-
 -   Use functions, that is, be able to call a function with one or more (possibly named) parameters
-
 -   Use the pipe `|>` to send a value to a function
-
 -   Use the `c` function to "combine" values together
-
 -   Get unstuck by using [Control-C]) to cancel the current input line
-
 -   Load packages using the `library` function
-
 -   Create scripts and Quarto files and send commands from them to the console
-
 -   Render Quarto files and open the result in your browser
 
--   `read_csv` and `read_excel`, with optional parameters `na`, `skip`, and `sheet`
+## About Data
 
--   `skim` to check that it was read properly
+-   Reading in data
+    -   Best practices for creating a data set in a spreadsheet
+    -   Reading in a data set using `read_csv` and `read_excel`, with optional parameters `na`, `skip`, and `sheet`
+    -   `skim` to check that it was read properly
+    -   `mutate`, `as_factor`, and optionally `fct_recode` to create factor variables
+-   Descriptive statistics
+    -   `descriptive_statistics` to get a summary of descriptive statistics for all variables
+    -   `count` and `mutate` (optionally with `.by` parameter) to get counts and percents for categorical data
+    -   `summarize` (optionally with `.by` parameter) to get summary statistics for continuous data
+-   Working with data
+    -   `select` to select by column
+    -   `filter` to select by row (see comparing functions)
+    -   `arrange` (and `desc`) to sort
+    -   `mutate` to make new variables
+-   For summarizing
+    -   `count` and `mutate`, to get counts and percents
+    -   `summarize` for continuous variables, with `mean`, `sd`, `var`, `median`, `quantile` (with `probs` parameter), `min`, `max`, `IQR`
+    -   Use `na.rm = TRUE` to remove missing values first
+-   For comparing
+    -   `<`, `<=`, `>`, `>=`, `==`, `!=`
+    -   `%in%`
+    -   `|`, `&`, `!`
+    -   `is.na`
+-   For creating new variables
+    -   arithmetic functions (`+`, `-`, `*`, `/`)
+    -   `log`, `log10`, `log2`
+    -   `if_else`, `case_when`, `cut`
+-   For factors
+    -   `as_factor`
+    -   `fct_recode`
+    -   `fct_relevel`
+    -   `fct_infreq`, `fct_reorder`
+    -   `droplevels`
 
--   `mutate`, `as_factor`, and optionally `fct_recode` to create factor variables
+## About Graphics
 
--   `descriptive_statistics` to get a summary of descriptive statistics for all variables
+## Statistical Inference
 
-## About data
-
-
-
-## About graphics
-
-## Statistical inference
-
-### Options for output
+## Additional Options
