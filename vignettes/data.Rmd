@@ -1,8 +1,8 @@
 ---
-title: "Data Calculation and Transformation"
+title: "Data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Data Calculation and Transformation}
+  %\VignetteIndexEntry{Data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -24,10 +24,12 @@ library(umncvmstats)
 
 For more on working with data in R using the `tidyverse`, see the following resources:
 
-+ [dplyr Reference](https://dplyr.tidyverse.org/)
-+ [R for Data Science book](https://r4ds.hadley.nz/)
+-   [dplyr Reference](https://dplyr.tidyverse.org/)
+-   [R for Data Science book](https://r4ds.hadley.nz/)
 
 ## Reading in data
+
+We'll most often read in data from either csv or Excel sheets. The
 
 csv, excel (sheet), na, skip
 
@@ -55,7 +57,16 @@ mtcars2 |> select(-model) |> descriptive_statistics()
 
 ## Working with data
 
-select, filter, arrange (desc)
+-   Selecting columns (`select`)
+    -   Select `model` and `mpg` columns: `mtcars2 |> select(model, mpg)`
+    -   Select all but `model` and `mpg` columns: `mtcars2 |> select(-model, -mpg)`
+-   Selecting rows (`filter`)
+    -   Select rows that have manual transmissions: `mtcars2 |> filter(am=="manual")`
+    -   Select rows that have mpg > 25: `mtcars2 |> filter(mpg > 25)`
+    -   See "Comparison" below for more options
+-   Sort the data set
+    -   Sort by increasing mpg: `mtcars2 |> arrange(mpg)`
+arrange (desc)
 
 count (by)
 
@@ -65,7 +76,7 @@ summarize (by)
 
 ## Comparison
 
-<, <=, >, >=, ==, != %in%, |, &, is.na, !
+\<, \<=, \>, \>=, ==, !=, %in%, \|, &, is.na, !
 
 ## Statistics functions
 
@@ -75,15 +86,10 @@ na.rm
 
 log/log10/log2
 
-
 ## Data functions
 
 if_else, case_when, cut
 
 ## Factors
 
-droplevels
-as_factor, fct_relevel, fct_recode
-fct_infreq, fct_reorder
-
-
+droplevels as_factor, fct_relevel, fct_recode fct_infreq, fct_reorder
