@@ -286,6 +286,31 @@ You see that it won't actually do anything, it will instead ask you what you wan
 conflicts_prefer(dplyr::filter)
 ```
 
+### Suggestions for this semester
+
+I believe these should be almost all the packages you'll need this semester; this code is in the assignment template.
+
+```{r}
+library(conflicted)
+library(tidyverse)
+library(umncvmstats)
+library(here)
+library(readxl)
+library(patchwork)
+library(gt)
+conflicts_prefer(dplyr::filter, dplyr::lag, dplyr::select, umncvmstats::as_gt)
+```
+
+- `conflicted`: handles conflicts between packages
+- `tidyverse`: set of packages for data manipulation and graphics, includes `ggplot2`
+- `umncvmstats`: standardizes syntax and output for statistical functions, also adds various useful functionality
+- `here`: helps find files within the project, especially when subfolders are used
+- `readxl`: adds functionality for reading Excel files
+- `patchwork`: allows multiple graphics to be combined together (eg, side by side)
+- `gt`: formatted output for tables
+
+Best practice is to load all packages you're going to use in a particular script or Quarto file at the top.
+
 ### Opening data files
 
 First, about specifying file locations, you should always use paths relative to your main project, never absolute paths from your file system. This ensures that your code is reproducible if you move the project around or share your files with others.
