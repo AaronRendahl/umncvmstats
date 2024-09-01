@@ -128,7 +128,16 @@ This is a version of `tbl_summary` from the `gtsummary` package; further control
 mtcars2 |> select(-model) |> descriptive_statistics()
 ```
 
-This output is formatted, making it great for understanding and display, but hard to work with further. To work with further, we need to compute these values ourselves.
+One can also compute these statistics on subsets of the data, by splitting it by another variable first, using the `by` parameter. This code gets descriptive statistics for each `am` group (automatic and manual) separately. 
+
+[Output not shown]
+
+```{r}
+#| eval: false
+mtcars2 |> select(-model) |> descriptive_statistics(by=am)
+```
+
+This output is formatted, making it great for understanding and display, but hard to work with further. To work with further, we'd need to compute these values ourselves.
 
 ### Summarizing categorical variables
 

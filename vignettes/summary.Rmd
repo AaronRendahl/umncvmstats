@@ -42,7 +42,7 @@ The [About Data](data) page has details on how to read in data, compute descript
     -   `skim` to check that it was read properly
     -   `mutate`, `as_factor`, and optionally `fct_recode` to create factor variables
 -   Descriptive statistics
-    -   `descriptive_statistics` to get a summary of descriptive statistics for all variables
+    -   `descriptive_statistics` to get a summary of descriptive statistics for all variables; use the parameter `by` to split by another variable first.
     -   `count` and `mutate` (optionally with `.by` parameter) to get counts and percents for categorical data
     -   `summarize` (optionally with `.by` parameter) to get summary statistics for continuous data
 -   Working with data
