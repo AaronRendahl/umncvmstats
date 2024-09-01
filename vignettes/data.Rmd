@@ -21,7 +21,7 @@ library(forcats)
 library(umncvmstats)
 ```
 
-For more on working with data in R using the `tidyverse`, see the following resources:
+We'll mostly use functions from the `tidyverse` when working with data; for more on the `tidyverse`, see the following resources:
 
 -   [dplyr Reference](https://dplyr.tidyverse.org/)
 -   [R for Data Science book](https://r4ds.hadley.nz/)
