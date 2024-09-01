@@ -227,21 +227,26 @@ R is very careful with missing values and will not compute these if any of the v
 
 ### For comparing
 
--   `<`, `<=`, `>`, `>=`, `==`, `!=`
--   `%in%`
--   `|`, `&`, `!`
--   `is.na`
+-   less than/greater to: `<`, `<=`, `>`, `>=`, 
+-   equal to `==`, not equal to `!=` (note the double equals to test equality)
+-   `%in%`: tests if a value is in a vector, for example
+    -   For example, for a variable `v <- c("a", "b", "c")`, the operation `v %in% c("a", "b")` returns the vector `c(TRUE, TRUE, FALSE)`.
+-   Boolean operators: or `|`, and `&`, not `!`
+-   to test if a value is missing, use `is.na`; using `==NA` does not work. This is also vectorized; try `is.na(c(1,2,NA,4))`
 
 ### For creating new variables
 
 -   arithmetic functions (`+`, `-`, `*`, `/`)
--   `log`, `log10`, `log2`
--   `if_else`, `case_when`, `cut`
+-   log functions; natural log is default, but base 10 and base 2 also can be used: `log`, `log10`, `log2`
+-   For creating new variables based on conditions:
+    -   For a binary condition: `if_else`
+    -   For several possible conditions: `case_when`
+    -   To break a numeric variable into categories: `cut`
 
 ### For factors
 
--   `as_factor`
--   `fct_recode`
--   `fct_relevel`
--   `fct_infreq`, `fct_reorder`
--   `droplevels`
+-   `as_factor`: creates a factor
+-   `fct_recode`: recodes the levels to different values
+-   `fct_relevel`: reorders the factor levels by hand
+-   `fct_infreq`, `fct_reorder`: reorders the factor levels either by frequency or by sorting along another variable
+-   `droplevels`: removes levels that have zero values
