@@ -29,6 +29,7 @@ Various basic R ideas are covered in the [Getting Started](starting) page, inclu
 -   Get unstuck by using [Control-C]) to cancel the current input line
 -   Load packages using the `library` function
 -   Create scripts and Quarto files and send commands from them to the console
+-   Use chunk options in Quarto to control the output (eg, `#| message: false`)
 -   Render Quarto files and open the result in your browser
 
 ## About Data
@@ -131,7 +132,9 @@ ggplot(data_set,
 
 ### Labelling
 
--   `labs(x = "x variable", y = "y variable", title = "Plot title"`
+Change the label for an aesthetic (or add a title) using `labs`.
+
+-   `labs(x = "x variable", y = "y variable", title = "Plot title")`
 
 
 ## Statistical Inference
