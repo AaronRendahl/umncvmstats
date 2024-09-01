@@ -28,6 +28,22 @@ For more on working with data in R using the `tidyverse`, see the following reso
 
 ## About data sets
 
+A good data file ...
+
+-   Is rectangular
+-   Has observations in rows and variables in columns
+-   Can have extra information (metadata) in rows above the data; we can have R skip these
+-   Has no information in formatting (ie, color) or position (ie, sorting shouldn't lose information)
+-   Has minimal computation or duplication
+-   Has well-labeled variables...
+
+Unfortunately computers and humans have different ideas about what a good label is.
+
+-   Good computer labels: Alphanumeric and underscore only, starting with a letter. Units often get in the way. (eg, `BloodPressure` or `blood_pressure`)
+-   Good human labels: spaces, parentheses allowed, units should be specified. "Blood Pressure (mmHg)"
+
+Consider using two rows for labels, with human labels (to be skipped when reading data in) above computer labels.
+
 ## Reading in data
 
 We'll most often read in data from either csv or Excel sheets. The functions `read_csv` and `read_excel` are used for this.
@@ -124,6 +140,7 @@ mtcars2 |> count(vs, am)
 ```
 
 We can then use `mutate` to make a new variable with the percent; see more on `mutate` later. This adds columns with the overall percent for each desired combination of variables. Note that within each computation, the percents sum to 100%.
+
 ```{r}
 mtcars2 |> count(vs) |> mutate(percent = n / sum(n))
 mtcars2 |> count(vs, am) |> mutate(percent = n / sum(n))
@@ -134,7 +151,6 @@ If, however, we want to compute the percent of one variable within categories of
 ```{r}
 mtcars2 |> count(vs, am) |> mutate(percent = n / sum(n), .by=am)
 ```
-
 
 Another option is to use `xtabs` to get a "cross-tabulation" of multiple variables. This uses the "formula" syntax, which we'll see more of when we do inference. It also stores the result in a matrix, which is easier to view but harder to work with. The row and columns sums can be added using `addmargins`.
 
@@ -205,6 +221,7 @@ Useful summary functions include:
 -   `min`: minimum value
 -   `max`: maximum value
 -   `IQR`: interquartile range
+-   `n()`: to get the number of observations (including when grouped using `.by`)
 
 R is very careful with missing values and will not compute these if any of the values are missing; this is a good thing as it forces you to specifically handle it. If you want to remove any missing values before computing these statistics, set the parameter `na.rm = TRUE` for any of these functions.
 
