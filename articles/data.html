@@ -1412,16 +1412,23 @@ that package directly.</p>
 </tbody>
 </table>
 </div>
+<p>One can also compute these statistics on subsets of the data, by
+splitting it by another variable first, using the <code>by</code>
+parameter. This code gets descriptive statistics for each
+<code>am</code> group (automatic and manual) separately.</p>
+<p>[Output not shown]</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">model</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/descriptive_statistics.html">descriptive_statistics</a></span><span class="op">(</span>by<span class="op">=</span><span class="va">am</span><span class="op">)</span></span></code></pre></div>
 <p>This output is formatted, making it great for understanding and
-display, but hard to work with further. To work with further, we need to
-compute these values ourselves.</p>
+display, but hard to work with further. To work with further, we’d need
+to compute these values ourselves.</p>
 </div>
 <div class="section level3">
 <h3 id="summarizing-categorical-variables">Summarizing categorical variables<a class="anchor" aria-label="anchor" href="#summarizing-categorical-variables"></a>
 </h3>
 <p>Use <code>count</code> to count categorical variables; count
 combinations of multiple variables by separating with a comma.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu">count</span><span class="op">(</span><span class="va">vs</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 2</span></span></span>
 <span><span class="co">#&gt;   vs           n</span></span>
@@ -1440,7 +1447,7 @@ combinations of multiple variables by separating with a comma.</p>
 percent; see more on <code>mutate</code> later. This adds columns with
 the overall percent for each desired combination of variables. Note that
 within each computation, the percents sum to 100%.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu">count</span><span class="op">(</span><span class="va">vs</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>percent <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 3</span></span></span>
 <span><span class="co">#&gt;   vs           n percent</span></span>
@@ -1460,7 +1467,7 @@ categories of another variable, we can use the <code>.by</code>
 parameter, which does the computation separately for each value of the
 specified variable. Now the percents within each value of
 <code>am</code> (automatic or manual) sum to 100%.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu">count</span><span class="op">(</span><span class="va">vs</span>, <span class="va">am</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>percent <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>, .by<span class="op">=</span><span class="va">am</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 4</span></span></span>
 <span><span class="co">#&gt;   vs       am            n percent</span></span>
@@ -1474,7 +1481,7 @@ specified variable. Now the percents within each value of
 syntax, which we’ll see more of when we do inference. It also stores the
 result in a matrix, which is easier to view but harder to work with. The
 row and columns sums can be added using <code>addmargins</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/xtabs.html" class="external-link">xtabs</a></span><span class="op">(</span><span class="op">~</span><span class="va">vs</span> <span class="op">+</span> <span class="va">am</span>, data<span class="op">=</span><span class="va">mtcars2</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           am</span></span>
 <span><span class="co">#&gt; vs         automatic manual</span></span>
@@ -1497,7 +1504,7 @@ the result to the variable. To do this separately for each value of a
 categorical variable, use the <code>.by</code> parameter. Note the
 <code>.</code> in front of <code>.by</code>; that is used here to make
 conflicts with your desired name less likely.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu">summarize</span><span class="op">(</span>mean_mpg<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span>, sd_mpg<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 2</span></span></span>
 <span><span class="co">#&gt;   mean_mpg sd_mpg</span></span>
@@ -1570,7 +1577,7 @@ underscore (<code>_</code>), and start with a letter.</p>
 <p>This data set has fuel economy in miles per gallon
 (<code>mpg</code>); suppose we instead want to use the UK standard of
 liters/100 kilometers.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mtcars2</span> <span class="op">&lt;-</span> <span class="va">mtcars2</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>Lp100km <span class="op">=</span> <span class="fl">3.78541</span> <span class="op">/</span> <span class="fl">1.60934</span> <span class="op">*</span> <span class="fl">100</span> <span class="op">/</span> <span class="va">mpg</span><span class="op">)</span></span>
 <span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="va">mpg</span>, <span class="va">Lp100km</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/skim.html">skim</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
