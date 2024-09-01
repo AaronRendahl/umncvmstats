@@ -6,11 +6,11 @@ articles:
   graphics: graphics.html
   means: means.html
   models: models.html
-  multipletests: multipletests.html
-  output: output.html
+  options: options.html
   proportions: proportions.html
-  setup: setup.html
-last_built: 2024-08-29T21:32Z
+  starting: starting.html
+  summary: summary.html
+last_built: 2024-09-01T01:38Z
 urls:
   reference: https://aaronrendahl.github.io/umncvmstats/reference
   article: https://aaronrendahl.github.io/umncvmstats/articles

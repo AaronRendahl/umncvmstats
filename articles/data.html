@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Data Calculation and Transformation • umncvmstats</title>
+<title>About Data • umncvmstats</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Data Calculation and Transformation">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="About Data">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -33,14 +33,14 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/setup.html">Getting Started with R, Rstudio, and Quarto</a></li>
-    <li><a class="dropdown-item" href="../articles/graphics.html">Data Visualization</a></li>
-    <li><a class="dropdown-item" href="../articles/data.html">Data Calculation and Transformation</a></li>
+<li><a class="dropdown-item" href="../articles/starting.html">Getting Started</a></li>
+    <li><a class="dropdown-item" href="../articles/data.html">About Data</a></li>
+    <li><a class="dropdown-item" href="../articles/graphics.html">About Graphics</a></li>
     <li><a class="dropdown-item" href="../articles/proportions.html">Inference for Proportions</a></li>
     <li><a class="dropdown-item" href="../articles/means.html">Inference for Means</a></li>
     <li><a class="dropdown-item" href="../articles/models.html">Inference about Models</a></li>
-    <li><a class="dropdown-item" href="../articles/output.html">Formatting Output</a></li>
-    <li><a class="dropdown-item" href="../articles/multipletests.html">Running Multiple Tests</a></li>
+    <li><a class="dropdown-item" href="../articles/options.html">Additional Options</a></li>
+    <li><a class="dropdown-item" href="../articles/summary.html">Summary</a></li>
   </ul>
 </li>
       </ul>
@@ -61,7 +61,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Data Calculation and Transformation</h1>
+      <h1>About Data</h1>
             
       
 
@@ -77,16 +77,65 @@ see the following resources:</p>
 <li><a href="https://r4ds.hadley.nz/" class="external-link">R for Data Science book</a></li>
 </ul>
 <div class="section level2">
+<h2 id="about-data-sets">About data sets<a class="anchor" aria-label="anchor" href="#about-data-sets"></a>
+</h2>
+<p>A good data file …</p>
+<ul>
+<li>Is rectangular</li>
+<li>Has observations in rows and variables in columns</li>
+<li>Can have extra information (metadata) in rows above the data; we can
+have R skip these</li>
+<li>Has no information in formatting (ie, color) or position (ie,
+sorting shouldn’t lose information)</li>
+<li>Has minimal computation or duplication</li>
+<li>Has well-labeled variables…</li>
+</ul>
+<p>Unfortunately computers and humans have different ideas about what a
+good label is.</p>
+<ul>
+<li>Good computer labels: Alphanumeric and underscore only, starting
+with a letter. Units often get in the way. (eg,
+<code>BloodPressure</code> or <code>blood_pressure</code>)</li>
+<li>Good human labels: spaces, parentheses allowed, units should be
+specified. “Blood Pressure (mmHg)”</li>
+</ul>
+<p>Consider using two rows for labels, with human labels (to be skipped
+when reading data in) above computer labels.</p>
+</div>
+<div class="section level2">
 <h2 id="reading-in-data">Reading in data<a class="anchor" aria-label="anchor" href="#reading-in-data"></a>
 </h2>
-<p>csv, excel (sheet), na, skip</p>
+<p>We’ll most often read in data from either csv or Excel sheets. The
+functions <code>read_csv</code> and <code>read_excel</code> are used for
+this.</p>
+<p>Both take the filename as the first parameter, and have additional
+parameters <code>na</code> to specify what values should be considered
+missing, and <code>skip</code> to skip a certain number of rows at the
+top. For an Excel sheet, there’s also the optional <code>sheet</code>
+parameter to specify which sheet to read; by default the first sheet is
+read.</p>
+<p>It’s also recommended to use the <code>here</code> function to
+specify the location of the file within your project; this allows you to
+move your script or Quarto file to subfolders within the project without
+changing the code.</p>
+<p>For example, the following code reads in a csv file
+<code>test.csv</code> from the main folder, considers a single period
+<code>.</code> and the code <code>NA</code> to be missing values, and
+skips the first two lines. It also saves the result in the variable
+<code>testdata</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">testdata</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"test.csv"</span><span class="op">)</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"."</span>, <span class="st">"NA"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<p>Here’s similar for reading an Excel file, that specifically chooses
+to read from the sheet named <code>mydata</code>. If not specified, the
+first sheet is chosen.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">testdata</span> <span class="op">&lt;-</span> <span class="fu">read_excel</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"test.csv"</span><span class="op">)</span>, sheet <span class="op">=</span> <span class="st">"mydata"</span>, na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"."</span>, <span class="st">"NA"</span><span class="op">)</span>, skip <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p>For further examples in this document, I’ll use the
 <code>mtcars2</code> data set, which is included in the
 <code>umncvmstats</code> package.</p>
-</div>
-<div class="section level2">
-<h2 id="summarizing-data">Summarizing data<a class="anchor" aria-label="anchor" href="#summarizing-data"></a>
-</h2>
+<div class="section level3">
+<h3 id="checking-that-it-was-read-properly">Checking that it was read properly<a class="anchor" aria-label="anchor" href="#checking-that-it-was-read-properly"></a>
+</h3>
 <p>After first reading in a data file, use the <code>skim</code>
 function to be sure it read in properly. This shows the number of rows
 and columns that were read, and then for each type of variable
@@ -95,7 +144,7 @@ information about each variable.</p>
 <p>This function is in <code>umncvmstats</code> and uses the
 <code>skimr</code> package behind the scenes; further control is
 possible by using that package directly.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/skim.html">skim</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Summary of mtcars2:</strong></p>
 <p>32 rows, 12 columns</p>
@@ -302,6 +351,441 @@ possible by using that package directly.</p>
 </tr>
 </tbody>
 </table>
+<p>In R, a categorical variable is called a <code>factor</code>; text
+variables should usually be factors unless they are simply used for
+identification, like the <code>model</code> variable, here.</p>
+<p>The most common error is that a variable that should be numeric is
+read in as text, due to an unspecified missing value code. Be sure to
+check that all variables are of the expected type, and that the values
+as summarized make sense.</p>
+</div>
+<div class="section level3">
+<h3 id="creating-factors">Creating factors<a class="anchor" aria-label="anchor" href="#creating-factors"></a>
+</h3>
+<p>The <code>mtcars2</code> data set is based on the <code>mtcars</code>
+data set, which is included in your basic R installation. In the
+original <code>mtcars</code> data set, though, all variables are
+numeric; the categorical variables are all coded as 0/1.</p>
+<p>Compare the <code>skim</code> summary of the <code>mtcars</code> data
+set with <code>mtcars2</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/skim.html">skim</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><strong>Summary of mtcars:</strong></p>
+<p>32 rows, 11 columns</p>
+<p><strong>Variable type: numeric</strong></p>
+<table class="table">
+<colgroup>
+<col width="15%">
+<col width="10%">
+<col width="15%">
+<col width="7%">
+<col width="7%">
+<col width="6%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="6%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">mpg</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">20.09</td>
+<td align="right">6.03</td>
+<td align="right">10.40</td>
+<td align="right">15.43</td>
+<td align="right">19.20</td>
+<td align="right">22.80</td>
+<td align="right">33.90</td>
+<td align="left">▃▇▅▁▂</td>
+</tr>
+<tr class="even">
+<td align="left">cyl</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">6.19</td>
+<td align="right">1.79</td>
+<td align="right">4.00</td>
+<td align="right">4.00</td>
+<td align="right">6.00</td>
+<td align="right">8.00</td>
+<td align="right">8.00</td>
+<td align="left">▆▁▃▁▇</td>
+</tr>
+<tr class="odd">
+<td align="left">disp</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">230.72</td>
+<td align="right">123.94</td>
+<td align="right">71.10</td>
+<td align="right">120.83</td>
+<td align="right">196.30</td>
+<td align="right">326.00</td>
+<td align="right">472.00</td>
+<td align="left">▇▃▃▃▂</td>
+</tr>
+<tr class="even">
+<td align="left">hp</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">146.69</td>
+<td align="right">68.56</td>
+<td align="right">52.00</td>
+<td align="right">96.50</td>
+<td align="right">123.00</td>
+<td align="right">180.00</td>
+<td align="right">335.00</td>
+<td align="left">▇▇▆▃▁</td>
+</tr>
+<tr class="odd">
+<td align="left">drat</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3.60</td>
+<td align="right">0.53</td>
+<td align="right">2.76</td>
+<td align="right">3.08</td>
+<td align="right">3.70</td>
+<td align="right">3.92</td>
+<td align="right">4.93</td>
+<td align="left">▇▃▇▅▁</td>
+</tr>
+<tr class="even">
+<td align="left">wt</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3.22</td>
+<td align="right">0.98</td>
+<td align="right">1.51</td>
+<td align="right">2.58</td>
+<td align="right">3.33</td>
+<td align="right">3.61</td>
+<td align="right">5.42</td>
+<td align="left">▃▃▇▁▂</td>
+</tr>
+<tr class="odd">
+<td align="left">qsec</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">17.85</td>
+<td align="right">1.79</td>
+<td align="right">14.50</td>
+<td align="right">16.89</td>
+<td align="right">17.71</td>
+<td align="right">18.90</td>
+<td align="right">22.90</td>
+<td align="left">▃▇▇▂▁</td>
+</tr>
+<tr class="even">
+<td align="left">vs</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.44</td>
+<td align="right">0.50</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="left">▇▁▁▁▆</td>
+</tr>
+<tr class="odd">
+<td align="left">am</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.41</td>
+<td align="right">0.50</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="left">▇▁▁▁▆</td>
+</tr>
+<tr class="even">
+<td align="left">gear</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3.69</td>
+<td align="right">0.74</td>
+<td align="right">3.00</td>
+<td align="right">3.00</td>
+<td align="right">4.00</td>
+<td align="right">4.00</td>
+<td align="right">5.00</td>
+<td align="left">▇▁▆▁▂</td>
+</tr>
+<tr class="odd">
+<td align="left">carb</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2.81</td>
+<td align="right">1.62</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">2.00</td>
+<td align="right">4.00</td>
+<td align="right">8.00</td>
+<td align="left">▇▂▅▁▁</td>
+</tr>
+</tbody>
+</table>
+<p>To convert these variables into categorical variables, we use the
+functions <code>mutate</code>, <code>as_factor</code>, and optionally
+<code>fct_recode</code>; we’ll see more about them later, for now, let’s
+just see a couple examples of how we use them to convert these
+variables.</p>
+<ul>
+<li>
+<code>mutate</code> function creates new variables (possibly
+overwriting old ones). Within <code>mutate</code> we use
+<code>newname = [operation]</code> to perform an operation and assign
+the result to the variable <code>newname</code>. Multiple variables can
+be created within one call to <code>mutate</code> by using commas.</li>
+<li>
+<code>as_factor</code> converts a variable to a categorical
+variable. You may also see the original version, <code>factor</code>;
+this version is from the <code>tidyverse</code> and is preferred for
+improved consistency.</li>
+<li>
+<code>fct_recode</code> changes the coding of the values.</li>
+</ul>
+<p>As an example, the following code:</p>
+<ul>
+<li>will save the result into a new variable <code>my_mtcars</code>
+</li>
+<li>pipes the <code>mtcars</code> dataset into the <code>mutate</code>
+function, then within mutate,
+<ul>
+<li>creates a new variable <code>cyl</code> (which will overwrite the
+previous <code>cyl</code>) by running <code>as_factor</code> on the
+<code>cyl</code> variable</li>
+<li>creates a new variable <code>vs</code> (which again, overwrites the
+previous <code>vs</code>) by first running <code>as_factor</code> on
+<code>vs</code> and then recoding it so that <code>0</code> becomes
+<code>V-shaped</code> and <code>1</code> becomes <code>Straight</code>.
+Quotation marks are recommended, though in certain cases are not
+absolutely necessary.</li>
+</ul>
+</li>
+</ul>
+<p>We then <code>skim</code> the new result.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_mtcars</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>cyl <span class="op">=</span> <span class="fu">as_factor</span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>,</span>
+<span>         vs <span class="op">=</span> <span class="fu">as_factor</span><span class="op">(</span><span class="va">vs</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">fct_recode</span><span class="op">(</span><span class="st">"V-shaped"</span><span class="op">=</span><span class="st">"0"</span>, <span class="st">"Straight"</span><span class="op">=</span><span class="st">"1"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/skim.html">skim</a></span><span class="op">(</span><span class="va">my_mtcars</span><span class="op">)</span></span></code></pre></div>
+<p><strong>Summary of my_mtcars:</strong></p>
+<p>32 rows, 11 columns</p>
+<p><strong>Variable type: factor</strong></p>
+<table class="table">
+<colgroup>
+<col width="18%">
+<col width="13%">
+<col width="18%">
+<col width="10%">
+<col width="12%">
+<col width="25%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="left">ordered</th>
+<th align="right">n_unique</th>
+<th align="left">top_counts</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">cyl</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">3</td>
+<td align="left">8: 14, 4: 11, 6: 7</td>
+</tr>
+<tr class="even">
+<td align="left">vs</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">V-s: 18, Str: 14</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="table">
+<colgroup>
+<col width="15%">
+<col width="10%">
+<col width="15%">
+<col width="7%">
+<col width="7%">
+<col width="6%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="6%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">mpg</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">20.09</td>
+<td align="right">6.03</td>
+<td align="right">10.40</td>
+<td align="right">15.43</td>
+<td align="right">19.20</td>
+<td align="right">22.80</td>
+<td align="right">33.90</td>
+<td align="left">▃▇▅▁▂</td>
+</tr>
+<tr class="even">
+<td align="left">disp</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">230.72</td>
+<td align="right">123.94</td>
+<td align="right">71.10</td>
+<td align="right">120.83</td>
+<td align="right">196.30</td>
+<td align="right">326.00</td>
+<td align="right">472.00</td>
+<td align="left">▇▃▃▃▂</td>
+</tr>
+<tr class="odd">
+<td align="left">hp</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">146.69</td>
+<td align="right">68.56</td>
+<td align="right">52.00</td>
+<td align="right">96.50</td>
+<td align="right">123.00</td>
+<td align="right">180.00</td>
+<td align="right">335.00</td>
+<td align="left">▇▇▆▃▁</td>
+</tr>
+<tr class="even">
+<td align="left">drat</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3.60</td>
+<td align="right">0.53</td>
+<td align="right">2.76</td>
+<td align="right">3.08</td>
+<td align="right">3.70</td>
+<td align="right">3.92</td>
+<td align="right">4.93</td>
+<td align="left">▇▃▇▅▁</td>
+</tr>
+<tr class="odd">
+<td align="left">wt</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3.22</td>
+<td align="right">0.98</td>
+<td align="right">1.51</td>
+<td align="right">2.58</td>
+<td align="right">3.33</td>
+<td align="right">3.61</td>
+<td align="right">5.42</td>
+<td align="left">▃▃▇▁▂</td>
+</tr>
+<tr class="even">
+<td align="left">qsec</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">17.85</td>
+<td align="right">1.79</td>
+<td align="right">14.50</td>
+<td align="right">16.89</td>
+<td align="right">17.71</td>
+<td align="right">18.90</td>
+<td align="right">22.90</td>
+<td align="left">▃▇▇▂▁</td>
+</tr>
+<tr class="odd">
+<td align="left">am</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.41</td>
+<td align="right">0.50</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="left">▇▁▁▁▆</td>
+</tr>
+<tr class="even">
+<td align="left">gear</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3.69</td>
+<td align="right">0.74</td>
+<td align="right">3.00</td>
+<td align="right">3.00</td>
+<td align="right">4.00</td>
+<td align="right">4.00</td>
+<td align="right">5.00</td>
+<td align="left">▇▁▆▁▂</td>
+</tr>
+<tr class="odd">
+<td align="left">carb</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2.81</td>
+<td align="right">1.62</td>
+<td align="right">1.00</td>
+<td align="right">2.00</td>
+<td align="right">2.00</td>
+<td align="right">4.00</td>
+<td align="right">8.00</td>
+<td align="left">▇▂▅▁▁</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section level2">
+<h2 id="summarizing-data">Summarizing data<a class="anchor" aria-label="anchor" href="#summarizing-data"></a>
+</h2>
+<div class="section level3">
+<h3 id="descriptive-statistics-for-all-variables">Descriptive statistics for all variables<a class="anchor" aria-label="anchor" href="#descriptive-statistics-for-all-variables"></a>
+</h3>
 <p>To get basic descriptive statistics, use the
 <code>descriptive_statistics</code> function, which shows
 mean/SD/median/range for continuous variables and count/percent for
@@ -312,7 +796,7 @@ values).</p>
 <p>This is a version of <code>tbl_summary</code> from the
 <code>gtsummary</code> package; further control is possible by using
 that package directly.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">model</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/descriptive_statistics.html">descriptive_statistics</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#mwlefoodfi table {
@@ -928,37 +1412,333 @@ that package directly.</p>
 </tbody>
 </table>
 </div>
+<p>This output is formatted, making it great for understanding and
+display, but hard to work with further. To work with further, we need to
+compute these values ourselves.</p>
+</div>
+<div class="section level3">
+<h3 id="summarizing-categorical-variables">Summarizing categorical variables<a class="anchor" aria-label="anchor" href="#summarizing-categorical-variables"></a>
+</h3>
+<p>Use <code>count</code> to count categorical variables; count
+combinations of multiple variables by separating with a comma.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu">count</span><span class="op">(</span><span class="va">vs</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 2</span></span></span>
+<span><span class="co">#&gt;   vs           n</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> V-shaped    18</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> straight    14</span></span>
+<span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu">count</span><span class="op">(</span><span class="va">vs</span>, <span class="va">am</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 3</span></span></span>
+<span><span class="co">#&gt;   vs       am            n</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> V-shaped automatic    12</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> V-shaped manual        6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> straight automatic     7</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> straight manual        7</span></span></code></pre></div>
+<p>We can then use <code>mutate</code> to make a new variable with the
+percent; see more on <code>mutate</code> later. This adds columns with
+the overall percent for each desired combination of variables. Note that
+within each computation, the percents sum to 100%.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu">count</span><span class="op">(</span><span class="va">vs</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>percent <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 3</span></span></span>
+<span><span class="co">#&gt;   vs           n percent</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> V-shaped    18   0.562</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> straight    14   0.438</span></span>
+<span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu">count</span><span class="op">(</span><span class="va">vs</span>, <span class="va">am</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>percent <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 4</span></span></span>
+<span><span class="co">#&gt;   vs       am            n percent</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> V-shaped automatic    12   0.375</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> V-shaped manual        6   0.188</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> straight automatic     7   0.219</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> straight manual        7   0.219</span></span></code></pre></div>
+<p>If, however, we want to compute the percent of one variable within
+categories of another variable, we can use the <code>.by</code>
+parameter, which does the computation separately for each value of the
+specified variable. Now the percents within each value of
+<code>am</code> (automatic or manual) sum to 100%.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu">count</span><span class="op">(</span><span class="va">vs</span>, <span class="va">am</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>percent <span class="op">=</span> <span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>, .by<span class="op">=</span><span class="va">am</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 4</span></span></span>
+<span><span class="co">#&gt;   vs       am            n percent</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> V-shaped automatic    12   0.632</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> V-shaped manual        6   0.462</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> straight automatic     7   0.368</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> straight manual        7   0.538</span></span></code></pre></div>
+<p>Another option is to use <code>xtabs</code> to get a
+“cross-tabulation” of multiple variables. This uses the “formula”
+syntax, which we’ll see more of when we do inference. It also stores the
+result in a matrix, which is easier to view but harder to work with. The
+row and columns sums can be added using <code>addmargins</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/xtabs.html" class="external-link">xtabs</a></span><span class="op">(</span><span class="op">~</span><span class="va">vs</span> <span class="op">+</span> <span class="va">am</span>, data<span class="op">=</span><span class="va">mtcars2</span><span class="op">)</span></span>
+<span><span class="co">#&gt;           am</span></span>
+<span><span class="co">#&gt; vs         automatic manual</span></span>
+<span><span class="co">#&gt;   V-shaped        12      6</span></span>
+<span><span class="co">#&gt;   straight         7      7</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/xtabs.html" class="external-link">xtabs</a></span><span class="op">(</span><span class="op">~</span><span class="va">vs</span> <span class="op">+</span> <span class="va">am</span>, data<span class="op">=</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;           am</span></span>
+<span><span class="co">#&gt; vs         automatic manual Sum</span></span>
+<span><span class="co">#&gt;   V-shaped        12      6  18</span></span>
+<span><span class="co">#&gt;   straight         7      7  14</span></span>
+<span><span class="co">#&gt;   Sum             19     13  32</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="summarizing-continuous-variables">Summarizing continuous variables<a class="anchor" aria-label="anchor" href="#summarizing-continuous-variables"></a>
+</h3>
+<p>To get summary statistics for a continuous variable, use
+<code>summarize</code>. Within <code>summarize</code>, use
+<code>newname = [operation]</code> to perform an operation and assign
+the result to the variable. To do this separately for each value of a
+categorical variable, use the <code>.by</code> parameter. Note the
+<code>.</code> in front of <code>.by</code>; that is used here to make
+conflicts with your desired name less likely.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu">summarize</span><span class="op">(</span>mean_mpg<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span>, sd_mpg<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 2</span></span></span>
+<span><span class="co">#&gt;   mean_mpg sd_mpg</span></span>
+<span><span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     20.1   6.03</span></span>
+<span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu">summarize</span><span class="op">(</span>mean_mpg<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span>, sd_mpg<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span>, .by<span class="op">=</span><span class="va">am</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 3</span></span></span>
+<span><span class="co">#&gt;   am        mean_mpg sd_mpg</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> manual        24.4   6.17</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> automatic     17.1   3.83</span></span></code></pre></div>
+<p>See list of useful summary functions below.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="working-with-data">Working with data<a class="anchor" aria-label="anchor" href="#working-with-data"></a>
 </h2>
-<p>select, filter, arrange (desc)</p>
-<p>count (by)</p>
-<p>mutate (by)</p>
-<p>summarize (by)</p>
+<div class="section level3">
+<h3 id="selecting-rows-or-columns">Selecting rows or columns<a class="anchor" aria-label="anchor" href="#selecting-rows-or-columns"></a>
+</h3>
+<ul>
+<li>Selecting columns (<code>select</code>)
+<ul>
+<li>Select <code>model</code> and <code>mpg</code> columns:
+<code>mtcars2 |&gt; select(model, mpg)</code>
+</li>
+<li>Select all but <code>model</code> and <code>mpg</code> columns:
+<code>mtcars2 |&gt; select(-model, -mpg)</code>
+</li>
+</ul>
+</li>
+<li>Selecting rows (<code>filter</code>)
+<ul>
+<li>Select rows that have manual transmissions:
+<code>mtcars2 |&gt; filter(am=="manual")</code>
+</li>
+<li>Select rows that have mpg &gt; 25:
+<code>mtcars2 |&gt; filter(mpg &gt; 25)</code>
+</li>
+<li>See “Comparison” below for more options</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="sorting">Sorting<a class="anchor" aria-label="anchor" href="#sorting"></a>
+</h3>
+<p>Use <code>arrange</code> to sort</p>
+<ul>
+<li>Sort by increasing mpg: <code>mtcars2 |&gt; arrange(mpg)</code>
+</li>
+<li>Sort by decreasing mpg:
+<code>mtcars2 |&gt; arrange(desc(mpg))</code>
+</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="creating-new-variables">Creating new variables<a class="anchor" aria-label="anchor" href="#creating-new-variables"></a>
+</h3>
+<p>We use the <code>mutate</code> function to add a variable.</p>
+<ul>
+<li>
+<code>mutate</code> function creates new variables (possibly
+overwriting old ones). Within <code>mutate</code> we use
+<code>newname = [operation]</code> to perform an operation and assign
+the result to the variable</li>
+</ul>
+<p>Best practice is that variables use only letters, numbers, and the
+underscore (<code>_</code>), and start with a letter.</p>
+<p>This data set has fuel economy in miles per gallon
+(<code>mpg</code>); suppose we instead want to use the UK standard of
+liters/100 kilometers.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mtcars2</span> <span class="op">&lt;-</span> <span class="va">mtcars2</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>Lp100km <span class="op">=</span> <span class="fl">3.78541</span> <span class="op">/</span> <span class="fl">1.60934</span> <span class="op">*</span> <span class="fl">100</span> <span class="op">/</span> <span class="va">mpg</span><span class="op">)</span></span>
+<span><span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu">select</span><span class="op">(</span><span class="va">mpg</span>, <span class="va">Lp100km</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/skim.html">skim</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><strong>Summary of select(mtcars2, mpg, Lp10…:</strong></p>
+<p>32 rows, 2 columns</p>
+<p><strong>Variable type: numeric</strong></p>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="16%">
+<col width="11%">
+<col width="16%">
+<col width="7%">
+<col width="5%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">mpg</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">20.09</td>
+<td align="right">6.03</td>
+<td align="right">10.40</td>
+<td align="right">15.43</td>
+<td align="right">19.20</td>
+<td align="right">22.80</td>
+<td align="right">33.90</td>
+<td align="left">▃▇▅▁▂</td>
+</tr>
+<tr class="even">
+<td align="left">Lp100km</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">12.76</td>
+<td align="right">3.86</td>
+<td align="right">6.94</td>
+<td align="right">10.32</td>
+<td align="right">12.25</td>
+<td align="right">15.25</td>
+<td align="right">22.62</td>
+<td align="left">▅▇▆▁▁</td>
+</tr>
+</tbody>
+</table>
+<p>In addition to arithmetic, there are a number of useful function for
+creating new variables, as seen below.</p>
+</div>
 </div>
 <div class="section level2">
-<h2 id="comparison">Comparison<a class="anchor" aria-label="anchor" href="#comparison"></a>
+<h2 id="useful-functions">Useful functions<a class="anchor" aria-label="anchor" href="#useful-functions"></a>
 </h2>
-<p>&lt;, &lt;=, &gt;, &gt;=, ==, != %in%, |, &amp;, is.na, !</p>
+<div class="section level3">
+<h3 id="for-summarizing">For summarizing<a class="anchor" aria-label="anchor" href="#for-summarizing"></a>
+</h3>
+<p>Useful summary functions include:</p>
+<ul>
+<li>
+<code>mean</code>: mean</li>
+<li>
+<code>sd</code>: standard deviation</li>
+<li>
+<code>var</code>: variance</li>
+<li>
+<code>median</code>: median</li>
+<li>
+<code>quantile</code>: quantile (or percentile); use the
+<code>probs</code> parameter to specify which. For example,
+<code>quantile(x, probs=0.25)</code> gets the 25th percentile of the
+variable <code>x</code>.</li>
+<li>
+<code>min</code>: minimum value</li>
+<li>
+<code>max</code>: maximum value</li>
+<li>
+<code>IQR</code>: interquartile range</li>
+<li>
+<code>n()</code>: to get the number of observations (including when
+grouped using <code>.by</code>)</li>
+</ul>
+<p>R is very careful with missing values and will not compute these if
+any of the values are missing; this is a good thing as it forces you to
+specifically handle it. If you want to remove any missing values before
+computing these statistics, set the parameter <code>na.rm = TRUE</code>
+for any of these functions.</p>
 </div>
-<div class="section level2">
-<h2 id="statistics-functions">Statistics functions<a class="anchor" aria-label="anchor" href="#statistics-functions"></a>
-</h2>
-<p>mean, sd, var, median, quartile, min, max, IQR</p>
-<p>na.rm</p>
-<p>log/log10/log2</p>
+<div class="section level3">
+<h3 id="for-comparing">For comparing<a class="anchor" aria-label="anchor" href="#for-comparing"></a>
+</h3>
+<ul>
+<li>less than/greater to: <code>&lt;</code>, <code>&lt;=</code>,
+<code>&gt;</code>, <code>&gt;=</code>,</li>
+<li>equal to <code>==</code>, not equal to <code>!=</code> (note the
+double equals to test equality)</li>
+<li>
+<code>%in%</code>: tests if a value is in a vector, for example
+<ul>
+<li>For example, for a variable <code>v &lt;- c("a", "b", "c")</code>,
+the operation <code>v %in% c("a", "b")</code> returns the vector
+<code>c(TRUE, TRUE, FALSE)</code>.</li>
+</ul>
+</li>
+<li>Boolean operators: or <code>|</code>, and <code>&amp;</code>, not
+<code>!</code>
+</li>
+<li>to test if a value is missing, use <code>is.na</code>; using
+<code>==NA</code> does not work. This is also vectorized; try
+<code>is.na(c(1,2,NA,4))</code>
+</li>
+</ul>
 </div>
-<div class="section level2">
-<h2 id="data-functions">Data functions<a class="anchor" aria-label="anchor" href="#data-functions"></a>
-</h2>
-<p>if_else, case_when, cut</p>
+<div class="section level3">
+<h3 id="for-creating-new-variables">For creating new variables<a class="anchor" aria-label="anchor" href="#for-creating-new-variables"></a>
+</h3>
+<ul>
+<li>arithmetic functions (<code>+</code>, <code>-</code>,
+<code>*</code>, <code>/</code>)</li>
+<li>log functions; natural log is default, but base 10 and base 2 also
+can be used: <code>log</code>, <code>log10</code>,
+<code>log2</code>
+</li>
+<li>For creating new variables based on conditions:
+<ul>
+<li>For a binary condition: <code>if_else</code>
+</li>
+<li>For several possible conditions: <code>case_when</code>
+</li>
+<li>To break a numeric variable into categories: <code>cut</code>
+</li>
+</ul>
+</li>
+</ul>
 </div>
-<div class="section level2">
-<h2 id="factors">Factors<a class="anchor" aria-label="anchor" href="#factors"></a>
-</h2>
-<p>droplevels as_factor, fct_relevel, fct_recode fct_infreq,
-fct_reorder</p>
+<div class="section level3">
+<h3 id="for-factors">For factors<a class="anchor" aria-label="anchor" href="#for-factors"></a>
+</h3>
+<ul>
+<li>
+<code>as_factor</code>: creates a factor</li>
+<li>
+<code>fct_recode</code>: recodes the levels to different values</li>
+<li>
+<code>fct_relevel</code>: reorders the factor levels by hand</li>
+<li>
+<code>fct_infreq</code>, <code>fct_reorder</code>: reorders the
+factor levels either by frequency or by sorting along another
+variable</li>
+<li>
+<code>droplevels</code>: removes levels that have zero values</li>
+</ul>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

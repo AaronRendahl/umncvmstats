@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Data Visualization • umncvmstats</title>
+<title>About Graphics • umncvmstats</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Data Visualization">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="About Graphics">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -33,14 +33,14 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/setup.html">Getting Started with R, Rstudio, and Quarto</a></li>
-    <li><a class="dropdown-item" href="../articles/graphics.html">Data Visualization</a></li>
-    <li><a class="dropdown-item" href="../articles/data.html">Data Calculation and Transformation</a></li>
+<li><a class="dropdown-item" href="../articles/starting.html">Getting Started</a></li>
+    <li><a class="dropdown-item" href="../articles/data.html">About Data</a></li>
+    <li><a class="dropdown-item" href="../articles/graphics.html">About Graphics</a></li>
     <li><a class="dropdown-item" href="../articles/proportions.html">Inference for Proportions</a></li>
     <li><a class="dropdown-item" href="../articles/means.html">Inference for Means</a></li>
     <li><a class="dropdown-item" href="../articles/models.html">Inference about Models</a></li>
-    <li><a class="dropdown-item" href="../articles/output.html">Formatting Output</a></li>
-    <li><a class="dropdown-item" href="../articles/multipletests.html">Running Multiple Tests</a></li>
+    <li><a class="dropdown-item" href="../articles/options.html">Additional Options</a></li>
+    <li><a class="dropdown-item" href="../articles/summary.html">Summary</a></li>
   </ul>
 </li>
       </ul>
@@ -61,7 +61,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Data Visualization</h1>
+      <h1>About Graphics</h1>
             
       
 
@@ -70,80 +70,116 @@
 
     
     
-<p><a href="https://ggplot2.tidyverse.org/" class="external-link uri">https://ggplot2.tidyverse.org/</a></p>
 <p>Most of the graphical functions we will use come from the
-<code>ggplot</code> package. There are a couple additions from this
-package to make a couple things easier.</p>
-<ul>
-<li>
-<code>geom_beeswarm</code>, originally from the
-<code>ggbeeswarm</code> package, modified to handle horizontal plots
-better and tailor the default settings.</li>
-<li>
-<code>hide_y_axis</code>, to hide the y-axis of a plot</li>
-<li>
-<code>scale_y_binary</code>, Converts a factor on y-axis to a 0/1
-binary variable, to allow adding proportions.</li>
-<li>
-<code>geom_smooth_logistic</code>, to add a logistic regression fit
-to a plot</li>
-</ul>
-<div class="section level3">
-<h3 id="combining-plots">Combining plots<a class="anchor" aria-label="anchor" href="#combining-plots"></a>
-</h3>
+<code>ggplot2</code> package, though this package does have a few
+additions, including <code>geom_beeswarm</code>,
+<code>scale_y_binary</code>, <code>geom_smooth_logistic</code>, and
+<code>hide_y_axis</code>. See <a href="https://ggplot2.tidyverse.org/" class="external-link uri">https://ggplot2.tidyverse.org/</a> for a full reference to
+the <code>ggplot2</code> package.</p>
+<p>The <code>ggplot2</code> library uses a “grammar of graphics” to
+specify the aspects of a plot. The primary idea is that one first
+specifies a data set that, then maps variables from that data set to a
+specific aesthetic attributes of the plot, and then chooses which
+geometric objects to display. The plot can also optionally be facetted
+by other variables, have the scales or labels changed, and more.</p>
+<p>The following pseudo-code plots data from a data set
+<code>data_set</code>, and maps the variable <code>x_var</code> to the
+<code>x</code> aesthetic, <code>y_var</code> to the <code>y</code>
+aesthetic (more as needed), and then adds a geometric object
+(<code>XXX</code>); these could be points, lines, or bars. You can then
+optionally facet the plot, change the scales, change the labels, and
+more.</p>
+<pre><code><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">data_set</span>, </span>
+<span>       mapping<span class="op">=</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">x_var</span>, y<span class="op">=</span><span class="va">y_var</span>, fill<span class="op">=</span><span class="va">fill_var</span>, color<span class="op">=</span><span class="va">color_var</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_XXX</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">facet_XXX</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_XXX</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span></code></pre>
+<p>The syntax can vary in a number of ways; one common variation is to
+add the aesthetic mapping instead of using the <code>mapping</code>
+parameter, like this.</p>
+<pre><code><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">data_set</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">x_var</span>, y<span class="op">=</span><span class="va">y_var</span>, fill<span class="op">=</span><span class="va">fill_var</span>, color<span class="op">=</span><span class="va">color_var</span><span class="op">)</span> <span class="op">+</span> <span class="va">...</span></span></code></pre>
+<div class="section level2">
+<h2 id="combining-plots">Combining plots<a class="anchor" aria-label="anchor" href="#combining-plots"></a>
+</h2>
 <p>The <code>patchwork</code> package allows one to combine together
 several plots from <code>ggplot</code> using the mathematical operators
 of <code>+</code> (for side by side) and <code>/</code> (for above and
 below). For more control, see the <a href="https://patchwork.data-imaginist.com/" class="external-link">package
 documentation</a>.</p>
+<p>I’ll use this functionality in this document to display several
+examples side by side.</p>
 </div>
-<div class="section level3">
-<h3 id="resizing-plots">Resizing plots<a class="anchor" aria-label="anchor" href="#resizing-plots"></a>
-</h3>
-<p>To resize a plot, use the <code>fig-width</code> and
-<code>fig-height</code> options at the top of the chunk. The default
-size is usually about 6 by 6.</p>
-<p>This is also the easiest way to change the size of the text in a
-plot; when a plot is made larger, the text stays the same size, so is
-smaller relative to the rest of the plot.</p>
-<pre><code><span><span class="co">#| fig-width: 5</span></span>
-<span><span class="co">#| fig-height: 4</span></span></code></pre>
-</div>
-<div class="section level3">
-<h3 id="scatterplots">Scatterplots<a class="anchor" aria-label="anchor" href="#scatterplots"></a>
-</h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="section level2">
+<h2 id="scatterplots">Scatterplots<a class="anchor" aria-label="anchor" href="#scatterplots"></a>
+</h2>
+<p>With numeric variables mapped to both <code>x</code> and
+<code>y</code>, using <code>geom_point</code> will give a scatterplot;
+mapping a categorical variable to <code>color</code> will color the
+points by that variable.</p>
+<p>One can plot on the log scale by adding <code>scale_x_log10()</code>
+or <code>scale_y_log10()</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">wt</span>, y<span class="op">=</span><span class="va">mpg</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">plot2</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">wt</span>, y<span class="op">=</span><span class="va">mpg</span>, color<span class="op">=</span><span class="va">gear</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">plot1</span> <span class="op">+</span> <span class="va">plot2</span></span></code></pre></div>
-<p><img src="graphics_files/figure-html/unnamed-chunk-2-1.png" width="864"></p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<span><span class="va">plot3</span> <span class="op">&lt;-</span> <span class="va">plot1</span> <span class="op">+</span> <span class="fu">scale_x_log10</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">scale_y_log10</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">plot1</span> <span class="op">+</span> <span class="va">plot2</span> <span class="op">+</span> <span class="va">plot3</span></span></code></pre></div>
+<p><img src="graphics_files/figure-html/unnamed-chunk-2-1.png" width="1152"></p>
+<p>One can also <code>facet</code> by a categorical variable; use the
+optional <code>labeller</code> parameter to include the variable name in
+the label.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">wt</span>, y<span class="op">=</span><span class="va">mpg</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">gear</span>, labeller <span class="op">=</span> <span class="va">label_both</span><span class="op">)</span></span></code></pre></div>
 <p><img src="graphics_files/figure-html/unnamed-chunk-3-1.png" width="768"></p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<p>One can also add a smooth to the plot using <code>stat_smooth</code>.
+By default, this is allowed to bend with the data and includes a 95%
+confidence region. To use a linear fit, use <code>method="lm"</code>,
+and to exclude the confidence region, use <code>se=FALSE</code>. Here
+two smooths, one of each type, are added to the plot.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">wt</span>, y<span class="op">=</span><span class="va">mpg</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">stat_smooth</span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>, se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">stat_smooth</span><span class="op">(</span>se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; `geom_smooth()` using formula = 'y ~ x'</span></span>
-<span><span class="co">#&gt; `geom_smooth()` using method = 'loess' and formula = 'y ~ x'</span></span></code></pre></div>
+<span>  <span class="fu">stat_smooth</span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">stat_smooth</span><span class="op">(</span>se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="graphics_files/figure-html/unnamed-chunk-4-1.png" width="480"></p>
 </div>
-<div class="section level3">
-<h3 id="bar-plots">Bar plots<a class="anchor" aria-label="anchor" href="#bar-plots"></a>
-</h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span><span class="va">gear</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">plot2</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span><span class="va">gear</span>, fill<span class="op">=</span><span class="va">cyl</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">plot3</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span><span class="va">gear</span>, fill<span class="op">=</span><span class="va">cyl</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/geom_bars.html">geom_bars</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="section level2">
+<h2 id="bar-plots">Bar plots<a class="anchor" aria-label="anchor" href="#bar-plots"></a>
+</h2>
+<p>Bar plots show the count of each level of a categorical variable; no
+<code>y</code> variable is needed as the count is computed.</p>
+<p>Use <code>geom_bar</code> for a single bar for each level of the
+desired variable, use the <code>fill</code> aesthetic to color the
+portion of each bar by another variable, and use <code>geom_bars</code>
+to put these bars side by side.</p>
+<p>Use <code>scale_y_continuous</code> with the <code>breaks</code> or
+<code>limits</code> parameters to change the tick locations or
+lower/upper limits.</p>
+<p>These plots can also be faceted as desired.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">gear</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">plot2</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">gear</span>, fill<span class="op">=</span><span class="va">cyl</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">plot3</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">gear</span>, fill<span class="op">=</span><span class="va">cyl</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/geom_bars.html">geom_bars</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_y_continuous</span><span class="op">(</span>breaks<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">5</span>,<span class="fl">10</span>,<span class="fl">15</span><span class="op">)</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">15</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">plot1</span> <span class="op">+</span> <span class="va">plot2</span> <span class="op">+</span> <span class="va">plot3</span></span></code></pre></div>
 <p><img src="graphics_files/figure-html/unnamed-chunk-5-1.png" width="1152"></p>
 </div>
-<div class="section level3">
-<h3 id="histograms-and-density-plots">Histograms and Density Plots<a class="anchor" aria-label="anchor" href="#histograms-and-density-plots"></a>
-</h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="section level2">
+<h2 id="histograms-and-density-plots">Histograms and Density Plots<a class="anchor" aria-label="anchor" href="#histograms-and-density-plots"></a>
+</h2>
+<p>These plots also only need an <code>x</code> mapping; the
+<code>y</code> will be computed appropriately.</p>
+<ul>
+<li>Use <code>geom_histogram</code> to make a histogram; use parameters
+<code>binwidth</code> and <code>boundary</code> to control the
+bins.</li>
+<li>Use <code>geom_density</code> to make a density plot; use the
+<code>color</code> aesthetic to do separately by another variable.</li>
+</ul>
+<p>These plots can also be faceted as desired.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span><span class="va">wt</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_histogram</span><span class="op">(</span>binwidth<span class="op">=</span><span class="fl">0.25</span>, boundary<span class="op">=</span><span class="fl">0</span><span class="op">)</span></span>
 <span><span class="va">plot2</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span><span class="va">wt</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_density</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">plot3</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span><span class="va">wt</span>, color<span class="op">=</span><span class="va">cyl</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_density</span><span class="op">(</span><span class="op">)</span></span>
@@ -151,59 +187,160 @@ smaller relative to the rest of the plot.</p>
 <span><span class="va">plot1</span> <span class="op">+</span> <span class="va">plot2</span> <span class="op">+</span> <span class="va">plot3</span></span></code></pre></div>
 <p><img src="graphics_files/figure-html/unnamed-chunk-6-1.png" width="1440"></p>
 </div>
-<div class="section level3">
-<h3 id="boxplots">Boxplots<a class="anchor" aria-label="anchor" href="#boxplots"></a>
-</h3>
-<p>by default now uses compact swarm, with random priority</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span><span class="va">wt</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="../reference/hide_y_axis.html">hide_y_axis</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="graphics_files/figure-html/unnamed-chunk-7-1.png" width="480"></p>
+<div class="section level2">
+<h2 id="boxplots">Boxplots<a class="anchor" aria-label="anchor" href="#boxplots"></a>
+</h2>
+<p>To make a boxplot, use <code>geom_boxplot()</code>; usually this has
+a continuous <code>y</code> and a categorical <code>x</code>.</p>
+<p>However, one can flip <code>x</code> and <code>y</code> to plot
+horizontally, and if one wants a boxplot for just a single continuous
+variable, say <code>var</code>, use <code>x=var, y=0</code> to plot
+horizontally, and add <code><a href="../reference/hide_y_axis.html">hide_y_axis()</a></code>.</p>
+<p>Boxplots can hide information, so it’s nice to add points on top of
+the boxplot. To do so,</p>
+<ul>
+<li>first turn off outliers using
+<code>geom_boxplot(outlier.shape = NA)</code>
+</li>
+<li>then add swarmed points with <code>geom_beeswarm</code>; use the
+<code>spacing</code> parameter to control the swarm; using the
+parameters <code>pch=21</code> and <code>fill="white"</code> also help
+to make the swarm more apparent</li>
+</ul>
+<p>These can be facetted or put on the log scale, as described
+above.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">wt</span>, y<span class="op">=</span><span class="fl">0</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_boxplot</span><span class="op">(</span>outlier.shape <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="../reference/geom_beeswarm.html">geom_beeswarm</a></span><span class="op">(</span>spacing<span class="op">=</span><span class="fl">3</span>, pch<span class="op">=</span><span class="fl">21</span>, fill<span class="op">=</span><span class="st">"gray"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, orientation<span class="op">=</span><span class="st">"y"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="../reference/hide_y_axis.html">hide_y_axis</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="graphics_files/figure-html/unnamed-chunk-7-2.png" width="480"></p>
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">wt</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="../reference/hide_y_axis.html">hide_y_axis</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">plot2</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">wt</span>, y<span class="op">=</span><span class="fl">0</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">geom_boxplot</span><span class="op">(</span>outlier.shape <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="../reference/geom_beeswarm.html">geom_beeswarm</a></span><span class="op">(</span>spacing<span class="op">=</span><span class="fl">3</span>, pch<span class="op">=</span><span class="fl">21</span>, fill<span class="op">=</span><span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="../reference/hide_y_axis.html">hide_y_axis</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">plot1</span> <span class="op">/</span> <span class="va">plot2</span></span></code></pre></div>
+<p><img src="graphics_files/figure-html/unnamed-chunk-7-1.png" width="288"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">wt</span>, y<span class="op">=</span><span class="fl">0</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_boxplot</span><span class="op">(</span>outlier.shape <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">geom_point</span><span class="op">(</span>position<span class="op">=</span><span class="fu"><a href="../reference/geom_beeswarm.html">position_beeswarm</a></span><span class="op">(</span></span>
-<span>                            orientation<span class="op">=</span><span class="st">"y"</span>, spacing<span class="op">=</span><span class="fl">3</span><span class="op">)</span>,</span>
-<span>                            pch<span class="op">=</span><span class="fl">21</span>, fill<span class="op">=</span><span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="../reference/hide_y_axis.html">hide_y_axis</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="graphics_files/figure-html/unnamed-chunk-7-3.png" width="480"></p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">cyl</span>, y<span class="op">=</span><span class="va">wt</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">plot2</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">cyl</span>, y<span class="op">=</span><span class="va">wt</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_boxplot</span><span class="op">(</span>outlier.shape <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="../reference/geom_beeswarm.html">geom_beeswarm</a></span><span class="op">(</span>spacing<span class="op">=</span><span class="fl">2</span>, pch<span class="op">=</span><span class="fl">21</span>, fill<span class="op">=</span><span class="st">"gray"</span>, alpha<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">cyl</span>, y<span class="op">=</span><span class="va">wt</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">plot2</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">cyl</span>, y<span class="op">=</span><span class="va">wt</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">geom_boxplot</span><span class="op">(</span>outlier.shape <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="../reference/geom_beeswarm.html">geom_beeswarm</a></span><span class="op">(</span>spacing<span class="op">=</span><span class="fl">2</span>, pch<span class="op">=</span><span class="fl">21</span>, fill<span class="op">=</span><span class="st">"white"</span><span class="op">)</span></span>
 <span><span class="va">plot1</span> <span class="op">+</span> <span class="va">plot2</span></span></code></pre></div>
-<p><img src="graphics_files/figure-html/unnamed-chunk-8-1.png" width="768"></p>
+<p><img src="graphics_files/figure-html/unnamed-chunk-8-1.png" width="80%"></p>
 </div>
-<div class="section level3">
-<h3 id="logistic-regression-plots">Logistic Regression plots<a class="anchor" aria-label="anchor" href="#logistic-regression-plots"></a>
-</h3>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="section level2">
+<h2 id="logistic-regression-plots">Logistic Regression plots<a class="anchor" aria-label="anchor" href="#logistic-regression-plots"></a>
+</h2>
+<p>For a logistic regression, where the response variable
+(<code>y</code>) is binary, and the explanatory variable
+(<code>x</code>) is numeric, use <code>geom_beeswarm</code> so that
+points don’t overlap, and specify <code>orientation="y"</code> so that
+they swarm in the right direction.</p>
+<p>Additionally, use <code>scale_y_binary</code> to put the response on
+a 0-1 proportion scale, and optionally add a smooth using
+<code>geom_smooth_logistic</code>. For reasons I don’t understand, you
+also need the aesthetic <code>group=1</code> for the smooth to work
+properly.</p>
+<p>You can map a variable to the <code>color</code> aesthetic to color
+the points and do the smooth by another variable; if you do, set
+<code>group</code> to be the same variable as <code>color</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">wt</span>, y<span class="op">=</span><span class="va">vs</span>, group<span class="op">=</span><span class="fl">1</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="../reference/geom_beeswarm.html">geom_beeswarm</a></span><span class="op">(</span>orientation<span class="op">=</span><span class="st">"y"</span>, spacing<span class="op">=</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/scale_y_binary.html">scale_y_binary</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/geom_smooth_logistic.html">geom_smooth_logistic</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="graphics_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 </div>
-<div class="section level3">
-<h3 id="estimates-with-error-bars">Estimates with error bars<a class="anchor" aria-label="anchor" href="#estimates-with-error-bars"></a>
-</h3>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="section level2">
+<h2 id="estimates-with-error-bars">Estimates with error bars<a class="anchor" aria-label="anchor" href="#estimates-with-error-bars"></a>
+</h2>
+<p>Sometimes one wishes to show summary information in a plot. Here I’ll
+calculate the mean weight, and standard error, by the number of
+cylinders.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wt_mse</span> <span class="op">&lt;-</span> <span class="va">mtcars2</span> <span class="op">|&gt;</span> <span class="fu">summarize</span><span class="op">(</span>m<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">wt</span><span class="op">)</span>, se<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">wt</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, .by<span class="op">=</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<p>To show the value as a bar, use <code>geom_col</code>; this is
+similar to <code>geom_bar</code> except we are specifying the height of
+the bar instead of having R compute the count.</p>
+<p>To show error bars, use <code>geom_errorbar</code> and map values to
+the aesthetics <code>ymin</code> and <code>ymax</code>. These can be
+computed within the plotting function, as is here. The
+<code>width</code> parameter controls with width of the bars (left to
+right).</p>
+<p>Bars like this are somewhat frowned upon in many fields for a number
+of reasons we may discuss. (This is especially true if the error bar
+just goes above the height of the bar; note that these go both above and
+below).</p>
+<p>So it is generally preferred to use points with error bars, and it
+can be nice to add the points too, so that one can see the spread of the
+data as well. To do that we’ll use <code>geom_point</code> for the mean,
+as in a scatterplot (though changing the parameter <code>size</code> to
+make it stand out), and <code>geom_beeswarm</code> for the data
+points.</p>
+<p>However, we do need to use a syntax variant, as we want the error bar
+and mean point to use variables from <code>wt_mse</code>, and we want
+the beeswarm to use data from <code>mtcars2</code>. Additionally, the
+variable for the <code>y</code> aesthetic differs in these two data
+sets. To accomplish this, we specify only the aesthetics that apply to
+all in the main <code>aes</code>, and use additional <code>aes</code>
+functions within the appropriate <code>geom</code>’s. And while we also
+specify the <code>wt_mse</code> as the data set, as before, we overrule
+this in <code>geom_beeswarm</code> by specifying a new data set
+there.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">wt_mse</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span><span class="va">cyl</span>, <span class="va">m</span>, ymin<span class="op">=</span><span class="va">m</span><span class="op">-</span><span class="va">se</span>, ymax<span class="op">=</span><span class="va">m</span><span class="op">+</span><span class="va">se</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_errorbar</span><span class="op">(</span>width<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">geom_errorbar</span><span class="op">(</span>width<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span></span>
 <span><span class="va">plot2</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">wt_mse</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">cyl</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">geom_errorbar</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>ymin<span class="op">=</span><span class="va">m</span><span class="op">-</span><span class="va">se</span>, ymax<span class="op">=</span><span class="va">m</span><span class="op">+</span><span class="va">se</span><span class="op">)</span>, width<span class="op">=</span><span class="fl">0.3</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y<span class="op">=</span><span class="va">m</span><span class="op">)</span>, size<span class="op">=</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="../reference/geom_beeswarm.html">geom_beeswarm</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y<span class="op">=</span><span class="va">wt</span><span class="op">)</span>, data<span class="op">=</span><span class="va">mtcars2</span>, pch<span class="op">=</span><span class="fl">21</span>, fill<span class="op">=</span><span class="st">"gray"</span>, alpha<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/geom_beeswarm.html">geom_beeswarm</a></span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y<span class="op">=</span><span class="va">wt</span><span class="op">)</span>, data<span class="op">=</span><span class="va">mtcars2</span>, pch<span class="op">=</span><span class="fl">21</span>, fill<span class="op">=</span><span class="st">"white"</span><span class="op">)</span></span>
 <span><span class="va">plot1</span> <span class="op">+</span> <span class="va">plot2</span></span></code></pre></div>
 <p><img src="graphics_files/figure-html/unnamed-chunk-11-1.png" width="960"></p>
+</div>
+<div class="section level2">
+<h2 id="labels">Labels<a class="anchor" aria-label="anchor" href="#labels"></a>
+</h2>
+<p>To change labels, use the <code>labs</code> function, and specify the
+label for the particular aesthetic you want to label differently.
+Additionally, one can add a <code>title</code> and a
+<code>subtitle</code>.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">gear</span>, fill<span class="op">=</span><span class="va">cyl</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x<span class="op">=</span><span class="st">"Number of gears"</span>,</span>
+<span>       y<span class="op">=</span><span class="st">"Count"</span>,</span>
+<span>       fill<span class="op">=</span><span class="st">"Num. Cylinders"</span>,</span>
+<span>       title<span class="op">=</span><span class="st">"Count of car models, by gears and cylinders"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="graphics_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+</div>
+<div class="section level2">
+<h2 id="resizing-plots-in-quarto">Resizing plots in Quarto<a class="anchor" aria-label="anchor" href="#resizing-plots-in-quarto"></a>
+</h2>
+<p>To resize a plot in Quarto output, use the <code>fig-width</code> and
+<code>fig-height</code> options at the top of the chunk. The default
+size is usually about 6 by 6. One usually has to use trial and error to
+determine the best height and width.</p>
+<p>This is also the easiest way to change the size of the text in a
+plot; when a plot is made larger, the text stays the same size, so is
+smaller relative to the rest of the plot.</p>
+<pre><code><span><span class="co">#| fig-width: 5</span></span>
+<span><span class="co">#| fig-height: 4</span></span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="saving-plots">Saving plots<a class="anchor" aria-label="anchor" href="#saving-plots"></a>
+</h2>
+<p>To save a plot as a separate file, first assign the plot to a
+variable name and then use <code>ggsave</code>, specifying the filename,
+and optionally the width and height.</p>
+<p>Filetype options include pdf, tiff, and png; for tiff and png, the
+<code>dpi</code> parameter may be helpful to control the resolution, and
+for tiff, <code>compression="rle"</code> should help with the file
+size.</p>
+<p>As with reading data, using <code>here</code> is recommended.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">myplot</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">wt</span>, y<span class="op">=</span><span class="va">mpg</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="va">myplot</span>, filename<span class="op">=</span><span class="fu">here</span><span class="op">(</span><span class="st">"myplot.pdf"</span><span class="op">)</span>, width<span class="op">=</span><span class="fl">6</span>, height<span class="op">=</span><span class="fl">6</span><span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
