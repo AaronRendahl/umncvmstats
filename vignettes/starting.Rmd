@@ -300,6 +300,7 @@ conflicts_prefer(dplyr::filter)
 I believe these should be almost all the packages you'll need this semester; this code is in the assignment template.
 
 ```{r}
+#| eval: false
 library(conflicted)
 library(tidyverse)
 library(umncvmstats)
