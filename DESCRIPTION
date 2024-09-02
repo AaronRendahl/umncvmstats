@@ -1,6 +1,6 @@
 Package: umncvmstats
 Title: Standardized Functions for One and Two Sample Statistical Tests
-Version: 0.0.0.9000
+Version: 1.0.0
 Authors@R: 
     person("Aaron", "Rendahl", , "rend0020@umn.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5434-3592"))
