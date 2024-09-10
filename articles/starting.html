@@ -274,11 +274,11 @@ right, with tabs for the files and data sets.</p>
 <p>If I’ve planned this semester properly, all the functions you will
 need are mentioned in the documentation of the <code>umncvmstats</code>
 package, that is, the files you’re reading right now.</p>
-<p>For further help, especially about parameters, we can look up the
-help file for a specific function using <code>?</code>. This works great
-– if you happen to remember the name of the function. For example, to
-get help on the <code>read_csv</code> function (which we’ll see soon),
-try typing this in the console:</p>
+<p>For further help, especially about function arguments, we can look up
+the help file for a specific function using <code>?</code>. This works
+great – if you happen to remember the name of the function. For example,
+to get help on the <code>read_csv</code> function (which we’ll see
+soon), try typing this in the console:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">?</span><span class="va">read_csv</span></span></code></pre></div>
 <p>For reference, Rstudio has some “cheat sheets” built in; go to Help
@@ -333,11 +333,11 @@ vector we just made.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 5.2</span></span></code></pre></div>
 <p>We pass values to a function by putting them in parentheses after the
-function name; there can be multiple parameters (separated by a comma),
+function name; there can be multiple arguments (separated by a comma),
 and they can be named (by using a single equals sign<code>=</code>). For
 example, if there were missing values (<code>NA</code>) in our data, the
 mean would be undefined, unless we specifically told R to remove the
-missing values first by setting the <code>na.rm</code> parameter to
+missing values first by setting the <code>na.rm</code> argument to
 <code>TRUE</code>. (Best practice is to always write out
 <code>TRUE</code> and <code>FALSE</code> with all caps.)</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -348,9 +348,9 @@ missing values first by setting the <code>na.rm</code> parameter to
 <span><span class="co">#&gt; [1] 2.5</span></span></code></pre></div>
 <p>We’ll also use functions by using the “pipe” operator,
 <code>|&gt;</code>. Think of it as a triangle that sends the thing on
-the left into the function on the right, as the first parameter.
-Additional parameters can be included too. Note that we still need the
-parenthesis, whether or not we have additional parameters. This makes it
+the left into the function on the right, as the first argument.
+Additional arguments can be included too. Note that we still need the
+parenthesis, whether or not we have additional arguments. This makes it
 easy to chain results of functions together into new functions.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="op">)</span></span>
