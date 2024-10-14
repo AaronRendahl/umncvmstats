@@ -145,10 +145,10 @@ These can be facetted or put on the log scale, as described above.
 
 
 ```{r}
-#| fig-width: 3
-#| fig-height: 1
+#| fig-width: 6
+#| fig-height: 2
 #| message: false
-p1 <- ggplot(mtcars2) + aes(x=wt) + 
+plot1 <- ggplot(mtcars2) + aes(x=wt) + 
   geom_boxplot() +
   hide_y_axis()
 plot2 <- ggplot(mtcars2) + aes(x=wt, y=0) + 
