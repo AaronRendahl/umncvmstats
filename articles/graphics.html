@@ -210,7 +210,7 @@ to make the swarm more apparent</li>
 <p>These can be facetted or put on the log scale, as described
 above.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">wt</span><span class="op">)</span> <span class="op">+</span> </span>
+<code class="sourceCode R"><span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">wt</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/hide_y_axis.html">hide_y_axis</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">plot2</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">wt</span>, y<span class="op">=</span><span class="fl">0</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -218,7 +218,7 @@ above.</p>
 <span>  <span class="fu"><a href="../reference/geom_beeswarm.html">geom_beeswarm</a></span><span class="op">(</span>spacing<span class="op">=</span><span class="fl">3</span>, pch<span class="op">=</span><span class="fl">21</span>, fill<span class="op">=</span><span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/hide_y_axis.html">hide_y_axis</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">plot1</span> <span class="op">/</span> <span class="va">plot2</span></span></code></pre></div>
-<p><img src="graphics_files/figure-html/unnamed-chunk-7-1.png" width="288"></p>
+<p><img src="graphics_files/figure-html/unnamed-chunk-7-1.png" width="576"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">cyl</span>, y<span class="op">=</span><span class="va">wt</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span></span>
@@ -353,7 +353,7 @@ size.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
