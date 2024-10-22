@@ -60,7 +60,7 @@ one_t_inference <- function(formula, data,
     result <- result |> mutate(across(any_of(c("mean","conf.low", "conf.high", "null")), exp))
     result$about[[1]] <- c(result$about[[1]], "Results are backtransformed from the log scale (that is, the geometric mean is reported), and the standard error is estimated using the delta method.")
   }
-  as_atest(result, about.vars="n", estimate.vars="mean")
+  as_atest(result, about.vars="n", estimate.vars="mean", inference.vars=c("null", "t.value"))
 }
 
 #' Two-sample t-test
