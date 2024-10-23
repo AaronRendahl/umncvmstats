@@ -14,7 +14,7 @@
 #' @export
 set_digits <- function(x, digits=2, decimals,
                        rows=seq_len(nrow(x)),
-                       columns=c("_estimate_", "SE", "conf.low", "conf.high"),
+                       columns=c("_estimate_", "SE", "conf.low", "conf.high", "predict.low", "predict.high"),
                        by=NA, by_row=TRUE, overwrite=TRUE) {
   if(missing(decimals)) {
     if(!is.numeric(digits) | any(digits<1)) stop("digits must be numeric and >= 1")
@@ -25,6 +25,10 @@ set_digits <- function(x, digits=2, decimals,
         if("conf.high" %in% names(x) & "conf.low" %in% names(x)) {
           x$ME <- NA
           x$ME <- (x$conf.high - x$conf.low)/2
+        }
+        else if("predict.high" %in% names(x) & "predict.low" %in% names(x)) {
+          x$ME <- NA
+          x$ME <- (x$predict.high - x$predict.low)/2
         }
       }
       decimals <- rep(NA_integer_, length(rows))
