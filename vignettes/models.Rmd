@@ -69,6 +69,18 @@ combine_tests(
   model_coefs(m2))
 ```
 
+## Model prediction intervals
+
+```{r}
+model_predictions(m1, at=list(wt=c(2,3,4), cyl=c("4", "8")))
+```
+
+For log response models, model predictions and prediction intervals are automatically backtransformed. 
+
+```{r}
+model_predictions(m1_log, at=list(wt=c(2,3,4), cyl=c("4", "8")))
+```
+
 ## Model means
 
 For log response and logistic models, model means and confidence intervals are automatically backtransformed. That is, to the original scale from the log scale for log responses, and to the probability scale from the log-odds scale for logistic models. To see results on the log or logistic scale, use `backtransform = FALSE`.
