@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">umncvmstats</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -3634,18 +3634,10 @@ their interaction.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="model-means">Model means<a class="anchor" aria-label="anchor" href="#model-means"></a>
+<h2 id="model-prediction-intervals">Model prediction intervals<a class="anchor" aria-label="anchor" href="#model-prediction-intervals"></a>
 </h2>
-<p>For log response and logistic models, model means and confidence
-intervals are automatically backtransformed. That is, to the original
-scale from the log scale for log responses, and to the probability scale
-from the log-odds scale for logistic models. To see results on the log
-or logistic scale, use <code>backtransform = FALSE</code>.</p>
-<div class="section level3">
-<h3 id="linear-model">Linear Model<a class="anchor" aria-label="anchor" href="#linear-model"></a>
-</h3>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_predictions.html">model_predictions</a></span><span class="op">(</span><span class="va">m1</span>, at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>wt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span>, cyl<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"8"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div id="fvsybhaagl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#fvsybhaagl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -4098,42 +4090,69 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
+<td colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="a1">1</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="emmean">emmean</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="cld.group">cld.group</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wt">wt</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="prediction">prediction</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="predict.low">predict.low</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="predict.high">predict.high</th>
     </tr>
 </thead>
-<tbody class="gt_table_body"><tr>
-<td headers="1" class="gt_row gt_center">overall</td>
-<td headers="emmean" class="gt_row gt_right">19.23</td>
-<td headers="SE" class="gt_row gt_right">0.67</td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">17.86</td>
-<td headers="conf.high" class="gt_row gt_right">20.60</td>
-<td headers="cld.group" class="gt_row gt_left"> a</td>
-</tr></tbody>
-<tfoot class="gt_footnotes">
+<tbody class="gt_table_body">
 <tr>
-<td class="gt_footnote" colspan="7"> Results are averaged over the levels of: cyl</td>
-    </tr>
+<td headers="wt" class="gt_row gt_right">2.00</td>
+<td headers="cyl" class="gt_row gt_right">4</td>
+<td headers="prediction" class="gt_row gt_right">28.3</td>
+<td headers="predict.low" class="gt_row gt_right">23.0</td>
+<td headers="predict.high" class="gt_row gt_right">33.6</td>
+</tr>
 <tr>
-<td class="gt_footnote" colspan="7"> Confidence level used: 0.95</td>
-    </tr>
+<td headers="wt" class="gt_row gt_right">2.00</td>
+<td headers="cyl" class="gt_row gt_right">8</td>
+<td headers="prediction" class="gt_row gt_right">19.5</td>
+<td headers="predict.low" class="gt_row gt_right">13.1</td>
+<td headers="predict.high" class="gt_row gt_right">25.9</td>
+</tr>
 <tr>
-<td class="gt_footnote" colspan="7"> significance level used: alpha = 0.05</td>
-    </tr>
-</tfoot>
+<td headers="wt" class="gt_row gt_right">3.00</td>
+<td headers="cyl" class="gt_row gt_right">4</td>
+<td headers="prediction" class="gt_row gt_right">22.6</td>
+<td headers="predict.low" class="gt_row gt_right">17.0</td>
+<td headers="predict.high" class="gt_row gt_right">28.3</td>
+</tr>
+<tr>
+<td headers="wt" class="gt_row gt_right">3.00</td>
+<td headers="cyl" class="gt_row gt_right">8</td>
+<td headers="prediction" class="gt_row gt_right">17.3</td>
+<td headers="predict.low" class="gt_row gt_right">11.8</td>
+<td headers="predict.high" class="gt_row gt_right">22.8</td>
+</tr>
+<tr>
+<td headers="wt" class="gt_row gt_right">4.00</td>
+<td headers="cyl" class="gt_row gt_right">4</td>
+<td headers="prediction" class="gt_row gt_right">17.0</td>
+<td headers="predict.low" class="gt_row gt_right"> 9.9</td>
+<td headers="predict.high" class="gt_row gt_right">24.1</td>
+</tr>
+<tr>
+<td headers="wt" class="gt_row gt_right">4.00</td>
+<td headers="cyl" class="gt_row gt_right">8</td>
+<td headers="prediction" class="gt_row gt_right">15.1</td>
+<td headers="predict.low" class="gt_row gt_right"> 9.9</td>
+<td headers="predict.high" class="gt_row gt_right">20.3</td>
+</tr>
+</tbody>
+<tfoot class="gt_footnotes"><tr>
+<td class="gt_footnote" colspan="5"> Prediction level used: 0.95</td>
+    </tr></tfoot>
 </table>
 </div>
+<p>For log response models, model predictions and prediction intervals
+are automatically backtransformed.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_predictions.html">model_predictions</a></span><span class="op">(</span><span class="va">m1_log</span>, at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>wt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span>, cyl<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"8"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div id="vijbfglzvn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#vijbfglzvn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -4586,66 +4605,84 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
+<td colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>log(mpg) ~ wt * cyl</td>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="emmean">emmean</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="cld.group">cld.group</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wt">wt</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="prediction">prediction</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="predict.low">predict.low</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="predict.high">predict.high</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="cyl" class="gt_row gt_center">8</td>
-<td headers="emmean" class="gt_row gt_right">16.81</td>
-<td headers="SE" class="gt_row gt_right">0.96</td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">14.85</td>
-<td headers="conf.high" class="gt_row gt_right">18.78</td>
-<td headers="cld.group" class="gt_row gt_left"> a </td>
+<td headers="wt" class="gt_row gt_right">2.00</td>
+<td headers="cyl" class="gt_row gt_right">4</td>
+<td headers="prediction" class="gt_row gt_right">28.0</td>
+<td headers="predict.low" class="gt_row gt_right">21.5</td>
+<td headers="predict.high" class="gt_row gt_right">36.3</td>
 </tr>
 <tr>
-<td headers="cyl" class="gt_row gt_center">6</td>
-<td headers="emmean" class="gt_row gt_right">19.46</td>
-<td headers="SE" class="gt_row gt_right">0.97</td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">17.48</td>
-<td headers="conf.high" class="gt_row gt_right">21.45</td>
-<td headers="cld.group" class="gt_row gt_left"> ab</td>
+<td headers="wt" class="gt_row gt_right">2.00</td>
+<td headers="cyl" class="gt_row gt_right">8</td>
+<td headers="prediction" class="gt_row gt_right">20.7</td>
+<td headers="predict.low" class="gt_row gt_right">15.1</td>
+<td headers="predict.high" class="gt_row gt_right">28.3</td>
 </tr>
 <tr>
-<td headers="cyl" class="gt_row gt_center">4</td>
-<td headers="emmean" class="gt_row gt_right">21.4 </td>
-<td headers="SE" class="gt_row gt_right">1.5 </td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">18.4 </td>
-<td headers="conf.high" class="gt_row gt_right">24.4 </td>
-<td headers="cld.group" class="gt_row gt_left">  b</td>
+<td headers="wt" class="gt_row gt_right">3.00</td>
+<td headers="cyl" class="gt_row gt_right">4</td>
+<td headers="prediction" class="gt_row gt_right">22.6</td>
+<td headers="predict.low" class="gt_row gt_right">17.2</td>
+<td headers="predict.high" class="gt_row gt_right">29.8</td>
+</tr>
+<tr>
+<td headers="wt" class="gt_row gt_right">3.00</td>
+<td headers="cyl" class="gt_row gt_right">8</td>
+<td headers="prediction" class="gt_row gt_right">17.5</td>
+<td headers="predict.low" class="gt_row gt_right">13.4</td>
+<td headers="predict.high" class="gt_row gt_right">23.0</td>
+</tr>
+<tr>
+<td headers="wt" class="gt_row gt_right">4.00</td>
+<td headers="cyl" class="gt_row gt_right">4</td>
+<td headers="prediction" class="gt_row gt_right">18.3</td>
+<td headers="predict.low" class="gt_row gt_right">12.9</td>
+<td headers="predict.high" class="gt_row gt_right">26.0</td>
+</tr>
+<tr>
+<td headers="wt" class="gt_row gt_right">4.00</td>
+<td headers="cyl" class="gt_row gt_right">8</td>
+<td headers="prediction" class="gt_row gt_right">14.9</td>
+<td headers="predict.low" class="gt_row gt_right">11.5</td>
+<td headers="predict.high" class="gt_row gt_right">19.2</td>
 </tr>
 </tbody>
 <tfoot class="gt_footnotes">
 <tr>
-<td class="gt_footnote" colspan="7"> Confidence level used: 0.95</td>
+<td class="gt_footnote" colspan="5"> Prediction level used: 0.95</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="7"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="7"> significance level used: alpha = 0.05</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="7"> NOTE: Results may be misleading due to involvement in interactions
-</td>
+<td class="gt_footnote" colspan="5"> Predictions are back-transformed from the log scale</td>
     </tr>
 </tfoot>
 </table>
 </div>
+</div>
+<div class="section level2">
+<h2 id="model-means">Model means<a class="anchor" aria-label="anchor" href="#model-means"></a>
+</h2>
+<p>For log response and logistic models, model means and confidence
+intervals are automatically backtransformed. That is, to the original
+scale from the log scale for log responses, and to the probability scale
+from the log-odds scale for logistic models. To see results on the log
+or logistic scale, use <code>backtransform = FALSE</code>.</p>
+<div class="section level3">
+<h3 id="linear-model">Linear Model<a class="anchor" aria-label="anchor" href="#linear-model"></a>
+</h3>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <div id="egslqeqmfa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#egslqeqmfa table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -5098,70 +5135,42 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
+<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="a1">1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="emmean">emmean</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="cld.group">cld.group</th>
     </tr>
 </thead>
-<tbody class="gt_table_body">
-<tr>
-<td headers="contrast" class="gt_row gt_left">cyl4 - cyl6</td>
-<td headers="estimate" class="gt_row gt_right">1.9</td>
-<td headers="SE" class="gt_row gt_right">1.8</td>
+<tbody class="gt_table_body"><tr>
+<td headers="1" class="gt_row gt_center">overall</td>
+<td headers="emmean" class="gt_row gt_right">19.23</td>
+<td headers="SE" class="gt_row gt_right">0.67</td>
 <td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">−2.4</td>
-<td headers="conf.high" class="gt_row gt_right">6.3</td>
-<td headers="t.ratio" class="gt_row gt_right">1.10</td>
-<td headers="p.value" class="gt_row gt_left">  0.52</td>
-</tr>
-<tr>
-<td headers="contrast" class="gt_row gt_left">cyl4 - cyl8</td>
-<td headers="estimate" class="gt_row gt_right">4.6</td>
-<td headers="SE" class="gt_row gt_right">1.8</td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right"> 0.2</td>
-<td headers="conf.high" class="gt_row gt_right">8.9</td>
-<td headers="t.ratio" class="gt_row gt_right">2.62</td>
-<td headers="p.value" class="gt_row gt_left">  0.037</td>
-</tr>
-<tr>
-<td headers="contrast" class="gt_row gt_left">cyl6 - cyl8</td>
-<td headers="estimate" class="gt_row gt_right">2.7</td>
-<td headers="SE" class="gt_row gt_right">1.4</td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">−0.7</td>
-<td headers="conf.high" class="gt_row gt_right">6.0</td>
-<td headers="t.ratio" class="gt_row gt_right">1.95</td>
-<td headers="p.value" class="gt_row gt_left">  0.15</td>
-</tr>
-</tbody>
+<td headers="conf.low" class="gt_row gt_right">17.86</td>
+<td headers="conf.high" class="gt_row gt_right">20.60</td>
+<td headers="cld.group" class="gt_row gt_left"> a</td>
+</tr></tbody>
 <tfoot class="gt_footnotes">
 <tr>
-<td class="gt_footnote" colspan="8"> Confidence level used: 0.95</td>
+<td class="gt_footnote" colspan="7"> Results are averaged over the levels of: cyl</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="8"> Conf-level adjustment: tukey method for comparing a family of 3 estimates</td>
+<td class="gt_footnote" colspan="7"> Confidence level used: 0.95</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="8"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="8"> NOTE: Results may be misleading due to involvement in interactions
-</td>
+<td class="gt_footnote" colspan="7"> significance level used: alpha = 0.05</td>
     </tr>
 </tfoot>
 </table>
 </div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="va">cyl</span> <span class="op">|</span> <span class="va">wt</span>, at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>wt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <div id="amrewkadgw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#amrewkadgw table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -5614,11 +5623,10 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
+<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="a::stub"></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="emmean">emmean</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
@@ -5628,106 +5636,53 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
     </tr>
 </thead>
 <tbody class="gt_table_body">
-<tr class="gt_row_group_first">
-<td headers="wt = 2 stub_1_1 stub_1" rowspan="3" class="gt_row gt_left gt_stub_row_group">wt = 2</td>
-<td headers="wt = 2 stub_1_1 cyl" class="gt_row gt_center">8</td>
-<td headers="wt = 2 stub_1_1 emmean" class="gt_row gt_right">19.5 </td>
-<td headers="wt = 2 stub_1_1 SE" class="gt_row gt_right">1.9 </td>
-<td headers="wt = 2 stub_1_1 df" class="gt_row gt_right">26</td>
-<td headers="wt = 2 stub_1_1 conf.low" class="gt_row gt_right">15.6 </td>
-<td headers="wt = 2 stub_1_1 conf.high" class="gt_row gt_right">23.4 </td>
-<td headers="wt = 2 stub_1_1 cld.group" class="gt_row gt_left"> a </td>
+<tr>
+<td headers="cyl" class="gt_row gt_center">8</td>
+<td headers="emmean" class="gt_row gt_right">16.81</td>
+<td headers="SE" class="gt_row gt_right">0.96</td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right">14.85</td>
+<td headers="conf.high" class="gt_row gt_right">18.78</td>
+<td headers="cld.group" class="gt_row gt_left"> a </td>
 </tr>
 <tr>
-<td headers="wt = 2 cyl_2 cyl" class="gt_row gt_center">6</td>
-<td headers="wt = 2 cyl_2 emmean" class="gt_row gt_right">22.8 </td>
-<td headers="wt = 2 cyl_2 SE" class="gt_row gt_right">3.3 </td>
-<td headers="wt = 2 cyl_2 df" class="gt_row gt_right">26</td>
-<td headers="wt = 2 cyl_2 conf.low" class="gt_row gt_right">16.1 </td>
-<td headers="wt = 2 cyl_2 conf.high" class="gt_row gt_right">29.6 </td>
-<td headers="wt = 2 cyl_2 cld.group" class="gt_row gt_left"> ab</td>
+<td headers="cyl" class="gt_row gt_center">6</td>
+<td headers="emmean" class="gt_row gt_right">19.46</td>
+<td headers="SE" class="gt_row gt_right">0.97</td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right">17.48</td>
+<td headers="conf.high" class="gt_row gt_right">21.45</td>
+<td headers="cld.group" class="gt_row gt_left"> ab</td>
 </tr>
 <tr>
-<td headers="wt = 2 cyl_3 cyl" class="gt_row gt_center">4</td>
-<td headers="wt = 2 cyl_3 emmean" class="gt_row gt_right">28.28</td>
-<td headers="wt = 2 cyl_3 SE" class="gt_row gt_right">0.83</td>
-<td headers="wt = 2 cyl_3 df" class="gt_row gt_right">26</td>
-<td headers="wt = 2 cyl_3 conf.low" class="gt_row gt_right">26.56</td>
-<td headers="wt = 2 cyl_3 conf.high" class="gt_row gt_right">29.99</td>
-<td headers="wt = 2 cyl_3 cld.group" class="gt_row gt_left">  b</td>
-</tr>
-<tr class="gt_row_group_first">
-<td headers="wt = 3 stub_1_4 stub_1" rowspan="3" class="gt_row gt_left gt_stub_row_group">wt = 3</td>
-<td headers="wt = 3 stub_1_4 cyl" class="gt_row gt_center">8</td>
-<td headers="wt = 3 stub_1_4 emmean" class="gt_row gt_right">17.3 </td>
-<td headers="wt = 3 stub_1_4 SE" class="gt_row gt_right">1.1 </td>
-<td headers="wt = 3 stub_1_4 df" class="gt_row gt_right">26</td>
-<td headers="wt = 3 stub_1_4 conf.low" class="gt_row gt_right">15.0 </td>
-<td headers="wt = 3 stub_1_4 conf.high" class="gt_row gt_right">19.6 </td>
-<td headers="wt = 3 stub_1_4 cld.group" class="gt_row gt_left"> a </td>
-</tr>
-<tr>
-<td headers="wt = 3 cyl_5 cyl" class="gt_row gt_center">6</td>
-<td headers="wt = 3 cyl_5 emmean" class="gt_row gt_right">20.07</td>
-<td headers="wt = 3 cyl_5 SE" class="gt_row gt_right">0.98</td>
-<td headers="wt = 3 cyl_5 df" class="gt_row gt_right">26</td>
-<td headers="wt = 3 cyl_5 conf.low" class="gt_row gt_right">18.05</td>
-<td headers="wt = 3 cyl_5 conf.high" class="gt_row gt_right">22.09</td>
-<td headers="wt = 3 cyl_5 cld.group" class="gt_row gt_left"> ab</td>
-</tr>
-<tr>
-<td headers="wt = 3 cyl_6 cyl" class="gt_row gt_center">4</td>
-<td headers="wt = 3 cyl_6 emmean" class="gt_row gt_right">22.6 </td>
-<td headers="wt = 3 cyl_6 SE" class="gt_row gt_right">1.2 </td>
-<td headers="wt = 3 cyl_6 df" class="gt_row gt_right">26</td>
-<td headers="wt = 3 cyl_6 conf.low" class="gt_row gt_right">20.1 </td>
-<td headers="wt = 3 cyl_6 conf.high" class="gt_row gt_right">25.1 </td>
-<td headers="wt = 3 cyl_6 cld.group" class="gt_row gt_left">  b</td>
-</tr>
-<tr class="gt_row_group_first">
-<td headers="wt = 4 stub_1_7 stub_1" rowspan="3" class="gt_row gt_left gt_stub_row_group">wt = 4</td>
-<td headers="wt = 4 stub_1_7 cyl" class="gt_row gt_center">8</td>
-<td headers="wt = 4 stub_1_7 emmean" class="gt_row gt_right">15.10</td>
-<td headers="wt = 4 stub_1_7 SE" class="gt_row gt_right">0.65</td>
-<td headers="wt = 4 stub_1_7 df" class="gt_row gt_right">26</td>
-<td headers="wt = 4 stub_1_7 conf.low" class="gt_row gt_right">13.75</td>
-<td headers="wt = 4 stub_1_7 conf.high" class="gt_row gt_right">16.44</td>
-<td headers="wt = 4 stub_1_7 cld.group" class="gt_row gt_left"> a</td>
-</tr>
-<tr>
-<td headers="wt = 4 cyl_8 cyl" class="gt_row gt_center">4</td>
-<td headers="wt = 4 cyl_8 emmean" class="gt_row gt_right">17.0 </td>
-<td headers="wt = 4 cyl_8 SE" class="gt_row gt_right">2.4 </td>
-<td headers="wt = 4 cyl_8 df" class="gt_row gt_right">26</td>
-<td headers="wt = 4 cyl_8 conf.low" class="gt_row gt_right">12.0 </td>
-<td headers="wt = 4 cyl_8 conf.high" class="gt_row gt_right">22.0 </td>
-<td headers="wt = 4 cyl_8 cld.group" class="gt_row gt_left"> a</td>
-</tr>
-<tr>
-<td headers="wt = 4 cyl_9 cyl" class="gt_row gt_center">6</td>
-<td headers="wt = 4 cyl_9 emmean" class="gt_row gt_right">17.3 </td>
-<td headers="wt = 4 cyl_9 SE" class="gt_row gt_right">2.6 </td>
-<td headers="wt = 4 cyl_9 df" class="gt_row gt_right">26</td>
-<td headers="wt = 4 cyl_9 conf.low" class="gt_row gt_right">11.9 </td>
-<td headers="wt = 4 cyl_9 conf.high" class="gt_row gt_right">22.7 </td>
-<td headers="wt = 4 cyl_9 cld.group" class="gt_row gt_left"> a</td>
+<td headers="cyl" class="gt_row gt_center">4</td>
+<td headers="emmean" class="gt_row gt_right">21.4 </td>
+<td headers="SE" class="gt_row gt_right">1.5 </td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right">18.4 </td>
+<td headers="conf.high" class="gt_row gt_right">24.4 </td>
+<td headers="cld.group" class="gt_row gt_left">  b</td>
 </tr>
 </tbody>
 <tfoot class="gt_footnotes">
 <tr>
-<td class="gt_footnote" colspan="8"> Confidence level used: 0.95</td>
+<td class="gt_footnote" colspan="7"> Confidence level used: 0.95</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="8"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
+<td class="gt_footnote" colspan="7"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="8"> significance level used: alpha = 0.05</td>
+<td class="gt_footnote" colspan="7"> significance level used: alpha = 0.05</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="7"> NOTE: Results may be misleading due to involvement in interactions
+</td>
     </tr>
 </tfoot>
 </table>
 </div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="va">cyl</span> <span class="op">|</span> <span class="va">wt</span>, at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>wt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <div id="xbhisifmmy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#xbhisifmmy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -6180,11 +6135,10 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="9" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
+<td colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="a::stub"></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
@@ -6195,119 +6149,56 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
     </tr>
 </thead>
 <tbody class="gt_table_body">
-<tr class="gt_row_group_first">
-<td headers="wt = 2 stub_1_1 stub_1" rowspan="3" class="gt_row gt_left gt_stub_row_group">wt = 2</td>
-<td headers="wt = 2 stub_1_1 contrast" class="gt_row gt_center">cyl4 - cyl6</td>
-<td headers="wt = 2 stub_1_1 estimate" class="gt_row gt_right"> 5.4</td>
-<td headers="wt = 2 stub_1_1 SE" class="gt_row gt_right">3.4</td>
-<td headers="wt = 2 stub_1_1 df" class="gt_row gt_right">26</td>
-<td headers="wt = 2 stub_1_1 conf.low" class="gt_row gt_right">−3.0</td>
-<td headers="wt = 2 stub_1_1 conf.high" class="gt_row gt_right">13.8</td>
-<td headers="wt = 2 stub_1_1 t.ratio" class="gt_row gt_right"> 1.61  </td>
-<td headers="wt = 2 stub_1_1 p.value" class="gt_row gt_left">  0.26</td>
+<tr>
+<td headers="contrast" class="gt_row gt_left">cyl4 - cyl6</td>
+<td headers="estimate" class="gt_row gt_right">1.9</td>
+<td headers="SE" class="gt_row gt_right">1.8</td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right">−2.4</td>
+<td headers="conf.high" class="gt_row gt_right">6.3</td>
+<td headers="t.ratio" class="gt_row gt_right">1.10</td>
+<td headers="p.value" class="gt_row gt_left">  0.52</td>
 </tr>
 <tr>
-<td headers="wt = 2 contrast_2 contrast" class="gt_row gt_center">cyl4 - cyl8</td>
-<td headers="wt = 2 contrast_2 estimate" class="gt_row gt_right"> 8.8</td>
-<td headers="wt = 2 contrast_2 SE" class="gt_row gt_right">2.1</td>
-<td headers="wt = 2 contrast_2 df" class="gt_row gt_right">26</td>
-<td headers="wt = 2 contrast_2 conf.low" class="gt_row gt_right"> 3.6</td>
-<td headers="wt = 2 contrast_2 conf.high" class="gt_row gt_right">14.0</td>
-<td headers="wt = 2 contrast_2 t.ratio" class="gt_row gt_right"> 4.23  </td>
-<td headers="wt = 2 contrast_2 p.value" class="gt_row gt_left">  0.0007</td>
+<td headers="contrast" class="gt_row gt_left">cyl4 - cyl8</td>
+<td headers="estimate" class="gt_row gt_right">4.6</td>
+<td headers="SE" class="gt_row gt_right">1.8</td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right"> 0.2</td>
+<td headers="conf.high" class="gt_row gt_right">8.9</td>
+<td headers="t.ratio" class="gt_row gt_right">2.62</td>
+<td headers="p.value" class="gt_row gt_left">  0.037</td>
 </tr>
 <tr>
-<td headers="wt = 2 contrast_3 contrast" class="gt_row gt_center">cyl6 - cyl8</td>
-<td headers="wt = 2 contrast_3 estimate" class="gt_row gt_right"> 3.4</td>
-<td headers="wt = 2 contrast_3 SE" class="gt_row gt_right">3.8</td>
-<td headers="wt = 2 contrast_3 df" class="gt_row gt_right">26</td>
-<td headers="wt = 2 contrast_3 conf.low" class="gt_row gt_right">−6.0</td>
-<td headers="wt = 2 contrast_3 conf.high" class="gt_row gt_right">12.8</td>
-<td headers="wt = 2 contrast_3 t.ratio" class="gt_row gt_right"> 0.890 </td>
-<td headers="wt = 2 contrast_3 p.value" class="gt_row gt_left">  0.65</td>
-</tr>
-<tr class="gt_row_group_first">
-<td headers="wt = 3 stub_1_4 stub_1" rowspan="3" class="gt_row gt_left gt_stub_row_group">wt = 3</td>
-<td headers="wt = 3 stub_1_4 contrast" class="gt_row gt_center">cyl4 - cyl6</td>
-<td headers="wt = 3 stub_1_4 estimate" class="gt_row gt_right"> 2.6</td>
-<td headers="wt = 3 stub_1_4 SE" class="gt_row gt_right">1.6</td>
-<td headers="wt = 3 stub_1_4 df" class="gt_row gt_right">26</td>
-<td headers="wt = 3 stub_1_4 conf.low" class="gt_row gt_right">−1.3</td>
-<td headers="wt = 3 stub_1_4 conf.high" class="gt_row gt_right"> 6.5</td>
-<td headers="wt = 3 stub_1_4 t.ratio" class="gt_row gt_right"> 1.64  </td>
-<td headers="wt = 3 stub_1_4 p.value" class="gt_row gt_left">  0.25</td>
-</tr>
-<tr>
-<td headers="wt = 3 contrast_5 contrast" class="gt_row gt_center">cyl4 - cyl8</td>
-<td headers="wt = 3 contrast_5 estimate" class="gt_row gt_right"> 5.3</td>
-<td headers="wt = 3 contrast_5 SE" class="gt_row gt_right">1.6</td>
-<td headers="wt = 3 contrast_5 df" class="gt_row gt_right">26</td>
-<td headers="wt = 3 contrast_5 conf.low" class="gt_row gt_right"> 1.2</td>
-<td headers="wt = 3 contrast_5 conf.high" class="gt_row gt_right"> 9.4</td>
-<td headers="wt = 3 contrast_5 t.ratio" class="gt_row gt_right"> 3.24  </td>
-<td headers="wt = 3 contrast_5 p.value" class="gt_row gt_left">  0.0088</td>
-</tr>
-<tr>
-<td headers="wt = 3 contrast_6 contrast" class="gt_row gt_center">cyl6 - cyl8</td>
-<td headers="wt = 3 contrast_6 estimate" class="gt_row gt_right"> 2.8</td>
-<td headers="wt = 3 contrast_6 SE" class="gt_row gt_right">1.5</td>
-<td headers="wt = 3 contrast_6 df" class="gt_row gt_right">26</td>
-<td headers="wt = 3 contrast_6 conf.low" class="gt_row gt_right">−0.9</td>
-<td headers="wt = 3 contrast_6 conf.high" class="gt_row gt_right"> 6.5</td>
-<td headers="wt = 3 contrast_6 t.ratio" class="gt_row gt_right"> 1.88  </td>
-<td headers="wt = 3 contrast_6 p.value" class="gt_row gt_left">  0.17</td>
-</tr>
-<tr class="gt_row_group_first">
-<td headers="wt = 4 stub_1_7 stub_1" rowspan="3" class="gt_row gt_left gt_stub_row_group">wt = 4</td>
-<td headers="wt = 4 stub_1_7 contrast" class="gt_row gt_center">cyl4 - cyl6</td>
-<td headers="wt = 4 stub_1_7 estimate" class="gt_row gt_right">−0.3</td>
-<td headers="wt = 4 stub_1_7 SE" class="gt_row gt_right">3.6</td>
-<td headers="wt = 4 stub_1_7 df" class="gt_row gt_right">26</td>
-<td headers="wt = 4 stub_1_7 conf.low" class="gt_row gt_right">−9.3</td>
-<td headers="wt = 4 stub_1_7 conf.high" class="gt_row gt_right"> 8.6</td>
-<td headers="wt = 4 stub_1_7 t.ratio" class="gt_row gt_right">-0.0848</td>
-<td headers="wt = 4 stub_1_7 p.value" class="gt_row gt_left">  1.0</td>
-</tr>
-<tr>
-<td headers="wt = 4 contrast_8 contrast" class="gt_row gt_center">cyl4 - cyl8</td>
-<td headers="wt = 4 contrast_8 estimate" class="gt_row gt_right"> 1.9</td>
-<td headers="wt = 4 contrast_8 SE" class="gt_row gt_right">2.5</td>
-<td headers="wt = 4 contrast_8 df" class="gt_row gt_right">26</td>
-<td headers="wt = 4 contrast_8 conf.low" class="gt_row gt_right">−4.4</td>
-<td headers="wt = 4 contrast_8 conf.high" class="gt_row gt_right"> 8.2</td>
-<td headers="wt = 4 contrast_8 t.ratio" class="gt_row gt_right"> 0.745 </td>
-<td headers="wt = 4 contrast_8 p.value" class="gt_row gt_left">  0.74</td>
-</tr>
-<tr>
-<td headers="wt = 4 contrast_9 contrast" class="gt_row gt_center">cyl6 - cyl8</td>
-<td headers="wt = 4 contrast_9 estimate" class="gt_row gt_right"> 2.2</td>
-<td headers="wt = 4 contrast_9 SE" class="gt_row gt_right">2.7</td>
-<td headers="wt = 4 contrast_9 df" class="gt_row gt_right">26</td>
-<td headers="wt = 4 contrast_9 conf.low" class="gt_row gt_right">−4.6</td>
-<td headers="wt = 4 contrast_9 conf.high" class="gt_row gt_right"> 9.0</td>
-<td headers="wt = 4 contrast_9 t.ratio" class="gt_row gt_right"> 0.804 </td>
-<td headers="wt = 4 contrast_9 p.value" class="gt_row gt_left">  0.70</td>
+<td headers="contrast" class="gt_row gt_left">cyl6 - cyl8</td>
+<td headers="estimate" class="gt_row gt_right">2.7</td>
+<td headers="SE" class="gt_row gt_right">1.4</td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right">−0.7</td>
+<td headers="conf.high" class="gt_row gt_right">6.0</td>
+<td headers="t.ratio" class="gt_row gt_right">1.95</td>
+<td headers="p.value" class="gt_row gt_left">  0.15</td>
 </tr>
 </tbody>
 <tfoot class="gt_footnotes">
 <tr>
-<td class="gt_footnote" colspan="9"> Confidence level used: 0.95</td>
+<td class="gt_footnote" colspan="8"> Confidence level used: 0.95</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="9"> Conf-level adjustment: tukey method for comparing a family of 3 estimates</td>
+<td class="gt_footnote" colspan="8"> Conf-level adjustment: tukey method for comparing a family of 3 estimates</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="9"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
+<td class="gt_footnote" colspan="8"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="8"> NOTE: Results may be misleading due to involvement in interactions
+</td>
     </tr>
 </tfoot>
 </table>
 </div>
-</div>
-<div class="section level3">
-<h3 id="linear-model-with-log-response">Linear Model, with log response<a class="anchor" aria-label="anchor" href="#linear-model-with-log-response"></a>
-</h3>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m1_log</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="va">cyl</span> <span class="op">|</span> <span class="va">wt</span>, at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>wt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div id="ucmrwtkdbi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ucmrwtkdbi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -6760,11 +6651,12 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>log(mpg) ~ wt * cyl</td>
+<td colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="response">response</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="a::stub"></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="emmean">emmean</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
@@ -6773,59 +6665,106 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
     </tr>
 </thead>
 <tbody class="gt_table_body">
-<tr>
-<td headers="cyl" class="gt_row gt_center">8</td>
-<td headers="response" class="gt_row gt_right">16.92</td>
-<td headers="SE" class="gt_row gt_right">0.80</td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">15.36</td>
-<td headers="conf.high" class="gt_row gt_right">18.64</td>
-<td headers="cld.group" class="gt_row gt_left"> a </td>
+<tr class="gt_row_group_first">
+<td headers="wt = 2 stub_1_1 stub_1" rowspan="3" class="gt_row gt_left gt_stub_row_group">wt = 2</td>
+<td headers="wt = 2 stub_1_1 cyl" class="gt_row gt_center">8</td>
+<td headers="wt = 2 stub_1_1 emmean" class="gt_row gt_right">19.5 </td>
+<td headers="wt = 2 stub_1_1 SE" class="gt_row gt_right">1.9 </td>
+<td headers="wt = 2 stub_1_1 df" class="gt_row gt_right">26</td>
+<td headers="wt = 2 stub_1_1 conf.low" class="gt_row gt_right">15.6 </td>
+<td headers="wt = 2 stub_1_1 conf.high" class="gt_row gt_right">23.4 </td>
+<td headers="wt = 2 stub_1_1 cld.group" class="gt_row gt_left"> a </td>
 </tr>
 <tr>
-<td headers="cyl" class="gt_row gt_center">6</td>
-<td headers="response" class="gt_row gt_right">19.42</td>
-<td headers="SE" class="gt_row gt_right">0.92</td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">17.61</td>
-<td headers="conf.high" class="gt_row gt_right">21.41</td>
-<td headers="cld.group" class="gt_row gt_left"> ab</td>
+<td headers="wt = 2 cyl_2 cyl" class="gt_row gt_center">6</td>
+<td headers="wt = 2 cyl_2 emmean" class="gt_row gt_right">22.8 </td>
+<td headers="wt = 2 cyl_2 SE" class="gt_row gt_right">3.3 </td>
+<td headers="wt = 2 cyl_2 df" class="gt_row gt_right">26</td>
+<td headers="wt = 2 cyl_2 conf.low" class="gt_row gt_right">16.1 </td>
+<td headers="wt = 2 cyl_2 conf.high" class="gt_row gt_right">29.6 </td>
+<td headers="wt = 2 cyl_2 cld.group" class="gt_row gt_left"> ab</td>
 </tr>
 <tr>
-<td headers="cyl" class="gt_row gt_center">4</td>
-<td headers="response" class="gt_row gt_right">21.6 </td>
-<td headers="SE" class="gt_row gt_right">1.6 </td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">18.6 </td>
-<td headers="conf.high" class="gt_row gt_right">25.1 </td>
-<td headers="cld.group" class="gt_row gt_left">  b</td>
+<td headers="wt = 2 cyl_3 cyl" class="gt_row gt_center">4</td>
+<td headers="wt = 2 cyl_3 emmean" class="gt_row gt_right">28.28</td>
+<td headers="wt = 2 cyl_3 SE" class="gt_row gt_right">0.83</td>
+<td headers="wt = 2 cyl_3 df" class="gt_row gt_right">26</td>
+<td headers="wt = 2 cyl_3 conf.low" class="gt_row gt_right">26.56</td>
+<td headers="wt = 2 cyl_3 conf.high" class="gt_row gt_right">29.99</td>
+<td headers="wt = 2 cyl_3 cld.group" class="gt_row gt_left">  b</td>
+</tr>
+<tr class="gt_row_group_first">
+<td headers="wt = 3 stub_1_4 stub_1" rowspan="3" class="gt_row gt_left gt_stub_row_group">wt = 3</td>
+<td headers="wt = 3 stub_1_4 cyl" class="gt_row gt_center">8</td>
+<td headers="wt = 3 stub_1_4 emmean" class="gt_row gt_right">17.3 </td>
+<td headers="wt = 3 stub_1_4 SE" class="gt_row gt_right">1.1 </td>
+<td headers="wt = 3 stub_1_4 df" class="gt_row gt_right">26</td>
+<td headers="wt = 3 stub_1_4 conf.low" class="gt_row gt_right">15.0 </td>
+<td headers="wt = 3 stub_1_4 conf.high" class="gt_row gt_right">19.6 </td>
+<td headers="wt = 3 stub_1_4 cld.group" class="gt_row gt_left"> a </td>
+</tr>
+<tr>
+<td headers="wt = 3 cyl_5 cyl" class="gt_row gt_center">6</td>
+<td headers="wt = 3 cyl_5 emmean" class="gt_row gt_right">20.07</td>
+<td headers="wt = 3 cyl_5 SE" class="gt_row gt_right">0.98</td>
+<td headers="wt = 3 cyl_5 df" class="gt_row gt_right">26</td>
+<td headers="wt = 3 cyl_5 conf.low" class="gt_row gt_right">18.05</td>
+<td headers="wt = 3 cyl_5 conf.high" class="gt_row gt_right">22.09</td>
+<td headers="wt = 3 cyl_5 cld.group" class="gt_row gt_left"> ab</td>
+</tr>
+<tr>
+<td headers="wt = 3 cyl_6 cyl" class="gt_row gt_center">4</td>
+<td headers="wt = 3 cyl_6 emmean" class="gt_row gt_right">22.6 </td>
+<td headers="wt = 3 cyl_6 SE" class="gt_row gt_right">1.2 </td>
+<td headers="wt = 3 cyl_6 df" class="gt_row gt_right">26</td>
+<td headers="wt = 3 cyl_6 conf.low" class="gt_row gt_right">20.1 </td>
+<td headers="wt = 3 cyl_6 conf.high" class="gt_row gt_right">25.1 </td>
+<td headers="wt = 3 cyl_6 cld.group" class="gt_row gt_left">  b</td>
+</tr>
+<tr class="gt_row_group_first">
+<td headers="wt = 4 stub_1_7 stub_1" rowspan="3" class="gt_row gt_left gt_stub_row_group">wt = 4</td>
+<td headers="wt = 4 stub_1_7 cyl" class="gt_row gt_center">8</td>
+<td headers="wt = 4 stub_1_7 emmean" class="gt_row gt_right">15.10</td>
+<td headers="wt = 4 stub_1_7 SE" class="gt_row gt_right">0.65</td>
+<td headers="wt = 4 stub_1_7 df" class="gt_row gt_right">26</td>
+<td headers="wt = 4 stub_1_7 conf.low" class="gt_row gt_right">13.75</td>
+<td headers="wt = 4 stub_1_7 conf.high" class="gt_row gt_right">16.44</td>
+<td headers="wt = 4 stub_1_7 cld.group" class="gt_row gt_left"> a</td>
+</tr>
+<tr>
+<td headers="wt = 4 cyl_8 cyl" class="gt_row gt_center">4</td>
+<td headers="wt = 4 cyl_8 emmean" class="gt_row gt_right">17.0 </td>
+<td headers="wt = 4 cyl_8 SE" class="gt_row gt_right">2.4 </td>
+<td headers="wt = 4 cyl_8 df" class="gt_row gt_right">26</td>
+<td headers="wt = 4 cyl_8 conf.low" class="gt_row gt_right">12.0 </td>
+<td headers="wt = 4 cyl_8 conf.high" class="gt_row gt_right">22.0 </td>
+<td headers="wt = 4 cyl_8 cld.group" class="gt_row gt_left"> a</td>
+</tr>
+<tr>
+<td headers="wt = 4 cyl_9 cyl" class="gt_row gt_center">6</td>
+<td headers="wt = 4 cyl_9 emmean" class="gt_row gt_right">17.3 </td>
+<td headers="wt = 4 cyl_9 SE" class="gt_row gt_right">2.6 </td>
+<td headers="wt = 4 cyl_9 df" class="gt_row gt_right">26</td>
+<td headers="wt = 4 cyl_9 conf.low" class="gt_row gt_right">11.9 </td>
+<td headers="wt = 4 cyl_9 conf.high" class="gt_row gt_right">22.7 </td>
+<td headers="wt = 4 cyl_9 cld.group" class="gt_row gt_left"> a</td>
 </tr>
 </tbody>
 <tfoot class="gt_footnotes">
 <tr>
-<td class="gt_footnote" colspan="7"> Confidence level used: 0.95</td>
+<td class="gt_footnote" colspan="8"> Confidence level used: 0.95</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="7"> Intervals are back-transformed from the log scale</td>
+<td class="gt_footnote" colspan="8"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="7"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="7"> Tests are performed on the log scale</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="7"> significance level used: alpha = 0.05</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="7"> NOTE: Results may be misleading due to involvement in interactions
-</td>
+<td class="gt_footnote" colspan="8"> significance level used: alpha = 0.05</td>
     </tr>
 </tfoot>
 </table>
 </div>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m1_log</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m1</span>, <span class="op">~</span><span class="va">cyl</span> <span class="op">|</span> <span class="va">wt</span>, at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>wt<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div id="rslsqjlmpg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#rslsqjlmpg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -7278,53 +7217,113 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="9" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>log(mpg) ~ wt * cyl</td>
+<td colspan="9" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="ratio">ratio</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="a::stub"></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="null">null</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
-<tr>
-<td headers="contrast" class="gt_row gt_center">cyl4 / cyl6</td>
-<td headers="ratio" class="gt_row gt_right">1.113</td>
-<td headers="SE" class="gt_row gt_right">0.096</td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">0.898</td>
-<td headers="conf.high" class="gt_row gt_right">1.380</td>
-<td headers="null" class="gt_row gt_right">1.00</td>
-<td headers="t.ratio" class="gt_row gt_right">1.24</td>
-<td headers="p.value" class="gt_row gt_left">  0.44</td>
+<tr class="gt_row_group_first">
+<td headers="wt = 2 stub_1_1 stub_1" rowspan="3" class="gt_row gt_left gt_stub_row_group">wt = 2</td>
+<td headers="wt = 2 stub_1_1 contrast" class="gt_row gt_center">cyl4 - cyl6</td>
+<td headers="wt = 2 stub_1_1 estimate" class="gt_row gt_right"> 5.4</td>
+<td headers="wt = 2 stub_1_1 SE" class="gt_row gt_right">3.4</td>
+<td headers="wt = 2 stub_1_1 df" class="gt_row gt_right">26</td>
+<td headers="wt = 2 stub_1_1 conf.low" class="gt_row gt_right">−3.0</td>
+<td headers="wt = 2 stub_1_1 conf.high" class="gt_row gt_right">13.8</td>
+<td headers="wt = 2 stub_1_1 t.ratio" class="gt_row gt_right"> 1.61  </td>
+<td headers="wt = 2 stub_1_1 p.value" class="gt_row gt_left">  0.26</td>
 </tr>
 <tr>
-<td headers="contrast" class="gt_row gt_center">cyl4 / cyl8</td>
-<td headers="ratio" class="gt_row gt_right">1.28 </td>
-<td headers="SE" class="gt_row gt_right">0.11 </td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">1.03 </td>
-<td headers="conf.high" class="gt_row gt_right">1.58 </td>
-<td headers="null" class="gt_row gt_right">1.00</td>
-<td headers="t.ratio" class="gt_row gt_right">2.84</td>
-<td headers="p.value" class="gt_row gt_left">  0.023</td>
+<td headers="wt = 2 contrast_2 contrast" class="gt_row gt_center">cyl4 - cyl8</td>
+<td headers="wt = 2 contrast_2 estimate" class="gt_row gt_right"> 8.8</td>
+<td headers="wt = 2 contrast_2 SE" class="gt_row gt_right">2.1</td>
+<td headers="wt = 2 contrast_2 df" class="gt_row gt_right">26</td>
+<td headers="wt = 2 contrast_2 conf.low" class="gt_row gt_right"> 3.6</td>
+<td headers="wt = 2 contrast_2 conf.high" class="gt_row gt_right">14.0</td>
+<td headers="wt = 2 contrast_2 t.ratio" class="gt_row gt_right"> 4.23  </td>
+<td headers="wt = 2 contrast_2 p.value" class="gt_row gt_left">  0.0007</td>
 </tr>
 <tr>
-<td headers="contrast" class="gt_row gt_center">cyl6 / cyl8</td>
-<td headers="ratio" class="gt_row gt_right">1.148</td>
-<td headers="SE" class="gt_row gt_right">0.077</td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">0.972</td>
-<td headers="conf.high" class="gt_row gt_right">1.355</td>
-<td headers="null" class="gt_row gt_right">1.00</td>
-<td headers="t.ratio" class="gt_row gt_right">2.05</td>
-<td headers="p.value" class="gt_row gt_left">  0.12</td>
+<td headers="wt = 2 contrast_3 contrast" class="gt_row gt_center">cyl6 - cyl8</td>
+<td headers="wt = 2 contrast_3 estimate" class="gt_row gt_right"> 3.4</td>
+<td headers="wt = 2 contrast_3 SE" class="gt_row gt_right">3.8</td>
+<td headers="wt = 2 contrast_3 df" class="gt_row gt_right">26</td>
+<td headers="wt = 2 contrast_3 conf.low" class="gt_row gt_right">−6.0</td>
+<td headers="wt = 2 contrast_3 conf.high" class="gt_row gt_right">12.8</td>
+<td headers="wt = 2 contrast_3 t.ratio" class="gt_row gt_right"> 0.890 </td>
+<td headers="wt = 2 contrast_3 p.value" class="gt_row gt_left">  0.65</td>
+</tr>
+<tr class="gt_row_group_first">
+<td headers="wt = 3 stub_1_4 stub_1" rowspan="3" class="gt_row gt_left gt_stub_row_group">wt = 3</td>
+<td headers="wt = 3 stub_1_4 contrast" class="gt_row gt_center">cyl4 - cyl6</td>
+<td headers="wt = 3 stub_1_4 estimate" class="gt_row gt_right"> 2.6</td>
+<td headers="wt = 3 stub_1_4 SE" class="gt_row gt_right">1.6</td>
+<td headers="wt = 3 stub_1_4 df" class="gt_row gt_right">26</td>
+<td headers="wt = 3 stub_1_4 conf.low" class="gt_row gt_right">−1.3</td>
+<td headers="wt = 3 stub_1_4 conf.high" class="gt_row gt_right"> 6.5</td>
+<td headers="wt = 3 stub_1_4 t.ratio" class="gt_row gt_right"> 1.64  </td>
+<td headers="wt = 3 stub_1_4 p.value" class="gt_row gt_left">  0.25</td>
+</tr>
+<tr>
+<td headers="wt = 3 contrast_5 contrast" class="gt_row gt_center">cyl4 - cyl8</td>
+<td headers="wt = 3 contrast_5 estimate" class="gt_row gt_right"> 5.3</td>
+<td headers="wt = 3 contrast_5 SE" class="gt_row gt_right">1.6</td>
+<td headers="wt = 3 contrast_5 df" class="gt_row gt_right">26</td>
+<td headers="wt = 3 contrast_5 conf.low" class="gt_row gt_right"> 1.2</td>
+<td headers="wt = 3 contrast_5 conf.high" class="gt_row gt_right"> 9.4</td>
+<td headers="wt = 3 contrast_5 t.ratio" class="gt_row gt_right"> 3.24  </td>
+<td headers="wt = 3 contrast_5 p.value" class="gt_row gt_left">  0.0088</td>
+</tr>
+<tr>
+<td headers="wt = 3 contrast_6 contrast" class="gt_row gt_center">cyl6 - cyl8</td>
+<td headers="wt = 3 contrast_6 estimate" class="gt_row gt_right"> 2.8</td>
+<td headers="wt = 3 contrast_6 SE" class="gt_row gt_right">1.5</td>
+<td headers="wt = 3 contrast_6 df" class="gt_row gt_right">26</td>
+<td headers="wt = 3 contrast_6 conf.low" class="gt_row gt_right">−0.9</td>
+<td headers="wt = 3 contrast_6 conf.high" class="gt_row gt_right"> 6.5</td>
+<td headers="wt = 3 contrast_6 t.ratio" class="gt_row gt_right"> 1.88  </td>
+<td headers="wt = 3 contrast_6 p.value" class="gt_row gt_left">  0.17</td>
+</tr>
+<tr class="gt_row_group_first">
+<td headers="wt = 4 stub_1_7 stub_1" rowspan="3" class="gt_row gt_left gt_stub_row_group">wt = 4</td>
+<td headers="wt = 4 stub_1_7 contrast" class="gt_row gt_center">cyl4 - cyl6</td>
+<td headers="wt = 4 stub_1_7 estimate" class="gt_row gt_right">−0.3</td>
+<td headers="wt = 4 stub_1_7 SE" class="gt_row gt_right">3.6</td>
+<td headers="wt = 4 stub_1_7 df" class="gt_row gt_right">26</td>
+<td headers="wt = 4 stub_1_7 conf.low" class="gt_row gt_right">−9.3</td>
+<td headers="wt = 4 stub_1_7 conf.high" class="gt_row gt_right"> 8.6</td>
+<td headers="wt = 4 stub_1_7 t.ratio" class="gt_row gt_right">-0.0848</td>
+<td headers="wt = 4 stub_1_7 p.value" class="gt_row gt_left">  1.0</td>
+</tr>
+<tr>
+<td headers="wt = 4 contrast_8 contrast" class="gt_row gt_center">cyl4 - cyl8</td>
+<td headers="wt = 4 contrast_8 estimate" class="gt_row gt_right"> 1.9</td>
+<td headers="wt = 4 contrast_8 SE" class="gt_row gt_right">2.5</td>
+<td headers="wt = 4 contrast_8 df" class="gt_row gt_right">26</td>
+<td headers="wt = 4 contrast_8 conf.low" class="gt_row gt_right">−4.4</td>
+<td headers="wt = 4 contrast_8 conf.high" class="gt_row gt_right"> 8.2</td>
+<td headers="wt = 4 contrast_8 t.ratio" class="gt_row gt_right"> 0.745 </td>
+<td headers="wt = 4 contrast_8 p.value" class="gt_row gt_left">  0.74</td>
+</tr>
+<tr>
+<td headers="wt = 4 contrast_9 contrast" class="gt_row gt_center">cyl6 - cyl8</td>
+<td headers="wt = 4 contrast_9 estimate" class="gt_row gt_right"> 2.2</td>
+<td headers="wt = 4 contrast_9 SE" class="gt_row gt_right">2.7</td>
+<td headers="wt = 4 contrast_9 df" class="gt_row gt_right">26</td>
+<td headers="wt = 4 contrast_9 conf.low" class="gt_row gt_right">−4.6</td>
+<td headers="wt = 4 contrast_9 conf.high" class="gt_row gt_right"> 9.0</td>
+<td headers="wt = 4 contrast_9 t.ratio" class="gt_row gt_right"> 0.804 </td>
+<td headers="wt = 4 contrast_9 p.value" class="gt_row gt_left">  0.70</td>
 </tr>
 </tbody>
 <tfoot class="gt_footnotes">
@@ -7335,23 +7334,17 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 <td class="gt_footnote" colspan="9"> Conf-level adjustment: tukey method for comparing a family of 3 estimates</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="9"> Intervals are back-transformed from the log scale</td>
-    </tr>
-<tr>
 <td class="gt_footnote" colspan="9"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="9"> Tests are performed on the log scale</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="9"> NOTE: Results may be misleading due to involvement in interactions
-</td>
     </tr>
 </tfoot>
 </table>
 </div>
+</div>
+<div class="section level3">
+<h3 id="linear-model-with-log-response">Linear Model, with log response<a class="anchor" aria-label="anchor" href="#linear-model-with-log-response"></a>
+</h3>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m1_log</span>, <span class="op">~</span><span class="va">cyl</span>, backtransform <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m1_log</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <div id="udacgqflgk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#udacgqflgk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -7804,73 +7797,72 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>log(mpg) ~ wt * cyl</td>
+<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>log(mpg) ~ wt * cyl</td>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="response">response</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="cld.group">cld.group</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="contrast" class="gt_row gt_left">cyl4 - cyl6</td>
-<td headers="estimate" class="gt_row gt_right">0.107</td>
-<td headers="SE" class="gt_row gt_right">0.086</td>
+<td headers="cyl" class="gt_row gt_center">8</td>
+<td headers="response" class="gt_row gt_right">16.92</td>
+<td headers="SE" class="gt_row gt_right">0.80</td>
 <td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">−0.108</td>
-<td headers="conf.high" class="gt_row gt_right">0.322</td>
-<td headers="t.ratio" class="gt_row gt_right">1.24</td>
-<td headers="p.value" class="gt_row gt_left">  0.44</td>
+<td headers="conf.low" class="gt_row gt_right">15.36</td>
+<td headers="conf.high" class="gt_row gt_right">18.64</td>
+<td headers="cld.group" class="gt_row gt_left"> a </td>
 </tr>
 <tr>
-<td headers="contrast" class="gt_row gt_left">cyl4 - cyl8</td>
-<td headers="estimate" class="gt_row gt_right">0.245</td>
-<td headers="SE" class="gt_row gt_right">0.086</td>
+<td headers="cyl" class="gt_row gt_center">6</td>
+<td headers="response" class="gt_row gt_right">19.42</td>
+<td headers="SE" class="gt_row gt_right">0.92</td>
 <td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right"> 0.031</td>
-<td headers="conf.high" class="gt_row gt_right">0.459</td>
-<td headers="t.ratio" class="gt_row gt_right">2.84</td>
-<td headers="p.value" class="gt_row gt_left">  0.023</td>
+<td headers="conf.low" class="gt_row gt_right">17.61</td>
+<td headers="conf.high" class="gt_row gt_right">21.41</td>
+<td headers="cld.group" class="gt_row gt_left"> ab</td>
 </tr>
 <tr>
-<td headers="contrast" class="gt_row gt_left">cyl6 - cyl8</td>
-<td headers="estimate" class="gt_row gt_right">0.138</td>
-<td headers="SE" class="gt_row gt_right">0.067</td>
+<td headers="cyl" class="gt_row gt_center">4</td>
+<td headers="response" class="gt_row gt_right">21.6 </td>
+<td headers="SE" class="gt_row gt_right">1.6 </td>
 <td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">−0.029</td>
-<td headers="conf.high" class="gt_row gt_right">0.304</td>
-<td headers="t.ratio" class="gt_row gt_right">2.05</td>
-<td headers="p.value" class="gt_row gt_left">  0.12</td>
+<td headers="conf.low" class="gt_row gt_right">18.6 </td>
+<td headers="conf.high" class="gt_row gt_right">25.1 </td>
+<td headers="cld.group" class="gt_row gt_left">  b</td>
 </tr>
 </tbody>
 <tfoot class="gt_footnotes">
 <tr>
-<td class="gt_footnote" colspan="8"> Results are given on the log (not the response) scale.</td>
+<td class="gt_footnote" colspan="7"> Confidence level used: 0.95</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="8"> Confidence level used: 0.95</td>
+<td class="gt_footnote" colspan="7"> Intervals are back-transformed from the log scale</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="8"> Conf-level adjustment: tukey method for comparing a family of 3 estimates</td>
+<td class="gt_footnote" colspan="7"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="8"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
+<td class="gt_footnote" colspan="7"> Tests are performed on the log scale</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="8"> NOTE: Results may be misleading due to involvement in interactions
+<td class="gt_footnote" colspan="7"> significance level used: alpha = 0.05</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="7"> NOTE: Results may be misleading due to involvement in interactions
 </td>
     </tr>
 </tfoot>
 </table>
 </div>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m1_log</span>, <span class="op">~</span><span class="va">cyl</span>, backtransform <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m1_log</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <div id="jhvqltorlv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#jhvqltorlv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -8323,73 +8315,80 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>log(mpg) ~ wt * cyl</td>
+<td colspan="9" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>log(mpg) ~ wt * cyl</td>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="emmean">emmean</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="ratio">ratio</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="cld.group">cld.group</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="null">null</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="cyl" class="gt_row gt_center">8</td>
-<td headers="emmean" class="gt_row gt_right">2.828</td>
-<td headers="SE" class="gt_row gt_right">0.047</td>
+<td headers="contrast" class="gt_row gt_center">cyl4 / cyl6</td>
+<td headers="ratio" class="gt_row gt_right">1.113</td>
+<td headers="SE" class="gt_row gt_right">0.096</td>
 <td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">2.732</td>
-<td headers="conf.high" class="gt_row gt_right">2.925</td>
-<td headers="cld.group" class="gt_row gt_left"> a </td>
+<td headers="conf.low" class="gt_row gt_right">0.898</td>
+<td headers="conf.high" class="gt_row gt_right">1.380</td>
+<td headers="null" class="gt_row gt_right">1.00</td>
+<td headers="t.ratio" class="gt_row gt_right">1.24</td>
+<td headers="p.value" class="gt_row gt_left">  0.44</td>
 </tr>
 <tr>
-<td headers="cyl" class="gt_row gt_center">6</td>
-<td headers="emmean" class="gt_row gt_right">2.966</td>
-<td headers="SE" class="gt_row gt_right">0.048</td>
+<td headers="contrast" class="gt_row gt_center">cyl4 / cyl8</td>
+<td headers="ratio" class="gt_row gt_right">1.28 </td>
+<td headers="SE" class="gt_row gt_right">0.11 </td>
 <td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">2.868</td>
-<td headers="conf.high" class="gt_row gt_right">3.064</td>
-<td headers="cld.group" class="gt_row gt_left"> ab</td>
+<td headers="conf.low" class="gt_row gt_right">1.03 </td>
+<td headers="conf.high" class="gt_row gt_right">1.58 </td>
+<td headers="null" class="gt_row gt_right">1.00</td>
+<td headers="t.ratio" class="gt_row gt_right">2.84</td>
+<td headers="p.value" class="gt_row gt_left">  0.023</td>
 </tr>
 <tr>
-<td headers="cyl" class="gt_row gt_center">4</td>
-<td headers="emmean" class="gt_row gt_right">3.073</td>
-<td headers="SE" class="gt_row gt_right">0.072</td>
+<td headers="contrast" class="gt_row gt_center">cyl6 / cyl8</td>
+<td headers="ratio" class="gt_row gt_right">1.148</td>
+<td headers="SE" class="gt_row gt_right">0.077</td>
 <td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">2.925</td>
-<td headers="conf.high" class="gt_row gt_right">3.221</td>
-<td headers="cld.group" class="gt_row gt_left">  b</td>
+<td headers="conf.low" class="gt_row gt_right">0.972</td>
+<td headers="conf.high" class="gt_row gt_right">1.355</td>
+<td headers="null" class="gt_row gt_right">1.00</td>
+<td headers="t.ratio" class="gt_row gt_right">2.05</td>
+<td headers="p.value" class="gt_row gt_left">  0.12</td>
 </tr>
 </tbody>
 <tfoot class="gt_footnotes">
 <tr>
-<td class="gt_footnote" colspan="7"> Results are given on the log (not the response) scale.</td>
+<td class="gt_footnote" colspan="9"> Confidence level used: 0.95</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="7"> Confidence level used: 0.95</td>
+<td class="gt_footnote" colspan="9"> Conf-level adjustment: tukey method for comparing a family of 3 estimates</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="7"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
+<td class="gt_footnote" colspan="9"> Intervals are back-transformed from the log scale</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="7"> significance level used: alpha = 0.05</td>
+<td class="gt_footnote" colspan="9"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="7"> NOTE: Results may be misleading due to involvement in interactions
+<td class="gt_footnote" colspan="9"> Tests are performed on the log scale</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="9"> NOTE: Results may be misleading due to involvement in interactions
 </td>
     </tr>
 </tfoot>
 </table>
 </div>
-</div>
-<div class="section level3">
-<h3 id="logistic-model">Logistic Model<a class="anchor" aria-label="anchor" href="#logistic-model"></a>
-</h3>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m2</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m1_log</span>, <span class="op">~</span><span class="va">cyl</span>, backtransform <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div id="uzjcdmfnby" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#uzjcdmfnby table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -8842,68 +8841,73 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>(am = manual) ~ mpg * cyl</td>
+<td colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>log(mpg) ~ wt * cyl</td>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="prob">prob</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="cld.group">cld.group</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="cyl" class="gt_row gt_center">8</td>
-<td headers="prob" class="gt_row gt_right">0.18</td>
-<td headers="SE" class="gt_row gt_right">0.25</td>
-<td headers="conf.low" class="gt_row gt_right">0.01</td>
-<td headers="conf.high" class="gt_row gt_right">0.86</td>
-<td headers="cld.group" class="gt_row gt_left"> a</td>
+<td headers="contrast" class="gt_row gt_left">cyl4 - cyl6</td>
+<td headers="estimate" class="gt_row gt_right">0.107</td>
+<td headers="SE" class="gt_row gt_right">0.086</td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right">−0.108</td>
+<td headers="conf.high" class="gt_row gt_right">0.322</td>
+<td headers="t.ratio" class="gt_row gt_right">1.24</td>
+<td headers="p.value" class="gt_row gt_left">  0.44</td>
 </tr>
 <tr>
-<td headers="cyl" class="gt_row gt_center">4</td>
-<td headers="prob" class="gt_row gt_right">0.21</td>
-<td headers="SE" class="gt_row gt_right">0.24</td>
-<td headers="conf.low" class="gt_row gt_right">0.01</td>
-<td headers="conf.high" class="gt_row gt_right">0.83</td>
-<td headers="cld.group" class="gt_row gt_left"> a</td>
+<td headers="contrast" class="gt_row gt_left">cyl4 - cyl8</td>
+<td headers="estimate" class="gt_row gt_right">0.245</td>
+<td headers="SE" class="gt_row gt_right">0.086</td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right"> 0.031</td>
+<td headers="conf.high" class="gt_row gt_right">0.459</td>
+<td headers="t.ratio" class="gt_row gt_right">2.84</td>
+<td headers="p.value" class="gt_row gt_left">  0.023</td>
 </tr>
 <tr>
-<td headers="cyl" class="gt_row gt_center">6</td>
-<td headers="prob" class="gt_row gt_right">0.48</td>
-<td headers="SE" class="gt_row gt_right">0.23</td>
-<td headers="conf.low" class="gt_row gt_right">0.13</td>
-<td headers="conf.high" class="gt_row gt_right">0.84</td>
-<td headers="cld.group" class="gt_row gt_left"> a</td>
+<td headers="contrast" class="gt_row gt_left">cyl6 - cyl8</td>
+<td headers="estimate" class="gt_row gt_right">0.138</td>
+<td headers="SE" class="gt_row gt_right">0.067</td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right">−0.029</td>
+<td headers="conf.high" class="gt_row gt_right">0.304</td>
+<td headers="t.ratio" class="gt_row gt_right">2.05</td>
+<td headers="p.value" class="gt_row gt_left">  0.12</td>
 </tr>
 </tbody>
 <tfoot class="gt_footnotes">
 <tr>
-<td class="gt_footnote" colspan="6"> Confidence level used: 0.95</td>
+<td class="gt_footnote" colspan="8"> Results are given on the log (not the response) scale.</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="6"> Intervals are back-transformed from the logit scale</td>
+<td class="gt_footnote" colspan="8"> Confidence level used: 0.95</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="6"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
+<td class="gt_footnote" colspan="8"> Conf-level adjustment: tukey method for comparing a family of 3 estimates</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="6"> Tests are performed on the log odds ratio scale</td>
+<td class="gt_footnote" colspan="8"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="6"> significance level used: alpha = 0.05</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="6"> NOTE: Results may be misleading due to involvement in interactions
+<td class="gt_footnote" colspan="8"> NOTE: Results may be misleading due to involvement in interactions
 </td>
     </tr>
 </tfoot>
 </table>
 </div>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m2</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m1_log</span>, <span class="op">~</span><span class="va">cyl</span>, backtransform <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div id="esrejldsxt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#esrejldsxt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -9356,76 +9360,73 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>(am = manual) ~ mpg * cyl</td>
+<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>log(mpg) ~ wt * cyl</td>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="odds.ratio">odds.ratio</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="emmean">emmean</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="null">null</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="z.ratio">z.ratio</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="cld.group">cld.group</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="contrast" class="gt_row gt_center">cyl4 / cyl6</td>
-<td headers="odds.ratio" class="gt_row gt_right">0.29</td>
-<td headers="SE" class="gt_row gt_right">0.51</td>
-<td headers="conf.low" class="gt_row gt_right">0.01</td>
-<td headers="conf.high" class="gt_row gt_right"> 16.85</td>
-<td headers="null" class="gt_row gt_right">1.00</td>
-<td headers="z.ratio" class="gt_row gt_right">-0.709 </td>
-<td headers="p.value" class="gt_row gt_left">  0.76</td>
+<td headers="cyl" class="gt_row gt_center">8</td>
+<td headers="emmean" class="gt_row gt_right">2.828</td>
+<td headers="SE" class="gt_row gt_right">0.047</td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right">2.732</td>
+<td headers="conf.high" class="gt_row gt_right">2.925</td>
+<td headers="cld.group" class="gt_row gt_left"> a </td>
 </tr>
 <tr>
-<td headers="contrast" class="gt_row gt_center">cyl4 / cyl8</td>
-<td headers="odds.ratio" class="gt_row gt_right">1.2 </td>
-<td headers="SE" class="gt_row gt_right">2.7 </td>
-<td headers="conf.low" class="gt_row gt_right">0.0 </td>
-<td headers="conf.high" class="gt_row gt_right">228.5 </td>
-<td headers="null" class="gt_row gt_right">1.00</td>
-<td headers="z.ratio" class="gt_row gt_right"> 0.0805</td>
-<td headers="p.value" class="gt_row gt_left">  1.0</td>
+<td headers="cyl" class="gt_row gt_center">6</td>
+<td headers="emmean" class="gt_row gt_right">2.966</td>
+<td headers="SE" class="gt_row gt_right">0.048</td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right">2.868</td>
+<td headers="conf.high" class="gt_row gt_right">3.064</td>
+<td headers="cld.group" class="gt_row gt_left"> ab</td>
 </tr>
 <tr>
-<td headers="contrast" class="gt_row gt_center">cyl6 / cyl8</td>
-<td headers="odds.ratio" class="gt_row gt_right">4.1 </td>
-<td headers="SE" class="gt_row gt_right">7.8 </td>
-<td headers="conf.low" class="gt_row gt_right">0.0 </td>
-<td headers="conf.high" class="gt_row gt_right">362.4 </td>
-<td headers="null" class="gt_row gt_right">1.00</td>
-<td headers="z.ratio" class="gt_row gt_right"> 0.734 </td>
-<td headers="p.value" class="gt_row gt_left">  0.74</td>
+<td headers="cyl" class="gt_row gt_center">4</td>
+<td headers="emmean" class="gt_row gt_right">3.073</td>
+<td headers="SE" class="gt_row gt_right">0.072</td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right">2.925</td>
+<td headers="conf.high" class="gt_row gt_right">3.221</td>
+<td headers="cld.group" class="gt_row gt_left">  b</td>
 </tr>
 </tbody>
 <tfoot class="gt_footnotes">
 <tr>
-<td class="gt_footnote" colspan="8"> Confidence level used: 0.95</td>
+<td class="gt_footnote" colspan="7"> Results are given on the log (not the response) scale.</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="8"> Conf-level adjustment: tukey method for comparing a family of 3 estimates</td>
+<td class="gt_footnote" colspan="7"> Confidence level used: 0.95</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="8"> Intervals are back-transformed from the log odds ratio scale</td>
+<td class="gt_footnote" colspan="7"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="8"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
+<td class="gt_footnote" colspan="7"> significance level used: alpha = 0.05</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="8"> Tests are performed on the log odds ratio scale</td>
-    </tr>
-<tr>
-<td class="gt_footnote" colspan="8"> NOTE: Results may be misleading due to involvement in interactions
+<td class="gt_footnote" colspan="7"> NOTE: Results may be misleading due to involvement in interactions
 </td>
     </tr>
 </tfoot>
 </table>
 </div>
+</div>
+<div class="section level3">
+<h3 id="logistic-model">Logistic Model<a class="anchor" aria-label="anchor" href="#logistic-model"></a>
+</h3>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m2</span>, <span class="op">~</span><span class="va">cyl</span>, backtransform<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m2</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <div id="yqwtxjxwiy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#yqwtxjxwiy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -9882,7 +9883,7 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
     </tr>
 <tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="emmean">emmean</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="prob">prob</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
@@ -9892,41 +9893,41 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 <tbody class="gt_table_body">
 <tr>
 <td headers="cyl" class="gt_row gt_center">8</td>
-<td headers="emmean" class="gt_row gt_right">−1.5 </td>
-<td headers="SE" class="gt_row gt_right">1.7 </td>
-<td headers="conf.low" class="gt_row gt_right">−4.8 </td>
-<td headers="conf.high" class="gt_row gt_right">1.8 </td>
+<td headers="prob" class="gt_row gt_right">0.18</td>
+<td headers="SE" class="gt_row gt_right">0.25</td>
+<td headers="conf.low" class="gt_row gt_right">0.01</td>
+<td headers="conf.high" class="gt_row gt_right">0.86</td>
 <td headers="cld.group" class="gt_row gt_left"> a</td>
 </tr>
 <tr>
 <td headers="cyl" class="gt_row gt_center">4</td>
-<td headers="emmean" class="gt_row gt_right">−1.3 </td>
-<td headers="SE" class="gt_row gt_right">1.5 </td>
-<td headers="conf.low" class="gt_row gt_right">−4.2 </td>
-<td headers="conf.high" class="gt_row gt_right">1.6 </td>
+<td headers="prob" class="gt_row gt_right">0.21</td>
+<td headers="SE" class="gt_row gt_right">0.24</td>
+<td headers="conf.low" class="gt_row gt_right">0.01</td>
+<td headers="conf.high" class="gt_row gt_right">0.83</td>
 <td headers="cld.group" class="gt_row gt_left"> a</td>
 </tr>
 <tr>
 <td headers="cyl" class="gt_row gt_center">6</td>
-<td headers="emmean" class="gt_row gt_right">−0.10</td>
-<td headers="SE" class="gt_row gt_right">0.90</td>
-<td headers="conf.low" class="gt_row gt_right">−1.87</td>
-<td headers="conf.high" class="gt_row gt_right">1.67</td>
+<td headers="prob" class="gt_row gt_right">0.48</td>
+<td headers="SE" class="gt_row gt_right">0.23</td>
+<td headers="conf.low" class="gt_row gt_right">0.13</td>
+<td headers="conf.high" class="gt_row gt_right">0.84</td>
 <td headers="cld.group" class="gt_row gt_left"> a</td>
 </tr>
 </tbody>
 <tfoot class="gt_footnotes">
 <tr>
-<td class="gt_footnote" colspan="6"> Results are given on the logit (not the response) scale.</td>
-    </tr>
-<tr>
 <td class="gt_footnote" colspan="6"> Confidence level used: 0.95</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="6"> Results are given on the log odds ratio (not the response) scale.</td>
+<td class="gt_footnote" colspan="6"> Intervals are back-transformed from the logit scale</td>
     </tr>
 <tr>
 <td class="gt_footnote" colspan="6"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="6"> Tests are performed on the log odds ratio scale</td>
     </tr>
 <tr>
 <td class="gt_footnote" colspan="6"> significance level used: alpha = 0.05</td>
@@ -9939,7 +9940,7 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 </table>
 </div>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m2</span>, <span class="op">~</span><span class="va">cyl</span>, backtransform<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m2</span>, <span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <div id="jisysoqowe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#jisysoqowe table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -10392,76 +10393,76 @@ or logistic scale, use <code>backtransform = FALSE</code>.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>(am = manual) ~ mpg * cyl</td>
+<td colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>(am = manual) ~ mpg * cyl</td>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="odds.ratio">odds.ratio</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="null">null</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="z.ratio">z.ratio</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="contrast" class="gt_row gt_left">cyl4 - cyl6</td>
-<td headers="estimate" class="gt_row gt_right">−1.2</td>
-<td headers="SE" class="gt_row gt_right">1.7</td>
-<td headers="conf.low" class="gt_row gt_right">−5.3</td>
-<td headers="conf.high" class="gt_row gt_right">2.8</td>
+<td headers="contrast" class="gt_row gt_center">cyl4 / cyl6</td>
+<td headers="odds.ratio" class="gt_row gt_right">0.29</td>
+<td headers="SE" class="gt_row gt_right">0.51</td>
+<td headers="conf.low" class="gt_row gt_right">0.01</td>
+<td headers="conf.high" class="gt_row gt_right"> 16.85</td>
+<td headers="null" class="gt_row gt_right">1.00</td>
 <td headers="z.ratio" class="gt_row gt_right">-0.709 </td>
 <td headers="p.value" class="gt_row gt_left">  0.76</td>
 </tr>
 <tr>
-<td headers="contrast" class="gt_row gt_left">cyl4 - cyl8</td>
-<td headers="estimate" class="gt_row gt_right"> 0.2</td>
-<td headers="SE" class="gt_row gt_right">2.2</td>
-<td headers="conf.low" class="gt_row gt_right">−5.1</td>
-<td headers="conf.high" class="gt_row gt_right">5.4</td>
+<td headers="contrast" class="gt_row gt_center">cyl4 / cyl8</td>
+<td headers="odds.ratio" class="gt_row gt_right">1.2 </td>
+<td headers="SE" class="gt_row gt_right">2.7 </td>
+<td headers="conf.low" class="gt_row gt_right">0.0 </td>
+<td headers="conf.high" class="gt_row gt_right">228.5 </td>
+<td headers="null" class="gt_row gt_right">1.00</td>
 <td headers="z.ratio" class="gt_row gt_right"> 0.0805</td>
 <td headers="p.value" class="gt_row gt_left">  1.0</td>
 </tr>
 <tr>
-<td headers="contrast" class="gt_row gt_left">cyl6 - cyl8</td>
-<td headers="estimate" class="gt_row gt_right"> 1.4</td>
-<td headers="SE" class="gt_row gt_right">1.9</td>
-<td headers="conf.low" class="gt_row gt_right">−3.1</td>
-<td headers="conf.high" class="gt_row gt_right">5.9</td>
+<td headers="contrast" class="gt_row gt_center">cyl6 / cyl8</td>
+<td headers="odds.ratio" class="gt_row gt_right">4.1 </td>
+<td headers="SE" class="gt_row gt_right">7.8 </td>
+<td headers="conf.low" class="gt_row gt_right">0.0 </td>
+<td headers="conf.high" class="gt_row gt_right">362.4 </td>
+<td headers="null" class="gt_row gt_right">1.00</td>
 <td headers="z.ratio" class="gt_row gt_right"> 0.734 </td>
 <td headers="p.value" class="gt_row gt_left">  0.74</td>
 </tr>
 </tbody>
 <tfoot class="gt_footnotes">
 <tr>
-<td class="gt_footnote" colspan="7"> Results are given on the log odds ratio (not the response) scale.</td>
+<td class="gt_footnote" colspan="8"> Confidence level used: 0.95</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="7"> Confidence level used: 0.95</td>
+<td class="gt_footnote" colspan="8"> Conf-level adjustment: tukey method for comparing a family of 3 estimates</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="7"> Conf-level adjustment: tukey method for comparing a family of 3 estimates</td>
+<td class="gt_footnote" colspan="8"> Intervals are back-transformed from the log odds ratio scale</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="7"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
+<td class="gt_footnote" colspan="8"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="7"> NOTE: Results may be misleading due to involvement in interactions
+<td class="gt_footnote" colspan="8"> Tests are performed on the log odds ratio scale</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="8"> NOTE: Results may be misleading due to involvement in interactions
 </td>
     </tr>
 </tfoot>
 </table>
 </div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="model-slopes">Model slopes<a class="anchor" aria-label="anchor" href="#model-slopes"></a>
-</h2>
-<p>For continuous explanatory variables, the slopes can be obtained and
-compared in a similar way.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m1</span>, <span class="va">wt</span><span class="op">~</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_means</a></span><span class="op">(</span><span class="va">m2</span>, <span class="op">~</span><span class="va">cyl</span>, backtransform<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div id="ytkovhgshl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ytkovhgshl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -10914,42 +10915,68 @@ compared in a similar way.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
+<td colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>(am = manual) ~ mpg * cyl</td>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="a1">1</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wt.trend">wt.trend</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="emmean">emmean</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="cld.group">cld.group</th>
     </tr>
 </thead>
-<tbody class="gt_table_body"><tr>
-<td headers="1" class="gt_row gt_center">overall</td>
-<td headers="wt.trend" class="gt_row gt_right">−3.5</td>
-<td headers="SE" class="gt_row gt_right">1.1</td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">−5.8</td>
-<td headers="conf.high" class="gt_row gt_right">−1.3</td>
+<tbody class="gt_table_body">
+<tr>
+<td headers="cyl" class="gt_row gt_center">8</td>
+<td headers="emmean" class="gt_row gt_right">−1.5 </td>
+<td headers="SE" class="gt_row gt_right">1.7 </td>
+<td headers="conf.low" class="gt_row gt_right">−4.8 </td>
+<td headers="conf.high" class="gt_row gt_right">1.8 </td>
 <td headers="cld.group" class="gt_row gt_left"> a</td>
-</tr></tbody>
+</tr>
+<tr>
+<td headers="cyl" class="gt_row gt_center">4</td>
+<td headers="emmean" class="gt_row gt_right">−1.3 </td>
+<td headers="SE" class="gt_row gt_right">1.5 </td>
+<td headers="conf.low" class="gt_row gt_right">−4.2 </td>
+<td headers="conf.high" class="gt_row gt_right">1.6 </td>
+<td headers="cld.group" class="gt_row gt_left"> a</td>
+</tr>
+<tr>
+<td headers="cyl" class="gt_row gt_center">6</td>
+<td headers="emmean" class="gt_row gt_right">−0.10</td>
+<td headers="SE" class="gt_row gt_right">0.90</td>
+<td headers="conf.low" class="gt_row gt_right">−1.87</td>
+<td headers="conf.high" class="gt_row gt_right">1.67</td>
+<td headers="cld.group" class="gt_row gt_left"> a</td>
+</tr>
+</tbody>
 <tfoot class="gt_footnotes">
 <tr>
-<td class="gt_footnote" colspan="7"> Results are averaged over the levels of: cyl</td>
+<td class="gt_footnote" colspan="6"> Results are given on the logit (not the response) scale.</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="7"> Confidence level used: 0.95</td>
+<td class="gt_footnote" colspan="6"> Confidence level used: 0.95</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="7"> significance level used: alpha = 0.05</td>
+<td class="gt_footnote" colspan="6"> Results are given on the log odds ratio (not the response) scale.</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="6"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="6"> significance level used: alpha = 0.05</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="6"> NOTE: Results may be misleading due to involvement in interactions
+</td>
     </tr>
 </tfoot>
 </table>
 </div>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m1</span>, <span class="va">wt</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_means</a></span><span class="op">(</span><span class="va">m2</span>, <span class="op">~</span><span class="va">cyl</span>, backtransform<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div id="cphlxbgrza" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#cphlxbgrza table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -11402,64 +11429,76 @@ compared in a similar way.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
+<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>(am = manual) ~ mpg * cyl</td>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wt.trend">wt.trend</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="cld.group">cld.group</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="z.ratio">z.ratio</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="cyl" class="gt_row gt_center">4</td>
-<td headers="wt.trend" class="gt_row gt_right">−5.6 </td>
-<td headers="SE" class="gt_row gt_right">1.4 </td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">−8.4 </td>
-<td headers="conf.high" class="gt_row gt_right">−2.9 </td>
-<td headers="cld.group" class="gt_row gt_left"> a</td>
+<td headers="contrast" class="gt_row gt_left">cyl4 - cyl6</td>
+<td headers="estimate" class="gt_row gt_right">−1.2</td>
+<td headers="SE" class="gt_row gt_right">1.7</td>
+<td headers="conf.low" class="gt_row gt_right">−5.3</td>
+<td headers="conf.high" class="gt_row gt_right">2.8</td>
+<td headers="z.ratio" class="gt_row gt_right">-0.709 </td>
+<td headers="p.value" class="gt_row gt_left">  0.76</td>
 </tr>
 <tr>
-<td headers="cyl" class="gt_row gt_center">6</td>
-<td headers="wt.trend" class="gt_row gt_right">−2.8 </td>
-<td headers="SE" class="gt_row gt_right">2.8 </td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">−8.5 </td>
-<td headers="conf.high" class="gt_row gt_right"> 3.0 </td>
-<td headers="cld.group" class="gt_row gt_left"> a</td>
+<td headers="contrast" class="gt_row gt_left">cyl4 - cyl8</td>
+<td headers="estimate" class="gt_row gt_right"> 0.2</td>
+<td headers="SE" class="gt_row gt_right">2.2</td>
+<td headers="conf.low" class="gt_row gt_right">−5.1</td>
+<td headers="conf.high" class="gt_row gt_right">5.4</td>
+<td headers="z.ratio" class="gt_row gt_right"> 0.0805</td>
+<td headers="p.value" class="gt_row gt_left">  1.0</td>
 </tr>
 <tr>
-<td headers="cyl" class="gt_row gt_center">8</td>
-<td headers="wt.trend" class="gt_row gt_right">−2.19</td>
-<td headers="SE" class="gt_row gt_right">0.89</td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">−4.03</td>
-<td headers="conf.high" class="gt_row gt_right">−0.35</td>
-<td headers="cld.group" class="gt_row gt_left"> a</td>
+<td headers="contrast" class="gt_row gt_left">cyl6 - cyl8</td>
+<td headers="estimate" class="gt_row gt_right"> 1.4</td>
+<td headers="SE" class="gt_row gt_right">1.9</td>
+<td headers="conf.low" class="gt_row gt_right">−3.1</td>
+<td headers="conf.high" class="gt_row gt_right">5.9</td>
+<td headers="z.ratio" class="gt_row gt_right"> 0.734 </td>
+<td headers="p.value" class="gt_row gt_left">  0.74</td>
 </tr>
 </tbody>
 <tfoot class="gt_footnotes">
 <tr>
+<td class="gt_footnote" colspan="7"> Results are given on the log odds ratio (not the response) scale.</td>
+    </tr>
+<tr>
 <td class="gt_footnote" colspan="7"> Confidence level used: 0.95</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="7"> Conf-level adjustment: tukey method for comparing a family of 3 estimates</td>
     </tr>
 <tr>
 <td class="gt_footnote" colspan="7"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="7"> significance level used: alpha = 0.05</td>
+<td class="gt_footnote" colspan="7"> NOTE: Results may be misleading due to involvement in interactions
+</td>
     </tr>
 </tfoot>
 </table>
 </div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="model-slopes">Model slopes<a class="anchor" aria-label="anchor" href="#model-slopes"></a>
+</h2>
+<p>For continuous explanatory variables, the slopes can be obtained and
+compared in a similar way.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_slopes</a></span><span class="op">(</span><span class="va">m1</span>, <span class="va">wt</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in as_atest.data.frame(x, ...): Internal warning: variable type unclear</span></span>
-<span><span class="co">#&gt; for: t.ratio</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m1</span>, <span class="va">wt</span><span class="op">~</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <div id="uzbiykapwo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#uzbiykapwo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -11912,68 +11951,42 @@ compared in a similar way.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
+<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="a1">1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wt.trend">wt.trend</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="cld.group">cld.group</th>
     </tr>
 </thead>
-<tbody class="gt_table_body">
-<tr>
-<td headers="contrast" class="gt_row gt_left">cyl4 - cyl6</td>
-<td headers="estimate" class="gt_row gt_right">−2.9</td>
-<td headers="t.ratio" class="gt_row gt_right">-0.920</td>
-<td headers="SE" class="gt_row gt_right">3.1</td>
+<tbody class="gt_table_body"><tr>
+<td headers="1" class="gt_row gt_center">overall</td>
+<td headers="wt.trend" class="gt_row gt_right">−3.5</td>
+<td headers="SE" class="gt_row gt_right">1.1</td>
 <td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">−10.6</td>
-<td headers="conf.high" class="gt_row gt_right">4.9</td>
-<td headers="p.value" class="gt_row gt_left">  0.63</td>
-</tr>
-<tr>
-<td headers="contrast" class="gt_row gt_left">cyl4 - cyl8</td>
-<td headers="estimate" class="gt_row gt_right">−3.5</td>
-<td headers="t.ratio" class="gt_row gt_right">-2.12 </td>
-<td headers="SE" class="gt_row gt_right">1.6</td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right"> −7.5</td>
-<td headers="conf.high" class="gt_row gt_right">0.6</td>
-<td headers="p.value" class="gt_row gt_left">  0.10</td>
-</tr>
-<tr>
-<td headers="contrast" class="gt_row gt_left">cyl6 - cyl8</td>
-<td headers="estimate" class="gt_row gt_right">−0.6</td>
-<td headers="t.ratio" class="gt_row gt_right">-0.200</td>
-<td headers="SE" class="gt_row gt_right">2.9</td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right"> −7.9</td>
-<td headers="conf.high" class="gt_row gt_right">6.7</td>
-<td headers="p.value" class="gt_row gt_left">  0.98</td>
-</tr>
-</tbody>
+<td headers="conf.low" class="gt_row gt_right">−5.8</td>
+<td headers="conf.high" class="gt_row gt_right">−1.3</td>
+<td headers="cld.group" class="gt_row gt_left"> a</td>
+</tr></tbody>
 <tfoot class="gt_footnotes">
 <tr>
-<td class="gt_footnote" colspan="8"> Confidence level used: 0.95</td>
+<td class="gt_footnote" colspan="7"> Results are averaged over the levels of: cyl</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="8"> Conf-level adjustment: tukey method for comparing a family of 3 estimates</td>
+<td class="gt_footnote" colspan="7"> Confidence level used: 0.95</td>
     </tr>
 <tr>
-<td class="gt_footnote" colspan="8"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
+<td class="gt_footnote" colspan="7"> significance level used: alpha = 0.05</td>
     </tr>
 </tfoot>
 </table>
 </div>
-<p>For log-response or logistic models, no back-transformation is
-done.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m1_log</span>, <span class="va">wt</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m1</span>, <span class="va">wt</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <div id="ktayyjktvo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ktayyjktvo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -12426,7 +12439,7 @@ done.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>log(mpg) ~ wt * cyl</td>
+<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
     </tr>
 <tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
@@ -12441,29 +12454,29 @@ done.</p>
 <tbody class="gt_table_body">
 <tr>
 <td headers="cyl" class="gt_row gt_center">4</td>
-<td headers="wt.trend" class="gt_row gt_right">−0.212</td>
-<td headers="SE" class="gt_row gt_right">0.067</td>
+<td headers="wt.trend" class="gt_row gt_right">−5.6 </td>
+<td headers="SE" class="gt_row gt_right">1.4 </td>
 <td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">−0.349</td>
-<td headers="conf.high" class="gt_row gt_right">−0.074</td>
-<td headers="cld.group" class="gt_row gt_left"> a</td>
-</tr>
-<tr>
-<td headers="cyl" class="gt_row gt_center">8</td>
-<td headers="wt.trend" class="gt_row gt_right">−0.164</td>
-<td headers="SE" class="gt_row gt_right">0.044</td>
-<td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">−0.255</td>
-<td headers="conf.high" class="gt_row gt_right">−0.074</td>
+<td headers="conf.low" class="gt_row gt_right">−8.4 </td>
+<td headers="conf.high" class="gt_row gt_right">−2.9 </td>
 <td headers="cld.group" class="gt_row gt_left"> a</td>
 </tr>
 <tr>
 <td headers="cyl" class="gt_row gt_center">6</td>
-<td headers="wt.trend" class="gt_row gt_right">−0.14 </td>
-<td headers="SE" class="gt_row gt_right">0.14 </td>
+<td headers="wt.trend" class="gt_row gt_right">−2.8 </td>
+<td headers="SE" class="gt_row gt_right">2.8 </td>
 <td headers="df" class="gt_row gt_right">26</td>
-<td headers="conf.low" class="gt_row gt_right">−0.43 </td>
-<td headers="conf.high" class="gt_row gt_right"> 0.14 </td>
+<td headers="conf.low" class="gt_row gt_right">−8.5 </td>
+<td headers="conf.high" class="gt_row gt_right"> 3.0 </td>
+<td headers="cld.group" class="gt_row gt_left"> a</td>
+</tr>
+<tr>
+<td headers="cyl" class="gt_row gt_center">8</td>
+<td headers="wt.trend" class="gt_row gt_right">−2.19</td>
+<td headers="SE" class="gt_row gt_right">0.89</td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right">−4.03</td>
+<td headers="conf.high" class="gt_row gt_right">−0.35</td>
 <td headers="cld.group" class="gt_row gt_left"> a</td>
 </tr>
 </tbody>
@@ -12481,7 +12494,9 @@ done.</p>
 </table>
 </div>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m2</span>, <span class="va">mpg</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_slopes</a></span><span class="op">(</span><span class="va">m1</span>, <span class="va">wt</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in as_atest.data.frame(x, ...): Internal warning: variable type unclear</span></span>
+<span><span class="co">#&gt; for: t.ratio</span></span></code></pre></div>
 <div id="rzbzjrestn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#rzbzjrestn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -12928,6 +12943,1028 @@ done.</p>
 }
 
 #rzbzjrestn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading">
+<td colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
+    </tr>
+<tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
+    </tr>
+</thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="contrast" class="gt_row gt_left">cyl4 - cyl6</td>
+<td headers="estimate" class="gt_row gt_right">−2.9</td>
+<td headers="t.ratio" class="gt_row gt_right">-0.920</td>
+<td headers="SE" class="gt_row gt_right">3.1</td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right">−10.6</td>
+<td headers="conf.high" class="gt_row gt_right">4.9</td>
+<td headers="p.value" class="gt_row gt_left">  0.63</td>
+</tr>
+<tr>
+<td headers="contrast" class="gt_row gt_left">cyl4 - cyl8</td>
+<td headers="estimate" class="gt_row gt_right">−3.5</td>
+<td headers="t.ratio" class="gt_row gt_right">-2.12 </td>
+<td headers="SE" class="gt_row gt_right">1.6</td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right"> −7.5</td>
+<td headers="conf.high" class="gt_row gt_right">0.6</td>
+<td headers="p.value" class="gt_row gt_left">  0.10</td>
+</tr>
+<tr>
+<td headers="contrast" class="gt_row gt_left">cyl6 - cyl8</td>
+<td headers="estimate" class="gt_row gt_right">−0.6</td>
+<td headers="t.ratio" class="gt_row gt_right">-0.200</td>
+<td headers="SE" class="gt_row gt_right">2.9</td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right"> −7.9</td>
+<td headers="conf.high" class="gt_row gt_right">6.7</td>
+<td headers="p.value" class="gt_row gt_left">  0.98</td>
+</tr>
+</tbody>
+<tfoot class="gt_footnotes">
+<tr>
+<td class="gt_footnote" colspan="8"> Confidence level used: 0.95</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="8"> Conf-level adjustment: tukey method for comparing a family of 3 estimates</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="8"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
+    </tr>
+</tfoot>
+</table>
+</div>
+<p>For log-response or logistic models, no back-transformation is
+done.</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m1_log</span>, <span class="va">wt</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
+<div id="buefsqxhvh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#buefsqxhvh table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#buefsqxhvh thead, #buefsqxhvh tbody, #buefsqxhvh tfoot, #buefsqxhvh tr, #buefsqxhvh td, #buefsqxhvh th {
+  border-style: none;
+}
+
+#buefsqxhvh p {
+  margin: 0;
+  padding: 0;
+}
+
+#buefsqxhvh .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: 0;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#buefsqxhvh .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#buefsqxhvh .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#buefsqxhvh .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 1px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#buefsqxhvh .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#buefsqxhvh .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#buefsqxhvh .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#buefsqxhvh .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 2.5px;
+  padding-bottom: 3.5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#buefsqxhvh .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#buefsqxhvh .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#buefsqxhvh .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#buefsqxhvh .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#buefsqxhvh .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#buefsqxhvh .gt_group_heading {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#buefsqxhvh .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#buefsqxhvh .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#buefsqxhvh .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#buefsqxhvh .gt_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#buefsqxhvh .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#buefsqxhvh .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#buefsqxhvh .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#buefsqxhvh .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#buefsqxhvh .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#buefsqxhvh .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#buefsqxhvh .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#buefsqxhvh .gt_last_summary_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#buefsqxhvh .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#buefsqxhvh .gt_first_grand_summary_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#buefsqxhvh .gt_last_grand_summary_row_top {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#buefsqxhvh .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#buefsqxhvh .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#buefsqxhvh .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#buefsqxhvh .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#buefsqxhvh .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#buefsqxhvh .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#buefsqxhvh .gt_left {
+  text-align: left;
+}
+
+#buefsqxhvh .gt_center {
+  text-align: center;
+}
+
+#buefsqxhvh .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#buefsqxhvh .gt_font_normal {
+  font-weight: normal;
+}
+
+#buefsqxhvh .gt_font_bold {
+  font-weight: bold;
+}
+
+#buefsqxhvh .gt_font_italic {
+  font-style: italic;
+}
+
+#buefsqxhvh .gt_super {
+  font-size: 65%;
+}
+
+#buefsqxhvh .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#buefsqxhvh .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#buefsqxhvh .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#buefsqxhvh .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#buefsqxhvh .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#buefsqxhvh .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#buefsqxhvh .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#buefsqxhvh .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#buefsqxhvh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading">
+<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>log(mpg) ~ wt * cyl</td>
+    </tr>
+<tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wt.trend">wt.trend</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="cld.group">cld.group</th>
+    </tr>
+</thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="cyl" class="gt_row gt_center">4</td>
+<td headers="wt.trend" class="gt_row gt_right">−0.212</td>
+<td headers="SE" class="gt_row gt_right">0.067</td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right">−0.349</td>
+<td headers="conf.high" class="gt_row gt_right">−0.074</td>
+<td headers="cld.group" class="gt_row gt_left"> a</td>
+</tr>
+<tr>
+<td headers="cyl" class="gt_row gt_center">8</td>
+<td headers="wt.trend" class="gt_row gt_right">−0.164</td>
+<td headers="SE" class="gt_row gt_right">0.044</td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right">−0.255</td>
+<td headers="conf.high" class="gt_row gt_right">−0.074</td>
+<td headers="cld.group" class="gt_row gt_left"> a</td>
+</tr>
+<tr>
+<td headers="cyl" class="gt_row gt_center">6</td>
+<td headers="wt.trend" class="gt_row gt_right">−0.14 </td>
+<td headers="SE" class="gt_row gt_right">0.14 </td>
+<td headers="df" class="gt_row gt_right">26</td>
+<td headers="conf.low" class="gt_row gt_right">−0.43 </td>
+<td headers="conf.high" class="gt_row gt_right"> 0.14 </td>
+<td headers="cld.group" class="gt_row gt_left"> a</td>
+</tr>
+</tbody>
+<tfoot class="gt_footnotes">
+<tr>
+<td class="gt_footnote" colspan="7"> Confidence level used: 0.95</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="7"> P value adjustment: tukey method for comparing a family of 3 estimates</td>
+    </tr>
+<tr>
+<td class="gt_footnote" colspan="7"> significance level used: alpha = 0.05</td>
+    </tr>
+</tfoot>
+</table>
+</div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m2</span>, <span class="va">mpg</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
+<div id="ncrookxgzu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ncrookxgzu table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ncrookxgzu thead, #ncrookxgzu tbody, #ncrookxgzu tfoot, #ncrookxgzu tr, #ncrookxgzu td, #ncrookxgzu th {
+  border-style: none;
+}
+
+#ncrookxgzu p {
+  margin: 0;
+  padding: 0;
+}
+
+#ncrookxgzu .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: 0;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ncrookxgzu .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ncrookxgzu .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ncrookxgzu .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 1px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ncrookxgzu .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ncrookxgzu .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ncrookxgzu .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ncrookxgzu .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 2.5px;
+  padding-bottom: 3.5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ncrookxgzu .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ncrookxgzu .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ncrookxgzu .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ncrookxgzu .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ncrookxgzu .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ncrookxgzu .gt_group_heading {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ncrookxgzu .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ncrookxgzu .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ncrookxgzu .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ncrookxgzu .gt_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ncrookxgzu .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ncrookxgzu .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ncrookxgzu .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ncrookxgzu .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ncrookxgzu .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ncrookxgzu .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ncrookxgzu .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ncrookxgzu .gt_last_summary_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ncrookxgzu .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ncrookxgzu .gt_first_grand_summary_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ncrookxgzu .gt_last_grand_summary_row_top {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ncrookxgzu .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ncrookxgzu .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ncrookxgzu .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ncrookxgzu .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ncrookxgzu .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ncrookxgzu .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ncrookxgzu .gt_left {
+  text-align: left;
+}
+
+#ncrookxgzu .gt_center {
+  text-align: center;
+}
+
+#ncrookxgzu .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ncrookxgzu .gt_font_normal {
+  font-weight: normal;
+}
+
+#ncrookxgzu .gt_font_bold {
+  font-weight: bold;
+}
+
+#ncrookxgzu .gt_font_italic {
+  font-style: italic;
+}
+
+#ncrookxgzu .gt_super {
+  font-size: 65%;
+}
+
+#ncrookxgzu .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ncrookxgzu .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ncrookxgzu .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ncrookxgzu .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ncrookxgzu .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ncrookxgzu .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ncrookxgzu .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ncrookxgzu .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ncrookxgzu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
