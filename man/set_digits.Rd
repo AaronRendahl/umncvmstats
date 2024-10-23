@@ -9,7 +9,7 @@ set_digits(
   digits = 2,
   decimals,
   rows = seq_len(nrow(x)),
-  columns = c("_estimate_", "SE", "conf.low", "conf.high"),
+  columns = c("_estimate_", "SE", "conf.low", "conf.high", "predict.low", "predict.high"),
   by = NA,
   by_row = TRUE,
   overwrite = TRUE
