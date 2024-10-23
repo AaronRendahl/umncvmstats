@@ -56,6 +56,56 @@ model_anova <- function(model, ...) {
   bind_cols(model_form(model), out) |> as_atest(inference.vars=setdiff(names(out), "p.value"))
 }
 
+#' Get model predictions
+#'
+#' Calculate predictions (fitted values) and prediction intervals for a linear model.
+#'
+#' @param model a linear model
+#' @param at the values for each predictor to predict at; uses all combinations of specified values
+#' @param newdata alternative to at, to specify specific combinations of predictors to predict at
+#' @param level desired prediction level
+#' @param backtransform whether or not to backtransform predictions from models on the log scale
+#' @param se_fit whether or not to report the standard error of the predicted value
+#' @export
+#' @importFrom tidyr expand_grid
+#' @importFrom broom augment
+model_predictions <- function(model, at, newdata, level=0.95,
+                              backtransform=TRUE, se_fit=FALSE) {
+  mf <- model.frame(model)
+  .response <- names(mf)[1]
+  if(missing(newdata)) {
+    mfx <- mf[,-1]
+    levs <- lapply(mfx[sapply(mfx, is.factor)], levels)
+    means <- lapply(mfx[sapply(mfx, is.numeric)], \(x) mean(x, na.rm=TRUE))
+    atx <- c(levs, means)[names(mfx)]
+    if(!missing(at)) {
+      for(n in names(at)) {
+        atx[[n]] <- at[[n]]
+      }
+    }
+    newdata <- do.call(expand_grid, atx)
+  }
+  is_log <- str_detect(.response, "log\\(.*\\)")
+  backtransform <- backtransform & is_log
+  out <- augment(model, se_fit=se_fit & !backtransform,
+                 conf.level=level,
+                 interval="prediction", newdata=newdata)
+  about <- sprintf("Prediction level used: %0.2f", level)
+  if(backtransform) {
+    out <- out |> mutate(across(c(".fitted", ".lower", ".upper"), exp))
+    about <- c(about, "Predictions are back-transformed from the log scale")
+  }
+  lookup <- c(prediction=".fitted", SE=".se.fit",
+              predict.low=".lower", predict.high=".upper")
+  out <- out |> rename(any_of(lookup))
+  x <- bind_cols(model_form(model), out) |>
+    as_atest(pri.vars = names(newdata),
+             estimate.vars="prediction",
+             inference.vars=c("SE", "predict.low", "predict.high"))
+  x$about <- rep(list(about), nrow(x))
+  x
+}
+
 #' Get model means and slopes (trends)
 #'
 #' Retrieve estimated marginal means and slopes (trends) as computed by
