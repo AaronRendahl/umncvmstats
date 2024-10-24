@@ -1,0 +1,50 @@
+---
+title: "NonparametricInference"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{NonparametricInference}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+#| include: false
+library(umncvmstats)
+```
+
+## One Sample Wilcoxon test
+```{r}
+one_wilcoxon_inference(wt ~ 1, data = mtcars2)
+```
+
+### Separately by another categorical variable
+```{r}
+one_wilcoxon_inference(wt ~ am, data = mtcars2)
+```
+
+## Two Sample Wilcoxon test
+```{r}
+two_wilcoxon_inference(wt ~ am, data = mtcars2)
+```
+
+## Kruskal-Wallis test
+```{r}
+kruskal_wallis_test(wt ~ am, data=mtcars2)
+```
+
+## Pairwise Wilcoxon tests
+```{r}
+pairwise_wilcoxon_inference(wt ~ cyl, data = mtcars2)
+```
+
+## Paired Wilcoxon test
+```{r}
+paired_wilcoxon_inference(score2 - score1 ~ 1, data = passfail)
+```
