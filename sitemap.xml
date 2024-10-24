@@ -6,6 +6,7 @@
 <url><loc>https://aaronrendahl.github.io/umncvmstats/articles/index.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/articles/means.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/articles/models.html</loc></url>
+<url><loc>https://aaronrendahl.github.io/umncvmstats/articles/nonparametric.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/articles/options.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/articles/proportions.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/articles/starting.html</loc></url>
@@ -26,6 +27,7 @@
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/hide_y_axis.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/independence_test.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/index.html</loc></url>
+<url><loc>https://aaronrendahl.github.io/umncvmstats/reference/kruskal_wallis_test.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/model_anova.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/model_coefs.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/model_glance.html</loc></url>
@@ -35,8 +37,10 @@
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/new_assignment.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/one_proportion_inference.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/one_t_inference.html</loc></url>
+<url><loc>https://aaronrendahl.github.io/umncvmstats/reference/one_wilcoxon_inference.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/paired_proportion_inference.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/paired_t_inference.html</loc></url>
+<url><loc>https://aaronrendahl.github.io/umncvmstats/reference/paired_wilcoxon_inference.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/passfail.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/sample_lm.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/scale_y_binary.html</loc></url>
@@ -45,6 +49,7 @@
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/tab_compact.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/two_proportion_inference.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/two_t_inference.html</loc></url>
+<url><loc>https://aaronrendahl.github.io/umncvmstats/reference/two_wilcoxon_inference.html</loc></url>
 <url><loc>https://aaronrendahl.github.io/umncvmstats/reference/umncvmstats.html</loc></url>
 </urlset>
 

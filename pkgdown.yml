@@ -6,11 +6,12 @@ articles:
   graphics: graphics.html
   means: means.html
   models: models.html
+  nonparametric: nonparametric.html
   options: options.html
   proportions: proportions.html
   starting: starting.html
   summary: summary.html
-last_built: 2024-10-23T21:33Z
+last_built: 2024-10-24T14:50Z
 urls:
   reference: https://aaronrendahl.github.io/umncvmstats/reference
   article: https://aaronrendahl.github.io/umncvmstats/articles
