@@ -11,7 +11,7 @@ paired_proportion_inference(
   method = c("default", "wilson", "exact"),
   alternative = c("two.sided", "less", "greater"),
   correct = FALSE,
-  conf.level = NA
+  conf.level = 0.95
 )
 }
 \arguments{
