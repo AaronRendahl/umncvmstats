@@ -123,7 +123,7 @@ two_wilcoxon_inference <- function(formula, data,
 #' @param adjust method of adjusting p-values for multiple comparisons, one of "`bonferroni`", "`holm`", or "`none`".
 #' @param reverse reverse the direction of pairwise comparisons.
 #' @param ... further arguments to be passed to submethods, as appropriate.
-#' @rdname two_t_inference
+#' @rdname two_wilcoxon_inference
 #' @export
 pairwise_wilcoxon_inference <- function(formula, data, adjust=c("bonferroni", "holm", "none"), reverse=FALSE, ...) {
   pairwise(formula, data, "two_wilcoxon_inference", adjust=adjust, reverse=reverse, ...)

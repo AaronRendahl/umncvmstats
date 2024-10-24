@@ -2,6 +2,7 @@
 % Please edit documentation in R/5915_nonparametric.R
 \name{two_wilcoxon_inference}
 \alias{two_wilcoxon_inference}
+\alias{pairwise_wilcoxon_inference}
 \title{Two-sample Wilcoxon test}
 \usage{
 two_wilcoxon_inference(
@@ -11,6 +12,14 @@ two_wilcoxon_inference(
   null = 0,
   conf.level = 0.95,
   conf.adjust = 1
+)
+
+pairwise_wilcoxon_inference(
+  formula,
+  data,
+  adjust = c("bonferroni", "holm", "none"),
+  reverse = FALSE,
+  ...
 )
 }
 \arguments{
@@ -28,6 +37,12 @@ where \code{x} and \code{g} are factor variables.}
 
 \item{conf.adjust}{adjust confidence bounds for \code{conf.adjust} simultaneous intervals using the Bonferroni method.
 Used internally by \code{pairwise_wilcox_inference}; should only rarely be used by users.}
+
+\item{adjust}{method of adjusting p-values for multiple comparisons, one of "\code{bonferroni}", "\code{holm}", or "\code{none}".}
+
+\item{reverse}{reverse the direction of pairwise comparisons.}
+
+\item{...}{further arguments to be passed to submethods, as appropriate.}
 }
 \description{
 Perform the Wilcoxon rank sum to compare two groups
