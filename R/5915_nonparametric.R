@@ -9,8 +9,6 @@
 #' @param alternative character string specifying the alternative hypothesis, must be one of "`two.sided`" (default), "`greater`" or "`less`".
 #' @param null a number specifying the null proportion for testing a null hypothesis; if not specified, a null of a center at 0 is used.
 #' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
-#' @param backtransform if response variable is of form `log(...)`, backtransform
-#'     the resulting estimate and confidence interval bounds.
 #'
 #' @importFrom stats t.test
 #' @export
