@@ -27,6 +27,7 @@ reference:
   - two_t_inference
   - paired_t_inference
 - title: Nonparametric Inference
+- contents:
   - one_wilcoxon_inference
   - two_wilcoxon_inference
   - paired_wilcoxon_inference
