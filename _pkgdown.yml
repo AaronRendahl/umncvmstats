@@ -26,6 +26,11 @@ reference:
   - one_t_inference
   - two_t_inference
   - paired_t_inference
+- title: Nonparametric Inference
+  - one_wilcoxon_inference
+  - two_wilcoxon_inference
+  - paired_wilcoxon_inference
+  - kruskal_wallis_test
 - title: Inference about Models
 - contents:
   - correlation_inference
