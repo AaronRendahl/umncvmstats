@@ -52,8 +52,22 @@ model_coefs <- function(model, ...) {
 #' @export
 #' @importFrom car Anova
 model_anova <- function(model, ...) {
-  out <- Anova(model, ...) |> tidy()
-  bind_cols(model_form(model), out) |> as_atest(inference.vars=setdiff(names(out), "p.value"))
+  a <- Anova(model, ...)
+  out <- tidy(a)
+  if("sumsq" %in% names(out) & "df" %in% names(out)) {
+    out <- out |> mutate(meansq=sumsq/df, .after="sumsq")
+  }
+  # un-rename "statistic", from tidy
+  unn <- c(`F value` = "F", F = "F",
+           Chisq = "chisq", Chi.sq = "chisq",
+           LR.Chisq = "chisq", `LR Chisq` = "chisq")
+  k <- which(names(unn) %in% names(a))
+  k2 <- which(names(out)=="statistic")
+  if(length(k)==1 & length(k2)==1) {
+    names(out)[k2] <- unn[k]
+  }
+  bind_cols(model_form(model), out) |>
+    as_atest(about.vars="term", inference.vars=setdiff(names(out), "p.value"))
 }
 
 #' Get model predictions
