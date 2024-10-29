@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">umncvmstats</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@
     <li><a class="dropdown-item" href="../articles/graphics.html">About Graphics</a></li>
     <li><a class="dropdown-item" href="../articles/proportions.html">Inference for Proportions</a></li>
     <li><a class="dropdown-item" href="../articles/means.html">Inference for Means</a></li>
-    <li><a class="dropdown-item" href="../articles/nonparametric.html">NonparametricInference</a></li>
+    <li><a class="dropdown-item" href="../articles/nonparametric.html">Nonparametric Inference</a></li>
     <li><a class="dropdown-item" href="../articles/models.html">Inference about Models</a></li>
     <li><a class="dropdown-item" href="../articles/options.html">Additional Options</a></li>
     <li><a class="dropdown-item" href="../articles/summary.html">Summary</a></li>
@@ -1040,43 +1040,48 @@ their interaction.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
+<td colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>mpg ~ wt * cyl</td>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sumsq">sumsq</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="meansq">meansq</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="F">F</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="df" class="gt_row gt_right">1</td>
 <td headers="term" class="gt_row gt_left">wt</td>
+<td headers="df" class="gt_row gt_right">1</td>
 <td headers="sumsq" class="gt_row gt_right">118  </td>
-<td headers="statistic" class="gt_row gt_right">19.7 </td>
+<td headers="meansq" class="gt_row gt_right">118   </td>
+<td headers="F" class="gt_row gt_right">19.7 </td>
 <td headers="p.value" class="gt_row gt_left">  0.0001</td>
 </tr>
 <tr>
-<td headers="df" class="gt_row gt_right">2</td>
 <td headers="term" class="gt_row gt_left">cyl</td>
+<td headers="df" class="gt_row gt_right">2</td>
 <td headers="sumsq" class="gt_row gt_right"> 95.3</td>
-<td headers="statistic" class="gt_row gt_right"> 7.94</td>
+<td headers="meansq" class="gt_row gt_right"> 47.6 </td>
+<td headers="F" class="gt_row gt_right"> 7.94</td>
 <td headers="p.value" class="gt_row gt_left">  0.0020</td>
 </tr>
 <tr>
-<td headers="df" class="gt_row gt_right">2</td>
 <td headers="term" class="gt_row gt_left">wt:cyl</td>
+<td headers="df" class="gt_row gt_right">2</td>
 <td headers="sumsq" class="gt_row gt_right"> 27.2</td>
-<td headers="statistic" class="gt_row gt_right"> 2.27</td>
+<td headers="meansq" class="gt_row gt_right"> 13.6 </td>
+<td headers="F" class="gt_row gt_right"> 2.27</td>
 <td headers="p.value" class="gt_row gt_left">  0.12</td>
 </tr>
 <tr>
-<td headers="df" class="gt_row gt_right">26</td>
 <td headers="term" class="gt_row gt_left">Residuals</td>
+<td headers="df" class="gt_row gt_right">26</td>
 <td headers="sumsq" class="gt_row gt_right">156  </td>
-<td headers="statistic" class="gt_row gt_right"><br></td>
+<td headers="meansq" class="gt_row gt_right">  6.00</td>
+<td headers="F" class="gt_row gt_right"><br></td>
 <td headers="p.value" class="gt_row gt_left"><br></td>
 </tr>
 </tbody>
@@ -1536,43 +1541,48 @@ their interaction.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>log(mpg) ~ wt * cyl</td>
+<td colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>log(mpg) ~ wt * cyl</td>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sumsq">sumsq</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="meansq">meansq</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="F">F</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="df" class="gt_row gt_right">1</td>
 <td headers="term" class="gt_row gt_left">wt</td>
+<td headers="df" class="gt_row gt_right">1</td>
 <td headers="sumsq" class="gt_row gt_right">0.357  </td>
-<td headers="statistic" class="gt_row gt_right">24.6  </td>
+<td headers="meansq" class="gt_row gt_right">0.357  </td>
+<td headers="F" class="gt_row gt_right">24.6  </td>
 <td headers="p.value" class="gt_row gt_left">&lt; 0.0001</td>
 </tr>
 <tr>
-<td headers="df" class="gt_row gt_right">2</td>
 <td headers="term" class="gt_row gt_left">cyl</td>
+<td headers="df" class="gt_row gt_right">2</td>
 <td headers="sumsq" class="gt_row gt_right">0.173  </td>
-<td headers="statistic" class="gt_row gt_right"> 5.95 </td>
+<td headers="meansq" class="gt_row gt_right">0.0864 </td>
+<td headers="F" class="gt_row gt_right"> 5.95 </td>
 <td headers="p.value" class="gt_row gt_left">  0.0075</td>
 </tr>
 <tr>
-<td headers="df" class="gt_row gt_right">2</td>
 <td headers="term" class="gt_row gt_left">wt:cyl</td>
+<td headers="df" class="gt_row gt_right">2</td>
 <td headers="sumsq" class="gt_row gt_right">0.00603</td>
-<td headers="statistic" class="gt_row gt_right"> 0.208</td>
+<td headers="meansq" class="gt_row gt_right">0.00301</td>
+<td headers="F" class="gt_row gt_right"> 0.208</td>
 <td headers="p.value" class="gt_row gt_left">  0.81</td>
 </tr>
 <tr>
-<td headers="df" class="gt_row gt_right">26</td>
 <td headers="term" class="gt_row gt_left">Residuals</td>
+<td headers="df" class="gt_row gt_right">26</td>
 <td headers="sumsq" class="gt_row gt_right">0.378  </td>
-<td headers="statistic" class="gt_row gt_right"><br></td>
+<td headers="meansq" class="gt_row gt_right">0.0145 </td>
+<td headers="F" class="gt_row gt_right"><br></td>
 <td headers="p.value" class="gt_row gt_left"><br></td>
 </tr>
 </tbody>
@@ -2035,29 +2045,29 @@ their interaction.</p>
 <td colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>(am = manual) ~ mpg * cyl</td>
     </tr>
 <tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="statistic">statistic</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="term">term</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="chisq">chisq</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="df" class="gt_row gt_right">1</td>
 <td headers="term" class="gt_row gt_left">mpg</td>
-<td headers="statistic" class="gt_row gt_right">4.53 </td>
+<td headers="df" class="gt_row gt_right">1</td>
+<td headers="chisq" class="gt_row gt_right">4.53 </td>
 <td headers="p.value" class="gt_row gt_left">  0.033</td>
 </tr>
 <tr>
-<td headers="df" class="gt_row gt_right">2</td>
 <td headers="term" class="gt_row gt_left">cyl</td>
-<td headers="statistic" class="gt_row gt_right">0.271</td>
+<td headers="df" class="gt_row gt_right">2</td>
+<td headers="chisq" class="gt_row gt_right">0.271</td>
 <td headers="p.value" class="gt_row gt_left">  0.87</td>
 </tr>
 <tr>
-<td headers="df" class="gt_row gt_right">2</td>
 <td headers="term" class="gt_row gt_left">mpg:cyl</td>
-<td headers="statistic" class="gt_row gt_right">1.73 </td>
+<td headers="df" class="gt_row gt_right">2</td>
+<td headers="chisq" class="gt_row gt_right">1.73 </td>
 <td headers="p.value" class="gt_row gt_left">  0.42</td>
 </tr>
 </tbody>
