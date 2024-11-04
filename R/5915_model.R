@@ -171,7 +171,8 @@ model_means <- function(model, formula, cld=TRUE, backtransform=TRUE,
   int_warn <- "NOTE: Results may be misleading due to involvement in interactions\n"
   emX <- capture_warnings(emmeans(model, formula, type=type, ...))
   em <- emX$result
-
+  nn <- nrow(summary(em, infer=FALSE))
+  if(nn==1) cld <- FALSE
   if(isTRUE(cld)) {
     out <- cld(em, Letters=letters) |> rename(cld.group=".group")
     skip <- "NOTE: If two or more means share the same grouping symbol,\n      then we cannot show them to be different.\n      But we also did not show them to be the same."
@@ -217,7 +218,9 @@ model_slopes <- function(model, formula, ..., cld=TRUE) {
   var <- format(formula[[2]])
   formula[[2]] <- formula[[3]]
   formula[[3]] <- NULL
-  em <- emtrends(model, specs=formula, var=var, ...)
+  em <- emtrends(model, specs=formula, var=var, infer=TRUE, ...)
+  nn <- nrow(summary(em, infer=FALSE))
+  if(nn==1) cld <- FALSE
   if(isTRUE(cld)) {
     out <- cld(em, Letters=letters) |> rename(cld.group=".group")
     skip <- "NOTE: If two or more means share the same grouping symbol,\n      then we cannot show them to be different.\n      But we also did not show them to be the same."
@@ -229,7 +232,7 @@ model_slopes <- function(model, formula, ..., cld=TRUE) {
   if("df" %in% names(out) && all(is.infinite(out[["df"]]))) { out[["df"]] <- NULL }
   estvar <- attr(out, "estName")
   if(length(estvar)!=1) stop("Internal error: single estimate variable not found.")
-  as_atest(out, model, estimate.vars=estvar)
+  as_atest(out, model, estimate.vars=estvar, inference.vars="t.ratio")
 }
 
 #' @export
