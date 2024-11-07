@@ -10,7 +10,7 @@
 model_means(
   model,
   formula,
-  cld = TRUE,
+  cld,
   backtransform = TRUE,
   type = if (isTRUE(backtransform)) "response" else "linear",
   ...
@@ -34,7 +34,8 @@ pairwise_model_slopes(model, formula, ...)
 \item{formula}{the desired means or slopes; see Details.}
 
 \item{cld}{a logical variable specifying if a compact letter display should be used
-for pairwise comparisons between groups.}
+for pairwise comparisons between groups. Defaults to TRUE unless the desired means
+are for a numerical variable or there is only one mean reported.}
 
 \item{backtransform}{if a linear model and response variable is of form \code{log(y)},
 or the model is a logistic model , backtransform the resulting estimate and

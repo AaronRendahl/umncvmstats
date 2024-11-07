@@ -153,7 +153,8 @@ model_predictions <- function(model, at, newdata, level=0.95,
 #' @param model a linear model or generalized linear model.
 #' @param formula the desired means or slopes; see Details.
 #' @param cld a logical variable specifying if a compact letter display should be used
-#'     for pairwise comparisons between groups.
+#'     for pairwise comparisons between groups. Defaults to TRUE unless the desired means
+#'     are for a numerical variable or there is only one mean reported.
 #' @param backtransform if a linear model and response variable is of form `log(y)`,
 #'      or the model is a logistic model , backtransform the resulting estimate and
 #'      confidence interval bounds, so that they report either geometric means on the
@@ -165,21 +166,30 @@ model_predictions <- function(model, at, newdata, level=0.95,
 #' @importFrom car Anova
 #' @importFrom multcomp cld
 #' @importFrom emmeans emmeans
-model_means <- function(model, formula, cld=TRUE, backtransform=TRUE,
+model_means <- function(model, formula, cld, backtransform=TRUE,
                         type=if(isTRUE(backtransform)) "response" else "linear", ...) {
-
+  if(missing(cld)) {
+    cld.arg <- FALSE
+    cld <- TRUE
+  } else {
+    cld.arg <- TRUE
+  }
   int_warn <- "NOTE: Results may be misleading due to involvement in interactions\n"
   emX <- capture_warnings(emmeans(model, formula, type=type, ...))
   em <- emX$result
-  nn <- nrow(summary(em, infer=FALSE))
-  if(nn==1) cld <- FALSE
+  sm <- summary(em)
+  nn <- nrow(sm)
+  if(!cld.arg) {
+    if(any(sapply(sm[attr(sm, "pri.vars")], is.numeric))) cld <- FALSE
+    if(nn==1) cld <- FALSE
+  }
   if(isTRUE(cld)) {
     out <- cld(em, Letters=letters) |> rename(cld.group=".group")
     skip <- "NOTE: If two or more means share the same grouping symbol,\n      then we cannot show them to be different.\n      But we also did not show them to be the same."
     attr(out, "mesg") <- setdiff(attr(out, "mesg"), skip)
     out[["cld.group"]] <- str_replace_all(out[["cld.group"]], " ", "\u2007")
   } else {
-    out <- summary(em)
+    out <- sm
   }
   if("df" %in% names(out) && all(is.infinite(out[["df"]]))) { out[["df"]] <- NULL }
   attr(out, "mesg") <- c(attr(out, "mesg"), emX$warnings)
