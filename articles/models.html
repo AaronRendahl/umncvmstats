@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">umncvmstats</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -12507,9 +12507,7 @@ compared in a similar way.</p>
 </table>
 </div>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_slopes</a></span><span class="op">(</span><span class="va">m1</span>, <span class="va">wt</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in as_atest.data.frame(x, ...): Internal warning: variable type unclear</span></span>
-<span><span class="co">#&gt; for: t.ratio</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">pairwise_model_slopes</a></span><span class="op">(</span><span class="va">m1</span>, <span class="va">wt</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <div id="rzbzjrestn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#rzbzjrestn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -12967,11 +12965,11 @@ compared in a similar way.</p>
 <tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="contrast">contrast</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="estimate">estimate</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="df">df</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="t.ratio">t.ratio</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
     </tr>
 </thead>
@@ -12979,31 +12977,31 @@ compared in a similar way.</p>
 <tr>
 <td headers="contrast" class="gt_row gt_left">cyl4 - cyl6</td>
 <td headers="estimate" class="gt_row gt_right">−2.9</td>
-<td headers="t.ratio" class="gt_row gt_right">-0.920</td>
 <td headers="SE" class="gt_row gt_right">3.1</td>
 <td headers="df" class="gt_row gt_right">26</td>
 <td headers="conf.low" class="gt_row gt_right">−10.6</td>
 <td headers="conf.high" class="gt_row gt_right">4.9</td>
+<td headers="t.ratio" class="gt_row gt_right">-0.920</td>
 <td headers="p.value" class="gt_row gt_left">  0.63</td>
 </tr>
 <tr>
 <td headers="contrast" class="gt_row gt_left">cyl4 - cyl8</td>
 <td headers="estimate" class="gt_row gt_right">−3.5</td>
-<td headers="t.ratio" class="gt_row gt_right">-2.12 </td>
 <td headers="SE" class="gt_row gt_right">1.6</td>
 <td headers="df" class="gt_row gt_right">26</td>
 <td headers="conf.low" class="gt_row gt_right"> −7.5</td>
 <td headers="conf.high" class="gt_row gt_right">0.6</td>
+<td headers="t.ratio" class="gt_row gt_right">-2.12 </td>
 <td headers="p.value" class="gt_row gt_left">  0.10</td>
 </tr>
 <tr>
 <td headers="contrast" class="gt_row gt_left">cyl6 - cyl8</td>
 <td headers="estimate" class="gt_row gt_right">−0.6</td>
-<td headers="t.ratio" class="gt_row gt_right">-0.200</td>
 <td headers="SE" class="gt_row gt_right">2.9</td>
 <td headers="df" class="gt_row gt_right">26</td>
 <td headers="conf.low" class="gt_row gt_right"> −7.9</td>
 <td headers="conf.high" class="gt_row gt_right">6.7</td>
+<td headers="t.ratio" class="gt_row gt_right">-0.200</td>
 <td headers="p.value" class="gt_row gt_left">  0.98</td>
 </tr>
 </tbody>
@@ -13539,9 +13537,7 @@ done.</p>
 </table>
 </div>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m2</span>, <span class="va">mpg</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in as_atest.data.frame(x, ...): Internal warning: variable type unclear</span></span>
-<span><span class="co">#&gt; for: z.ratio</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/model_means.html">model_slopes</a></span><span class="op">(</span><span class="va">m2</span>, <span class="va">mpg</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <div id="ncrookxgzu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ncrookxgzu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -13999,10 +13995,10 @@ done.</p>
 <tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mpg.trend">mpg.trend</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="z.ratio">z.ratio</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SE">SE</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="z.ratio">z.ratio</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="cld.group">cld.group</th>
     </tr>
@@ -14011,30 +14007,30 @@ done.</p>
 <tr>
 <td headers="cyl" class="gt_row gt_center">8</td>
 <td headers="mpg.trend" class="gt_row gt_right">0.06</td>
-<td headers="z.ratio" class="gt_row gt_right">0.185</td>
 <td headers="SE" class="gt_row gt_right">0.32</td>
 <td headers="conf.low" class="gt_row gt_right">−0.56</td>
 <td headers="conf.high" class="gt_row gt_right">0.68</td>
+<td headers="z.ratio" class="gt_row gt_right">0.185</td>
 <td headers="p.value" class="gt_row gt_left">  0.85</td>
 <td headers="cld.group" class="gt_row gt_left"> a</td>
 </tr>
 <tr>
 <td headers="cyl" class="gt_row gt_center">4</td>
 <td headers="mpg.trend" class="gt_row gt_right">0.48</td>
-<td headers="z.ratio" class="gt_row gt_right">1.38 </td>
 <td headers="SE" class="gt_row gt_right">0.35</td>
 <td headers="conf.low" class="gt_row gt_right">−0.20</td>
 <td headers="conf.high" class="gt_row gt_right">1.17</td>
+<td headers="z.ratio" class="gt_row gt_right">1.38 </td>
 <td headers="p.value" class="gt_row gt_left">  0.17</td>
 <td headers="cld.group" class="gt_row gt_left"> a</td>
 </tr>
 <tr>
 <td headers="cyl" class="gt_row gt_center">6</td>
 <td headers="mpg.trend" class="gt_row gt_right">0.98</td>
-<td headers="z.ratio" class="gt_row gt_right">1.27 </td>
 <td headers="SE" class="gt_row gt_right">0.77</td>
 <td headers="conf.low" class="gt_row gt_right">−0.53</td>
 <td headers="conf.high" class="gt_row gt_right">2.49</td>
+<td headers="z.ratio" class="gt_row gt_right">1.27 </td>
 <td headers="p.value" class="gt_row gt_left">  0.21</td>
 <td headers="cld.group" class="gt_row gt_left"> a</td>
 </tr>
