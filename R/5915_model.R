@@ -88,16 +88,16 @@ model_predictions <- function(model, at, newdata, level=0.95,
   mf <- model.frame(model)
   .response <- names(mf)[1]
   if(missing(newdata)) {
-    mfx <- mf[,-1]
-    levs <- lapply(mfx[sapply(mfx, is.factor)], levels)
-    means <- lapply(mfx[sapply(mfx, is.numeric)], \(x) mean(x, na.rm=TRUE))
-    atx <- c(levs, means)[names(mfx)]
-    if(!missing(at)) {
-      for(n in names(at)) {
-        atx[[n]] <- at[[n]]
-      }
-    }
-    newdata <- do.call(expand_grid, atx)
+  #   mfx <- mf[,-1]
+  #   levs <- lapply(mfx[sapply(mfx, is.factor)], levels)
+  #   means <- lapply(mfx[sapply(mfx, is.numeric)], \(x) mean(x, na.rm=TRUE))
+  #   atx <- c(levs, means)[names(mfx)]
+  #   if(!missing(at)) {
+  #     for(n in names(at)) {
+  #       atx[[n]] <- at[[n]]
+  #     }
+  #   }
+    newdata <- do.call(expand_grid, at)
   }
   is_log <- str_detect(.response, "log\\(.*\\)")
   backtransform <- backtransform & is_log
@@ -242,7 +242,7 @@ model_slopes <- function(model, formula, ..., cld=TRUE) {
   if("df" %in% names(out) && all(is.infinite(out[["df"]]))) { out[["df"]] <- NULL }
   estvar <- attr(out, "estName")
   if(length(estvar)!=1) stop("Internal error: single estimate variable not found.")
-  as_atest(out, model, estimate.vars=estvar, inference.vars="t.ratio")
+  as_atest(out, model, estimate.vars=estvar, inference.vars=c("t.ratio", "z.ratio"))
 }
 
 #' @export
@@ -257,5 +257,6 @@ pairwise_model_slopes <- function(model, formula, ...) {
   out <- pairs(em, infer=TRUE) |> summary()
   estvar <- attr(out, "estName")
   if(length(estvar)!=1) stop("Internal error: single estimate variable not found.")
-  as_atest(out, model, estimate.vars=estvar)
+  as_atest(out, model, estimate.vars=estvar,
+           inference.vars=c("t.ratio", "z.ratio"))
 }
