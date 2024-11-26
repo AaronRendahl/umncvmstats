@@ -51,7 +51,15 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">two_t_power</span><span class="op">(</span>n <span class="op">=</span> <span class="cn">NULL</span>, delta <span class="op">=</span> <span class="cn">NULL</span>, sd <span class="op">=</span> <span class="fl">1</span>, sig.level <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">two_t_margin_error</span><span class="op">(</span></span>
+<span><span class="fu">two_t_power_equiv</span><span class="op">(</span></span>
+<span>  n <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  equiv <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sd <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  power <span class="op">=</span> <span class="fl">0.8</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">two_t_power_me</span><span class="op">(</span></span>
 <span>  n <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  me <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  sd <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -78,19 +86,23 @@
 
 
 <dt id="arg-sig-level">sig.level<a class="anchor" aria-label="anchor" href="#arg-sig-level"></a></dt>
-<dd><p>significance level</p></dd>
+<dd><p>significance level (for delta)</p></dd>
 
 
 <dt id="arg-power">power<a class="anchor" aria-label="anchor" href="#arg-power"></a></dt>
 <dd><p>power of the test, or of having the given margin of error or smaller</p></dd>
 
 
-<dt id="arg-me">me<a class="anchor" aria-label="anchor" href="#arg-me"></a></dt>
-<dd><p>margin of error of the confidence interval</p></dd>
+<dt id="arg-equiv">equiv<a class="anchor" aria-label="anchor" href="#arg-equiv"></a></dt>
+<dd><p>equivalence bounds</p></dd>
 
 
 <dt id="arg-conf-level">conf.level<a class="anchor" aria-label="anchor" href="#arg-conf-level"></a></dt>
-<dd><p>confidence level</p></dd>
+<dd><p>confidence level (for equivalence and margin of error)</p></dd>
+
+
+<dt id="arg-me">me<a class="anchor" aria-label="anchor" href="#arg-me"></a></dt>
+<dd><p>margin of error of the confidence interval</p></dd>
 
 
 <dt id="arg-tol">tol<a class="anchor" aria-label="anchor" href="#arg-tol"></a></dt>
