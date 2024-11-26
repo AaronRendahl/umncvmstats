@@ -2,12 +2,21 @@
 % Please edit documentation in R/power.R
 \name{two_t_power}
 \alias{two_t_power}
-\alias{two_t_margin_error}
+\alias{two_t_power_equiv}
+\alias{two_t_power_me}
 \title{Power calculations for two sample t tests and confidence intervals}
 \usage{
 two_t_power(n = NULL, delta = NULL, sd = 1, sig.level = 0.05, power = 0.8)
 
-two_t_margin_error(
+two_t_power_equiv(
+  n = NULL,
+  equiv = NULL,
+  sd = 1,
+  conf.level = 0.95,
+  power = 0.8
+)
+
+two_t_power_me(
   n = NULL,
   me = NULL,
   sd = 1,
@@ -23,13 +32,15 @@ two_t_margin_error(
 
 \item{sd}{standard deviation (within group)}
 
-\item{sig.level}{significance level}
+\item{sig.level}{significance level (for delta)}
 
 \item{power}{power of the test, or of having the given margin of error or smaller}
 
-\item{me}{margin of error of the confidence interval}
+\item{equiv}{equivalence bounds}
 
-\item{conf.level}{confidence level}
+\item{conf.level}{confidence level (for equivalence and margin of error)}
+
+\item{me}{margin of error of the confidence interval}
 
 \item{tol}{numerical tolerance used in root finding, the default providing (at least) four significant digits.}
 }

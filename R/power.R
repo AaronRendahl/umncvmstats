@@ -2,17 +2,18 @@
 #'
 #' @param n number of observations (per group)
 #' @param delta true difference between the parameter of interest and the null hypothesis
-#' @param sd standard deviation (within group)
-#' @param conf.level confidence level
-#' @param sig.level significance level
 #' @param me margin of error of the confidence interval
+#' @param equiv equivalence bounds
+#' @param sd standard deviation (within group)
+#' @param sig.level significance level (for delta)
+#' @param conf.level confidence level (for equivalence and margin of error)
 #' @param power power of the test, or of having the given margin of error or smaller
 #' @param tol numerical tolerance used in root finding, the default providing (at least) four significant digits.
 #'
 #' @export
 two_t_power <- function(n=NULL, delta=NULL, sd=1, sig.level=0.05, power=0.8) {
-  given_sig <- !is.null(sig.level)
-  given_power <- !is.null(power)
+  #given_sig <- !is.null(sig.level)
+  #given_power <- !is.null(power)
   if(!is.null(n)) if(n - round(n) < 1e-3) n <- as.integer(round(n))
   x <- is.null(n) + is.null(delta) + is.null(sd) + is.null(sig.level) + is.null(power)
   if(x!=1) {stop("Exactly one of n, delta, sd, sig.level, or power must be set to NULL. Only n and delta are NULL by default.")}
@@ -40,14 +41,40 @@ two_t_power <- function(n=NULL, delta=NULL, sd=1, sig.level=0.05, power=0.8) {
          #me_expected = me_expected,
          #me = me,
   )|>
+    mutate(about=list("Power for a two-sample t-test; sample size is per group.")) |>
     as_atest(about.vars = c("n", "delta", "sd", "sig_level","power")) |>
     set_digits(columns=c("sig_level", "power"), decimals=2)
 }
 
+#' @export
+#' @rdname two_t_power
+two_t_power_equiv <- function(n=NULL, equiv=NULL, sd=1, conf.level=0.95, power=0.8) {
+  if(!is.null(n)) if(n - round(n) < 1e-3) n <- as.integer(round(n))
+  x <- is.null(n) + is.null(equiv) + is.null(sd) + is.null(conf.level) + is.null(power)
+  if(x!=1) {stop("Exactly one of n, equiv, sd, conf.level, or power must be set to NULL. Only n and equiv are NULL by default.")}
+  power2 <- 1-(1-power)/2
+  sig.level <- 1 - conf.level
+  pw <- power.t.test(n=n, delta=equiv, sd=sd, sig.level=sig.level, power=power2)
+  #n <- ceiling(pw$n)
+  n <- pw$n
+  equiv <- pw$delta
+  sd <- pw$sd
+  conf.level <- 1-pw$sig.level
+  power <- 1 - (1-pw$power)*2
+
+  tibble(n=n,
+         equiv = equiv,
+         sd=sd,
+         conf_level=conf.level,
+         power=power) |>
+  mutate(about=list("Power for two-sample t equivalence test; sample size is per group.")) |>
+    as_atest(about.vars = c("n", "equiv", "sd", "conf_level","power")) |>
+  set_digits(columns=c("conf_level", "power"), decimals=2)
+}
 
 #' @export
 #' @rdname two_t_power
-two_t_margin_error <- function(n=NULL, me=NULL, sd=1, conf.level=0.95, power=0.8,
+two_t_power_me <- function(n=NULL, me=NULL, sd=1, conf.level=0.95, power=0.8,
                                tol = .Machine$double.eps^0.25) {
   # when samples of size n are taken from a normal distribution with variance sigma^2,
   # the sampling distribution of (n−1) s^2 / sigma^2
@@ -92,6 +119,7 @@ two_t_margin_error <- function(n=NULL, me=NULL, sd=1, conf.level=0.95, power=0.8
          sd=sd,
          conf_level=conf.level,
          power=power) |>
+    mutate(about=list("Power for two-sample t confidence interval; sample size is per group.")) |>
     as_atest(about.vars = c("n", "me", "sd", "conf_level","power")) |>
     set_digits(columns=c("conf_level", "power"), decimals=2)
 }
