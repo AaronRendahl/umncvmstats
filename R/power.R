@@ -11,13 +11,14 @@
 #' @param tol numerical tolerance used in root finding, the default providing (at least) four significant digits.
 #'
 #' @export
-two_t_power <- function(n=NULL, delta=NULL, sd=1, sig.level=0.05, power=0.8) {
+two_t_power <- function(n=NULL, delta=NULL, sd=1, sig.level=0.05, power=0.8,
+                        tol = .Machine$double.eps^0.25) {
   #given_sig <- !is.null(sig.level)
   #given_power <- !is.null(power)
   if(!is.null(n)) if(n - round(n) < 1e-3) n <- as.integer(round(n))
   x <- is.null(n) + is.null(delta) + is.null(sd) + is.null(sig.level) + is.null(power)
   if(x!=1) {stop("Exactly one of n, delta, sd, sig.level, or power must be set to NULL. Only n and delta are NULL by default.")}
-  pw <- power.t.test(n=n, delta=delta, sd=sd, sig.level=sig.level, power=power)
+  pw <- power.t.test(n=n, delta=delta, sd=sd, sig.level=sig.level, power=power, tol=tol)
   #n <- ceiling(pw$n)
   n <- pw$n
   delta <- pw$delta
@@ -48,13 +49,14 @@ two_t_power <- function(n=NULL, delta=NULL, sd=1, sig.level=0.05, power=0.8) {
 
 #' @export
 #' @rdname two_t_power
-two_t_power_equiv <- function(n=NULL, equiv=NULL, sd=1, conf.level=0.95, power=0.8) {
+two_t_power_equiv <- function(n=NULL, equiv=NULL, sd=1, conf.level=0.95, power=0.8,
+                              tol = .Machine$double.eps^0.25) {
   if(!is.null(n)) if(n - round(n) < 1e-3) n <- as.integer(round(n))
   x <- is.null(n) + is.null(equiv) + is.null(sd) + is.null(conf.level) + is.null(power)
   if(x!=1) {stop("Exactly one of n, equiv, sd, conf.level, or power must be set to NULL. Only n and equiv are NULL by default.")}
   power2 <- 1-(1-power)/2
   sig.level <- 1 - conf.level
-  pw <- power.t.test(n=n, delta=equiv, sd=sd, sig.level=sig.level, power=power2)
+  pw <- power.t.test(n=n, delta=equiv, sd=sd, sig.level=sig.level, power=power2, tol=tol)
   #n <- ceiling(pw$n)
   n <- pw$n
   equiv <- pw$delta

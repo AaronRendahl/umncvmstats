@@ -6,14 +6,22 @@
 \alias{two_t_power_me}
 \title{Power calculations for two sample t tests and confidence intervals}
 \usage{
-two_t_power(n = NULL, delta = NULL, sd = 1, sig.level = 0.05, power = 0.8)
+two_t_power(
+  n = NULL,
+  delta = NULL,
+  sd = 1,
+  sig.level = 0.05,
+  power = 0.8,
+  tol = .Machine$double.eps^0.25
+)
 
 two_t_power_equiv(
   n = NULL,
   equiv = NULL,
   sd = 1,
   conf.level = 0.95,
-  power = 0.8
+  power = 0.8,
+  tol = .Machine$double.eps^0.25
 )
 
 two_t_power_me(
@@ -36,13 +44,13 @@ two_t_power_me(
 
 \item{power}{power of the test, or of having the given margin of error or smaller}
 
+\item{tol}{numerical tolerance used in root finding, the default providing (at least) four significant digits.}
+
 \item{equiv}{equivalence bounds}
 
 \item{conf.level}{confidence level (for equivalence and margin of error)}
 
 \item{me}{margin of error of the confidence interval}
-
-\item{tol}{numerical tolerance used in root finding, the default providing (at least) four significant digits.}
 }
 \description{
 Power calculations for two sample t tests and confidence intervals
