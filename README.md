@@ -19,3 +19,7 @@ article.
 See additional
 [articles](https://aaronrendahl.github.io/umncvmstats/articles/index.html)
 for more details.
+
+To install, run `devtools::install_github("AaronRendahl/umncvmstats")`.
+To install without upgrading other packages, run
+`devtools::install_github("AaronRendahl/umncvmstats", upgrade="never")`.
