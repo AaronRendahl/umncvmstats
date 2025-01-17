@@ -100,11 +100,24 @@ two_t_inference <- function(formula, data,
   f <- parse_formula(formula=formula, data=data)
 
   y <- f$data$left
+
   x <- f$data$right
   y.name <- f$about$var.names[f$about$side=="left"]
   x.name <- f$about$var.names[f$about$side=="right"]
   x <- checkif2(x)
   backtransform <- str_detect(y.name, "^log\\(.*\\)$") && isTRUE(backtransform)
+  if(all(is.na(y))) {
+    blank <- tibble(.y = y.name, .x = x.name,
+                    .x_contrast=paste(levels(x), collapse=if(backtransform) " / " else " - "),
+                    difference=NA)
+    estname <- "difference"
+    if(backtransform) {
+      blank <- blank |> rename(ratio="difference")
+      estname <- "ratio"
+    }
+    blank$about <- list("No non-missing data found.")
+    return(as_atest(blank, estimate.vars=estname))
+  }
   use.conf.level <- 1 - (1-conf.level)/conf.adjust
   tt <- t.test(y~x, alternative=alternative, mu=null,
                    var.equal=var.equal, conf.level=use.conf.level)
