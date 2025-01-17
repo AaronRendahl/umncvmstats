@@ -17,8 +17,9 @@ pkgdown::build_home()
 pkgdown::build_reference()
 pkgdown::build_articles()
 pkgdown::build_article("setup")
-pkgdown::build_article("starting")
+pkgdown::build_article("data")
 pkgdown::build_article("proportions")
+pkgdown::build_article("graphics")
 
 ## uploads and checks elsewhere
 devtools::check_mac_release()
