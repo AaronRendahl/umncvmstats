@@ -23,7 +23,7 @@ pairwise <- function(formula, data, FUN, conf.level=0.95, ..., adjust=c("bonferr
     result <- result |> arrange(.y) |>
       mutate(p.adjust=p.adjust(.data$p.value, method=adjust),
              p.adjust.n=n(),
-             .by=any_of(".y", ".g", ".g_value"))
+             .by=any_of(c(".y", ".g", ".g_value")))
     method_txt <- case_when(adjust=="holm" ~ "Bonferroni-Holm",
                             adjust=="bonferroni" ~ "Bonferroni")
     adjust_txt <- sprintf("p-values adjusted for %d multiple comparisons using the %s method.", result$p.adjust.n, method_txt)
