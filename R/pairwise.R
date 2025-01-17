@@ -20,11 +20,12 @@ pairwise <- function(formula, data, FUN, conf.level=0.95, ..., adjust=c("bonferr
     do.call(FUN, c(list(formula, data=get_subset(idx), conf.adjust=conf.adjust), list(...)))
   })
   if(nrow(todo) > 1 && adjust!="none") {
-    result <- result |> mutate(p.adjust=p.adjust(.data$p.value, method=adjust))
+    result <- result |> arrange(.y) |> mutate(p.adjust=p.adjust(.data$p.value, method=adjust), .by=".y", p.adjust.n=n())
     method_txt <- case_when(adjust=="holm" ~ "Bonferroni-Holm",
                             adjust=="bonferroni" ~ "Bonferroni")
-    adjust_txt <- sprintf("p-values adjusted for %d multiple comparisons using the %s method.", nrow(todo), method_txt)
-    result$about <- lapply(result$about, \(x) c(x, adjust_txt))
+    adjust_txt <- sprintf("p-values adjusted for %d multiple comparisons using the %s method.", result$p.adjust.n, method_txt)
+    result$p.adjust.n <- NULL
+    for(idx in seq_len(nrow(result))) result$about[[idx]] <- c(result$about[[idx]], adjust_txt[idx])
   }
   as_atest(result)
 }
