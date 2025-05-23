@@ -1,5 +1,5 @@
 pandoc: 3.1.11
-pkgdown: 2.1.1
+pkgdown: 2.1.2
 pkgdown_sha: ~
 articles:
   data: data.html
@@ -11,7 +11,7 @@ articles:
   proportions: proportions.html
   starting: starting.html
   summary: summary.html
-last_built: 2025-02-21T15:14Z
+last_built: 2025-05-23T19:49Z
 urls:
   reference: https://aaronrendahl.github.io/umncvmstats/reference
   article: https://aaronrendahl.github.io/umncvmstats/articles
