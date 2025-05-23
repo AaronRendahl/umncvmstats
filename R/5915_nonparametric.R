@@ -74,6 +74,7 @@ one_wilcoxon_inference <- function(formula, data,
 #' @param conf.adjust adjust confidence bounds for `conf.adjust` simultaneous intervals using the Bonferroni method.
 #'   Used internally by `pairwise_wilcox_inference`; should only rarely be used by users.
 #'
+#' @importFrom stats wilcox.test
 #' @export
 two_wilcoxon_inference <- function(formula, data,
                                    alternative = c("two.sided", "less", "greater"),
@@ -142,6 +143,7 @@ pairwise_wilcoxon_inference <- function(formula, data, adjust=c("bonferroni", "h
 #' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
 #'
 #' @export
+#' @importFrom stats wilcox.test
 paired_wilcoxon_inference <- function(formula, data,
                           alternative = c("two.sided", "less", "greater"),
                           null = 0,
@@ -185,6 +187,7 @@ paired_wilcoxon_inference <- function(formula, data,
 #'     where `x` and `g` are factor variables.
 #' @param data a data frame containing the values in the formula.
 #'
+#' @importFrom stats kruskal.test
 #' @export
 kruskal_wallis_test <- function(formula, data) {
 

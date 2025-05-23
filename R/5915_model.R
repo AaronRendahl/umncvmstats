@@ -55,7 +55,7 @@ model_anova <- function(model, ...) {
   a <- Anova(model, ...)
   out <- tidy(a)
   if("sumsq" %in% names(out) & "df" %in% names(out)) {
-    out <- out |> mutate(meansq=sumsq/df, .after="sumsq")
+    out <- out |> mutate(meansq=.data$sumsq/.data$df, .after="sumsq")
   }
   # un-rename "statistic", from tidy
   unn <- c(`F value` = "F", F = "F",
@@ -83,6 +83,7 @@ model_anova <- function(model, ...) {
 #' @export
 #' @importFrom tidyr expand_grid
 #' @importFrom broom augment
+#' @importFrom stats model.frame
 model_predictions <- function(model, at, newdata, level=0.95,
                               backtransform=TRUE, se_fit=FALSE) {
   mf <- model.frame(model)

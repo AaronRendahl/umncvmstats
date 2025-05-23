@@ -10,6 +10,7 @@
 #' @param power power of the test, or of having the given margin of error or smaller
 #' @param tol numerical tolerance used in root finding, the default providing (at least) four significant digits.
 #'
+#' @importFrom stats power.t.test
 #' @export
 two_t_power <- function(n=NULL, delta=NULL, sd=1, sig.level=0.05, power=0.8,
                         tol = .Machine$double.eps^0.25) {
@@ -49,6 +50,7 @@ two_t_power <- function(n=NULL, delta=NULL, sd=1, sig.level=0.05, power=0.8,
 
 #' @export
 #' @rdname two_t_power
+#' @importFrom stats power.t.test
 two_t_power_equiv <- function(n=NULL, equiv=NULL, sd=1, conf.level=0.95, power=0.8,
                               tol = .Machine$double.eps^0.25) {
   if(!is.null(n)) if(n - round(n) < 1e-3) n <- as.integer(round(n))
@@ -76,6 +78,9 @@ two_t_power_equiv <- function(n=NULL, equiv=NULL, sd=1, conf.level=0.95, power=0
 
 #' @export
 #' @rdname two_t_power
+#' @importFrom stats qt
+#' @importFrom stats qchisq
+#' @importFrom stats uniroot
 two_t_power_me <- function(n=NULL, me=NULL, sd=1, conf.level=0.95, power=0.8,
                                tol = .Machine$double.eps^0.25) {
   # when samples of size n are taken from a normal distribution with variance sigma^2,

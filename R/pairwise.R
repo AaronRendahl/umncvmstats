@@ -20,7 +20,7 @@ pairwise <- function(formula, data, FUN, conf.level=0.95, ..., adjust=c("bonferr
     do.call(FUN, c(list(formula, data=get_subset(idx), conf.adjust=conf.adjust), list(...)))
   })
   if(nrow(todo) > 1 && adjust!="none") {
-    result <- result |> arrange(.y) |>
+    result <- result |> arrange(.data$.y) |>
       mutate(p.adjust=p.adjust(.data$p.value, method=adjust),
              p.adjust.n=n(),
              .by=any_of(c(".y", ".g", ".g_value")))
