@@ -1,7 +1,7 @@
 Package: umncvmstats
 Title: Standardized Functions for Statistical Inference and Modeling
-Version: 1.0.7
-Date: 2024-11-25
+Version: 1.0.7.9999
+Date: 2025-05-23
 Authors@R: 
     person("Aaron", "Rendahl", , "rend0020@umn.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5434-3592"))
@@ -21,8 +21,8 @@ Imports:
     forcats,
     ggplot2,
     graphics,
-    gt,
-    gtsummary,
+    gt (>= 1.0.0),
+    gtsummary (>= 2.2.0),
     htmltools,
     knitr,
     markdown,
