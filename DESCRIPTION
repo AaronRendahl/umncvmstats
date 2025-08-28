@@ -1,7 +1,7 @@
 Package: umncvmstats
 Title: Standardized Functions for Statistical Inference and Modeling
-Version: 1.0.8
-Date: 2025-07-18
+Version: 1.0.9
+Date: 2025-08-28
 Authors@R: 
     person("Aaron", "Rendahl", , "rend0020@umn.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5434-3592"))
@@ -11,7 +11,7 @@ Description: Standardized functions and output for one and two sample
 License: GPL (>= 3)
 URL: https://aaronrendahl.github.io/umncvmstats/
 Depends: 
-    R (>= 2.10)
+    R (>= 4.1.0)
 Imports: 
     beeswarm,
     broom,
