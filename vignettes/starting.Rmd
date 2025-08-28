@@ -60,9 +60,10 @@ The `devtools` installation may give you a warning about `Rtools`; this can be i
 
 ```{r}
 #| eval: false
-install.packages("tidyverse")
-install.packages("devtools")
-devtools::install_github("AaronRendahl/umncvmstats")
+install.packages("pak")
+pak::pak("tidyverse")
+pak::pak("here")
+pak::pak("AaronRendahl/umncvmstats")
 ```
 
 You only need to run these lines once, you do not need to run them every time 
@@ -75,7 +76,7 @@ possible as the class uses it, we'll find things that need to be updated.
 If you had a previous version of R that you recently updated to most recent version,
 you should also make sure that all your packages are updated, using this code.
 
-If you just did installed R for the first time, this is unnecessary.
+If you just installed R for the first time, this is unnecessary.
 
 ```{r}
 #| eval: false
