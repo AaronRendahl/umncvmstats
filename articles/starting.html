@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">umncvmstats</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.8</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.9</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,8 +81,8 @@
 <p>You need both; “R” is the software underneath that actually does the
 work; “Rstudio” is the interface that makes the doing the work much
 easier.</p>
-<p>For Fall 2024, you should have R version 4.4.1 and Rstudio version
-2024.04.2 Build 764. You can check the version of R by checking the
+<p>For Fall 2025, you should have R version 4.5.1 and Rstudio version
+2025.05.1 Build 513. You can check the version of R by checking the
 Console pane when you start Rstudio, and the version of Rstudio using
 Help &gt; About Rstudio. You can also use the following commands in the
 console.</p>
@@ -107,9 +107,10 @@ but all other packages that it depends on it, so it can take a while
 <p>The <code>devtools</code> installation may give you a warning about
 <code>Rtools</code>; this can be ignored.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"AaronRendahl/umncvmstats"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pak"</span><span class="op">)</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"here"</span><span class="op">)</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"AaronRendahl/umncvmstats"</span><span class="op">)</span></span></code></pre></div>
 <p>You only need to run these lines once, you do not need to run them
 every time you open R.</p>
 <p>However, I may ask you to reinstall the <code>umncvmstats</code>
@@ -121,8 +122,7 @@ find things that need to be updated.</p>
 <p>If you had a previous version of R that you recently updated to most
 recent version, you should also make sure that all your packages are
 updated, using this code.</p>
-<p>If you just did installed R for the first time, this is
-unnecessary.</p>
+<p>If you just installed R for the first time, this is unnecessary.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/update.packages.html" class="external-link">update.packages</a></span><span class="op">(</span>ask <span class="op">=</span> <span class="cn">FALSE</span>, checkBuilt <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -173,14 +173,15 @@ and file manager, not Rstudio.</p>
 your file manager to create a new folder there. Computers sometimes have
 issues with spaces in filenames, so I recommend using only letters,
 numbers, and underscores for the name of this folder. For example,
-<code>VMED5915_Fall2024</code>.</p></li>
+<code>VMED5915_Fall2025</code>.</p></li>
 <li><p>Within this folder, make a subfolder called “data” to store any
 data files we’ll use.</p></li>
 <li><p>Download the following files and move them to this data
 subfolder. On most systems it will default to saving in a “Downloads”
 folder; find the file there and move it to the folder you just created.
-You may also be able to use “Save File As” to save it there
-directly.</p></li>
+You may also be able to use “Save Link As” to save it there directly.
+Depending on your setup, you may get a “unsafe link” warning or error,
+and have to specifically allow the download.</p></li>
 </ol>
 <ul>
 <li><a href="http://www.stat.umn.edu/~rend0020/5915_data/books1.csv" class="external-link uri">http://www.stat.umn.edu/~rend0020/5915_data/books1.csv</a></li>
