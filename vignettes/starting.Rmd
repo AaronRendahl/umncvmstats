@@ -36,7 +36,7 @@ Download and install both R and Rstudio. See links here:
 You need both; "R" is the software underneath that actually does the work; 
 "Rstudio" is the interface that makes the doing the work much easier.
 
-For Fall 2024, you should have R version 4.4.1 and Rstudio version 2024.04.2 Build 764.
+For Fall 2025, you should have R version 4.5.1 and Rstudio version 2025.05.1 Build 513.
 You can check the version of R by checking the Console pane when you start Rstudio, and the version of Rstudio using Help > About Rstudio. You can also use the following commands in the console.
 
 ```{r}
@@ -133,14 +133,16 @@ Close Rstudio before doing this; these are tasks in your web browser and file ma
 
 1. Decide where you want your files for this class to be and use your file manager
 to create a new folder there. Computers sometimes have issues with spaces in filenames,
-so I recommend using only letters, numbers, and underscores for the name of this folder. For example, `VMED5915_Fall2024`.
+so I recommend using only letters, numbers, and underscores for the name of this folder. For example, `VMED5915_Fall2025`.
 
 2. Within this folder, make a subfolder called "data" to store any data files we'll use.
 
 3. Download the following files and move them to this data subfolder. 
 On most systems it will default to saving in a "Downloads" folder; find the file
 there and move it to the folder you just created.
-You may also be able to use "Save File As" to save it there directly.
+You may also be able to use "Save Link As" to save it there directly.
+Depending on your setup, you may get a "unsafe link" warning or error, and have to 
+specifically allow the download.
 
 + http://www.stat.umn.edu/~rend0020/5915_data/books1.csv
 + http://www.stat.umn.edu/~rend0020/5915_data/books1.xlsx
