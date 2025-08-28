@@ -19,7 +19,7 @@ geom_bars(
 )
 }
 \arguments{
-\item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}}. If specified and
+\item{mapping}{Set of aesthetic mappings created by \link[ggplot2:aes]{aes()}. If specified and
 \code{inherit.aes = TRUE} (the default), it is combined with the default mapping
 at the top level of the plot. You must supply \code{mapping} if there is no plot
 mapping.}
@@ -28,11 +28,11 @@ mapping.}
 options:
 
 If \code{NULL}, the default, the data is inherited from the plot
-data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
+data as specified in the call to \link[ggplot2:ggplot]{ggplot()}.
 
 A \code{data.frame}, or other object, will override the plot
 data. All objects will be fortified to produce a data frame. See
-\code{\link[=fortify]{fortify()}} for which variables will be created.
+\link[ggplot2:fortify]{fortify()} for which variables will be created.
 
 A \code{function} will be called with a single argument,
 the plot data. The return value must be a \code{data.frame}, and
@@ -41,7 +41,8 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
 \item{stat}{Override the default connection between \code{geom_bar()} and
 \code{stat_count()}. For more information about overriding these connections,
-see how the \link[=layer_stats]{stat} and \link[=layer_geoms]{geom} arguments work.}
+see how the \link[ggplot2:layer_stats]{stat} and
+\link[ggplot2:layer_geoms]{geom} arguments work.}
 
 \item{position}{A position adjustment to use on the data for this layer. This
 can be used in various ways, including to prevent overplotting and
@@ -53,10 +54,10 @@ This method allows for passing extra arguments to the position.
 string, strip the function name of the \code{position_} prefix. For example,
 to use \code{position_jitter()}, give the position as \code{"jitter"}.
 \item For more information and other ways to specify the position, see the
-\link[=layer_positions]{layer position} documentation.
+\link[ggplot2:layer_positions]{layer_position} documentation.
 }}
 
-\item{...}{Other arguments passed on to \code{\link[=layer]{layer()}}'s \code{params} argument.}
+\item{...}{Other arguments passed on to \link[ggplot2:layer]{layer()}'s \code{params} argument.}
 
 \item{just}{Adjustment for column placement. Set to \code{0.5} by default, meaning
 that columns will be centered about axis breaks. Set to \code{0} or \code{1} to place
@@ -83,9 +84,9 @@ display.}
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behavior from
-the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
+the default plot specification, e.g. \link[ggplot2:borders]{borders()}.}
 }
 \description{
 Make a bar chart with \code{ggplot}, with bars within a group next to each other by
-default (that is, "dodged") instead of stacked. Based on \code{ggplot::geom_bar}.
+default (that is, "dodged") instead of stacked. Based on \code{ggplot2::geom_bar}.
 }

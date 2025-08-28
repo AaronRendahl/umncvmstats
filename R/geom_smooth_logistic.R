@@ -16,10 +16,10 @@ hide_y_axis <- function() {
 #' Uses `geom_smooth` with method `glm` and the `binomial` family, and a formula
 #' of `factor(y) ~ x`.
 #'
-#' @param mapping Set of aesthetic mappings created by [aes()]. If specified and
+#' @param mapping Set of aesthetic mappings created by \link[ggplot2:aes]{aes()}. If specified and
 #'   `inherit.aes = TRUE` (the default), it is combined with the default mapping at
 #'   the top level of the plot. You must supply mapping if there is no plot mapping.
-#' @param data The data to be displayed in this layer. See `ggplot::geom_smooth` for additional details.
+#' @param data The data to be displayed in this layer. See `ggplot2::geom_smooth` for additional details.
 #' @param se logical specifying if confidence interval should be shown around the smooth.
 #' @param ... other arguments passed to `geom_smooth`.
 #' @importFrom stats glm
