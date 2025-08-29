@@ -84,7 +84,7 @@ you open R.
 However, I may ask you to reinstall the `umncvmstats` package during the semester; it's
 possible as the class uses it, we'll find things that need to be updated.
 
-During the semester, it's preferred to do this without updating other packages, as occassionally that will break things; to just update `umncvmstats`, run
+During the semester, it's preferred to do this without updating other packages, as occasionally that will break things; to just update `umncvmstats`, run
 ```{r}
 #| eval: false
 devtools::install_github("AaronRendahl/umncvmstats", upgrade="never")
