@@ -49,15 +49,14 @@ RStudio.Version()$version
 
 R has many add-on packages that allow one to do more specialized tasks or
 make every-day tasks easier. We'll be using a set of packages called the
-`tidyverse`, and a package specifically for this course called `umncvmstats` (which needs the `devtools` package for installation.)
+`tidyverse`, a small helper package called `here`, and a package specifically for this course called `umncvmstats`.
 
-To install them, start Rstudio and run these three lines in the console, one at a time. (The console is in the left pane; we'll do a fuller introduction to the other panes later.)
+To install them, start Rstudio and run the following lines in the console, one at a time. (The console is in the left pane; we'll do a fuller introduction to the other panes later.) 
 
 Each of these lines will download and install not only the package, but all
 other packages that it depends on it, so it can take a while (minutes, not hours).
 
-The `devtools` installation may give you a warning about `Rtools`; this can be ignored.
-
+Preferred option (this uses the new `pak` package installer, but some people have had issues):
 ```{r}
 #| eval: false
 install.packages("pak")
@@ -66,11 +65,30 @@ pak::pak("here")
 pak::pak("AaronRendahl/umncvmstats")
 ```
 
+Secondary option (using the `devtools` package for installation):
+Note that the `devtools` installation may give you a warning about `Rtools`; this can be ignored.
+
+```{r}
+#| eval: false
+install.packages("tidyverse")
+install.packages("here")
+install.packages("devtools")
+devtools::install_github("AaronRendahl/umncvmstats")
+```
+
+
+
 You only need to run these lines once, you do not need to run them every time 
 you open R.
 
 However, I may ask you to reinstall the `umncvmstats` package during the semester; it's
 possible as the class uses it, we'll find things that need to be updated.
+
+During the semester, it's preferred to do this without updating other packages, as occassionally that will break things; to just update `umncvmstats`, run
+```{r}
+#| eval: false
+devtools::install_github("AaronRendahl/umncvmstats", upgrade="never")
+```
 
 #### For updated installations only:
 If you had a previous version of R that you recently updated to most recent version,
