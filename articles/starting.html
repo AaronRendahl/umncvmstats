@@ -95,27 +95,40 @@ console.</p>
 </h3>
 <p>R has many add-on packages that allow one to do more specialized
 tasks or make every-day tasks easier. We’ll be using a set of packages
-called the <code>tidyverse</code>, and a package specifically for this
-course called <code>umncvmstats</code> (which needs the
-<code>devtools</code> package for installation.)</p>
-<p>To install them, start Rstudio and run these three lines in the
+called the <code>tidyverse</code>, a small helper package called
+<code>here</code>, and a package specifically for this course called
+<code>umncvmstats</code>.</p>
+<p>To install them, start Rstudio and run the following lines in the
 console, one at a time. (The console is in the left pane; we’ll do a
 fuller introduction to the other panes later.)</p>
 <p>Each of these lines will download and install not only the package,
 but all other packages that it depends on it, so it can take a while
 (minutes, not hours).</p>
-<p>The <code>devtools</code> installation may give you a warning about
-<code>Rtools</code>; this can be ignored.</p>
+<p>Preferred option (this uses the new <code>pak</code> package
+installer, but some people have had issues):</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pak"</span><span class="op">)</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"here"</span><span class="op">)</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"AaronRendahl/umncvmstats"</span><span class="op">)</span></span></code></pre></div>
+<p>Secondary option (using the <code>devtools</code> package for
+installation): Note that the <code>devtools</code> installation may give
+you a warning about <code>Rtools</code>; this can be ignored.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"here"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"AaronRendahl/umncvmstats"</span><span class="op">)</span></span></code></pre></div>
 <p>You only need to run these lines once, you do not need to run them
 every time you open R.</p>
 <p>However, I may ask you to reinstall the <code>umncvmstats</code>
 package during the semester; it’s possible as the class uses it, we’ll
 find things that need to be updated.</p>
+<p>During the semester, it’s preferred to do this without updating other
+packages, as occassionally that will break things; to just update
+<code>umncvmstats</code>, run</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"AaronRendahl/umncvmstats"</span>, upgrade<span class="op">=</span><span class="st">"never"</span><span class="op">)</span></span></code></pre></div>
 <div class="section level4">
 <h4 id="for-updated-installations-only">For updated installations only:<a class="anchor" aria-label="anchor" href="#for-updated-installations-only"></a>
 </h4>
@@ -123,7 +136,7 @@ find things that need to be updated.</p>
 recent version, you should also make sure that all your packages are
 updated, using this code.</p>
 <p>If you just installed R for the first time, this is unnecessary.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/update.packages.html" class="external-link">update.packages</a></span><span class="op">(</span>ask <span class="op">=</span> <span class="cn">FALSE</span>, checkBuilt <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
@@ -281,7 +294,7 @@ the help file for a specific function using <code>?</code>. This works
 great – if you happen to remember the name of the function. For example,
 to get help on the <code>read_csv</code> function (which we’ll see
 soon), try typing this in the console:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">?</span><span class="va">read_csv</span></span></code></pre></div>
 <p>For reference, Rstudio has some “cheat sheets” built in; go to Help
 &gt; Cheat Sheets. The ones on the Rstudio IDE, Data Transformation, and
@@ -292,7 +305,7 @@ Data Visualization are likely to be the most helpful.</p>
 </h3>
 <p>Let’s start by having R do some basic mathematics; try typing this
 into the console.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span></span>
 <span><span class="co">#&gt; [1] 2</span></span></code></pre></div>
 <p>You’ll note the <code>[1]</code> at the beginning of the line; this
@@ -301,7 +314,7 @@ long), this is telling you that it’s the first element of the vector.
 Let’s use the <code>:</code> operator to create a vector so you can see
 what what happens when the elements span more than one line of
 output.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span></span>
 <span><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25</span></span>
 <span><span class="co">#&gt; [26] 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50</span></span></code></pre></div>
@@ -310,28 +323,28 @@ save the result of this computation in the variable <code>a</code>. Note
 that it doesn’t output anything when a result is saved, to see the
 result you have to input the variable again. Think of the
 <code>&lt;-</code> as an arrow pointing to the left.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op">+</span> <span class="fl">2</span></span>
 <span><span class="va">a</span></span>
 <span><span class="co">#&gt; [1] 4</span></span></code></pre></div>
 <p>Because everything in R is a vector, it makes doing arithmetic on
 more than one element very easy; this adds <code>a</code> and
 <code>b</code> together element-wise.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span></span>
 <span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">10</span><span class="op">:</span><span class="fl">14</span></span>
 <span><span class="va">a</span> <span class="op">+</span> <span class="va">b</span></span>
 <span><span class="co">#&gt; [1] 11 13 15 17 19</span></span></code></pre></div>
 <p>You’ll also see the <code>c</code> operator used to create vectors,
 think of it as ‘c’ for “combine.”</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">7</span>, <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">a</span></span>
 <span><span class="co">#&gt; [1]  1  3  5  7 10</span></span></code></pre></div>
 <p>Most of the time, we’ll use R <strong>functions</strong>; for
 example, the <code>mean</code> function. Here let’s get the mean of the
 vector we just made.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 5.2</span></span></code></pre></div>
 <p>We pass values to a function by putting them in parentheses after the
@@ -342,7 +355,7 @@ mean would be undefined, unless we specifically told R to remove the
 missing values first by setting the <code>na.rm</code> argument to
 <code>TRUE</code>. (Best practice is to always write out
 <code>TRUE</code> and <code>FALSE</code> with all caps.)</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="cn">NA</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">a2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] NA</span></span>
@@ -354,7 +367,7 @@ the left into the function on the right, as the first argument.
 Additional arguments can be included too. Note that we still need the
 parenthesis, whether or not we have additional arguments. This makes it
 easy to chain results of functions together into new functions.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 5.2</span></span>
 <span><span class="va">a2</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span>na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
@@ -383,7 +396,7 @@ everytime you want to use it.</p>
 <p>We use the function <code>library</code> to load a package. These
 lines loads the <code>tidyverse</code> and <code>umncvmstats</code>
 libraries.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://aaronrendahl.github.io/umncvmstats/">umncvmstats</a></span><span class="op">)</span></span></code></pre></div>
 <p>You’ll notice that the <code>tidyverse</code> library gave you a
@@ -394,7 +407,7 @@ version from another.</p>
 <p>To help with this, I recommend using the <code>conflicted</code>
 package. Let’s load it and then try one of the functions that was noted
 as having a conflict.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://conflicted.r-lib.org/" class="external-link">conflicted</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;">:</span></span></span>
@@ -408,7 +421,7 @@ as having a conflict.</p>
 <p>You see that it won’t actually do anything, it will instead ask you
 what you want to do. Usually we’ll choose ahead of time which we want
 like this.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://conflicted.r-lib.org/reference/conflicts_prefer.html" class="external-link">conflicts_prefer</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="va"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">[conflicted]</span> Will prefer <span style="color: #0000BB; font-weight: bold;">dplyr</span>::filter over any</span></span>
 <span><span class="co">#&gt; other package.</span></span></code></pre></div>
@@ -418,7 +431,7 @@ like this.</p>
 </h3>
 <p>I believe these should be almost all the packages you’ll need this
 semester; this code is in the assignment template.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://conflicted.r-lib.org/" class="external-link">conflicted</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://aaronrendahl.github.io/umncvmstats/">umncvmstats</a></span><span class="op">)</span></span>
@@ -471,7 +484,7 @@ earlier. Run the following lines in the console. Running the first two
 lines, to load the excel files, should result in no output; running the
 second two lines, to open the csv files, should output the number of
 rows and columns and the column specification.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d1</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"books.xlsx"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">d2</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"books1.xlsx"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">d3</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"books.csv"</span><span class="op">)</span><span class="op">)</span></span>
@@ -546,7 +559,7 @@ using.</p>
 <code>yourname_HW01.qmd</code>, adds the title “Homework 1” at the top,
 and adds “Your Name” as the author. You should change these as
 appropriate.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/new_assignment.html">new_assignment</a></span><span class="op">(</span><span class="st">"yourname_HW01"</span>, <span class="st">"Homework 1"</span>, <span class="st">"Your Name"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
