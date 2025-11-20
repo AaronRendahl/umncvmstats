@@ -105,6 +105,7 @@ as_gt.atest <- function(x,
     out <- out |> tab_footnotes(a$footnote.text, footnote_col, a$.row)
   }
 
+  out <- out |> gt::tab_stubhead("group")
   out
 }
 
