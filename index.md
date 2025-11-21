@@ -1,0 +1,19 @@
+# umncvmstats
+
+The umncvmstats package standardizes the function usage and the output
+for basic statistical functions to allow new R users to focus on
+learning the principles of statistics and statistical communication
+rather than on the details of R.
+
+For installation instructions and a basic overview of using R, see the
+[Getting
+Started](https://aaronrendahl.github.io/umncvmstats/articles/starting.html)
+article.
+
+See additional
+[articles](https://aaronrendahl.github.io/umncvmstats/articles/index.html)
+for more details.
+
+To install, run `devtools::install_github("AaronRendahl/umncvmstats")`.
+To install without upgrading other packages, run
+`devtools::install_github("AaronRendahl/umncvmstats", upgrade="never")`.

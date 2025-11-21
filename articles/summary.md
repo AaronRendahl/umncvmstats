@@ -1,0 +1,227 @@
+# Summary
+
+This document attempts to list all the features of R and this package
+that are described in the other vignettes. The intent is that anything
+you’d need to know how to do for this class is listed here.
+
+## Getting Started
+
+Various basic R ideas are covered in the [Getting
+Started](https://aaronrendahl.github.io/umncvmstats/articles/starting)
+page, including how to:
+
+- Open your class “Project”
+- Use the panes in Rstudio
+- Use the assignment operator `<-` to save the result of an operation
+- Use functions, that is, be able to call a function with one or more
+  (possibly named) parameters
+- Use the pipe `|>` to send a value to a function
+- Use the `c` function to “combine” values together
+- Get unstuck by using \[Control-C\]) to cancel the current input line
+- Load packages using the `library` function
+- Create scripts and Quarto files and send commands from them to the
+  console
+- Use chunk options in Quarto to control the output (eg,
+  `#| message: false`)
+- Render Quarto files and open the result in your browser
+
+## About Data
+
+The [About
+Data](https://aaronrendahl.github.io/umncvmstats/articles/data) page has
+details on how to read in data, compute descriptive summary statistics,
+working with data sets, and various functions for summarizing,
+comparing, creating new variables, and working with factors.
+
+- Reading in data
+  - Best practices for creating a data set in a spreadsheet
+  - Reading in a data set using `read_csv` and `read_excel`, with
+    optional parameters `na`, `skip`, and `sheet`
+  - `skim` to check that it was read properly
+  - `mutate`, `as_factor`, and optionally `fct_recode` to create factor
+    variables
+- Descriptive statistics
+  - `descriptive_statistics` to get a summary of descriptive statistics
+    for all variables; use the parameter `by` to split by another
+    variable first.
+  - `count` and `mutate` (optionally with `.by` parameter) to get counts
+    and percents for categorical data
+  - `summarize` (optionally with `.by` parameter) to get summary
+    statistics for continuous data
+- Working with data
+  - `select` to select by column
+  - `filter` to select by row (see comparing functions)
+  - `arrange` (and `desc`) to sort
+  - `mutate` to make new variables
+- Functions for summarizing
+  - `count` and `mutate`, to get counts and percents
+  - `summarize` for continuous variables, with `mean`, `sd`, `var`,
+    `median`, `quantile` (with `probs` parameter), `min`, `max`, `IQR`,
+    and [`n()`](https://dplyr.tidyverse.org/reference/context.html)
+  - Use `na.rm = TRUE` to remove missing values first
+- Functions for comparing
+  - `<`, `<=`, `>`, `>=`, `==`, `!=`
+  - `%in%`
+  - `|`, `&`, `!`
+  - `is.na`
+- Functions for creating new variables
+  - arithmetic functions (`+`, `-`, `*`, `/`)
+  - `log`, `log10`, `log2`
+  - `if_else`, `case_when`, `cut`
+- Functions for factors
+  - `as_factor`
+  - `fct_recode`
+  - `fct_relevel`
+  - `fct_infreq`, `fct_reorder`
+  - `droplevels`
+
+## About Graphics
+
+### Controlling output
+
+- Combining plots using `+` and `/`
+- Using `#| fig-width` and `#| fig-height` to control figure size in
+  Quarto
+
+### Basics of ggplot2
+
+The `ggplot2` library, which uses a “grammar of graphics” to specify the
+aspects of a plot. The following pseudo-code plots data from a data set
+`data_set`, and maps the variable `x_var` to the `x` aesthetic, `y_var`
+to the `y` aesthetic (more as needed), and then adds a geometric object
+(`XXX`); these could be points, lines, or bars. You can then optionally
+facet the plot, change the scales, change the labels, and more.
+
+    ggplot(data_set, 
+           mapping=aes(x=x_var, y=y_var, fill=fill_var, color=color_var)) +
+      geom_XXX() +
+      facet_XXX() +
+      scale_XXX() +
+      labs(...)
+
+### Scatterplots
+
+- [`geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html)
+  to add points
+- Color points by another variable by mapping it to the `color`
+  aesthetic
+- Use
+  [`stat_smooth()`](https://ggplot2.tidyverse.org/reference/geom_smooth.html),
+  with optional parameters `method="lm"` and `se=FALSE` to add a fitted
+  line
+- Use
+  [`scale_x_log10()`](https://ggplot2.tidyverse.org/reference/scale_continuous.html)
+  or `scale_y_log10` to put the `x` or `y` axes on the log scale
+
+### Bar plots
+
+- only need an `x` mapping; the `y` will be the count of the `x`
+  variable
+- [`geom_bar()`](https://ggplot2.tidyverse.org/reference/geom_bar.html)
+  to have one bar per value
+- [`geom_bars()`](https://aaronrendahl.github.io/umncvmstats/reference/geom_bars.md)
+  to have multiple bars per value, with variable to color by specified
+  by mapping a variable to the `fill` aesthetic
+
+### Histograms and Density plots
+
+- also only need an `x` mapping; the `y` will be computed appropriately
+- Use `geom_histogram` to make a histogram; use parameters `binwidth`
+  and `boundary` to control the bins
+- Use `geom_density` to make a density plot; use the `color` aesthetic
+  to do separately by another variable
+
+### Box plots
+
+- [`geom_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html),
+  usually has a continuous `y` and a categorical `x`
+  - Flip `x` and `y` to plot horizontally
+  - If only a single continuous variable, say `var`, use `x=var, y=0` to
+    plot horizontally, and add
+    [`hide_y_axis()`](https://aaronrendahl.github.io/umncvmstats/reference/hide_y_axis.md)
+- add points on top of the boxplot by
+  - first turn off outliers using `geom_boxplot(outlier.shape = NA)`
+  - then add swarmed points with `geom_beeswarm`; use the `spacing`
+    parameter to control the swarm; using the parameters `pch=21` and
+    `fill="white"` also help to make the swarm more apparent
+- Use
+  [`scale_x_log10()`](https://ggplot2.tidyverse.org/reference/scale_continuous.html)
+  or `scale_y_log10` to put the `x` or `y` axes on the log scale
+
+### Logistic Regression plots
+
+- Use `geom_beeswarm` with a continuous `x` variable and a binary `y`
+  variable
+- Use `scale_y_binary` to make the y-axis on 0-1 scale
+- Use `geom_smooth_logistic` to add a logistic smooth
+
+### Facetting
+
+- `facet_wrap(~byvar)` for facetting by one variable
+- `facet_wrap(~byvar, labeller = label_both)` to add variable names
+- `facet_grid(var1 ~ var2)` for facetting by two variables
+
+### Labelling
+
+Change the label for an aesthetic (or add a title) using `labs`.
+
+- `labs(x = "x variable", y = "y variable", title = "Plot title")`
+
+## Statistical Inference
+
+These functions all use a “formula” notation, like this:
+`function(response ~ explanatory, data=dataset)`.
+
+- [Inference for
+  Proportions](https://aaronrendahl.github.io/umncvmstats/articles/proportions)
+  - `one_proportion_inference`
+  - `two_proportion_inference`
+  - `pairwise_proportion_inference`
+  - `paired_proportion_inference`
+  - `independence_test`
+- [Inference for
+  Means](https://aaronrendahl.github.io/umncvmstats/articles/means)
+  - `one_t_inference`
+  - `two_t_inference`
+  - `pairwise_t_inference`
+  - `paired_t_inference`
+  - These functions can all handle log-transformed responses, with a
+    `backtransform` parameter to specify whether output is on the log or
+    original scale.
+
+The functions about models (those starting with `model_`) apply to
+linear and logistic models. They also have a `backtransform` parameter
+to specify whether output is on the log or original scale (for linear
+models with log-transformed response) or on the logistic or probability
+scale (for logistic models).
+
+- Fitting models:
+  - linear models: `lm(y ~ x, data = dataset)`
+  - logistic models: `glm(y ~ x, data = dataset, family=binomial)`
+  - For multiple predictors, use `~ x1 + x2` for an additive model or
+    `x1 * x2` to include interactions
+- [Inference about
+  Models](https://aaronrendahl.github.io/umncvmstats/articles/models)
+  - `correlation_inference`
+  - `model_anova`
+  - `model_glance`
+  - `model_coefs`
+  - `model_means`, `pairwise_model_means`
+  - `model_slopes`, `pairwise_model_slopes`
+    - For means and slopes, use `|` in the formula to specify groupings
+      and `at` to specify specific values to obtain the means or slopes
+      at.
+
+## Additional Options
+
+Several [additional
+options](https://aaronrendahl.github.io/umncvmstats/articles/options)
+for controlling the output are available.
+
+- `as_gt` to use `gt` formatting options
+- `tab_compact` to change font size and spacing
+- `set_digits` to control rounding (except for p-values)
+- `fmt_pvalue` to control rounding of p-values
+- `as_tibble` to get the underlying result as a data set
+- Using `+` and `|` to run multiple tests at the same time
+- `combine_tests` to combine results together in a single table
