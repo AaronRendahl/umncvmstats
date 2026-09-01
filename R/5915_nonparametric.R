@@ -8,56 +8,116 @@
 #' @param data a data frame containing the values in the formula.
 #' @param alternative character string specifying the alternative hypothesis, must be one of "`two.sided`" (default), "`greater`" or "`less`".
 #' @param null a number specifying the null proportion for testing a null hypothesis; if not specified, a null of a center at 0 is used.
-#' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
+#' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1. Use NA to hide.
+#' @param median a logical indicating if the median should be displayed
+#' @param pseudomedian a logical indicating if the pseudomedian (and associated confidence interval) should be displayed
+#' @param statistic a logical indicating if the V statistic should be displayed
 #'
 #' @importFrom stats t.test
 #' @export
 one_wilcoxon_inference <- function(formula, data,
                        alternative = c("two.sided", "less", "greater"),
-                       null=0, conf.level = 0.95) {
+                       null = 0, conf.level = 0.95,
+                       median = TRUE, range=FALSE, pseudomedian = TRUE, statistic = TRUE) {
 
   a <- test_by(by_right=TRUE)
   if(!is.null(a)) return(a)
 
   alternative <- match.arg(alternative)
+  do.pseudomedian <- pseudomedian
+  do.median <- median
+  do.conf <- pseudomedian & !is.na(conf.level)
   do.test <- !is.na(null)
+  do.stat <- statistic
+  do.range <- range
+  ## need to set defaults in case one is desired without the other
+  if(!do.test) null <- 0
+  if(!do.conf) conf.level <- 0.95
 
   f <- parse_formula(formula=formula, data=data)
   x <- f$data$left
+  x <- x[!is.na(x)]
   name <- f$about$var.names
-  nn <- sum(!is.na(x))
+  nn <- length(x)
   if(nn==0) {
-    result <- tibble(n=0L, pseudomedian=NA)
+    result <- tibble(n=0L)
+    if(median) result <- result |> mutate(median=NA)
+    if(do.pseudomedian) result <- result |> mutate(pseudomedian=NA)
     about <- "No non-missing values found."
   } else if(nn==1) {
-    result <- tibble(n=1L, pseudomedian=x[!is.na(x)])
+    result <- tibble(n=1L)
+    if(do.median) result <- result |> mutate(median=x)
+    if(do.pseudomedian) result <- result |> mutate(pseudomedian=x)
     about <- "Unable to do inference with only one non-missing value."
   } else {
     w1 <- c("cannot compute exact p-value with ties",
-            "cannot compute exact confidence interval with ties")
-    w2 <- c("Approximate p-value used, due to ties.",
-            "Approximate confidence interval used, due to ties.")
+            "cannot compute exact p-value with zeroes",
+            "cannot compute exact confidence interval with ties",
+            "cannot compute exact confidence interval with zeroes")
+    w2 <- c("Approximate p-value used, due to ties or zeros.",
+            "Approximate p-value used, due to ties or zeros.",
+            "Approximate confidence interval used, due to ties or zeros.",
+            "Approximate confidence interval used, due to ties or zeros.")
+    ## hide the warnings if not doing the test or CI
+    if(!do.conf) {
+      w2[c(3:4)] <- NA
+    }
+    if(!do.test) {
+      w2[c(1:2)] <- NA
+    }
     ttX <- capture_warnings(
       wilcox.test(x, alternative=alternative, mu=null,
-                  conf.level=conf.level, conf.int=TRUE),
+                  conf.level=conf.level, conf.int=do.pseudomedian | do.conf),
       warnings = w1, replacement=w2)
     tt <- ttX$result
     result <- tidy(tt) |> mutate(n=nn)
-    about <- sprintf("%s (%s), with %0.0f%% confidence intervals.",
-                     result$method, result$alternative, conf.level*100)
+    about <- sprintf("%s (%s)%s.",
+                     result$method, result$alternative,
+                     if(do.conf) sprintf(", with %0.0f%% confidence intervals", conf.level*100) else "")
     about <- c(about, unique(ttX$warnings))
-    result <- result |> select(-c("method", "alternative")) |>
-      rename(pseudomedian="estimate")
+    result <- result |> select(-c("method", "alternative"))
+    result <- result |> mutate(.y=name, .before=1)
+    if(do.test | do.conf) {
+      result$about <- list(about)
+    } else {
+      result$about <- list(character())
+    }
+    about.vars <- "n"
+    est.vars <- NA_character_
+    inf.vars <- character()
     if(!do.test) {
       result <- result |> select(-c("statistic", "p.value"))
     } else {
-      result <- result |> mutate(null=null) |>
-        rename(V="statistic")
+      if(do.pseudomedian) {
+        result <- result |> mutate(null=null)
+        inf.vars <- c(inf.vars, "null")
+      }
+      if(do.stat) {
+        result <- result |> rename(V="statistic")
+        inf.vars <- c(inf.vars, "V")
+      } else {
+        result <- result |> select(-any_of("statistic"))
+      }
     }
+    if(do.median) {
+      result <- result |> mutate(median=median(x))
+      about.vars <- c(about.vars, "median")
+    }
+    if(do.range) {
+      result <- result |> mutate(min=min(x), max=max(x))
+      about.vars <- c(about.vars, "min", "max")
+    }
+    if(do.pseudomedian) {
+      result <- result |> rename(pseudomedian="estimate")
+      est.vars <- "pseudomedian"
+    } else {
+      result <- result |> select(-any_of("estimate"))
+    }
+    if(!do.conf) {
+      result <- result |> select(-any_of(c("conf.low", "conf.high")))
+    }
+    as_atest(result, about.vars=about.vars, estimate.vars=est.vars, inference.vars=inf.vars)
   }
-  result <- result |> mutate(.y=name, .before=1)
-  result$about <- list(about)
-  as_atest(result, about.vars="n", estimate.vars="pseudomedian", inference.vars=c("null", "V"))
 }
 
 #' Two-sample Wilcoxon test
@@ -73,18 +133,26 @@ one_wilcoxon_inference <- function(formula, data,
 #' @param conf.level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
 #' @param conf.adjust adjust confidence bounds for `conf.adjust` simultaneous intervals using the Bonferroni method.
 #'   Used internally by `pairwise_wilcox_inference`; should only rarely be used by users.
+#' @param pseudomedian a logical indicating if the pseudomedian (and associated confidence interval) should be displayed
+#' @param statistic a logical indicating if the W statistic should be displayed
 #'
 #' @importFrom stats wilcox.test
 #' @export
 two_wilcoxon_inference <- function(formula, data,
                                    alternative = c("two.sided", "less", "greater"),
                                    null = 0,
-                                   conf.level = 0.95, conf.adjust = 1) {
+                                   conf.level = 0.95, conf.adjust = 1,
+                                   pseudomedian = TRUE, statistic=TRUE) {
 
   a <- test_by()
   if(!is.null(a)) return(a)
 
   alternative <- match.arg(alternative)
+
+  do.pseudomedian <- pseudomedian
+  do.conf <- pseudomedian & !is.na(conf.level)
+  do.stat <- statistic
+  if(!do.conf) conf.level <- 0.95
 
   f <- parse_formula(formula=formula, data=data)
 
@@ -99,26 +167,39 @@ two_wilcoxon_inference <- function(formula, data,
           "cannot compute exact confidence intervals with ties")
   w2 <- c("Approximate p-value used, due to ties.",
           "Approximate confidence interval used, due to ties.")
+  if(!do.conf) w2[2] <- NA
   ttX <- capture_warnings(
     wilcox.test(y~x, alternative=alternative, mu=null,
-                conf.level=use.conf.level, conf.int=TRUE),
+                conf.level=use.conf.level, conf.int=do.pseudomedian | do.conf),
     warnings = w1, replacement=w2)
   tt <- ttX$result
   result <- broom::tidy(tt)
   adjust_txt <- if(conf.adjust!=1) sprintf(", adjusted for %d comparisons using the Bonferroni method", conf.adjust) else ""
-  about <- sprintf("%s (%s), with %0.0f%% confidence intervals%s.",
-                   result$method, result$alternative, conf.level*100, adjust_txt)
+  about <- sprintf("%s (%s)%s.",
+                   result$method, result$alternative,
+                   if(do.conf) sprintf(", with %0.0f%% confidence intervals%s", conf.level*100, adjust_txt) else "")
   about <- c(about, ttX$warnings)
   result <- result |>
-    mutate(.x_contrast=paste(levels(x), collapse=" - "), .after="estimate") |>
-    rename(pseudomedian="estimate", W="statistic") |>
+    mutate(.x_contrast=paste(levels(x), collapse=" - ")) |>
+    rename(W="statistic") |>
     select(-c("method", "alternative")) |>
-    mutate(null=null) |>
-    relocate("null", "W", "p.value", .after="conf.high") |>
     mutate(.y = y.name, .x = x.name)
-  estname <- "pseudomedian"
+  inf.vars <- character()
+  if(do.pseudomedian) {
+    result <- result |> rename(pseudomedian="estimate") |> mutate(null=null)
+    estname <- "pseudomedian"
+    inf.vars <- c(inf.vars, "null")
+  } else {
+    result <- result |> select(-any_of("estimate"))
+    estname <- NA_character_
+  }
+  if(do.stat) {
+    inf.vars <- c(inf.vars, "W")
+  } else {
+    result <- result |> select(-any_of("W"))
+  }
   result$about <- list(about)
-  as_atest(result, estimate.vars=estname, inference.vars=c("null", "W"))
+  as_atest(result, estimate.vars=estname, inference.vars=inf.vars)
 }
 
 #' @param adjust method of adjusting p-values for multiple comparisons, one of "`bonferroni`", "`holm`", or "`none`".
