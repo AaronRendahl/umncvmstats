@@ -4,14 +4,17 @@
 
 ### Installing R and Rstudio
 
-Download and install both R and Rstudio. See links here:
-<https://posit.co/download/rstudio-desktop/>
+Download and install both R and Rstudio (IDE/Desktop, not Server). See
+links here:
+
+- <https://cloud.r-project.org/>
+- <https://docs.posit.co/ide/user/#rstudio-ide-oss-downloads>
 
 You need both; “R” is the software underneath that actually does the
 work; “Rstudio” is the interface that makes the doing the work much
 easier.
 
-For Fall 2026, you should have R version 4.6.1 and Rstudio version
+For Fall 2026, you should have R version 4.6.1 and Rstudio Desktop
 2026.08.2 Build 200.
 
 You can check the version of R by checking the Console pane when you
