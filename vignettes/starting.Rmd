@@ -36,7 +36,8 @@ Download and install both R and Rstudio. See links here:
 You need both; "R" is the software underneath that actually does the work; 
 "Rstudio" is the interface that makes the doing the work much easier.
 
-For Fall 2025, you should have R version 4.5.1 and Rstudio version 2025.05.1 Build 513.
+For Fall 2026, you should have R version 4.6.1 and Rstudio version 2026.08.2 Build 200.
+
 You can check the version of R by checking the Console pane when you start Rstudio, and the version of Rstudio using Help > About Rstudio. You can also use the following commands in the console.
 
 ```{r}
