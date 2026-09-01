@@ -3,8 +3,10 @@ capture_warnings <- function(expr, warnings=c(), replacement=warnings) {
   findwarnings <- function(w) {
     m <- match(w$message, warnings)
     m <- m[!is.na(m)]
+    neww <- replacement[m]
+    neww <- unique(neww[!is.na(neww)])
     if(length(m) > 0) {
-      myw <<- c(myw, replacement[m])
+      myw <<- c(myw, neww)
       invokeRestart("muffleWarning")
     }
   }
