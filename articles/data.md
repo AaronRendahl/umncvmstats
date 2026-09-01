@@ -52,6 +52,7 @@ missing values, and skips the first two lines. It also saves the result
 in the variable `testdata`.
 
 ``` r
+
 testdata <- read_csv(here("test.csv"), na = c(".", "NA"), skip = 2)
 ```
 
@@ -60,6 +61,7 @@ read from the sheet named `mydata`. If not specified, the first sheet is
 chosen.
 
 ``` r
+
 testdata <- read_excel(here("test.csv"), sheet = "mydata", na = c(".", "NA"), skip = 2)
 ```
 
@@ -77,6 +79,7 @@ This function is in `umncvmstats` and uses the `skimr` package behind
 the scenes; further control is possible by using that package directly.
 
 ``` r
+
 mtcars2 |> skim()
 ```
 
@@ -92,24 +95,24 @@ mtcars2 |> skim()
 
 **Variable type: factor**
 
-| skim_variable | n_missing | complete_rate | ordered | n_unique | top_counts               |
-|:--------------|----------:|--------------:|:--------|---------:|:-------------------------|
-| cyl           |         0 |             1 | FALSE   |        3 | 8: 14, 4: 11, 6: 7       |
-| vs            |         0 |             1 | FALSE   |        2 | V-s: 18, str: 14         |
-| am            |         0 |             1 | FALSE   |        2 | aut: 19, man: 13         |
-| gear          |         0 |             1 | FALSE   |        3 | 3: 15, 4: 12, 5: 5       |
-| carb          |         0 |             1 | FALSE   |        6 | 2: 10, 4: 10, 1: 7, 3: 3 |
+| skim_variable | n_missing | complete_rate | ordered | n_unique | top_counts |
+|:---|---:|---:|:---|---:|:---|
+| cyl | 0 | 1 | FALSE | 3 | 8: 14, 4: 11, 6: 7 |
+| vs | 0 | 1 | FALSE | 2 | V-s: 18, str: 14 |
+| am | 0 | 1 | FALSE | 2 | aut: 19, man: 13 |
+| gear | 0 | 1 | FALSE | 3 | 3: 15, 4: 12, 5: 5 |
+| carb | 0 | 1 | FALSE | 6 | 2: 10, 4: 10, 1: 7, 3: 3 |
 
 **Variable type: numeric**
 
-| skim_variable | n_missing | complete_rate |   mean |     sd |    p0 |    p25 |    p50 |    p75 |   p100 | hist  |
-|:--------------|----------:|--------------:|-------:|-------:|------:|-------:|-------:|-------:|-------:|:------|
-| mpg           |         0 |             1 |  20.09 |   6.03 | 10.40 |  15.43 |  19.20 |  22.80 |  33.90 | ▃▇▅▁▂ |
-| disp          |         0 |             1 | 230.72 | 123.94 | 71.10 | 120.83 | 196.30 | 326.00 | 472.00 | ▇▃▃▃▂ |
-| hp            |         0 |             1 | 146.69 |  68.56 | 52.00 |  96.50 | 123.00 | 180.00 | 335.00 | ▇▇▆▃▁ |
-| drat          |         0 |             1 |   3.60 |   0.53 |  2.76 |   3.08 |   3.70 |   3.92 |   4.93 | ▇▃▇▅▁ |
-| wt            |         0 |             1 |   3.22 |   0.98 |  1.51 |   2.58 |   3.33 |   3.61 |   5.42 | ▃▃▇▁▂ |
-| qsec          |         0 |             1 |  17.85 |   1.79 | 14.50 |  16.89 |  17.71 |  18.90 |  22.90 | ▃▇▇▂▁ |
+| skim_variable | n_missing | complete_rate | mean | sd | p0 | p25 | p50 | p75 | p100 | hist |
+|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|:---|
+| mpg | 0 | 1 | 20.09 | 6.03 | 10.40 | 15.43 | 19.20 | 22.80 | 33.90 | ▃▇▅▁▂ |
+| disp | 0 | 1 | 230.72 | 123.94 | 71.10 | 120.83 | 196.30 | 326.00 | 472.00 | ▇▃▃▃▂ |
+| hp | 0 | 1 | 146.69 | 68.56 | 52.00 | 96.50 | 123.00 | 180.00 | 335.00 | ▇▇▆▃▁ |
+| drat | 0 | 1 | 3.60 | 0.53 | 2.76 | 3.08 | 3.70 | 3.92 | 4.93 | ▇▃▇▅▁ |
+| wt | 0 | 1 | 3.22 | 0.98 | 1.51 | 2.58 | 3.33 | 3.61 | 5.42 | ▃▃▇▁▂ |
+| qsec | 0 | 1 | 17.85 | 1.79 | 14.50 | 16.89 | 17.71 | 18.90 | 22.90 | ▃▇▇▂▁ |
 
 In R, a categorical variable is called a `factor`; text variables should
 usually be factors unless they are simply used for identification, like
@@ -130,6 +133,7 @@ all coded as 0/1.
 Compare the `skim` summary of the `mtcars` data set with `mtcars2`:
 
 ``` r
+
 mtcars |> skim()
 ```
 
@@ -139,19 +143,19 @@ mtcars |> skim()
 
 **Variable type: numeric**
 
-| skim_variable | n_missing | complete_rate |   mean |     sd |    p0 |    p25 |    p50 |    p75 |   p100 | hist  |
-|:--------------|----------:|--------------:|-------:|-------:|------:|-------:|-------:|-------:|-------:|:------|
-| mpg           |         0 |             1 |  20.09 |   6.03 | 10.40 |  15.43 |  19.20 |  22.80 |  33.90 | ▃▇▅▁▂ |
-| cyl           |         0 |             1 |   6.19 |   1.79 |  4.00 |   4.00 |   6.00 |   8.00 |   8.00 | ▆▁▃▁▇ |
-| disp          |         0 |             1 | 230.72 | 123.94 | 71.10 | 120.83 | 196.30 | 326.00 | 472.00 | ▇▃▃▃▂ |
-| hp            |         0 |             1 | 146.69 |  68.56 | 52.00 |  96.50 | 123.00 | 180.00 | 335.00 | ▇▇▆▃▁ |
-| drat          |         0 |             1 |   3.60 |   0.53 |  2.76 |   3.08 |   3.70 |   3.92 |   4.93 | ▇▃▇▅▁ |
-| wt            |         0 |             1 |   3.22 |   0.98 |  1.51 |   2.58 |   3.33 |   3.61 |   5.42 | ▃▃▇▁▂ |
-| qsec          |         0 |             1 |  17.85 |   1.79 | 14.50 |  16.89 |  17.71 |  18.90 |  22.90 | ▃▇▇▂▁ |
-| vs            |         0 |             1 |   0.44 |   0.50 |  0.00 |   0.00 |   0.00 |   1.00 |   1.00 | ▇▁▁▁▆ |
-| am            |         0 |             1 |   0.41 |   0.50 |  0.00 |   0.00 |   0.00 |   1.00 |   1.00 | ▇▁▁▁▆ |
-| gear          |         0 |             1 |   3.69 |   0.74 |  3.00 |   3.00 |   4.00 |   4.00 |   5.00 | ▇▁▆▁▂ |
-| carb          |         0 |             1 |   2.81 |   1.62 |  1.00 |   2.00 |   2.00 |   4.00 |   8.00 | ▇▂▅▁▁ |
+| skim_variable | n_missing | complete_rate | mean | sd | p0 | p25 | p50 | p75 | p100 | hist |
+|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|:---|
+| mpg | 0 | 1 | 20.09 | 6.03 | 10.40 | 15.43 | 19.20 | 22.80 | 33.90 | ▃▇▅▁▂ |
+| cyl | 0 | 1 | 6.19 | 1.79 | 4.00 | 4.00 | 6.00 | 8.00 | 8.00 | ▆▁▃▁▇ |
+| disp | 0 | 1 | 230.72 | 123.94 | 71.10 | 120.83 | 196.30 | 326.00 | 472.00 | ▇▃▃▃▂ |
+| hp | 0 | 1 | 146.69 | 68.56 | 52.00 | 96.50 | 123.00 | 180.00 | 335.00 | ▇▇▆▃▁ |
+| drat | 0 | 1 | 3.60 | 0.53 | 2.76 | 3.08 | 3.70 | 3.92 | 4.93 | ▇▃▇▅▁ |
+| wt | 0 | 1 | 3.22 | 0.98 | 1.51 | 2.58 | 3.33 | 3.61 | 5.42 | ▃▃▇▁▂ |
+| qsec | 0 | 1 | 17.85 | 1.79 | 14.50 | 16.89 | 17.71 | 18.90 | 22.90 | ▃▇▇▂▁ |
+| vs | 0 | 1 | 0.44 | 0.50 | 0.00 | 0.00 | 0.00 | 1.00 | 1.00 | ▇▁▁▁▆ |
+| am | 0 | 1 | 0.41 | 0.50 | 0.00 | 0.00 | 0.00 | 1.00 | 1.00 | ▇▁▁▁▆ |
+| gear | 0 | 1 | 3.69 | 0.74 | 3.00 | 3.00 | 4.00 | 4.00 | 5.00 | ▇▁▆▁▂ |
+| carb | 0 | 1 | 2.81 | 1.62 | 1.00 | 2.00 | 2.00 | 4.00 | 8.00 | ▇▂▅▁▁ |
 
 To convert these variables into categorical variables, we use the
 functions `mutate`, `as_factor`, and optionally `fct_recode`; we’ll see
@@ -183,6 +187,7 @@ As an example, the following code:
 We then `skim` the new result.
 
 ``` r
+
 my_mtcars <- mtcars |>
   mutate(cyl = as_factor(cyl),
          vs = as_factor(vs) |> fct_recode("V-shaped"="0", "Straight"="1"))
@@ -202,17 +207,17 @@ skim(my_mtcars)
 
 **Variable type: numeric**
 
-| skim_variable | n_missing | complete_rate |   mean |     sd |    p0 |    p25 |    p50 |    p75 |   p100 | hist  |
-|:--------------|----------:|--------------:|-------:|-------:|------:|-------:|-------:|-------:|-------:|:------|
-| mpg           |         0 |             1 |  20.09 |   6.03 | 10.40 |  15.43 |  19.20 |  22.80 |  33.90 | ▃▇▅▁▂ |
-| disp          |         0 |             1 | 230.72 | 123.94 | 71.10 | 120.83 | 196.30 | 326.00 | 472.00 | ▇▃▃▃▂ |
-| hp            |         0 |             1 | 146.69 |  68.56 | 52.00 |  96.50 | 123.00 | 180.00 | 335.00 | ▇▇▆▃▁ |
-| drat          |         0 |             1 |   3.60 |   0.53 |  2.76 |   3.08 |   3.70 |   3.92 |   4.93 | ▇▃▇▅▁ |
-| wt            |         0 |             1 |   3.22 |   0.98 |  1.51 |   2.58 |   3.33 |   3.61 |   5.42 | ▃▃▇▁▂ |
-| qsec          |         0 |             1 |  17.85 |   1.79 | 14.50 |  16.89 |  17.71 |  18.90 |  22.90 | ▃▇▇▂▁ |
-| am            |         0 |             1 |   0.41 |   0.50 |  0.00 |   0.00 |   0.00 |   1.00 |   1.00 | ▇▁▁▁▆ |
-| gear          |         0 |             1 |   3.69 |   0.74 |  3.00 |   3.00 |   4.00 |   4.00 |   5.00 | ▇▁▆▁▂ |
-| carb          |         0 |             1 |   2.81 |   1.62 |  1.00 |   2.00 |   2.00 |   4.00 |   8.00 | ▇▂▅▁▁ |
+| skim_variable | n_missing | complete_rate | mean | sd | p0 | p25 | p50 | p75 | p100 | hist |
+|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|:---|
+| mpg | 0 | 1 | 20.09 | 6.03 | 10.40 | 15.43 | 19.20 | 22.80 | 33.90 | ▃▇▅▁▂ |
+| disp | 0 | 1 | 230.72 | 123.94 | 71.10 | 120.83 | 196.30 | 326.00 | 472.00 | ▇▃▃▃▂ |
+| hp | 0 | 1 | 146.69 | 68.56 | 52.00 | 96.50 | 123.00 | 180.00 | 335.00 | ▇▇▆▃▁ |
+| drat | 0 | 1 | 3.60 | 0.53 | 2.76 | 3.08 | 3.70 | 3.92 | 4.93 | ▇▃▇▅▁ |
+| wt | 0 | 1 | 3.22 | 0.98 | 1.51 | 2.58 | 3.33 | 3.61 | 5.42 | ▃▃▇▁▂ |
+| qsec | 0 | 1 | 17.85 | 1.79 | 14.50 | 16.89 | 17.71 | 18.90 | 22.90 | ▃▇▇▂▁ |
+| am | 0 | 1 | 0.41 | 0.50 | 0.00 | 0.00 | 0.00 | 1.00 | 1.00 | ▇▁▁▁▆ |
+| gear | 0 | 1 | 3.69 | 0.74 | 3.00 | 3.00 | 4.00 | 4.00 | 5.00 | ▇▁▆▁▂ |
+| carb | 0 | 1 | 2.81 | 1.62 | 1.00 | 2.00 | 2.00 | 4.00 | 8.00 | ▇▂▅▁▁ |
 
 ## Summarizing data
 
@@ -230,6 +235,7 @@ This is a version of `tbl_summary` from the `gtsummary` package; further
 control is possible by using that package directly.
 
 ``` r
+
 mtcars2 |> select(-model) |> descriptive_statistics()
 ```
 
@@ -243,6 +249,7 @@ manual) separately.
 \[Output not shown\]
 
 ``` r
+
 mtcars2 |> select(-model) |> descriptive_statistics(by=am)
 ```
 
@@ -256,6 +263,7 @@ Use `count` to count categorical variables; count combinations of
 multiple variables by separating with a comma.
 
 ``` r
+
 mtcars2 |> count(vs)
 #> # A tibble: 2 × 2
 #>   vs           n
@@ -278,6 +286,7 @@ each desired combination of variables. Note that within each
 computation, the percents sum to 100%.
 
 ``` r
+
 mtcars2 |> count(vs) |> mutate(percent = n / sum(n))
 #> # A tibble: 2 × 3
 #>   vs           n percent
@@ -301,6 +310,7 @@ variable. Now the percents within each value of `am` (automatic or
 manual) sum to 100%.
 
 ``` r
+
 mtcars2 |> count(vs, am) |> mutate(percent = n / sum(n), .by=am)
 #> # A tibble: 4 × 4
 #>   vs       am            n percent
@@ -318,6 +328,7 @@ to view but harder to work with. The row and columns sums can be added
 using `addmargins`.
 
 ``` r
+
 xtabs(~vs + am, data=mtcars2)
 #>           am
 #> vs         automatic manual
@@ -341,6 +352,7 @@ in front of `.by`; that is used here to make conflicts with your desired
 name less likely.
 
 ``` r
+
 mtcars2 |> summarize(mean_mpg=mean(mpg), sd_mpg=sd(mpg))
 #> # A tibble: 1 × 2
 #>   mean_mpg sd_mpg
@@ -392,6 +404,7 @@ This data set has fuel economy in miles per gallon (`mpg`); suppose we
 instead want to use the UK standard of liters/100 kilometers.
 
 ``` r
+
 mtcars2 <- mtcars2 |> 
   mutate(Lp100km = 3.78541 / 1.60934 * 100 / mpg)
 mtcars2 |> select(mpg, Lp100km) |> skim()
@@ -403,10 +416,10 @@ mtcars2 |> select(mpg, Lp100km) |> skim()
 
 **Variable type: numeric**
 
-| skim_variable | n_missing | complete_rate |  mean |   sd |    p0 |   p25 |   p50 |   p75 |  p100 | hist  |
-|:--------------|----------:|--------------:|------:|-----:|------:|------:|------:|------:|------:|:------|
-| mpg           |         0 |             1 | 20.09 | 6.03 | 10.40 | 15.43 | 19.20 | 22.80 | 33.90 | ▃▇▅▁▂ |
-| Lp100km       |         0 |             1 | 12.76 | 3.86 |  6.94 | 10.32 | 12.25 | 15.25 | 22.62 | ▅▇▆▁▁ |
+| skim_variable | n_missing | complete_rate | mean | sd | p0 | p25 | p50 | p75 | p100 | hist |
+|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|:---|
+| mpg | 0 | 1 | 20.09 | 6.03 | 10.40 | 15.43 | 19.20 | 22.80 | 33.90 | ▃▇▅▁▂ |
+| Lp100km | 0 | 1 | 12.76 | 3.86 | 6.94 | 10.32 | 12.25 | 15.25 | 22.62 | ▅▇▆▁▁ |
 
 In addition to arithmetic, there are a number of useful function for
 creating new variables, as seen below.

@@ -53,6 +53,7 @@ One can plot on the log scale by adding `scale_x_log10()` or
 `scale_y_log10()`.
 
 ``` r
+
 plot1 <- ggplot(mtcars2) + aes(x=wt, y=mpg) + geom_point()
 plot2 <- ggplot(mtcars2) + aes(x=wt, y=mpg, color=gear) + geom_point()
 plot3 <- plot1 + scale_x_log10() + scale_y_log10()
@@ -65,6 +66,7 @@ One can also `facet` by a categorical variable; use the optional
 `labeller` parameter to include the variable name in the label.
 
 ``` r
+
 ggplot(mtcars2) + aes(x=wt, y=mpg) + geom_point() +
   facet_wrap(~gear, labeller = label_both)
 ```
@@ -78,6 +80,7 @@ confidence region, use `se=FALSE`. Here two smooths, one of each type,
 are added to the plot.
 
 ``` r
+
 ggplot(mtcars2) + aes(x=wt, y=mpg) + geom_point() +
   stat_smooth(method="lm") +
   stat_smooth(se=FALSE)
@@ -100,6 +103,7 @@ change the tick locations or lower/upper limits.
 These plots can also be faceted as desired.
 
 ``` r
+
 plot1 <- ggplot(mtcars2) + aes(x=gear) + geom_bar()
 plot2 <- ggplot(mtcars2) + aes(x=gear, fill=cyl) + geom_bar()
 plot3 <- ggplot(mtcars2) + aes(x=gear, fill=cyl) + geom_bars() +
@@ -124,6 +128,7 @@ appropriately.
 These plots can also be faceted as desired.
 
 ``` r
+
 plot1 <- ggplot(mtcars2) + aes(wt) + geom_histogram(binwidth=0.25, boundary=0)
 plot2 <- ggplot(mtcars2) + aes(wt) + geom_density()
 plot3 <- ggplot(mtcars2) + aes(wt, color=cyl) + geom_density()
@@ -154,6 +159,7 @@ boxplot. To do so,
 These can be facetted or put on the log scale, as described above.
 
 ``` r
+
 plot1 <- ggplot(mtcars2) + aes(x=wt) + 
   geom_boxplot() +
   hide_y_axis()
@@ -167,6 +173,7 @@ plot1 / plot2
 ![](graphics_files/figure-html/unnamed-chunk-7-1.png)
 
 ``` r
+
 plot1 <- ggplot(mtcars2) + aes(x=cyl, y=wt) + 
   geom_boxplot()
 plot2 <- ggplot(mtcars2) + aes(x=cyl, y=wt) + 
@@ -194,6 +201,7 @@ do the smooth by another variable; if you do, set `group` to be the same
 variable as `color`.
 
 ``` r
+
 ggplot(mtcars2) + aes(x=wt, y=vs, group=1) + 
   geom_beeswarm(orientation="y", spacing=2) +
   scale_y_binary() +
@@ -209,6 +217,7 @@ calculate the mean weight, and standard error, by the number of
 cylinders.
 
 ``` r
+
 wt_mse <- mtcars2 |> summarize(m=mean(wt), se=sd(wt)/sqrt(n()), .by=cyl)
 ```
 
@@ -242,6 +251,7 @@ also specify the `wt_mse` as the data set, as before, we overrule this
 in `geom_beeswarm` by specifying a new data set there.
 
 ``` r
+
 plot1 <- ggplot(wt_mse) + aes(cyl, m, ymin=m-se, ymax=m+se) + 
   geom_col() + 
   geom_errorbar(width=0.5)
@@ -261,6 +271,7 @@ particular aesthetic you want to label differently. Additionally, one
 can add a `title` and a `subtitle`.
 
 ``` r
+
 ggplot(mtcars2) + aes(x=gear, fill=cyl) + 
   geom_bar() + 
   labs(x="Number of gears",
@@ -298,6 +309,7 @@ parameter may be helpful to control the resolution, and for tiff,
 As with reading data, using `here` is recommended.
 
 ``` r
+
 myplot <- ggplot(mtcars2) + aes(x=wt, y=mpg) + geom_point()
 ggsave(myplot, filename=here("myplot.pdf"), width=6, height=6)
 ```

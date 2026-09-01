@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Nonparametric Inference • umncvmstats</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Nonparametric Inference">
 </head>
@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">umncvmstats</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0.999</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -529,6 +529,7 @@
 <thead><tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="response">response</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="median">median</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="pseudomedian">pseudomedian</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
@@ -539,6 +540,7 @@
 <tbody class="gt_table_body"><tr>
 <td headers="response" class="gt_row gt_left">wt</td>
 <td headers="n" class="gt_row gt_right">32</td>
+<td headers="median" class="gt_row gt_right">3.33</td>
 <td headers="pseudomedian" class="gt_row gt_right">3.19</td>
 <td headers="conf.low" class="gt_row gt_right">2.83</td>
 <td headers="conf.high" class="gt_row gt_right">3.51</td>
@@ -546,17 +548,9 @@
 <td headers="V" class="gt_row gt_right">528 </td>
 <td headers="p.value" class="gt_row gt_left">&lt; 0.0001</td>
 </tr></tbody>
-<tfoot>
-<tr class="gt_footnotes">
-<td class="gt_footnote" colspan="8"> Wilcoxon signed rank test with continuity correction (two.sided), with 95% confidence intervals.</td>
-    </tr>
-<tr class="gt_footnotes">
-<td class="gt_footnote" colspan="8"> Approximate p-value used, due to ties.</td>
-    </tr>
-<tr class="gt_footnotes">
-<td class="gt_footnote" colspan="8"> Approximate confidence interval used, due to ties.</td>
-    </tr>
-</tfoot>
+<tfoot><tr class="gt_footnotes">
+<td class="gt_footnote" colspan="9"> Wilcoxon signed rank exact test (two.sided), with 95% confidence intervals.</td>
+    </tr></tfoot>
 </table>
 </div>
 <div class="section level3">
@@ -1018,60 +1012,43 @@
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="response">response</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="variable">variable</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="n">n</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="median">median</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="pseudomedian">pseudomedian</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.low">conf.low</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="conf.high">conf.high</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="null">null</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="V">V</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="p.value">p.value</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="footnote">footnote</th>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
 <td headers="response" class="gt_row gt_left">wt</td>
 <td headers="variable" class="gt_row gt_left">am = automatic</td>
 <td headers="n" class="gt_row gt_right">19</td>
+<td headers="median" class="gt_row gt_right">3.52</td>
 <td headers="pseudomedian" class="gt_row gt_right">3.63</td>
 <td headers="conf.low" class="gt_row gt_right">3.44</td>
-<td headers="conf.high" class="gt_row gt_right">4.28</td>
+<td headers="conf.high" class="gt_row gt_right">4.27</td>
 <td headers="null" class="gt_row gt_right">0.000</td>
 <td headers="V" class="gt_row gt_right">190  </td>
-<td headers="p.value" class="gt_row gt_left">  0.0001</td>
-<td headers="footnote" class="gt_row gt_right">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1,2,3</sup></span> </td>
+<td headers="p.value" class="gt_row gt_left">&lt; 0.0001</td>
 </tr>
 <tr>
 <td headers="response" class="gt_row gt_left">wt</td>
 <td headers="variable" class="gt_row gt_left">am = manual</td>
 <td headers="n" class="gt_row gt_right">13</td>
+<td headers="median" class="gt_row gt_right">2.32</td>
 <td headers="pseudomedian" class="gt_row gt_right">2.39</td>
 <td headers="conf.low" class="gt_row gt_right">2.02</td>
 <td headers="conf.high" class="gt_row gt_right">2.78</td>
 <td headers="null" class="gt_row gt_right">0.000</td>
 <td headers="V" class="gt_row gt_right"> 91.0</td>
 <td headers="p.value" class="gt_row gt_left">  0.0002</td>
-<td headers="footnote" class="gt_row gt_right">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>4</sup></span> </td>
 </tr>
 </tbody>
-<tfoot>
-<tr class="gt_footnotes">
-<td class="gt_footnote" colspan="10">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> Wilcoxon signed rank test with continuity correction (two.sided), with 95% confidence intervals.</td>
-    </tr>
-<tr class="gt_footnotes">
-<td class="gt_footnote" colspan="10">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span> Approximate p-value used, due to ties.</td>
-    </tr>
-<tr class="gt_footnotes">
-<td class="gt_footnote" colspan="10">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>3</sup></span> Approximate confidence interval used, due to ties.</td>
-    </tr>
-<tr class="gt_footnotes">
-<td class="gt_footnote" colspan="10">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>4</sup></span> Wilcoxon signed rank exact test (two.sided), with 95% confidence intervals.</td>
-    </tr>
-</tfoot>
+<tfoot><tr class="gt_footnotes">
+<td class="gt_footnote" colspan="10"> Wilcoxon signed rank exact test (two.sided), with 95% confidence intervals.</td>
+    </tr></tfoot>
 </table>
 </div>
 </div>
@@ -1545,23 +1522,15 @@
 <td headers="response" class="gt_row gt_left">wt</td>
 <td headers="variable" class="gt_row gt_left">am: automatic - manual</td>
 <td headers="pseudomedian" class="gt_row gt_right">1.28</td>
-<td headers="conf.low" class="gt_row gt_right">0.79</td>
-<td headers="conf.high" class="gt_row gt_right">1.82</td>
+<td headers="conf.low" class="gt_row gt_right">0.80</td>
+<td headers="conf.high" class="gt_row gt_right">1.79</td>
 <td headers="null" class="gt_row gt_right">0.000</td>
 <td headers="W" class="gt_row gt_right">230 </td>
 <td headers="p.value" class="gt_row gt_left">&lt; 0.0001</td>
 </tr></tbody>
-<tfoot>
-<tr class="gt_footnotes">
-<td class="gt_footnote" colspan="8"> Wilcoxon rank sum test with continuity correction (two.sided), with 95% confidence intervals.</td>
-    </tr>
-<tr class="gt_footnotes">
-<td class="gt_footnote" colspan="8"> Approximate p-value used, due to ties.</td>
-    </tr>
-<tr class="gt_footnotes">
-<td class="gt_footnote" colspan="8"> Approximate confidence interval used, due to ties.</td>
-    </tr>
-</tfoot>
+<tfoot><tr class="gt_footnotes">
+<td class="gt_footnote" colspan="8"> Wilcoxon rank sum exact test (two.sided), with 95% confidence intervals.</td>
+    </tr></tfoot>
 </table>
 </div>
 </div>
@@ -2510,46 +2479,40 @@
 <tr>
 <td headers="response" class="gt_row gt_left">wt</td>
 <td headers="variable" class="gt_row gt_left">cyl: 4 - 6</td>
-<td headers="pseudomedian" class="gt_row gt_right">−0.93</td>
-<td headers="conf.low" class="gt_row gt_right">−1.52</td>
-<td headers="conf.high" class="gt_row gt_right">−0.16</td>
+<td headers="pseudomedian" class="gt_row gt_right">−0.94</td>
+<td headers="conf.low" class="gt_row gt_right">−1.50</td>
+<td headers="conf.high" class="gt_row gt_right">−0.25</td>
 <td headers="null" class="gt_row gt_right">0.000</td>
 <td headers="W" class="gt_row gt_right">8.00</td>
-<td headers="p.value" class="gt_row gt_left">  0.0066</td>
-<td headers="p.adjust" class="gt_row gt_left">  0.020</td>
+<td headers="p.value" class="gt_row gt_left">  0.0040</td>
+<td headers="p.adjust" class="gt_row gt_left">  0.012</td>
 </tr>
 <tr>
 <td headers="response" class="gt_row gt_left">wt</td>
 <td headers="variable" class="gt_row gt_left">cyl: 4 - 8</td>
 <td headers="pseudomedian" class="gt_row gt_right">−1.62</td>
-<td headers="conf.low" class="gt_row gt_right">−2.27</td>
-<td headers="conf.high" class="gt_row gt_right">−0.97</td>
+<td headers="conf.low" class="gt_row gt_right">−2.24</td>
+<td headers="conf.high" class="gt_row gt_right">−0.98</td>
 <td headers="null" class="gt_row gt_right">0.000</td>
 <td headers="W" class="gt_row gt_right">1.00</td>
 <td headers="p.value" class="gt_row gt_left">&lt; 0.0001</td>
-<td headers="p.adjust" class="gt_row gt_left">  0.0001</td>
+<td headers="p.adjust" class="gt_row gt_left">&lt; 0.0001</td>
 </tr>
 <tr>
 <td headers="response" class="gt_row gt_left">wt</td>
 <td headers="variable" class="gt_row gt_left">cyl: 6 - 8</td>
 <td headers="pseudomedian" class="gt_row gt_right">−0.66</td>
-<td headers="conf.low" class="gt_row gt_right">−1.90</td>
+<td headers="conf.low" class="gt_row gt_right">−1.88</td>
 <td headers="conf.high" class="gt_row gt_right">−0.13</td>
 <td headers="null" class="gt_row gt_right">0.000</td>
 <td headers="W" class="gt_row gt_right">9.00</td>
-<td headers="p.value" class="gt_row gt_left">  0.0032</td>
-<td headers="p.adjust" class="gt_row gt_left">  0.0095</td>
+<td headers="p.value" class="gt_row gt_left">  0.0015</td>
+<td headers="p.adjust" class="gt_row gt_left">  0.0045</td>
 </tr>
 </tbody>
 <tfoot>
 <tr class="gt_footnotes">
-<td class="gt_footnote" colspan="9"> Wilcoxon rank sum test with continuity correction (two.sided), with 95% confidence intervals, adjusted for 3 comparisons using the Bonferroni method.</td>
-    </tr>
-<tr class="gt_footnotes">
-<td class="gt_footnote" colspan="9"> Approximate p-value used, due to ties.</td>
-    </tr>
-<tr class="gt_footnotes">
-<td class="gt_footnote" colspan="9"> Approximate confidence interval used, due to ties.</td>
+<td class="gt_footnote" colspan="9"> Wilcoxon rank sum exact test (two.sided), with 95% confidence intervals, adjusted for 3 comparisons using the Bonferroni method.</td>
     </tr>
 <tr class="gt_footnotes">
 <td class="gt_footnote" colspan="9"> p-values adjusted for 3 multiple comparisons using the Bonferroni method.</td>
@@ -3048,7 +3011,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

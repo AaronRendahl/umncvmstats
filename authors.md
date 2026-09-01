@@ -7,14 +7,14 @@
 
 ## Citation
 
-Rendahl A (2025). *umncvmstats: Standardized Functions for Statistical
-Inference and Modeling*. R package version 1.1.0.999,
+Rendahl A (2026). *umncvmstats: Standardized Functions for Statistical
+Inference and Modeling*. R package version 1.1.1,
 <https://aaronrendahl.github.io/umncvmstats/>.
 
     @Manual{,
       title = {umncvmstats: Standardized Functions for Statistical Inference and Modeling},
       author = {Aaron Rendahl},
-      year = {2025},
-      note = {R package version 1.1.0.999},
+      year = {2026},
+      note = {R package version 1.1.1},
       url = {https://aaronrendahl.github.io/umncvmstats/},
     }

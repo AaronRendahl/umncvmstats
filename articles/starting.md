@@ -11,13 +11,15 @@ You need both; “R” is the software underneath that actually does the
 work; “Rstudio” is the interface that makes the doing the work much
 easier.
 
-For Fall 2025, you should have R version 4.5.1 and Rstudio version
-2025.05.1 Build 513. You can check the version of R by checking the
-Console pane when you start Rstudio, and the version of Rstudio using
-Help \> About Rstudio. You can also use the following commands in the
-console.
+For Fall 2026, you should have R version 4.6.1 and Rstudio version
+2026.08.2 Build 200.
+
+You can check the version of R by checking the Console pane when you
+start Rstudio, and the version of Rstudio using Help \> About Rstudio.
+You can also use the following commands in the console.
 
 ``` r
+
 R.version.string
 RStudio.Version()$version
 ```
@@ -41,6 +43,7 @@ Preferred option (this uses the new `pak` package installer, but some
 people have had issues):
 
 ``` r
+
 install.packages("pak")
 pak::pak("tidyverse")
 pak::pak("here")
@@ -52,6 +55,7 @@ that the `devtools` installation may give you a warning about `Rtools`;
 this can be ignored.
 
 ``` r
+
 install.packages("tidyverse")
 install.packages("here")
 install.packages("devtools")
@@ -70,6 +74,7 @@ packages, as occasionally that will break things; to just update
 `umncvmstats`, run
 
 ``` r
+
 devtools::install_github("AaronRendahl/umncvmstats", upgrade="never")
 ```
 
@@ -82,6 +87,7 @@ updated, using this code.
 If you just installed R for the first time, this is unnecessary.
 
 ``` r
+
 update.packages(ask = FALSE, checkBuilt = TRUE)
 ```
 
@@ -240,6 +246,7 @@ help on the `read_csv` function (which we’ll see soon), try typing this
 in the console:
 
 ``` r
+
 ?read_csv
 ```
 
@@ -253,6 +260,7 @@ Let’s start by having R do some basic mathematics; try typing this into
 the console.
 
 ``` r
+
 1 + 1
 #> [1] 2
 ```
@@ -264,6 +272,7 @@ operator to create a vector so you can see what what happens when the
 elements span more than one line of output.
 
 ``` r
+
 1:50
 #>  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
 #> [26] 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
@@ -276,6 +285,7 @@ input the variable again. Think of the `<-` as an arrow pointing to the
 left.
 
 ``` r
+
 a <- 2 + 2
 a
 #> [1] 4
@@ -285,6 +295,7 @@ Because everything in R is a vector, it makes doing arithmetic on more
 than one element very easy; this adds `a` and `b` together element-wise.
 
 ``` r
+
 a <- 1:5
 b <- 10:14
 a + b
@@ -295,6 +306,7 @@ You’ll also see the `c` operator used to create vectors, think of it as
 ‘c’ for “combine.”
 
 ``` r
+
 a <- c(1, 3, 5, 7, 10)
 a
 #> [1]  1  3  5  7 10
@@ -304,6 +316,7 @@ Most of the time, we’ll use R **functions**; for example, the `mean`
 function. Here let’s get the mean of the vector we just made.
 
 ``` r
+
 mean(a)
 #> [1] 5.2
 ```
@@ -317,6 +330,7 @@ first by setting the `na.rm` argument to `TRUE`. (Best practice is to
 always write out `TRUE` and `FALSE` with all caps.)
 
 ``` r
+
 a2 <- c(1, 2, 3, 4, NA)
 mean(a2)
 #> [1] NA
@@ -332,6 +346,7 @@ additional arguments. This makes it easy to chain results of functions
 together into new functions.
 
 ``` r
+
 a |> mean()
 #> [1] 5.2
 a2 |> mean(na.rm=TRUE)
@@ -361,6 +376,7 @@ We use the function `library` to load a package. These lines loads the
 `tidyverse` and `umncvmstats` libraries.
 
 ``` r
+
 library(tidyverse)
 library(umncvmstats)
 ```
@@ -375,6 +391,7 @@ load it and then try one of the functions that was noted as having a
 conflict.
 
 ``` r
+
 library(conflicted)
 filter()
 #> Error:
@@ -392,6 +409,7 @@ you want to do. Usually we’ll choose ahead of time which we want like
 this.
 
 ``` r
+
 conflicts_prefer(dplyr::filter)
 #> [conflicted] Will prefer dplyr::filter over any
 #> other package.
@@ -403,6 +421,7 @@ I believe these should be almost all the packages you’ll need this
 semester; this code is in the assignment template.
 
 ``` r
+
 library(conflicted)
 library(tidyverse)
 library(umncvmstats)
@@ -449,6 +468,7 @@ second two lines, to open the csv files, should output the number of
 rows and columns and the column specification.
 
 ``` r
+
 d1 <- readxl::read_excel(here("data", "books.xlsx"))
 d2 <- readxl::read_excel(here("data", "books1.xlsx"))
 d3 <- readr::read_csv(here("data", "books.csv"))
@@ -528,6 +548,7 @@ The following code makes a new file with the file name
 “Your Name” as the author. You should change these as appropriate.
 
 ``` r
+
 new_assignment("yourname_HW01", "Homework 1", "Your Name")
 ```
 
